@@ -1,0 +1,1608 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Screening and Monitoring Private Lists API",
+        "contact": {
+            "name": "Dow Jones"
+        },
+        "license": {
+            "name": "Dow Jones Screening and Monitoring Private Lists API"
+        },
+        "version": "v1"
+    },
+    "servers": [
+        {
+            "url": "https://api.dowjones.com"
+        },
+        {
+            "url": "https://eu.api.dowjones.com"
+        }
+    ],
+    "tags": [{
+            "name": "Custom Sources",
+            "description": "Operations related to the custom sources"
+        },
+        {
+            "name": "Profiles",
+            "description": "Operations related to the profiles"
+        },
+        {
+            "name": "Transaction",
+            "description": "Operations related to the transactions"
+        }
+    ],
+    "paths": {
+        "/risk-profiles-custom-sources": {
+            "get": {
+                "tags": [
+                    "Custom Sources"
+                ],
+                "summary": "Retrieves the information of the Profiles Custom Sources from the given account",
+                "operationId": "getProfileSourcesUsingGET",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "name": "page[offset]",
+                        "in": "query",
+                        "description": "page offset",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "page[limit]",
+                        "in": "query",
+                        "description": "page limit",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDataProfileSources"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            },
+            "post": {
+                "tags": [
+                    "Custom Sources"
+                ],
+                "summary": "Creates a new Profiles Custom Source",
+                "operationId": "createProfileSourceUsingPOST",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Content-Encoding"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestDataProfileSourceName"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestDataProfileSourceName"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseProfileSourceName"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            }
+        },
+        "/risk-profiles-custom-sources/{id}": {
+            "get": {
+                "tags": [
+                    "Custom Sources"
+                ],
+                "summary": "Retrieves the attributes of the Profiles Custom Source",
+                "operationId": "retrieveGroupInfoUsingGET",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the source.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDataListProfileSourcesInformation"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            },
+            "delete": {
+                "tags": [
+                    "Custom Sources"
+                ],
+                "summary": "Deletes a Profiles Custom Source",
+                "operationId": "deleteProfileSourceUsingDELETE",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id of the source.",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            },
+            "patch": {
+                "tags": [
+                    "Custom Sources"
+                ],
+                "summary": "Modifies a Profiles Custom Source Name",
+                "operationId": "updateSourceNameUsingPATCH",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Content-Encoding"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the source.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "request",
+                    "content": {
+                        "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestDataProfileSourceName"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestDataProfileSourceName"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseProfileSourceName"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            }
+        },
+        "/risk-profiles-custom-sources/{id}/profiles": {
+            "get": {
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "Retrieves all profiles from a custom source",
+                "operationId": "retrieveAllProfilesOnACustomSourceUsingGET",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "name": "page[offset]",
+                        "in": "query",
+                        "description": "page offset",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "page[limit]",
+                        "in": "query",
+                        "description": "page limit, should not be higher than 500",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "maximum": 500,
+                            "default": 100
+                        }
+                    },
+                    {
+                        "name": "parts",
+                        "in": "query",
+                        "description": "Specifies if the profiles should be returned with all attributes or only the ids.\n  * all_attributes - Return all attributes for the profiles\n  * id_only - Returns only the profile ids (Default value)\n",
+                        "example": "id_only",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "all_attributes",
+                                "id_only"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the custom source.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDataGetAllProfiles"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            },
+            "post": {
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "Inserts one or more profiles",
+                "operationId": "insertProfileUsingPOST",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Content-Encoding"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the source.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestDataInsertProfile"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestDataInsertProfile"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDataInsertTransaction"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            }
+        },
+        "/risk-profiles-custom-sources/{id}/profiles/{peid}": {
+            "get": {
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "Retrieves a Profile",
+                "operationId": "retrieveProfileUsingGET",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the source.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "peid",
+                        "in": "path",
+                        "description": "Id of the profile.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDataProfileId"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            },
+            "put": {
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "Updates a profile",
+                "operationId": "updateProfileUsingPUT",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Content-Encoding"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the source.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "peid",
+                        "in": "path",
+                        "description": "Id of the profile.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestDataPutProfile"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestDataPutProfile"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDataInsertTransaction"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            },
+            "delete": {
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "Removes a profile",
+                "operationId": "removeProfileUsingDELETE",
+                "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the source.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "peid",
+                        "in": "path",
+                        "description": "Id of the profile.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.profiles.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            }
+        },
+        "/risk-profiles-custom-sources/transactions/{id}": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Retrieves the status of a transaction",
+                "operationId": "retrieveTransactionsUsingGET",
+                "parameters": [{
+                        "$ref": "#/components/parameters/Accept-Encoding"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the transaction.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseDataPrivateListStatusTransaction"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/vnd.dowjones.dna.transactions.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "bearerAuth": []
+                }]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Profile": {
+                "type": "object",
+                "properties": {
+                    "external_id": {
+                        "type": "string"
+                    },
+                    "primary_country": {
+                        "type": "string",
+                        "example": "FRA"
+                    },
+                    "countries": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": "USA, RUSS"
+                        }
+                    },
+                    "birth_dates": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BirthDate"
+                        }
+                    },
+                    "gender": {
+                        "type": "string",
+                        "enum": [
+                            "MALE",
+                            "FEMALE"
+                        ]
+                    },
+                    "is_deceased": {
+                        "type": "boolean"
+                    },
+                    "identification_details": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IdentificationDetails"
+                        }
+                    },
+                    "industry_sector": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": "ITECH"
+                        }
+                    },
+                    "content_category": {
+                        "type": "array",
+                        "items": {
+                            "oneOf": [{
+                                    "type": "string"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/MLContent"
+                                }
+                            ]
+                        }
+                    },
+                    "names": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Name"
+                        }
+                    },
+                    "record_type": {
+                        "type": "string",
+                        "enum": [
+                            "PERSON",
+                            "ENTITY",
+                            "UNKNOWN"
+                        ]
+                    },
+                    "payload": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Name": {
+                "type": "object",
+                "properties": {
+                    "entity_name": {
+                        "type": "string"
+                    },
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "middle_name": {
+                        "type": "string"
+                    },
+                    "name_type": {
+                        "type": "string",
+                        "enum": [
+                            "PRIMARY",
+                            "MAIDEN",
+                            "SV",
+                            "ELV",
+                            "AKA",
+                            "LQAKA",
+                            "FKA",
+                            "SSN",
+                            "OSN"
+                        ]
+                    },
+                    "prefix": {
+                        "type": "string"
+                    },
+                    "suffix": {
+                        "type": "string"
+                    },
+                    "single_string_name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "BirthDate": {
+                "type": "object",
+                "properties": {
+                    "year": {
+                        "type": "integer",
+                        "example": 1990
+                    },
+                    "month": {
+                        "type": "integer",
+                        "example": 12
+                    },
+                    "day": {
+                        "type": "integer",
+                        "example": 25
+                    }
+                }
+            },
+            "IdentificationDetails": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "integer",
+                        "example": 1023
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "passport"
+                    }
+                }
+            },
+            "ProfileSourceName": {
+                "type": "object",
+                "properties": {
+                    "source_name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProfileSourceInformation": {
+                "type": "object",
+                "properties": {
+                    "source_name": {
+                        "type": "string"
+                    },
+                    "profile_count": {
+                        "type": "integer",
+                        "example": 4
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-01-01T12:00:00Z"
+                    }
+                }
+            },
+            "RequestDataInsertProfile": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RequestPutProfile"
+                        }
+                    }
+                }
+            },
+            "RequestProfileSourceName": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "$ref": "#/components/schemas/ProfileSourceName"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "risk-profiles-custom-sources"
+                    }
+                }
+            },
+            "RequestDataPutProfile": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/RequestPutProfile"
+                    }
+                }
+            },
+            "RequestDataProfileSourceName": {
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/RequestProfileSourceName"
+                    }
+                }
+            },
+            "RequestPutProfile": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "$ref": "#/components/schemas/Profile"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "profiles"
+                    }
+                }
+            },
+            "ResponseListProfileSourceName": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "$ref": "#/components/schemas/ProfileSourceInformation"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "risk-profiles-custom-sources"
+                    },
+                    "links": {
+                        "type": "object",
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000"
+                            }
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseDataProfileId": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/ResponseProfileId"
+                    }
+                }
+            },
+            "ResponseProfileId": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "$ref": "#/components/schemas/Profile"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "profiles"
+                    },
+                    "links": {
+                        "type": "object",
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000/profiles/123e4567-e89b-12d3-a456-426614174000"
+                            }
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseDataGetAllProfiles": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "$ref": "#/components/schemas/ResponseGetAllProfiles"
+                    },
+                    "links": {
+                        "$ref": "#/components/schemas/ResponseLinks"
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/Meta"
+                    }
+                }
+            },
+            "ResponseGetAllProfiles": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Profile"
+                        }
+                    },
+                    "links": {
+                        "type": "object",
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000/profiles/123e4567-e89b-12d3-a456-426614174000"
+                            }
+                        }
+                    }
+                }
+            },
+            "ResponseProfileSourceName": {
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/ResponseListProfileSourceName"
+                    }
+                }
+            },
+            "ResponseDataInsertTransaction": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/ResponseTransaction"
+                    }
+                }
+            },
+            "ResponseDataPrivateListStatusTransaction": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/ResponseStatusTransaction"
+                    }
+                }
+            },
+            "ResponseStatusTransaction": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "$ref": "#/components/schemas/PrivateListStatusTransaction"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "transactions"
+                    },
+                    "links": {
+                        "type": "object",
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000"
+                            }
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseLinks": {
+                "type": "object",
+                "properties": {
+                    "first": {
+                        "type": "string",
+                        "example": "https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20"
+                    },
+                    "next": {
+                        "type": "string",
+                        "example": "https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=40&page[limit]=20"
+                    },
+                    "prev": {
+                        "type": "string",
+                        "example": "https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20"
+                    },
+                    "last": {
+                        "type": "string",
+                        "example": "https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=210"
+                    }
+                }
+            },
+            "ResponseDataProfileSources": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResponseListProfileSourceName"
+                        }
+                    },
+                    "links": {
+                        "$ref": "#/components/schemas/ResponseLinks"
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/Meta"
+                    }
+                }
+            },
+            "ResponseDataListProfileSourcesInformation": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/ResponseListProfileSourcesInformation"
+                    }
+                }
+            },
+            "ResponseListProfileSourcesInformation": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "$ref": "#/components/schemas/ProfileSourceInformation"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "risk-profiles-custom-sources"
+                    },
+                    "links": {
+                        "type": "object",
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000"
+                            }
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PrivateListStatusTransaction": {
+                "type": "object",
+                "properties": {
+                    "operation": {
+                        "type": "string",
+                        "example": "INSERTION"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "COMPLETED"
+                        ]
+                    },
+                    "source_id": {
+                        "type": "string"
+                    },
+                    "valid_profiles": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "invalid_profiles": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "pending_profiles": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "processing_profiles": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "valid_profile_details": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "example": "31f90e11-a0b2-459d-9f22-765c6b62cac0"
+                                },
+                                "external_id": {
+                                    "type": "string",
+                                    "example": "external_id"
+                                },
+                                "request_index": {
+                                    "type": "integer",
+                                    "example": 0
+                                }
+                            }
+                        }
+                    },
+                    "invalid_profile_details": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "external_id": {
+                                    "type": "string",
+                                    "example": "external_id"
+                                },
+                                "request_index": {
+                                    "type": "integer",
+                                    "example": 1
+                                },
+                                "errors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "There was an error in the request, please recheck and try again"
+                                            },
+                                            "status": {
+                                                "type": "integer",
+                                                "example": 400
+                                            },
+                                            "code": {
+                                                "type": "integer",
+                                                "example": 1100001
+                                            },
+                                            "detail": {
+                                                "type": "string",
+                                                "example": "names[0] {The profile name contains invalid characters}"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "ResponseTransaction": {
+                "type": "object",
+                "properties": {
+                    "attributes": {
+                        "$ref": "#/components/schemas/PrivateListTransaction"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "transactions"
+                    },
+                    "links": {
+                        "type": "object",
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "example": "https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000"
+                            }
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PrivateListTransaction": {
+                "type": "object",
+                "properties": {
+                    "operation": {
+                        "type": "string",
+                        "example": "INSERTION"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "COMPLETED"
+                        ]
+                    },
+                    "source_id": {
+                        "type": "string"
+                    },
+                    "valid_profiles": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "invalid_profiles": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "pending_profiles": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "processiong_profiles": {
+                        "type": "integer",
+                        "example": 0
+                    }
+                }
+            },
+            "JsonError": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ErrorObject"
+                        }
+                    }
+                }
+            },
+            "ErrorObject": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "detail": {
+                        "type": "string"
+                    },
+                    "meta": {
+                        "type": "string"
+                    }
+                }
+            },
+            "MLContent": {
+                "type": "object",
+                "properties": {
+                    "content_category": {
+                        "type": "array",
+                        "items": {
+                            "oneOf": [{
+                                    "type": "string"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/MLContent"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "example": {
+                    "category": [
+                        "SubAME",
+                        {
+                            "category": [
+                                "SubAME2"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Meta": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "paging": {
+                        "type": "object",
+                        "properties": {
+                            "offset": {
+                                "type": "object",
+                                "properties": {
+                                    "first": {
+                                        "type": "integer",
+                                        "example": 0
+                                    },
+                                    "last": {
+                                        "type": "integer",
+                                        "example": 0
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "total_count": {
+                        "type": "integer",
+                        "example": 0
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "Accept-Encoding": {
+                "name": "Accept-Encoding",
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "in": "header",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "Content-Encoding": {
+                "name": "Content-Encoding",
+                "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                "in": "header",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}

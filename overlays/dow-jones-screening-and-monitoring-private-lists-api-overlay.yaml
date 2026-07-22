@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Screening and Monitoring Private Lists API
+  version: 1.0.0
+extends: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: dow-jones
+    x-apievangelist-review: https://apis.io/providers/dow-jones/
+- target: $.info
+  update:
+    x-apievangelist-tags:
+    - Financial
+    - News
+    - Risk and Compliance
+    - Market Data

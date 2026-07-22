@@ -1,0 +1,840 @@
+generated: '2026-07-22'
+method: derived
+format: http-status
+note: Derived from 4xx/5xx responses across the 17 published OpenAPI definitions. Dow Jones error envelopes use
+  a JSON errors[] array; application/problem+json (RFC 9457) is not used.
+source: openapi/
+problems:
+- status: 400
+  title: Bad Request
+  occurrences: 47
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceAssess
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#createAlertPDFExport
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#createAssessmentPDFExport
+- status: 400
+  title: Bad Request (Incorrect Parameters)
+  occurrences: 1
+  example_operations:
+  - dow-jones-content-api-swagger.json#Search_Post
+- status: 400
+  title: Bad Request - Incorrect Parameters
+  occurrences: 8
+  example_operations:
+  - dow-jones-company-news-radar-api-openapi.json#GET /swagger
+  - dow-jones-company-news-radar-api-openapi.json#POST /content/realtime/search
+  - dow-jones-newsletters-api-openapi.json#NewslettersRead
+- status: 400
+  title: Bad Request - Invalid export ID
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#getExcelExportStatus
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#downloadExcelExport
+- status: 400
+  title: Bad Request - Invalid request parameters
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#createExcelExport
+- status: 400
+  title: 'Bad Request: Incorrect Parameters.'
+  occurrences: 29
+  example_operations:
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/{id}
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/search
+  - dow-jones-calendar-live-api-openapi.json#POST /calendar-events/search
+- status: 400
+  title: Bad request
+  occurrences: 29
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertClose
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssign
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssignPrevious
+- status: 400
+  title: Bad request (e.g. invalid body, duplicate `ids`, or more than 200 ids).
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityRiskProfileQuery
+- status: 400
+  title: Bad request (e.g. the content-type is incorrect)
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientBulkImport
+- status: 400
+  title: Bad request (e.g. the skip parameter is not a number)
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportSearch
+- status: 400
+  title: Bad request (for example, missing `clientId`, invalid JSON body, or validation failure).
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportSyncronous
+- status: 400
+  title: Bad request - validation failed
+  occurrences: 6
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionCreate
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionList
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionGetById
+- status: 400
+  title: Billing account id not found in the request body
+  occurrences: 1
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#getMetadata
+- status: 400
+  title: Invalid request
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkDelete
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#AssessmentDelete
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#usersDelete
+- status: 400
+  title: Invalid request.
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityMultipleDelete
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetById
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetByEntityId
+- status: 400
+  title: The request was invalid and at least one search could not be performed
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchStrategy
+- status: 400
+  title: The request was invalid and the import could not be performed
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#userImport
+- status: 400
+  title: Your request was invalid and an assessment could not be created
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentCreate
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentCreateSync
+- status: 400
+  title: Your request was invalid and the search could not be performed
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#userSearch
+- status: 400
+  title: Your request was invalid and the sync could not be performed
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#usersSync
+- status: 400
+  title: bad request body
+  occurrences: 3
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#postEstimate
+  - dow-jones-due-diligence-reports-api-openapi.json#patchMetadata
+  - dow-jones-due-diligence-reports-api-openapi.json#createReportRequest
+- status: 401
+  title: Invalid Authorization
+  occurrences: 1
+  example_operations:
+  - dow-jones-content-api-swagger.json#POST /search/portfolio
+- status: 401
+  title: Not authorized to use this endpoint
+  occurrences: 6
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionCreate
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionList
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionGetById
+- status: 401
+  title: Unauthenticated request
+  occurrences: 36
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertExport
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertExportActivity
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceExport
+- status: 401
+  title: Unauthenticated request.
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityRiskProfileQuery
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityMultipleDelete
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entitySingleDelete
+- status: 401
+  title: Unauthenticated.
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetById
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetByEntityId
+- status: 401
+  title: Unauthorized
+  occurrences: 108
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertClose
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssign
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssignPrevious
+- status: 401
+  title: Unauthorized - Authentication required
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#createExcelExport
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#getExcelExportStatus
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#downloadExcelExport
+- status: 401
+  title: Unauthorized Access
+  occurrences: 1
+  example_operations:
+  - dow-jones-content-api-swagger.json#Search_Post
+- status: 401
+  title: Unauthorized Access.
+  occurrences: 29
+  example_operations:
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/{id}
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/search
+  - dow-jones-calendar-live-api-openapi.json#POST /calendar-events/search
+- status: 401
+  title: You do not have the correct authorization to access this resource.
+  occurrences: 2
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#getMetadata
+  - dow-jones-due-diligence-reports-api-openapi.json#getReportRequests
+- status: 403
+  title: Forbidden
+  occurrences: 40
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentUpdateStatus
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceBookmark
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceBookmarkDelete
+- status: 403
+  title: Forbidden (e.g. the user does not have the CloseAlert permission or the alert evidence has not been assessed
+    and the alert type has mandatoryAssessment set to t
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertClose
+- status: 403
+  title: Forbidden (e.g. the user does not have the EvidenceAssess permission)
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceAssess
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkAssess
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceAssess
+- status: 403
+  title: Forbidden (e.g. the user does not have the ListSearch permission)
+  occurrences: 4
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentGet
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentSearch
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentClose
+- status: 403
+  title: Forbidden (e.g. the user does not have the ReopenAlert permission)
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertReopen
+- status: 403
+  title: 'Forbidden (e.g. the user does not have the UpdateAlert permission or the alert evidence has not been assessed
+    and the alert type has mandatoryAssessment set to '
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertStatus
+- status: 403
+  title: Forbidden (e.g. the user does not have the ViewSearch permission)
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceSearchPost
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceSearchGet
+- status: 403
+  title: Forbidden (e.g. the user does not have the correct permission)
+  occurrences: 19
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssign
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssignPrevious
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertBulkAssign
+- status: 403
+  title: Forbidden (for example, the user does not have the BulkCreateClient permission)
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportSyncronous
+- status: 403
+  title: Forbidden - Insufficient permissions
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#createExcelExport
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#getExcelExportStatus
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#downloadExcelExport
+- status: 403
+  title: Forbidden - insufficient permissions
+  occurrences: 6
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionCreate
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionList
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionGetById
+- status: 403
+  title: Forbidden request
+  occurrences: 6
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityClientCount
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityClientQuery
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientExport
+- status: 403
+  title: Forbidden request.
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityMultipleDelete
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entitySingleDelete
+- status: 403
+  title: Forbidden.
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetById
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetByEntityId
+- status: 403
+  title: The authenticated user cannot add / update user records
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#userImport
+- status: 403
+  title: The authenticated user cannot create assessments
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentCreate
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentCreateSync
+- status: 403
+  title: The authenticated user cannot delete assessments
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkDelete
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#AssessmentDelete
+- status: 403
+  title: The authenticated user cannot perform a synchronization
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#usersSync
+- status: 403
+  title: The authenticated user cannot perform searches
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchStrategy
+- status: 403
+  title: The authenticated user cannot search / view user records
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#userSearch
+- status: 403
+  title: The authenticated user cannot view assessments
+  occurrences: 5
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentSingleGet
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentState
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceFullGet
+- status: 403
+  title: The authenticated user cannot view records
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchProfile
+- status: 403
+  title: The authenticated user is not permitted to export alert activities
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertExport
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertExportActivity
+- status: 403
+  title: The authenticated user is not permitted to export assessment activities
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentActivityExport
+- status: 403
+  title: The service behind the callback url isn't accessible (https POST request, 200 response status code expected)
+  occurrences: 1
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#patchMetadata
+- status: 403
+  title: Unauthorised request
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceExport
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceExport
+- status: 404
+  title: null
+  occurrences: 2
+  example_operations:
+  - dow-jones-newsletters-api-openapi.json#NewsletterReadById
+  - dow-jones-newsletters-api-openapi.json#EditionReadById
+- status: 404
+  title: A report request or proposal with the ID was not found.
+  occurrences: 1
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#GET /reportrequests/{reportRequestId}/proposals/{proposalId}
+- status: 404
+  title: A report request was not found with the given ID
+  occurrences: 1
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#POST /reportrequests/{reportRequestId}/documents
+- status: 404
+  title: A report request with the ID provided was not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#GET /reportrequests/{reportRequestId}/proposals
+- status: 404
+  title: Alert not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-content-api-swagger.json#GET /alerts/{id}
+- status: 404
+  title: Article not found
+  occurrences: 3
+  example_operations:
+  - dow-jones-content-api-swagger.json#GET /refs/{ref}
+  - dow-jones-content-api-swagger.json#GET /refs/{ref}/redirect
+  - dow-jones-content-api-swagger.json#GET /refs/{ref}/binary
+- status: 404
+  title: Article not found or not available to this caller.
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetById
+- status: 404
+  title: Assessment with id not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#AssessmentDelete
+- status: 404
+  title: Assessment with that ID not found
+  occurrences: 4
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentSingleGet
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentState
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceFullGet
+- status: 404
+  title: Assessment(s) not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkDelete
+- status: 404
+  title: Billing account with the given ID not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#getMetadata
+- status: 404
+  title: Entity not found or not available to this caller.
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetByEntityId
+- status: 404
+  title: Historical disposition not found for the given disposition_id
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionUpdate
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionDelete
+- status: 404
+  title: Job not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobGet
+- status: 404
+  title: Not Found
+  occurrences: 47
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceAssess
+  - dow-jones-profile-version-history-api-openapi.json#getVersionsFromProfile
+  - dow-jones-profile-version-history-api-openapi.json#getProfileRevisionsFromProfile
+- status: 404
+  title: 'Not Found
+
+    - For example, the system configuration does not contain the status in the request or the assessment cannot
+    be found.'
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentUpdateStatus
+- status: 404
+  title: Not Found (e.g. the alert could not be found or the alert status and close reason were not found in configuration)
+  occurrences: 6
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertClose
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssign
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssignPrevious
+- status: 404
+  title: Not Found - Export job not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#getExcelExportStatus
+- status: 404
+  title: Not Found - Export job not found or not completed
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#downloadExcelExport
+- status: 404
+  title: Not Found - No resource found for the request
+  occurrences: 4
+  example_operations:
+  - dow-jones-company-news-radar-api-openapi.json#GET /swagger
+  - dow-jones-company-news-radar-api-openapi.json#POST /content/realtime/search
+  - dow-jones-newswires-content-api-openapi.json#GetRealtimeLinkedContentByDrn
+- status: 404
+  title: Not Found - the specificed client delete job does not exist.
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#deleteClientRecords
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientDeleteJobErrors
+- status: 404
+  title: Not Found - the specified client import job does not exist.
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobStatus
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobErrors
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobErrorsStream
+- status: 404
+  title: 'Not Found: No resource found for the request.'
+  occurrences: 29
+  example_operations:
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/{id}
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/search
+  - dow-jones-calendar-live-api-openapi.json#POST /calendar-events/search
+- status: 404
+  title: Not found
+  occurrences: 13
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentGet
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentSearch
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentAssign
+- status: 404
+  title: 'Not found
+
+    - For example, when the reason or status do not exist, or the or assessment cannot be found.'
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentClose
+- status: 404
+  title: Not found (No resource found for the request)
+  occurrences: 1
+  example_operations:
+  - dow-jones-content-api-swagger.json#Search_Post
+- status: 404
+  title: PDF Export Job cannot be found usually indicates the job_id parameter is incorrect
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#statusPDFExport
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#downloadPDFExport
+- status: 404
+  title: Profile record with that ID not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchProfile
+- status: 404
+  title: Specified client not found or not visible to the calling user.
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entitySingleDelete
+- status: 404
+  title: Strategy not found
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchStrategy
+- status: 404
+  title: bad request
+  occurrences: 1
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#getReportRequestDocuments
+- status: 404
+  title: commentId with the given ID not found or user billing account doesn't match with billing account of report
+    request
+  occurrences: 1
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#getCommentsbyId
+- status: 404
+  title: not found
+  occurrences: 5
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#getReportRequestDocumentById
+  - dow-jones-due-diligence-reports-api-openapi.json#subscribeOnReportRequestByID
+  - dow-jones-due-diligence-reports-api-openapi.json#unsubscribeFromReportRequestById
+- status: 404
+  title: proposal not found
+  occurrences: 2
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#approveReportRequestProposal
+  - dow-jones-due-diligence-reports-api-openapi.json#rejectReportRequestProposal
+- status: 404
+  title: report request with the given ID not found or user billing account doesn't match with billing account of
+    report request
+  occurrences: 2
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#getReportRequestComments
+  - dow-jones-due-diligence-reports-api-openapi.json#createReportRequestComment
+- status: 404
+  title: the billing account hasn't been found
+  occurrences: 2
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#postEstimate
+  - dow-jones-due-diligence-reports-api-openapi.json#patchMetadata
+- status: 406
+  title: Not Acceptable - application/json is not supported for this endpoint
+  occurrences: 1
+  example_operations:
+  - dow-jones-risk-profiles-api-openapi.json#getRelationshipsFromProfile
+- status: 409
+  title: Conflict
+  occurrences: 4
+  example_operations:
+  - dow-jones-riskcenter-third-party-api-0-1-openapi.json#PutThirdPartyProperties
+  - dow-jones-riskcenter-third-party-api-0-1-openapi.json#PutBatchThirdPartyProperties
+  - dow-jones-riskcenter-third-party-api-0-2-openapi.json#PutThirdPartyProperties
+- status: 409
+  title: Conflict (e.g. the alert is already closed)
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertClose
+- status: 409
+  title: already approved/rejected
+  occurrences: 2
+  example_operations:
+  - dow-jones-due-diligence-reports-api-openapi.json#approveReportRequestProposal
+  - dow-jones-due-diligence-reports-api-openapi.json#rejectReportRequestProposal
+- status: 412
+  title: Precondition failed
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentAssign
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceFullGet
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceFullPost
+- status: 412
+  title: 'Precondition failed
+
+    - For example when the assessment has not finished or has already been closed.'
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentClose
+- status: 412
+  title: Precondition failed - the assessment must not be in progress to perform assessments
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkAssess
+- status: 412
+  title: Precondition failed - the assessment must not be in progress to view results
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceSearchPost
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceSearchGet
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceAssess
+- status: 413
+  title: File upload unsuccessful as the file was too large
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#attachmentPost
+- status: 422
+  title: Unprocessable Entity
+  occurrences: 1
+  example_operations:
+  - dow-jones-screening-and-monitoring-api-openapi.json#deleteAssociationUsingDELETE
+- status: 422
+  title: 'Unprocessable Entity
+
+    - For example, the status in the request is not valid to transition to from the current status.'
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentUpdateStatus
+- status: 422
+  title: Unprocessable Entity (e.g. the alert is in monitoring state)
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertClose
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertReopen
+- status: 422
+  title: Unprocessable entity
+  occurrences: 6
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentClose
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentAssign
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkAssess
+- status: 429
+  title: Rate limit exceeded
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientExport
+- status: 429
+  title: 'Rate limit exceeded. The request has been rejected because the rate limit has been exceeded.
+
+
+    See the response headers below for details:
+
+    - `RateLimit` - Curren'
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportSyncronous
+- status: 500
+  title: An unexpected error occurred
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchProfile
+- status: 500
+  title: An unexpected error occurred creating the assessment
+  occurrences: 7
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentCreate
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentCreateSync
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentSingleGet
+- status: 500
+  title: An unexpected error occurred during data validation.
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityValidateData
+- status: 500
+  title: An unexpected error occurred during list import.
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#listImport
+- status: 500
+  title: An unexpected error occurred performing the import
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#userImport
+- status: 500
+  title: An unexpected error occurred performing the search
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchStrategy
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#userSearch
+- status: 500
+  title: An unexpected error occurred performing the synchronization
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#usersSync
+- status: 500
+  title: An unexpected error occurred uploading the attachment
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#attachmentPost
+- status: 500
+  title: An unexpected error occurred when deleting assessment
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkDelete
+- status: 500
+  title: An unexpected error occurred when export alert activities
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertExportActivity
+- status: 500
+  title: An unexpected error occurred when exporting alert activities
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertExport
+- status: 500
+  title: An unexpected error occurred when exporting assessment activities
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentActivityExport
+- status: 500
+  title: An unexpected error occurred when fetching the assessments
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#AssessmentDelete
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentExport
+- status: 500
+  title: An unexpected error occurred when fetching the client counts.
+  occurrences: 3
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityClientCount
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityClientQuery
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientExport
+- status: 500
+  title: An unexpected error occurred when performing client deletion
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#usersDelete
+- status: 500
+  title: An unexpected error occurred when performing client deletion.
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityMultipleDelete
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entitySingleDelete
+- status: 500
+  title: An unexpected error occurred while closing the assessment
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentClose
+- status: 500
+  title: An unexpected error occurred while fetching the requested profiles. The request did not produce any inline
+    result entries.
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityRiskProfileQuery
+- status: 500
+  title: Application errors
+  occurrences: 4
+  example_operations:
+  - dow-jones-content-api-swagger.json#GET /alerts/{id}
+  - dow-jones-content-api-swagger.json#GET /refs/{ref}
+  - dow-jones-content-api-swagger.json#GET /refs/{ref}/redirect
+- status: 500
+  title: Internal Server Error
+  occurrences: 4
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceAssess
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceExport
+  - dow-jones-due-diligence-reports-api-openapi.json#GET /reportrequests/{reportRequestId}/proposals
+- status: 500
+  title: Internal Server Error (Server encountered an error in serving the request)
+  occurrences: 1
+  example_operations:
+  - dow-jones-content-api-swagger.json#Search_Post
+- status: 500
+  title: Internal Server Error - Server encountered an unexpected condition
+  occurrences: 5
+  example_operations:
+  - dow-jones-company-news-radar-api-openapi.json#GET /swagger
+  - dow-jones-newsletters-api-openapi.json#NewslettersRead
+  - dow-jones-newsletters-api-openapi.json#NewsletterReadById
+- status: 500
+  title: 'Internal Server Error: Server encountered an unexpected condition.'
+  occurrences: 29
+  example_operations:
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/{id}
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/search
+  - dow-jones-calendar-live-api-openapi.json#POST /calendar-events/search
+- status: 500
+  title: Internal server error
+  occurrences: 43
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertClose
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssign
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssignPrevious
+- status: 500
+  title: Internal server error, or the import job entered an `ERRORED` state during processing.
+  occurrences: 1
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportSyncronous
+- status: 500
+  title: Server Error
+  occurrences: 1
+  example_operations:
+  - dow-jones-top-stories-api-openapi.json#GetContentByRef
+- status: 500
+  title: Server error.
+  occurrences: 2
+  example_operations:
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetById
+  - dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetByEntityId
+- status: 503
+  title: null
+  occurrences: 4
+  example_operations:
+  - dow-jones-newsletters-api-openapi.json#NewslettersRead
+  - dow-jones-newsletters-api-openapi.json#NewsletterReadById
+  - dow-jones-newsletters-api-openapi.json#EditionsRead
+- status: 503
+  title: Service Unavailable (Server is currently unable to handle the request)
+  occurrences: 1
+  example_operations:
+  - dow-jones-content-api-swagger.json#Search_Post
+- status: 503
+  title: Service Unavailable - Server is currently unable to handle the request
+  occurrences: 1
+  example_operations:
+  - dow-jones-company-news-radar-api-openapi.json#GET /swagger
+- status: 503
+  title: 'Service Unavailable: Server is currently unable to handle the request.'
+  occurrences: 29
+  example_operations:
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/{id}
+  - dow-jones-calendar-live-api-openapi.json#GET /calendar-events/search
+  - dow-jones-calendar-live-api-openapi.json#POST /calendar-events/search
+- status: 5XX
+  title: Internal Server Error - Server encountered an unexpected condition
+  occurrences: 3
+  example_operations:
+  - dow-jones-company-news-radar-api-openapi.json#POST /content/realtime/search
+  - dow-jones-newswires-content-api-openapi.json#GetRealtimeLinkedContentByDrn
+  - dow-jones-newswires-real-time-api-openapi.json#POST /content/realtime/search

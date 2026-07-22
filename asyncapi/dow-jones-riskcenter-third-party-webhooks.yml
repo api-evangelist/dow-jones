@@ -1,0 +1,17 @@
+generated: '2026-07-22'
+method: searched
+source: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api-third_party_0_2
+spec_type: Webhooks
+provider_api: RiskCenter Third Party Platform API (0.1 and 0.2)
+webhooks:
+  - name: third-party-status-changed
+    description: >-
+      Outbound payload sent from the RiskCenter Third Party platform whenever the current risk
+      status of any third party changes. The notification includes the third-party ID and the
+      changed value. Introduced February 2022 for API versions 0.1 and 0.2.
+    direction: outbound
+    docs: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api-third_party_0_2
+note: >-
+  Dow Jones publishes no AsyncAPI document. Factiva Streams delivers events over Google Cloud
+  Pub/Sub subscriptions (see dj-dna-streams-* clients) rather than webhooks; the RCTP webhook
+  above is the documented webhook surface.

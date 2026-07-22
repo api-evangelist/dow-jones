@@ -1,0 +1,5018 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Dow Jones R&C Profile API",
+    "description": "R&C Profile API delivers the capability for clients to retrieve the R&C Assets.",
+    "version": "1.5"
+  },
+  "servers": [
+    {
+      "url": "https://api.dowjones.com/riskentities"
+    },
+    {
+      "url": "https://eu.api.dowjones.com/riskentities"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Profiles",
+      "description": "Operations to retrieve R&C Profiles"
+    },
+    {
+      "name": "Images",
+      "description": "Operations to retrieve R&C Images"
+    },
+    {
+      "name": "Connection Details",
+      "description": "Operations to retrieve the Connection Details of a R&C Profile"
+    }
+  ],
+  "paths": {
+    "/profiles/{id}": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Get Profiles",
+        "description": "Get R&C profile given an profile id. It is possible to get only parts of the profile, to reduce response size, using the parts parameter.",
+        "operationId": "getProfiles",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/ProfileParts"
+          },
+          {
+            "$ref": "#/components/parameters/ProfilesListsDescription"
+          },
+          {
+            "$ref": "#/components/parameters/IsAudit"
+          },
+          {
+            "$ref": "#/components/parameters/AcceptLanguage"
+          },
+          {
+            "$ref": "#/components/parameters/ProfileNotesTargetTranslation"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponse"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponse"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV20"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV21"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV22"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.3+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV23"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.4+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV24"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.5+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV25"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.6+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV26"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.7+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV27"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_2.8+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponseV28"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/profiles/{id}/profile-notes": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Get Profile Notes by Profile id",
+        "description": "Get profile notes from a profile given its id.",
+        "operationId": "getProfileNotes",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/ProfileNotesParts"
+          },
+          {
+            "$ref": "#/components/parameters/TargetLanguage"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileNotesResponseV2"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-profiles.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileNotesResponseV2"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/images/{id}": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Images"
+        ],
+        "summary": "Get Image by Image Reference",
+        "description": "Get an image given an image reference id.  Can only retrieve one image at a time",
+        "operationId": "getOneImage",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "X-Content-Type-Options": {
+                "description": "nosniff",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-XSS-Protection": {
+                "description": "1; mode=block",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageResponse"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-images.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profiles/{id}/connection-details": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Connection Details"
+        ],
+        "summary": "Get the connection details for a profile",
+        "description": "Get a list of connectionDetails for a given profile ID. It is possible to filter through name, type, connection and icon. It is also possible to get the results ordered and with pagination.",
+        "operationId": "getRelationshipsFromProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/FilterProfileType"
+          },
+          {
+            "$ref": "#/components/parameters/FilterProfileTypeCode"
+          },
+          {
+            "$ref": "#/components/parameters/FilterConnectionType"
+          },
+          {
+            "$ref": "#/components/parameters/FilterConnectionTypeCode"
+          },
+          {
+            "$ref": "#/components/parameters/FilterFullName"
+          },
+          {
+            "$ref": "#/components/parameters/FilterIconHint"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/PageOffset"
+          },
+          {
+            "$ref": "#/components/parameters/PageLimit"
+          },
+          {
+            "$ref": "#/components/parameters/AcceptLanguage"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "succesful operation",
+            "content": {
+              "application/vnd.dowjones.dna.riskentities-connection-details.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseConnectionDetails"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-connection-details.v_1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseConnectionDetailsV11"
+                }
+              },
+              "application/vnd.dowjones.dna.riskentities-connection-details.v_1.2+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseConnectionDetailsV12"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "406": {
+            "description": "Not Acceptable - application/json is not supported for this endpoint"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "ProfileResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "links": {
+                "$ref": "#/components/schemas/Links"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributes"
+              },
+              "meta": {
+                "$ref": "#/components/schemas/Meta"
+              }
+            }
+          }
+        }
+      },
+      "ProfileResponseV20": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "links": {
+                "$ref": "#/components/schemas/Links"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV20"
+              },
+              "meta": {
+                "$ref": "#/components/schemas/Meta"
+              }
+            }
+          }
+        }
+      },
+      "ProfileResponseV21": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "links": {
+                "$ref": "#/components/schemas/Links"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV21"
+              },
+              "meta": {
+                "$ref": "#/components/schemas/Meta"
+              }
+            }
+          }
+        }
+      },
+      "ProfileResponseV22": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "links": {
+                "$ref": "#/components/schemas/Links"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV22"
+              },
+              "meta": {
+                "$ref": "#/components/schemas/Meta"
+              }
+            }
+          }
+        }
+      },
+      "ProfileResponseV23": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "links": {
+                "$ref": "#/components/schemas/Links"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV22"
+              }
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetaAudit"
+          }
+        }
+      },
+      "ProfileResponseV24": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV24"
+              }
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/Links"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      },
+      "ProfileResponseV25": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV25"
+              }
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/Links"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      },
+      "ProfileResponseV26": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV26"
+              }
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/Links"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      },
+      "ProfileResponseV27": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV27"
+              }
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/Links"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaV27"
+          }
+        }
+      },
+      "ProfileResponseV28": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profiles"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileAttributesV28"
+              }
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/Links"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMetaV28"
+          }
+        }
+      },
+      "ProfileNotesResponseV2": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12300"
+              },
+              "type": {
+                "type": "string",
+                "example": "profile-notes"
+              },
+              "links": {
+                "$ref": "#/components/schemas/Links"
+              },
+              "attributes": {
+                "$ref": "#/components/schemas/ProfileNotesAttributes"
+              }
+            }
+          }
+        }
+      },
+      "ProfileNotesAttributes": {
+        "type": "object",
+        "properties": {
+          "state_owned_company": {
+            "$ref": "#/components/schemas/ProfileNotesDetails"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/ProfileNotesDetails"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/ProfileNotesDetails"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/ProfileNotesDetails"
+          }
+        }
+      },
+      "ProfileNotesDetails": {
+        "type": "object",
+        "properties": {
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetailsV26"
+          }
+        }
+      },
+      "ProfileAttributes": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributes"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributes"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributes"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributes"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributes"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributes"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributes"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributes"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributes"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributes"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          }
+        }
+      },
+      "ProfileAttributesV20": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributes"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributesV20"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributesV20"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributesV20"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributesV20"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributesV20"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributesV20"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributesV20"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributesV20"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributes"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          }
+        }
+      },
+      "ProfileAttributesV21": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributesV21"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributesV20"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributesV20"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributesV20"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributesV20"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributesV20"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributesV20"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributesV20"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributesV20"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributes"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          }
+        }
+      },
+      "ProfileAttributesV22": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributesV21"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributesV20"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributesV22"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributesV20"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributesV20"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributesV20"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributesV20"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributesV20"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributesV20"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributesV22"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          }
+        }
+      },
+      "ProfileAttributesV24": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributesV21"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributesV20"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributesV22"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributesV20"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributesV20"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributesV20"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributesV20"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributesV20"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributesV24"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributesV22"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          }
+        }
+      },
+      "ProfileAttributesV25": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributesV21"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributesV20"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributesV22"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributesV20"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributesV20"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributesV20"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributesV25"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributesV20"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributesV24"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributesV22"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          }
+        }
+      },
+      "ProfileAttributesV26": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributesV21"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributesV20"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributesV22"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributesV20"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributesV20"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributesV20"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributesV25"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributesV20"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributesV24"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributesV22"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          },
+          "military_associated_entity": {
+            "$ref": "#/components/schemas/MilitaryAssociatedEntityAttributesV26"
+          }
+        }
+      },
+      "ProfileAttributesV27": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributesV27"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributesV27"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributesV27"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributesV27"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributesV27"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributesV27"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributesV27"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributesV27"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributesV27"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributesV22"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          },
+          "military_associated_entity": {
+            "$ref": "#/components/schemas/MilitaryAssociatedEntityAttributesV27"
+          }
+        }
+      },
+      "ProfileAttributesV28": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "$ref": "#/components/schemas/BasicAttributesV27"
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonAttributesV27"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/EntityAttributesV27"
+          },
+          "location": {
+            "$ref": "#/components/schemas/LocationAttributesV27"
+          },
+          "state_owned_companies": {
+            "$ref": "#/components/schemas/StateOwnedCompanyAttributesV27"
+          },
+          "adverse_media_entity": {
+            "$ref": "#/components/schemas/AdverseMediaAttributesV27"
+          },
+          "watchlist": {
+            "$ref": "#/components/schemas/WatchlistAttributesV27"
+          },
+          "high_risk_factor": {
+            "$ref": "#/components/schemas/HighRiskFactorAttributesV27"
+          },
+          "relationship": {
+            "$ref": "#/components/schemas/ConnectionAttributesV27"
+          },
+          "list_reference": {
+            "$ref": "#/components/schemas/ListReferenceAttributesV22"
+          },
+          "image": {
+            "$ref": "#/components/schemas/ImageAttributes"
+          },
+          "military_associated_entity": {
+            "$ref": "#/components/schemas/MilitaryAssociatedEntityAttributesV27"
+          },
+          "trade_restricted_associated_entity": {
+            "$ref": "#/components/schemas/TradeRestrictedAssociatedEntityAttributesV28"
+          }
+        }
+      },
+      "ImageResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "image_bytes": {
+                    "type": "string"
+                  },
+                  "image_type": {
+                    "type": "string",
+                    "example": "image/jpg"
+                  },
+                  "commerce_letter": {
+                    "type": "object",
+                    "properties": {
+                      "accession_number": {
+                        "type": "string"
+                      },
+                      "function_code": {
+                        "type": "string"
+                      },
+                      "publication_code": {
+                        "type": "string"
+                      },
+                      "response_id": {
+                        "type": "string"
+                      },
+                      "status_indicator": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "type": {
+                "type": "string",
+                "example": "images"
+              },
+              "links": {
+                "$ref": "#/components/schemas/Links"
+              },
+              "id": {
+                "type": "string",
+                "example": "12300"
+              }
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetaCount"
+          }
+        }
+      },
+      "BasicAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "factiva_code": {
+            "type": "string"
+          },
+          "name_details": {
+            "$ref": "#/components/schemas/NameDetails"
+          },
+          "location_name_details": {
+            "$ref": "#/components/schemas/NameDetails"
+          },
+          "address_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDetail"
+            }
+          }
+        }
+      },
+      "BasicAttributesV21": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "factiva_code": {
+            "type": "string"
+          },
+          "name_details": {
+            "$ref": "#/components/schemas/NameDetailsV21"
+          },
+          "location_name_details": {
+            "$ref": "#/components/schemas/NameDetailsV21"
+          },
+          "address_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDetail"
+            }
+          }
+        }
+      },
+      "BasicAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "type_code": {
+            "type": "integer"
+          },
+          "factiva_code": {
+            "type": "string"
+          },
+          "name_details": {
+            "$ref": "#/components/schemas/NameDetailsV21"
+          },
+          "location_name_details": {
+            "$ref": "#/components/schemas/NameDetailsV21"
+          },
+          "address_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDetail"
+            }
+          }
+        }
+      },
+      "PersonAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/PersonDateDetails"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "places_of_birth": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaceOfBirthDetails"
+            }
+          },
+          "gender": {
+            "type": "string"
+          },
+          "is_deceased": {
+            "type": "boolean"
+          },
+          "associated_entity_details": {
+            "$ref": "#/components/schemas/AssociatedEntityDetails"
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "content_sets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "email_addresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PersonAttributesV20": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/PersonDateDetails"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "places_of_birth": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaceOfBirthDetails"
+            }
+          },
+          "gender": {
+            "type": "string"
+          },
+          "is_deceased": {
+            "type": "boolean"
+          },
+          "associated_entity_details": {
+            "$ref": "#/components/schemas/AssociatedEntityDetails"
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IconHintVo"
+            }
+          },
+          "content_sets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "email_addresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PersonAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/PersonDateDetails"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetailV27"
+            }
+          },
+          "places_of_birth": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaceOfBirthDetails"
+            }
+          },
+          "gender": {
+            "type": "string"
+          },
+          "gender_code": {
+            "type": "integer"
+          },
+          "is_deceased": {
+            "type": "boolean"
+          },
+          "associated_entity_details": {
+            "$ref": "#/components/schemas/AssociatedEntityDetails"
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IconHintVo"
+            }
+          },
+          "content_sets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "email_addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailVo"
+            }
+          },
+          "phone_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneDetailsVo"
+            }
+          }
+        }
+      },
+      "EntityAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/EntityDateDetails"
+          },
+          "industries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Industry"
+            }
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "content_sets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "EntityAttributesV20": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/EntityDateDetails"
+          },
+          "industries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Industry"
+            }
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IconHintVo"
+            }
+          },
+          "content_sets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "EntityAttributesV22": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/EntityDateDetails"
+          },
+          "industries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Industry"
+            }
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IconHintVo"
+            }
+          },
+          "content_sets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "is_subsidiary": {
+            "type": "boolean"
+          }
+        }
+      },
+      "EntityAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetailV27"
+            }
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/EntityDateDetails"
+          },
+          "industries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Industry"
+            }
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IconHintVo"
+            }
+          },
+          "content_sets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "is_subsidiary": {
+            "type": "boolean"
+          },
+          "email_addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailVo"
+            }
+          },
+          "phone_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhoneDetailsVo"
+            }
+          }
+        }
+      },
+      "LocationAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetails"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          }
+        }
+      },
+      "LocationAttributesV20": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV20"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          }
+        }
+      },
+      "LocationAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV27"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetailV27"
+            }
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          }
+        }
+      },
+      "StateOwnedCompanyAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetails"
+          },
+          "state_owned_company_detail": {
+            "$ref": "#/components/schemas/StateOwnedCompanyDetails"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetails"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/EntityDateDetails"
+          }
+        }
+      },
+      "StateOwnedCompanyAttributesV20": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV20"
+          },
+          "state_owned_company_detail": {
+            "$ref": "#/components/schemas/StateOwnedCompanyDetails"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetails"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/EntityDateDetails"
+          }
+        }
+      },
+      "StateOwnedCompanyAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV27"
+          },
+          "state_owned_company_detail": {
+            "$ref": "#/components/schemas/StateOwnedCompanyDetailsV27"
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetailsV27"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          },
+          "date_details": {
+            "$ref": "#/components/schemas/EntityDateDetails"
+          }
+        }
+      },
+      "AdverseMediaAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetails"
+          },
+          "adverse_media_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdverseMediaDetails"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          }
+        }
+      },
+      "AdverseMediaAttributesV20": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV20"
+          },
+          "adverse_media_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdverseMediaDetails"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          }
+        }
+      },
+      "AdverseMediaAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV27"
+          },
+          "adverse_media_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdverseMediaDetailsV27"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          }
+        }
+      },
+      "MilitaryAssociatedEntityAttributesV26": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV20"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetailsV26"
+          }
+        }
+      },
+      "MilitaryAssociatedEntityAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV27"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetailsV26"
+          }
+        }
+      },
+      "TradeRestrictedAssociatedEntityAttributesV28": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV27"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetailsV28"
+          }
+        }
+      },
+      "WatchlistAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetails"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "reported_allegation_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportedAllegationDetails"
+            }
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetails"
+          },
+          "aircraft_details": {
+            "$ref": "#/components/schemas/AircraftDetails"
+          },
+          "ship_details": {
+            "$ref": "#/components/schemas/ShipDetails"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          },
+          "address_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDetail"
+            }
+          }
+        }
+      },
+      "WatchlistAttributesV20": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV20"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "reported_allegation_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportedAllegationDetails"
+            }
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetails"
+          },
+          "aircraft_details": {
+            "$ref": "#/components/schemas/AircraftDetails"
+          },
+          "ship_details": {
+            "$ref": "#/components/schemas/ShipDetails"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          },
+          "address_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDetail"
+            }
+          }
+        }
+      },
+      "WatchlistAttributesV25": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetail"
+            }
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV20"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "reported_allegation_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportedAllegationDetails"
+            }
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetails"
+          },
+          "aircraft_details": {
+            "$ref": "#/components/schemas/AircraftDetails"
+          },
+          "ship_details": {
+            "$ref": "#/components/schemas/ShipDetails"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetailsV25"
+          },
+          "address_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDetail"
+            }
+          }
+        }
+      },
+      "WatchlistAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "identification_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationDetailV27"
+            }
+          },
+          "country_territory_details": {
+            "$ref": "#/components/schemas/CountryDetails"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV27"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          },
+          "reported_allegation_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportedAllegationDetailsV27"
+            }
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetailsV27"
+          },
+          "aircraft_details": {
+            "$ref": "#/components/schemas/AircraftDetails"
+          },
+          "ship_details": {
+            "$ref": "#/components/schemas/ShipDetails"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetailsV25"
+          },
+          "address_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressDetail"
+            }
+          }
+        }
+      },
+      "HighRiskFactorAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetails"
+          },
+          "licence_detail": {
+            "$ref": "#/components/schemas/LicenceDetail"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetails"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          }
+        }
+      },
+      "HighRiskFactorAttributesV20": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV20"
+          },
+          "licence_detail": {
+            "$ref": "#/components/schemas/LicenceDetail"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetails"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          }
+        }
+      },
+      "HighRiskFactorAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "content_type_details": {
+            "$ref": "#/components/schemas/ContentTypeDetailsV27"
+          },
+          "licence_detail": {
+            "$ref": "#/components/schemas/LicenceDetailV27"
+          },
+          "comment_details": {
+            "$ref": "#/components/schemas/CommentDetails"
+          },
+          "role_details": {
+            "$ref": "#/components/schemas/RoleDetailsV27"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          }
+        }
+      },
+      "ConnectionAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "connection_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConnectionDetail"
+            }
+          }
+        }
+      },
+      "ConnectionAttributesV20": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "connection_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConnectionDetailV20"
+            }
+          }
+        }
+      },
+      "ConnectionAttributesV24": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "connection_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConnectionDetailV20"
+            }
+          }
+        }
+      },
+      "ConnectionAttributesV27": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "connection_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConnectionDetailV27"
+            }
+          }
+        }
+      },
+      "ListReferenceAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "sanctions_lists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListReference"
+            }
+          },
+          "other_official_lists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListReference"
+            }
+          },
+          "other_exclusion_lists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListReference"
+            }
+          }
+        }
+      },
+      "ListReferenceAttributesV22": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "sanctions_lists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListReferenceV22"
+            }
+          },
+          "other_official_lists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListReferenceV22"
+            }
+          },
+          "other_exclusion_lists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListReferenceV22"
+            }
+          }
+        }
+      },
+      "ImageAttributes": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "type": "string"
+          },
+          "last_reviewed_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_notice": {
+            "type": "string"
+          },
+          "image_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageDetail"
+            }
+          }
+        }
+      },
+      "NameDetails": {
+        "type": "object",
+        "properties": {
+          "primary_name": {
+            "$ref": "#/components/schemas/NameDetail"
+          },
+          "also_known_as": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "low_quality_aka": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "expanded_language_variation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "formerly_known_as": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "maiden_name": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          }
+        }
+      },
+      "NameDetailsV21": {
+        "type": "object",
+        "properties": {
+          "primary_name": {
+            "$ref": "#/components/schemas/NameDetail"
+          },
+          "also_known_as": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "low_quality_aka": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "expanded_language_variation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "formerly_known_as": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "maiden_name": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          },
+          "reclassified_aka": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameDetail"
+            }
+          }
+        }
+      },
+      "NameDetail": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string"
+          },
+          "middle_name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "prefix": {
+            "type": "string"
+          },
+          "suffix": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "associated_names": {
+            "$ref": "#/components/schemas/AssociatedNames"
+          }
+        }
+      },
+      "NameDetailFullName": {
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "middle_name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "prefix": {
+            "type": "string"
+          },
+          "suffix": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "associated_names": {
+            "$ref": "#/components/schemas/AssociatedNames"
+          }
+        }
+      },
+      "AssociatedNames": {
+        "type": "object",
+        "properties": {
+          "original_script_names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OriginalScriptName"
+            }
+          },
+          "spelling_variations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SpellingVariation"
+            }
+          },
+          "single_string_names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SingleStringName"
+            }
+          }
+        }
+      },
+      "OriginalScriptName": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "SpellingVariation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "middle_name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "prefix": {
+            "type": "string"
+          },
+          "suffix": {
+            "type": "string"
+          }
+        }
+      },
+      "SingleStringName": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CountryDetails": {
+        "type": "object",
+        "properties": {
+          "citizenship": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "residence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "reported_allegation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "jurisdiction": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "registration": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "affiliation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "enhanced_risk": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "current_ownership": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "past_ownership": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "sanctioned_region": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "formerly_sanctioned_region": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          }
+        }
+      },
+      "Descriptor": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string"
+          },
+          "iso_alpha2": {
+            "type": "string"
+          },
+          "iso_alpha3": {
+            "type": "string"
+          }
+        }
+      },
+      "PersonDateDetails": {
+        "type": "object",
+        "properties": {
+          "deceased": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "date": {
+                  "$ref": "#/components/schemas/DateDetail"
+                }
+              }
+            }
+          },
+          "birth": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "date": {
+                  "$ref": "#/components/schemas/DateDetail"
+                }
+              }
+            }
+          },
+          "registration": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "date": {
+                  "$ref": "#/components/schemas/DateDetail"
+                }
+              }
+            }
+          },
+          "inactive_as_of_date": {
+            "$ref": "#/components/schemas/InactiveDateDetails"
+          }
+        }
+      },
+      "DateDetail": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "integer"
+          },
+          "month": {
+            "type": "integer"
+          },
+          "year": {
+            "type": "integer"
+          }
+        }
+      },
+      "InactiveDateDetails": {
+        "type": "object",
+        "properties": {
+          "pep": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "rca": {
+            "$ref": "#/components/schemas/DateDetail"
+          }
+        }
+      },
+      "PlaceOfBirthDetails": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "$ref": "#/components/schemas/Descriptor"
+          }
+        }
+      },
+      "IconHintVo": {
+        "type": "object",
+        "properties": {
+          "icon_hint": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "EmailVo": {
+        "type": "object",
+        "properties": {
+          "email_address": {
+            "type": "string"
+          }
+        }
+      },
+      "PhoneDetailsVo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          }
+        }
+      },
+      "IdentificationDetail": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "issued_country": {
+            "$ref": "#/components/schemas/Descriptor"
+          },
+          "issue_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "expiry_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "document_type": {
+            "type": "string"
+          },
+          "issued_by": {
+            "type": "string"
+          },
+          "comments": {
+            "type": "string"
+          },
+          "is_ubo_available": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "IdentificationDetailV27": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "type_code": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          },
+          "issued_country": {
+            "$ref": "#/components/schemas/Descriptor"
+          },
+          "issue_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "expiry_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "document_type": {
+            "type": "string"
+          },
+          "issued_by": {
+            "type": "string"
+          },
+          "comments": {
+            "type": "string"
+          },
+          "is_ubo_available": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "EntityDateDetails": {
+        "type": "object",
+        "properties": {
+          "registration": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "comments": {
+                  "type": "string"
+                },
+                "date": {
+                  "$ref": "#/components/schemas/DateDetail"
+                }
+              }
+            }
+          },
+          "cessation": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "comments": {
+                  "type": "string"
+                },
+                "date": {
+                  "$ref": "#/components/schemas/DateDetail"
+                }
+              }
+            }
+          },
+          "nationalisation": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "comments": {
+                  "type": "string"
+                },
+                "date": {
+                  "$ref": "#/components/schemas/DateDetail"
+                }
+              }
+            }
+          },
+          "privatisation": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "comments": {
+                  "type": "string"
+                },
+                "date": {
+                  "$ref": "#/components/schemas/DateDetail"
+                }
+              }
+            }
+          },
+          "inactive_as_of_date": {
+            "$ref": "#/components/schemas/InactiveDateDetails"
+          }
+        }
+      },
+      "Industry": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Links": {
+        "type": "object",
+        "properties": {
+          "self": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "ContentTypeDetails": {
+        "type": "object",
+        "properties": {
+          "active_status": {
+            "type": "string"
+          },
+          "is_lower_threshold": {
+            "type": "boolean"
+          },
+          "content_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentType"
+            }
+          }
+        }
+      },
+      "ContentTypeDetailsV20": {
+        "type": "object",
+        "properties": {
+          "active_status": {
+            "type": "string"
+          },
+          "is_lower_threshold": {
+            "type": "boolean"
+          },
+          "content_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentTypeV20"
+            }
+          }
+        }
+      },
+      "ContentTypeDetailsV27": {
+        "type": "object",
+        "properties": {
+          "active_status": {
+            "type": "string"
+          },
+          "active_status_code": {
+            "type": "integer"
+          },
+          "is_lower_threshold": {
+            "type": "boolean"
+          },
+          "content_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentTypeV27"
+            }
+          }
+        }
+      },
+      "ContentType": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "example": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "number"
+          },
+          "sub_content_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentTypeLevelTwo"
+            }
+          }
+        }
+      },
+      "ContentTypeV20": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "example": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "number"
+          },
+          "active_status": {
+            "type": "string"
+          },
+          "sub_content_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentTypeLevelTwoV20"
+            }
+          }
+        }
+      },
+      "ContentTypeV27": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "example": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "description_code": {
+            "type": "integer"
+          },
+          "category_id": {
+            "type": "number"
+          },
+          "active_status": {
+            "type": "string"
+          },
+          "active_status_code": {
+            "type": "integer"
+          },
+          "sub_content_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentTypeLevelTwoV27"
+            }
+          }
+        }
+      },
+      "ContentTypeLevelTwo": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "example": 2
+          },
+          "description": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "number"
+          },
+          "sub_content_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentTypeLevelThree"
+            }
+          }
+        }
+      },
+      "ContentTypeLevelThree": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "example": 3
+          },
+          "description": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "number"
+          }
+        }
+      },
+      "ContentTypeLevelThreeV27": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "example": 3
+          },
+          "description": {
+            "type": "string"
+          },
+          "description_code": {
+            "type": "integer"
+          },
+          "category_id": {
+            "type": "number"
+          }
+        }
+      },
+      "ContentTypeLevelTwoV20": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "example": 2
+          },
+          "description": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "number"
+          },
+          "active_status": {
+            "type": "string"
+          },
+          "sub_content_types": {
+            "items": {
+              "$ref": "#/components/schemas/ContentTypeLevelThree"
+            }
+          }
+        }
+      },
+      "ContentTypeLevelTwoV27": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "example": 2
+          },
+          "description": {
+            "type": "string"
+          },
+          "description_code": {
+            "type": "integer"
+          },
+          "category_id": {
+            "type": "number"
+          },
+          "active_status": {
+            "type": "string"
+          },
+          "active_status_code": {
+            "type": "integer"
+          },
+          "sub_content_types": {
+            "items": {
+              "$ref": "#/components/schemas/ContentTypeLevelThreeV27"
+            }
+          }
+        }
+      },
+      "StateOwnedCompanyDetails": {
+        "type": "object",
+        "properties": {
+          "board_appointing_control": {
+            "$ref": "#/components/schemas/StateOwnedCompanyDetail"
+          },
+          "voting_control": {
+            "$ref": "#/components/schemas/StateOwnedCompanyDetail"
+          },
+          "is_subsidiary": {
+            "type": "boolean"
+          },
+          "current_ownership": {
+            "$ref": "#/components/schemas/StateOwnershipDetail"
+          },
+          "past_ownerships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StateOwnershipDetail"
+            }
+          }
+        }
+      },
+      "StateOwnedCompanyDetailsV27": {
+        "type": "object",
+        "properties": {
+          "board_appointing_control": {
+            "$ref": "#/components/schemas/StateOwnedCompanyDetailV27"
+          },
+          "voting_control": {
+            "$ref": "#/components/schemas/StateOwnedCompanyDetailV27"
+          },
+          "is_subsidiary": {
+            "type": "boolean"
+          },
+          "current_ownership": {
+            "$ref": "#/components/schemas/StateOwnershipDetailV27"
+          },
+          "past_ownerships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StateOwnershipDetailV27"
+            }
+          }
+        }
+      },
+      "StateOwnedCompanyDetail": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      },
+      "StateOwnedCompanyDetailV27": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "StateOwnershipDetail": {
+        "type": "object",
+        "properties": {
+          "countries_territories_of_ownership": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "ownership_note": {
+            "type": "string"
+          },
+          "ownership_level": {
+            "type": "string"
+          },
+          "government_levels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "since": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "to": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "value": {
+            "type": "number"
+          }
+        }
+      },
+      "StateOwnershipDetailV27": {
+        "type": "object",
+        "properties": {
+          "countries_territories_of_ownership": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Descriptor"
+            }
+          },
+          "ownership_note": {
+            "type": "string"
+          },
+          "ownership_level": {
+            "type": "string"
+          },
+          "ownership_level_code": {
+            "type": "integer"
+          },
+          "government_levels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "since": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "to": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "value": {
+            "type": "number"
+          }
+        }
+      },
+      "Source": {
+        "type": "object",
+        "properties": {
+          "external_link": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "drn": {
+            "type": "string"
+          },
+          "accession_number": {
+            "type": "string"
+          }
+        }
+      },
+      "RoleDetails": {
+        "type": "object",
+        "properties": {
+          "primary": {
+            "$ref": "#/components/schemas/RoleDetail"
+          },
+          "previous": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDetail"
+            }
+          },
+          "other": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDetail"
+            }
+          }
+        }
+      },
+      "RoleDetailsV27": {
+        "type": "object",
+        "properties": {
+          "primary": {
+            "$ref": "#/components/schemas/RoleDetailV27"
+          },
+          "previous": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDetailV27"
+            }
+          },
+          "other": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDetailV27"
+            }
+          }
+        }
+      },
+      "RoleDetail": {
+        "type": "object",
+        "properties": {
+          "category_type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "position": {
+            "type": "integer"
+          },
+          "since": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "to": {
+            "$ref": "#/components/schemas/DateDetail"
+          }
+        }
+      },
+      "RoleDetailV27": {
+        "type": "object",
+        "properties": {
+          "category_type": {
+            "type": "string"
+          },
+          "category_type_code": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "position": {
+            "type": "integer"
+          },
+          "since": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "to": {
+            "$ref": "#/components/schemas/DateDetail"
+          }
+        }
+      },
+      "CommentDetails": {
+        "type": "object",
+        "properties": {
+          "list_comment": {
+            "type": "string"
+          },
+          "si_comment": {
+            "type": "string"
+          },
+          "external_comment": {
+            "type": "string"
+          },
+          "soc_comment": {
+            "type": "string"
+          },
+          "am_comment": {
+            "type": "string"
+          },
+          "mrb_comment": {
+            "type": "string"
+          },
+          "msb_comment": {
+            "type": "string"
+          },
+          "content_language": {
+            "type": "string"
+          }
+        }
+      },
+      "CommentDetailsV25": {
+        "type": "object",
+        "properties": {
+          "list_comment": {
+            "type": "string"
+          },
+          "si_comment": {
+            "type": "string"
+          },
+          "external_comment": {
+            "type": "string"
+          },
+          "soc_comment": {
+            "type": "string"
+          },
+          "am_comment": {
+            "type": "string"
+          },
+          "mrb_comment": {
+            "type": "string"
+          },
+          "msb_comment": {
+            "type": "string"
+          },
+          "si_inv_comment": {
+            "type": "string"
+          },
+          "content_language": {
+            "type": "string"
+          }
+        }
+      },
+      "CommentDetailsV26": {
+        "type": "object",
+        "properties": {
+          "list_comment": {
+            "type": "string"
+          },
+          "si_comment": {
+            "type": "string"
+          },
+          "external_comment": {
+            "type": "string"
+          },
+          "soc_comment": {
+            "type": "string"
+          },
+          "am_comment": {
+            "type": "string"
+          },
+          "mrb_comment": {
+            "type": "string"
+          },
+          "msb_comment": {
+            "type": "string"
+          },
+          "si_inv_comment": {
+            "type": "string"
+          },
+          "mae_comment": {
+            "type": "string"
+          },
+          "content_language": {
+            "type": "string"
+          }
+        }
+      },
+      "CommentDetailsV28": {
+        "type": "object",
+        "properties": {
+          "list_comment": {
+            "type": "string"
+          },
+          "si_comment": {
+            "type": "string"
+          },
+          "external_comment": {
+            "type": "string"
+          },
+          "soc_comment": {
+            "type": "string"
+          },
+          "am_comment": {
+            "type": "string"
+          },
+          "mrb_comment": {
+            "type": "string"
+          },
+          "msb_comment": {
+            "type": "string"
+          },
+          "si_inv_comment": {
+            "type": "string"
+          },
+          "mae_comment": {
+            "type": "string"
+          },
+          "tae_comment": {
+            "type": "string"
+          },
+          "content_language": {
+            "type": "string"
+          }
+        }
+      },
+      "MonetaryValueDetail": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "monetary_type": {
+            "type": "string"
+          }
+        }
+      },
+      "MonetaryValueDetailV27": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "monetary_type": {
+            "type": "string"
+          },
+          "monetary_type_code": {
+            "type": "integer"
+          }
+        }
+      },
+      "WatchlistMonetaryValueDetail": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "from_reported_monetary_value": {
+            "type": "string"
+          },
+          "to_reported_monetary_value": {
+            "type": "string"
+          },
+          "reported_monetary_type": {
+            "type": "string"
+          }
+        }
+      },
+      "WatchlistMonetaryValueDetailV27": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "from_reported_monetary_value": {
+            "type": "string"
+          },
+          "to_reported_monetary_value": {
+            "type": "string"
+          },
+          "reported_monetary_type": {
+            "type": "string"
+          },
+          "reported_monetary_type_code": {
+            "type": "integer"
+          }
+        }
+      },
+      "Currency": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "AircraftDetails": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "manufacture_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          }
+        }
+      },
+      "ShipDetails": {
+        "type": "object",
+        "properties": {
+          "vessels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vessel"
+            }
+          },
+          "group_ownership_details": {
+            "$ref": "#/components/schemas/GroupOwnershipDetails"
+          }
+        }
+      },
+      "Vessel": {
+        "type": "object",
+        "properties": {
+          "flag_country": {
+            "$ref": "#/components/schemas/Descriptor"
+          },
+          "call_sign": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "grt": {
+            "type": "string"
+          },
+          "tonnage": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "GroupOwnershipDetails": {
+        "type": "object",
+        "properties": {
+          "group_beneficial_owner": {
+            "$ref": "#/components/schemas/GroupOwnershipDetail"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/GroupOwnershipDetail"
+          },
+          "registered_owner": {
+            "$ref": "#/components/schemas/GroupOwnershipDetail"
+          },
+          "ship_manager": {
+            "$ref": "#/components/schemas/GroupOwnershipDetail"
+          },
+          "technical_manager": {
+            "$ref": "#/components/schemas/GroupOwnershipDetail"
+          }
+        }
+      },
+      "GroupOwnershipDetail": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "country_of_control": {
+            "$ref": "#/components/schemas/Descriptor"
+          },
+          "country_of_domicile": {
+            "$ref": "#/components/schemas/Descriptor"
+          },
+          "country_of_registration": {
+            "$ref": "#/components/schemas/Descriptor"
+          }
+        }
+      },
+      "LicenceDetail": {
+        "type": "object",
+        "properties": {
+          "business_formation_state": {
+            "type": "string"
+          },
+          "business_formation_type": {
+            "type": "string"
+          },
+          "registration_link": {
+            "type": "string"
+          },
+          "mrb_licence_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LicenceDetails"
+            }
+          },
+          "msb_licence_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LicenceDetails"
+            }
+          }
+        }
+      },
+      "LicenceDetailV27": {
+        "type": "object",
+        "properties": {
+          "business_formation_state": {
+            "type": "string"
+          },
+          "business_formation_type": {
+            "type": "string"
+          },
+          "registration_link": {
+            "type": "string"
+          },
+          "mrb_licence_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LicenceDetailsV27"
+            }
+          },
+          "msb_licence_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LicenceDetailsV27"
+            }
+          }
+        }
+      },
+      "LicenceDetails": {
+        "type": "object",
+        "properties": {
+          "level_of_licence": {
+            "type": "string"
+          },
+          "country": {
+            "$ref": "#/components/schemas/Descriptor"
+          },
+          "licence_number": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "licence_status": {
+            "type": "string"
+          },
+          "licencing_body": {
+            "type": "string"
+          },
+          "business_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "licence_descriptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "state_licence_description": {
+            "type": "string"
+          },
+          "licence_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "expiry_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "authorized_signature_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "received_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          }
+        }
+      },
+      "LicenceDetailsV27": {
+        "type": "object",
+        "properties": {
+          "level_of_licence": {
+            "type": "string"
+          },
+          "level_of_licence_code": {
+            "type": "integer"
+          },
+          "country": {
+            "$ref": "#/components/schemas/Descriptor"
+          },
+          "licence_number": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "licence_status": {
+            "type": "string"
+          },
+          "licence_status_code": {
+            "type": "integer"
+          },
+          "licencing_body": {
+            "type": "string"
+          },
+          "business_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "licence_descriptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "state_licence_description": {
+            "type": "string"
+          },
+          "state_licence_description_code": {
+            "type": "integer"
+          },
+          "licence_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "expiry_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "authorized_signature_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "received_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          }
+        }
+      },
+      "ConnectionDetail": {
+        "type": "object",
+        "properties": {
+          "profile_id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "is_current": {
+            "type": "boolean"
+          },
+          "connection_type": {
+            "type": "string"
+          },
+          "reverse_connection_type": {
+            "type": "string"
+          },
+          "name_detail": {
+            "$ref": "#/components/schemas/NameDetail"
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ConnectionDetailV20": {
+        "type": "object",
+        "properties": {
+          "profile_id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "is_current": {
+            "type": "boolean"
+          },
+          "connection_type": {
+            "type": "string"
+          },
+          "reverse_connection_type": {
+            "type": "string"
+          },
+          "name_detail": {
+            "$ref": "#/components/schemas/NameDetailFullName"
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IconHintVo"
+            }
+          }
+        }
+      },
+      "ConnectionDetailV27": {
+        "type": "object",
+        "properties": {
+          "profile_id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "type_code": {
+            "type": "integer"
+          },
+          "is_current": {
+            "type": "boolean"
+          },
+          "connection_type": {
+            "type": "string"
+          },
+          "connection_type_with_status": {
+            "type": "string"
+          },
+          "connection_type_code": {
+            "type": "integer"
+          },
+          "reverse_connection_type": {
+            "type": "string"
+          },
+          "reverse_connection_type_with_status": {
+            "type": "string"
+          },
+          "reverse_connection_type_code": {
+            "type": "integer"
+          },
+          "name_detail": {
+            "$ref": "#/components/schemas/NameDetailFullName"
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IconHintVo"
+            }
+          }
+        }
+      },
+      "ListReference": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "from_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "to_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          }
+        }
+      },
+      "ListReferenceV22": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "from_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "to_date": {
+            "$ref": "#/components/schemas/DateDetail"
+          }
+        }
+      },
+      "ImageDetail": {
+        "type": "object",
+        "properties": {
+          "external_url": {
+            "type": "string"
+          },
+          "resource_url": {
+            "type": "string"
+          },
+          "image_id": {
+            "type": "string"
+          }
+        }
+      },
+      "AssociatedEntityDetails": {
+        "type": "object",
+        "properties": {
+          "associated_entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonAssociatedEntityDetail"
+            }
+          },
+          "reported_associated_entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonAssociatedEntityDetail"
+            }
+          },
+          "reported_affected_entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonAssociatedEntityDetail"
+            }
+          }
+        }
+      },
+      "PersonAssociatedEntityDetail": {
+        "type": "object",
+        "properties": {
+          "company_factiva_code": {
+            "type": "string"
+          },
+          "company_name": {
+            "type": "string"
+          }
+        }
+      },
+      "AdverseMediaDetails": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "is_adverse_media_source_e_c": {
+            "type": "boolean"
+          },
+          "is_government_action_e_c": {
+            "type": "boolean"
+          },
+          "is_monetary_value_e_c": {
+            "type": "boolean"
+          },
+          "government_action": {
+            "type": "string"
+          },
+          "adverse_media_source_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrimeSourceDetail"
+            }
+          },
+          "monetary_value_detail": {
+            "$ref": "#/components/schemas/MonetaryValueDetail"
+          },
+          "case_row_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdverseMediaCaseRowDetails"
+            }
+          }
+        }
+      },
+      "AdverseMediaDetailsV27": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "is_adverse_media_source_e_c": {
+            "type": "boolean"
+          },
+          "is_government_action_e_c": {
+            "type": "boolean"
+          },
+          "is_monetary_value_e_c": {
+            "type": "boolean"
+          },
+          "government_action": {
+            "type": "string"
+          },
+          "government_action_code": {
+            "type": "integer"
+          },
+          "adverse_media_source_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrimeSourceDetailV27"
+            }
+          },
+          "monetary_value_detail": {
+            "$ref": "#/components/schemas/MonetaryValueDetailV27"
+          },
+          "case_row_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdverseMediaCaseRowDetailsV27"
+            }
+          }
+        }
+      },
+      "AdverseMediaCaseRowDetails": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string"
+          },
+          "parent_content_type": {
+            "type": "string"
+          },
+          "government_action": {
+            "type": "string"
+          },
+          "monetary_value_detail": {
+            "$ref": "#/components/schemas/MonetaryValueDetail"
+          },
+          "adverse_media_source_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrimeSourceDetail"
+            }
+          }
+        }
+      },
+      "AdverseMediaCaseRowDetailsV27": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string"
+          },
+          "parent_content_type": {
+            "type": "string"
+          },
+          "government_action": {
+            "type": "string"
+          },
+          "government_action_code": {
+            "type": "integer"
+          },
+          "monetary_value_detail": {
+            "$ref": "#/components/schemas/MonetaryValueDetailV27"
+          },
+          "adverse_media_source_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrimeSourceDetailV27"
+            }
+          }
+        }
+      },
+      "CrimeSourceDetail": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "language": {
+            "type": "string"
+          },
+          "snippet": {
+            "type": "string"
+          },
+          "drn": {
+            "type": "string"
+          },
+          "accession_number": {
+            "type": "string"
+          }
+        }
+      },
+      "CrimeSourceDetailV27": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "date": {
+            "$ref": "#/components/schemas/DateDetail"
+          },
+          "language": {
+            "type": "string"
+          },
+          "language_code": {
+            "type": "integer"
+          },
+          "snippet": {
+            "type": "string"
+          },
+          "drn": {
+            "type": "string"
+          },
+          "accession_number": {
+            "type": "string"
+          }
+        }
+      },
+      "ReportedAllegationDetails": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "is_reported_allegation_e_c": {
+            "type": "boolean"
+          },
+          "is_government_action_e_c": {
+            "type": "boolean"
+          },
+          "is_reported_monetary_value_e_c": {
+            "type": "boolean"
+          },
+          "government_action": {
+            "type": "string"
+          },
+          "reported_allegation_source_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrimeSourceDetail"
+            }
+          },
+          "reported_monetary_value_detail": {
+            "$ref": "#/components/schemas/WatchlistMonetaryValueDetail"
+          },
+          "case_row_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WatchlistCaseRowDetails"
+            }
+          }
+        }
+      },
+      "ReportedAllegationDetailsV27": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "is_reported_allegation_e_c": {
+            "type": "boolean"
+          },
+          "is_government_action_e_c": {
+            "type": "boolean"
+          },
+          "is_reported_monetary_value_e_c": {
+            "type": "boolean"
+          },
+          "government_action": {
+            "type": "string"
+          },
+          "government_action_code": {
+            "type": "integer"
+          },
+          "reported_allegation_source_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrimeSourceDetailV27"
+            }
+          },
+          "reported_monetary_value_detail": {
+            "$ref": "#/components/schemas/WatchlistMonetaryValueDetailV27"
+          },
+          "case_row_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WatchlistCaseRowDetailsV27"
+            }
+          }
+        }
+      },
+      "WatchlistCaseRowDetails": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string"
+          },
+          "parent_content_type": {
+            "type": "string"
+          },
+          "government_action": {
+            "type": "string"
+          },
+          "reported_monetary_value_detail": {
+            "$ref": "#/components/schemas/MonetaryValueDetail"
+          },
+          "reported_allegation_source_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrimeSourceDetail"
+            }
+          }
+        }
+      },
+      "WatchlistCaseRowDetailsV27": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string"
+          },
+          "content_type_code": {
+            "type": "integer"
+          },
+          "parent_content_type": {
+            "type": "string"
+          },
+          "parent_content_type_code": {
+            "type": "integer"
+          },
+          "government_action": {
+            "type": "string"
+          },
+          "government_action_code": {
+            "type": "integer"
+          },
+          "reported_monetary_value_detail": {
+            "$ref": "#/components/schemas/MonetaryValueDetail"
+          },
+          "reported_allegation_source_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrimeSourceDetail"
+            }
+          }
+        }
+      },
+      "AddressDetail": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postal_code": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "country": {
+            "$ref": "#/components/schemas/Descriptor"
+          },
+          "region": {
+            "type": "string"
+          },
+          "sub_region": {
+            "type": "string"
+          }
+        }
+      },
+      "MetaCount": {
+        "required": [
+          "an"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          }
+        }
+      },
+      "Meta": {
+        "required": [
+          "an"
+        ],
+        "type": "object",
+        "properties": {
+          "duns": {
+            "type": "string",
+            "example": "000000001"
+          },
+          "is_ubo_available": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "MetaAudit": {
+        "required": [
+          "an"
+        ],
+        "type": "object",
+        "properties": {
+          "duns": {
+            "type": "string",
+            "example": "000000001"
+          },
+          "is_ubo_available": {
+            "type": "boolean",
+            "example": true
+          },
+          "is_audit": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "ResponseConnectionDetails": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "connection_details": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ConnectionDetailV20"
+                    }
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/ResponseMeta"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ResponseConnectionDetailsV11": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "connection_details": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ConnectionDetailV20"
+                    }
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/ResponseMeta"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ResponseConnectionDetailsV12": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "connection_details": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ConnectionDetailV27"
+                    }
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/ResponseMetaV27"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ResponseMeta": {
+        "type": "object",
+        "properties": {
+          "paging": {
+            "$ref": "#/components/schemas/ResponsePaging"
+          },
+          "duns": {
+            "type": "string",
+            "example": "000000001"
+          },
+          "is_ubo_available": {
+            "type": "boolean",
+            "example": true
+          },
+          "is_audit": {
+            "type": "boolean",
+            "example": true
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filter_values": {
+            "$ref": "#/components/schemas/FilterValues"
+          }
+        }
+      },
+      "ResponseMetaV27": {
+        "type": "object",
+        "properties": {
+          "paging": {
+            "$ref": "#/components/schemas/ResponsePaging"
+          },
+          "duns": {
+            "type": "string",
+            "example": "000000001"
+          },
+          "is_ubo_available": {
+            "type": "boolean",
+            "example": true
+          },
+          "is_audit": {
+            "type": "boolean",
+            "example": true
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filter_values": {
+            "$ref": "#/components/schemas/FilterValuesV27"
+          }
+        }
+      },
+      "ResponseMetaV28": {
+        "type": "object",
+        "properties": {
+          "paging": {
+            "$ref": "#/components/schemas/ResponsePaging"
+          },
+          "duns": {
+            "type": "string",
+            "example": "000000001"
+          },
+          "is_ubo_available": {
+            "type": "boolean",
+            "example": true
+          },
+          "is_audit": {
+            "type": "boolean",
+            "example": true
+          },
+          "total_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filter_values": {
+            "$ref": "#/components/schemas/FilterValuesV28"
+          }
+        }
+      },
+      "ResponsePaging": {
+        "type": "object",
+        "properties": {
+          "last": {
+            "type": "string"
+          },
+          "first": {
+            "type": "string"
+          },
+          "next": {
+            "type": "string"
+          },
+          "prev": {
+            "type": "string"
+          },
+          "offset": {
+            "$ref": "#/components/schemas/Offset"
+          }
+        }
+      },
+      "Offset": {
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "integer"
+          },
+          "last": {
+            "type": "integer"
+          },
+          "next": {
+            "type": "integer"
+          },
+          "prev": {
+            "type": "integer"
+          },
+          "current": {
+            "type": "integer"
+          }
+        }
+      },
+      "FilterValues": {
+        "type": "object",
+        "description": "Returns filter values based on the current values returned by the profile, refreshing its values based on each request.",
+        "properties": {
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "connection_type": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "FilterValuesV27": {
+        "type": "object",
+        "description": "Returns filter values based on the current values returned by the profile, refreshing its values based on each request.",
+        "properties": {
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type_filter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterTypeItem"
+            }
+          },
+          "connection_type": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "connection_type_filter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterConnectionTypeItem"
+            }
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "FilterValuesV28": {
+        "type": "object",
+        "description": "Returns filter values based on the current values returned by the profile, refreshing its values based on each request.",
+        "properties": {
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type_filter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterTypeItem"
+            }
+          },
+          "connection_type": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "connection_type_filter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterConnectionTypeItem"
+            }
+          },
+          "icon_hints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "FilterTypeItem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "type_code": {
+            "type": "integer"
+          }
+        }
+      },
+      "FilterConnectionTypeItem": {
+        "type": "object",
+        "properties": {
+          "connection_type": {
+            "type": "string"
+          },
+          "connection_type_code": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "Parts": {
+        "name": "parts",
+        "in": "query",
+        "description": "Specify which parts to return",
+        "schema": {
+          "type": "string",
+          "default": "asset_details",
+          "enum": [
+            "asset_details"
+          ]
+        }
+      },
+      "ProfileId": {
+        "name": "filter[profile_id]",
+        "in": "query",
+        "description": "Unique profile id that identifies a profile",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "Id": {
+        "name": "id",
+        "in": "path",
+        "description": "Unique id that identities the resource",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ProfileParts": {
+        "name": "parts",
+        "in": "query",
+        "description": "Specify which parts of the profile to return, can be one or more separated by comma ( , ). If not specified (empty), all assets will be returned",
+        "schema": {
+          "type": "string",
+          "example": "basic,person,entity",
+          "enum": [
+            "basic",
+            "person",
+            "entity",
+            "watchlist",
+            "relationship",
+            "list_reference",
+            "state_owned_company",
+            "adverse_media_entity",
+            "high_risk_factor",
+            "location",
+            "image",
+            "military_associated_entity"
+          ]
+        }
+      },
+      "ProfileNotesParts": {
+        "name": "parts",
+        "in": "query",
+        "description": "Specify which parts of the profile notes to return, can be one or more separated by comma ( , ). If not specified (empty), all assets will be returned",
+        "schema": {
+          "type": "array",
+          "example": "watchlist,adverse_media_entity",
+          "items": {
+            "type": "string",
+            "enum": [
+              "watchlist",
+              "state_owned_company",
+              "adverse_media_entity",
+              "high_risk_factor",
+              "military_associated_entity",
+              "trade_restricted_associated_entity"
+            ]
+          }
+        },
+        "required": false,
+        "explode": false
+      },
+      "ProfilesListsDescription": {
+        "name": "has_lists_description",
+        "in": "query",
+        "description": "If true, returns a description for the three lists types (Sanctions List, Other Exclusion List and Other Official Lists), if false, then no description is returned.",
+        "schema": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "IsAudit": {
+        "name": "is_audit",
+        "in": "query",
+        "description": "(Available from version 2.3+) Boolean flag to control if a request should be auditted of not.",
+        "required": false,
+        "schema": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "FilterProfileType": {
+        "name": "filter[type]",
+        "in": "query",
+        "description": "Filter by profile type (available up to version 2.6)",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "Person"
+        }
+      },
+      "FilterProfileTypeCode": {
+        "name": "filter[type_code]",
+        "in": "query",
+        "description": "Filter by profile type code (available from version 2.7)",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "Person"
+        }
+      },
+      "FilterConnectionType": {
+        "name": "filter[connection_type]",
+        "in": "query",
+        "description": "Filter by connection type (available up to version 2.6)",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "Colleague"
+        }
+      },
+      "FilterConnectionTypeCode": {
+        "name": "filter[connection_type_code]",
+        "in": "query",
+        "description": "Filter by connection type code (available from version 2.7)",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "example": 3
+        }
+      },
+      "FilterFullName": {
+        "name": "filter[full_name]",
+        "in": "query",
+        "description": "Filter by full name",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "Google",
+          "minLength": 3
+        }
+      },
+      "FilterIconHint": {
+        "name": "filter[icon_hint]",
+        "in": "query",
+        "description": "Filter by iconHint",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "SI-PERSON"
+        }
+      },
+      "AcceptLanguage": {
+        "name": "Accept-Language",
+        "in": "header",
+        "description": "Language key for Translations",
+        "schema": {
+          "type": "string",
+          "default": "en"
+        }
+      },
+      "ProfileNotesTargetTranslation": {
+        "name": "profile_notes_target_language",
+        "in": "query",
+        "description": "Specifies the language to translate to using iso-639-1 language code.",
+        "schema": {
+          "type": "string",
+          "default": "en"
+        }
+      },
+      "TargetLanguage": {
+        "name": "target_language",
+        "in": "query",
+        "description": "Specifies the language to translate to using iso-639-1 language code.",
+        "schema": {
+          "type": "string",
+          "default": "en"
+        }
+      },
+      "Sort": {
+        "name": "sort",
+        "in": "query",
+        "description": "sort",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "-name"
+        }
+      },
+      "PageOffset": {
+        "name": "page[offset]",
+        "in": "query",
+        "description": "page",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "example": 3
+        }
+      },
+      "PageLimit": {
+        "name": "page[limit]",
+        "in": "query",
+        "description": "number of items in each page",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "example": 20
+        }
+      }
+    }
+  }
+}

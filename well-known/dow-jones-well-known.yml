@@ -1,0 +1,31 @@
+generated: '2026-07-22'
+method: searched
+hosts:
+  - host: https://accounts.dowjones.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: dow-jones-openid-configuration.json
+        note: OIDC discovery for the Dow Jones Identity Service (issuer https://sso.accounts.dowjones.com/).
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+  - host: https://www.dowjones.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://api.dowjones.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+  - host: https://developer.dowjones.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404

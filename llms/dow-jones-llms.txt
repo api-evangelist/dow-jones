@@ -1,0 +1,30 @@
+# Dow Jones
+
+> Dow Jones is a financial news and information company (The Wall Street Journal, Barron's, MarketWatch, Factiva, Dow Jones Newswires, Risk & Compliance). Its Developer Platform exposes REST APIs for news content, screening, and third-party risk, secured by the Dow Jones Identity Service (OAuth 2.0 / OIDC) or Factiva user keys.
+
+## APIs
+
+- [Developer Platform](https://developer.dowjones.com/): portal, docs, and API reference
+- [Getting started](https://developer.dowjones.com/documents/site-docs-getting_started): credentials, sessions and authentication
+- [Risk & Compliance Screening and Monitoring API](https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api): case-based batch screening (api.dowjones.com)
+- [Advanced Screening and Monitoring API](https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api): alerting and assessment workflows
+- [Risk Search / Profiles / Taxonomy / Profile Version History APIs](https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api): Risk & Compliance 2.0 suite
+- [Due Diligence Reports API](https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api): order and retrieve risk reports
+- [RiskCenter Third Party Platform API](https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api): third-party onboarding, monitoring, webhooks (api-thirdparty.riskcenter.dowjones.com)
+- [Factiva Analytics](https://developer.dowjones.com/documents/factiva_integration-factiva_analytics): Snapshots, Streams, Time Series, Explain
+- [Factiva Retrieval API](https://developer.dowjones.com/documents/factiva_integration-factiva_retrieval_api): GenAI/RAG article retrieval
+- [Dow Jones Newswires APIs](https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api): Real-Time Search, Top Stories, Calendar Live, Content
+- [Factiva Workflow Toolkit](https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit): Content, Newsletters, Search APIs
+
+## Specs
+
+- 17 OpenAPI/Swagger definitions harvested verbatim in openapi/ (Screening & Monitoring, Private Lists, Advanced Screening, Risk Search/Profiles/Taxonomy/History, Due Diligence Reports, RiskCenter Third Party 0.1/0.2, Content, Newsletters, Newswires Real-Time/Content, Top Stories, Calendar Live, Company News Radar)
+- OIDC discovery: https://accounts.dowjones.com/.well-known/openid-configuration
+
+## Docs
+
+- [Authentication](https://developer.dowjones.com/documents/factiva_integration-essentials-authentication): user-key and OAuth token exchange (AuthN -> AuthZ)
+- [API versioning](https://developer.dowjones.com/documents/site-docs-getting_started-versioning-api_versioning): vnd.dowjones media-type versioning
+- [Deprecation and sunset policies](https://developer.dowjones.com/documents/site-docs-getting_started-deprecation_and_sunset_policies)
+- [Postman collections](https://www.postman.com/dj-cse/workspace/devportal-factiva-products): official dj-cse workspaces (Factiva, Newswires, Risk & Compliance)
+- [Python SDKs](https://pypi.org/project/factiva-analytics/): factiva-analytics, factiva-core, factiva-news

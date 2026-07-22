@@ -1,0 +1,28 @@
+generated: '2026-07-22'
+method: derived
+source: openapi/ + developer.dowjones.com docs
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: Dow Jones Identity Service implements OAuth 2.0 (authorization code, implicit, resource-owner password for service accounts, refresh token) at accounts.dowjones.com/oauth2/v1/token.
+  - id: oidc
+    conforms: true
+    evidence: OIDC discovery document published at accounts.dowjones.com/.well-known/openid-configuration (issuer sso.accounts.dowjones.com); openid/email/profile-claim scopes supported.
+  - id: jwt-bearer-rfc7523
+    conforms: true
+    evidence: 'AuthZ token exchange uses grant_type urn:ietf:params:oauth:grant-type:jwt-bearer.'
+  - id: json-api
+    conforms: partial
+    evidence: RiskCenter Third Party API responses use JSON:API-style top-level data objects, type members, links and page[limit] pagination; other APIs use bespoke envelopes.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Error responses use JSON errors[] arrays, not application/problem+json.
+  - id: media-type-versioning
+    conforms: true
+    evidence: Resource versions negotiated via custom vnd.dowjones media types in Accept/Content-Type headers.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: Deprecation is communicated via published schedules and monthly product updates, not Sunset headers.
+  - id: openapi-3
+    conforms: true
+    evidence: Sixteen OpenAPI 3.0/3.1 definitions (plus one Swagger 2.0) are published on developer.dowjones.com.

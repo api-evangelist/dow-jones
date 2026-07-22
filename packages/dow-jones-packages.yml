@@ -1,0 +1,45 @@
+generated: '2026-07-22'
+method: searched
+source: https://pypi.org/user/DowJones-CSE/ and https://github.com/dowjones
+packages:
+  - language: python
+    registry: pypi
+    name: factiva-analytics
+    url: https://pypi.org/project/factiva-analytics/
+    install: pip install factiva-analytics
+    official: true
+    author: Dow Jones Customer Engineers
+    description: Python package to interact with Factiva Analytics APIs (Snapshots, Streams, Taxonomy).
+    repository: https://github.com/dowjones/factiva-analytics-python
+  - language: python
+    registry: pypi
+    name: factiva-core
+    url: https://pypi.org/project/factiva-core/
+    install: pip install factiva-core
+    official: true
+    author: Dow Jones Customer Engineers
+    description: Root definitions and dictionaries supporting the Factiva Python packages.
+    repository: https://github.com/dowjones/factiva-core-python
+  - language: python
+    registry: pypi
+    name: factiva-news
+    url: https://pypi.org/project/factiva-news/
+    install: pip install factiva-news
+    official: true
+    author: Dow Jones Customer Engineers
+    description: Python package to interact with Factiva news-related APIs (Snapshots and Streams).
+    repository: https://github.com/dowjones/factiva-news-python
+  - language: javascript
+    registry: github
+    name: dj-dna-streams-javascript
+    url: https://github.com/dowjones/dj-dna-streams-javascript
+    install: npm install git+https://github.com/dowjones/dj-dna-streams-javascript.git
+    official: true
+    description: JavaScript client for the Dow Jones DNA (Factiva) Streams API. Distributed from GitHub, not published to npm.
+  - language: python
+    registry: github
+    name: dj-dna-streams-python
+    url: https://github.com/dowjones/dj-dna-streams-python
+    install: pip install git+https://github.com/dowjones/dj-dna-streams-python.git
+    official: true
+    description: Python client for the Dow Jones DNA (Factiva) Streams API. Distributed from GitHub, not published to PyPI.

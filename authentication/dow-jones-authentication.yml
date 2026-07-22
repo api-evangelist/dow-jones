@@ -1,0 +1,80 @@
+generated: '2026-07-22'
+method: searched
+source: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json, openapi/dow-jones-calendar-live-api-openapi.json,
+  openapi/dow-jones-company-news-radar-api-openapi.json, openapi/dow-jones-content-api-swagger.json, openapi/dow-jones-due-diligence-reports-api-openapi.json,
+  openapi/dow-jones-newsletters-api-openapi.json, openapi/dow-jones-newswires-content-api-openapi.json, openapi/dow-jones-newswires-real-time-api-openapi.json,
+  openapi/dow-jones-profile-version-history-api-openapi.json, openapi/dow-jones-risk-profiles-api-openapi.json,
+  openapi/dow-jones-risk-search-api-openapi.json, openapi/dow-jones-risk-taxonomy-api-openapi.json ...
+summary:
+  types:
+  - oauth2
+  - http bearer
+  - apiKey
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+  - implicit
+  - password (service account)
+  - jwt-bearer
+  - refresh_token
+  identity_service: https://sso.accounts.dowjones.com/ (OIDC discovery at accounts.dowjones.com/.well-known/openid-configuration)
+schemes:
+- name: jwt
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT authentication is the preferred authentication method, and should be used for new integrations.  Contact
+    support to request a service account.
+  sources:
+  - openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json
+  - openapi/dow-jones-calendar-live-api-openapi.json
+  - openapi/dow-jones-company-news-radar-api-openapi.json
+  - openapi/dow-jones-newsletters-api-openapi.json
+  - openapi/dow-jones-newswires-content-api-openapi.json
+  - openapi/dow-jones-newswires-real-time-api-openapi.json
+  - openapi/dow-jones-profile-version-history-api-openapi.json
+  - openapi/dow-jones-risk-profiles-api-openapi.json
+  - openapi/dow-jones-risk-taxonomy-api-openapi.json
+  - openapi/dow-jones-screening-and-monitoring-api-openapi.json
+  - openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json
+  - openapi/dow-jones-top-stories-api-openapi.json
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Basic authentication is supported for existing users, but is deprecated.  Existing users are encouraged
+    to contact support for a dedicated service account and switch to JWT authentication.
+  sources:
+  - openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/dow-jones-content-api-swagger.json
+  - openapi/dow-jones-due-diligence-reports-api-openapi.json
+  - openapi/dow-jones-risk-search-api-openapi.json
+  - openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json
+  - openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json
+- name: user-key
+  type: apiKey
+  in: header
+  parameter: user-key
+  description: 'Factiva Integration API-key authentication: send the Dow Jones-issued user key in the user-key header.'
+  docs: https://developer.dowjones.com/documents/factiva_integration-essentials-authentication
+  sources:
+  - docs
+- name: dow-jones-identity-service
+  type: oauth2
+  description: 'Dow Jones Identity Service: two-step token exchange. 1) POST /oauth2/v1/token (grant_type=password,
+    connection=service-account, scope "openid service_account_id[ offline_access]") returns AuthN id_token+access_token;
+    2) POST /oauth2/v1/token (grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer, scope "openid pib") returns
+    the AuthZ bearer JWT used on API calls (expires_in 36000). Authorization-code and implicit flows are available
+    for user-facing apps; refresh_token renews AuthZ tokens.'
+  tokenUrl: https://accounts.dowjones.com/oauth2/v1/token
+  authorizationUrl: https://sso.accounts.dowjones.com/authorize
+  docs: https://developer.dowjones.com/documents/site-docs-getting_started-sessions_and_authentication-dow_jones_identity_service
+  scopes_artifact: scopes/dow-jones-scopes.yml
+  sources:
+  - docs
+docs: https://developer.dowjones.com/documents/factiva_integration-essentials-authentication

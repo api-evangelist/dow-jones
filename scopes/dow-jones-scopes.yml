@@ -1,0 +1,37 @@
+generated: '2026-07-22'
+method: searched
+source: https://developer.dowjones.com/documents/site-docs-getting_started-sessions_and_authentication-dow_jones_identity_service
+docs: https://developer.dowjones.com/documents/factiva_integration-essentials-authentication
+schemes:
+  - name: Dow Jones Identity Service (OAuth 2.0 / OIDC)
+    issuer: https://sso.accounts.dowjones.com/
+    discovery: https://accounts.dowjones.com/.well-known/openid-configuration
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://sso.accounts.dowjones.com/authorize
+        tokenUrl: https://sso.accounts.dowjones.com/oauth/token
+      - flow: implicit
+        authorizationUrl: https://sso.accounts.dowjones.com/authorize
+      - flow: password
+        tokenUrl: https://accounts.dowjones.com/oauth2/v1/token
+        note: Service Account Integration (connection=service-account) exchanges service-account credentials for AuthN tokens.
+      - flow: jwt-bearer
+        tokenUrl: https://accounts.dowjones.com/oauth2/v1/token
+        note: 'grant_type urn:ietf:params:oauth:grant-type:jwt-bearer exchanges the AuthN ID token for the AuthZ access token.'
+      - flow: refresh_token
+        tokenUrl: https://accounts.dowjones.com/oauth2/v1/token
+scopes:
+  - scope: openid
+    description: Access your identity in Factiva. Provides the ID token (JWT).
+  - scope: email
+    description: View your email address. Provides the user's email in the ID token.
+  - scope: given_name
+    description: View your given name in the ID token.
+  - scope: family_name
+    description: View your family name in the ID token.
+  - scope: offline_access
+    description: Indicates that a Refresh token is returned.
+  - scope: service_account_id
+    description: Requests the AuthN tokens for a service account (used with the password grant, connection=service-account).
+  - scope: pib
+    description: Requested together with openid when exchanging AuthN tokens for the AuthZ access token that calls the APIs (scope value "openid pib").

@@ -1,0 +1,597 @@
+generated: '2026-07-22'
+method: derived
+status: candidate
+note: No official Dow Jones-hosted MCP server was found (July 2026). This is a candidate tool list derived from
+  the published OpenAPI definitions.
+server:
+  name: dow-jones
+  transport: http
+tools:
+- name: alertClose
+  description: Close an alert
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertClose
+- name: alertAssign
+  description: Assign alert to user
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssign
+- name: alertAssignPrevious
+  description: Assign alert to the previous assignee
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertAssignPrevious
+- name: alertReopen
+  description: Reopen an alert
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertReopen
+- name: alertStatus
+  description: Update status/assignment of an alert
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertStatus
+- name: alertBulkAssign
+  description: Bulk assign alerts
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertBulkAssign
+- name: alertEvidenceAssess
+  description: Assess an item of evidence on an alert
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceAssess
+- name: alertExport
+  description: Export alerts
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertExport
+- name: alertExportActivity
+  description: Export alert activities
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertExportActivity
+- name: alertEvidenceExport
+  description: Export evidence
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#alertEvidenceExport
+- name: createAlertPDFExport
+  description: Create a PDF Export
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#createAlertPDFExport
+- name: createAssessmentPDFExport
+  description: Create a PDF Export
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#createAssessmentPDFExport
+- name: createSearchPDFExport
+  description: Create a PDF Export
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#createSearchPDFExport
+- name: listPDFExport
+  description: List PDF exports
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#listPDFExport
+- name: statusPDFExport
+  description: Check the status of a PDF export job
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#statusPDFExport
+- name: downloadPDFExport
+  description: Download PDF export
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#downloadPDFExport
+- name: createExcelExport
+  description: Create an Excel Export
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#createExcelExport
+- name: getExcelExportStatus
+  description: Get Excel Export Status
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#getExcelExportStatus
+- name: downloadExcelExport
+  description: Download Excel Export
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#downloadExcelExport
+- name: assessmentGet
+  description: Get assessments
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentGet
+- name: assessmentCreate
+  description: Create an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentCreate
+- name: assessmentBulkDelete
+  description: Bulk delete assessments
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkDelete
+- name: assessmentSearch
+  description: Search assessments
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentSearch
+- name: assessmentCreateSync
+  description: Create an assessment synchronously
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentCreateSync
+- name: assessmentSingleGet
+  description: Retrieve an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentSingleGet
+- name: AssessmentDelete
+  description: Delete an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#AssessmentDelete
+- name: assessmentClose
+  description: Close an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentClose
+- name: assessmentState
+  description: Get the high-level state of the assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentState
+- name: assessmentUpdateStatus
+  description: Update the status of an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentUpdateStatus
+- name: assessmentAssign
+  description: Assign and change the status of the assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentAssign
+- name: assessmentBulkAssess
+  description: Bulk assess a number of pieces of evidence
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentBulkAssess
+- name: assessmentEvidenceFullGet
+  description: Retrieve the full content of evidence
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceFullGet
+- name: assessmentEvidenceFullPost
+  description: Retrieve the full content of evidence
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceFullPost
+- name: assessmentEvidenceSearchPost
+  description: Search evidence summaries for an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceSearchPost
+- name: assessmentEvidenceSearchGet
+  description: Search evidence summaries for an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceSearchGet
+- name: assessmentEvidenceAssess
+  description: Assess an item of evidence in an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceAssess
+- name: assessmentEvidenceBookmark
+  description: Bookmark an item of evidence in an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceBookmark
+- name: assessmentEvidenceBookmarkDelete
+  description: Delete bookmark evidence in an assessment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceBookmarkDelete
+- name: assessmentExport
+  description: Fetch assessments in JSON-L format
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentExport
+- name: assessmentEvidenceExport
+  description: Export evidence in JSON-L format
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentEvidenceExport
+- name: assessmentActivityExport
+  description: Export assessment activity in JSON-L format
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#assessmentActivityExport
+- name: attachmentPost
+  description: Upload an attachment
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#attachmentPost
+- name: deleteClientRecords
+  description: Delete client records
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#deleteClientRecords
+- name: clientDeleteJobErrors
+  description: Client delete job errors
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientDeleteJobErrors
+- name: clientDeleteReportFilter
+  description: Client delete filter
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientDeleteReportFilter
+- name: clientImportList
+  description: List all import jobs
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportList
+- name: clientBulkImport
+  description: Bulk import client records
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientBulkImport
+- name: clientImportSyncronous
+  description: Import a single client synchronously
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportSyncronous
+- name: clientReload
+  description: Reload clients
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientReload
+- name: clientImportSearch
+  description: Search client import jobs
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportSearch
+- name: clientImportJobGet
+  description: Get a job by ID
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobGet
+- name: clientImportJobReport
+  description: Get a report for a client import job
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobReport
+- name: clientImportReportStream
+  description: Stream a report for a client import job
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportReportStream
+- name: clientImportJobStatus
+  description: Client import job status
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobStatus
+- name: clientImportJobErrors
+  description: Client import job errors
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobErrors
+- name: clientImportJobErrorsStream
+  description: Client import job errors stream
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientImportJobErrorsStream
+- name: dispositionCreate
+  description: Create a historical disposition
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionCreate
+- name: dispositionList
+  description: Get historical dispositions
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionList
+- name: dispositionGetById
+  description: Get a historical disposition
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionGetById
+- name: dispositionUpdate
+  description: Update a historical disposition
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionUpdate
+- name: dispositionDelete
+  description: Delete a historical disposition
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionDelete
+- name: dispositionBulkDelete
+  description: Bulk delete historical dispositions
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#dispositionBulkDelete
+- name: entityClientCount
+  description: Fetch the number of clients in the system
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityClientCount
+- name: entityClientQuery
+  description: Queries the clients in LS and streams response
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityClientQuery
+- name: entityRiskProfileQuery
+  description: Query full profile details for a list of profile IDs
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityRiskProfileQuery
+- name: clientExport
+  description: Exports the clients in LS and streams response, optionally filtered by Last Modified Date only
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientExport
+- name: entityMultipleDelete
+  description: Delete multiple clients
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityMultipleDelete
+- name: entitySingleDelete
+  description: Delete single client
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#entitySingleDelete
+- name: entityValidateData
+  description: Validate list entity and client data
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityValidateData
+- name: articlesGetById
+  description: Retrieve one news article by id
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetById
+- name: articlesGetByEntityId
+  description: Stream news articles linked to an entity
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#articlesGetByEntityId
+- name: listImport
+  description: Create a new or update a current list entity
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#listImport
+- name: searchStrategy
+  description: Search against one or more identifiers using a strategy
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchStrategy
+- name: searchProfile
+  description: Retrieve a profile record given the ID.
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#searchProfile
+- name: userSearch
+  description: Search users
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#userSearch
+- name: userImport
+  description: Bulk import multiple users to the system
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#userImport
+- name: usersDelete
+  description: Delete a list of users from the system.
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#usersDelete
+- name: usersSync
+  description: Synchronize users to the system by replacing all current users with a new set
+  source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#usersSync
+- name: Collection_Get
+  description: GET /newsletter/editions/{id}
+  source_operation: openapi/dow-jones-content-api-swagger.json#Collection_Get
+- name: Collection_Get
+  description: GET /newsplus/collections/{code}
+  source_operation: openapi/dow-jones-content-api-swagger.json#Collection_Get
+- name: Search_Get
+  description: GET /search
+  source_operation: openapi/dow-jones-content-api-swagger.json#Search_Get
+- name: Search_Post
+  description: POST /search
+  source_operation: openapi/dow-jones-content-api-swagger.json#Search_Post
+- name: Search_Get
+  description: GET /search/refs
+  source_operation: openapi/dow-jones-content-api-swagger.json#Search_Get
+- name: Search_Get
+  description: GET /search/realtime
+  source_operation: openapi/dow-jones-content-api-swagger.json#Search_Get
+- name: Search_Get
+  description: GET /search/people/{code}
+  source_operation: openapi/dow-jones-content-api-swagger.json#Search_Get
+- name: Search_Get
+  description: GET /search/organization/{code}
+  source_operation: openapi/dow-jones-content-api-swagger.json#Search_Get
+- name: Search_Get
+  description: GET /search/consumer
+  source_operation: openapi/dow-jones-content-api-swagger.json#Search_Get
+- name: Search_Post
+  description: Search for the most relevant emerging topics in the last hours
+  source_operation: openapi/dow-jones-content-api-swagger.json#Search_Post
+- name: getBillingAccounts
+  description: Get a list of the billing accounts and their report types
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#getBillingAccounts
+- name: getReportRequestComments
+  description: Get comments by report request id
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#getReportRequestComments
+- name: createReportRequestComment
+  description: Create a new comment
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#createReportRequestComment
+- name: getCommentsbyId
+  description: Get comments by report and comment id
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#getCommentsbyId
+- name: getReportRequestDocuments
+  description: Get all documents by report request id
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#getReportRequestDocuments
+- name: getReportRequestDocumentById
+  description: Get document by report request and document id
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#getReportRequestDocumentById
+- name: postEstimate
+  description: Send a report request to receive a price estimate
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#postEstimate
+- name: getMetadata
+  description: Get data used to create report requests
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#getMetadata
+- name: patchMetadata
+  description: Update URL used for callback notification
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#patchMetadata
+- name: approveReportRequestProposal
+  description: Approve proposal by report request id and proposal type
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#approveReportRequestProposal
+- name: rejectReportRequestProposal
+  description: Reject proposal by report request id and proposal type
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#rejectReportRequestProposal
+- name: subscribeOnReportRequestByID
+  description: Subscribe to events related to a report request by id
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#subscribeOnReportRequestByID
+- name: unsubscribeFromReportRequestById
+  description: Unsubscribe to events related to a report request by id
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#unsubscribeFromReportRequestById
+- name: getReportRequestById
+  description: Get a report request by id
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#getReportRequestById
+- name: createReportRequest
+  description: Create a new Enhanced Due Diligence report request
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#createReportRequest
+- name: getReportRequests
+  description: Get all report requests
+  source_operation: openapi/dow-jones-due-diligence-reports-api-openapi.json#getReportRequests
+- name: NewslettersRead
+  description: Gets a list of Newsletters
+  source_operation: openapi/dow-jones-newsletters-api-openapi.json#NewslettersRead
+- name: NewsletterReadById
+  description: Reading a Newsletter by ID
+  source_operation: openapi/dow-jones-newsletters-api-openapi.json#NewsletterReadById
+- name: EditionsRead
+  description: Get all Newsletter Editions
+  source_operation: openapi/dow-jones-newsletters-api-openapi.json#EditionsRead
+- name: EditionReadById
+  description: Get a Newsletter's Edition by ID
+  source_operation: openapi/dow-jones-newsletters-api-openapi.json#EditionReadById
+- name: GetRealtimeLinkedContentByDrn
+  description: Retrieves the realtime linked articles by the reference.
+  source_operation: openapi/dow-jones-newswires-content-api-openapi.json#GetRealtimeLinkedContentByDrn
+- name: getVersionsFromProfile
+  description: Gets a profile's history of versions
+  source_operation: openapi/dow-jones-profile-version-history-api-openapi.json#getVersionsFromProfile
+- name: getProfileRevisionsFromProfile
+  description: Gets all revisions from a profile
+  source_operation: openapi/dow-jones-profile-version-history-api-openapi.json#getProfileRevisionsFromProfile
+- name: getProfiles
+  description: Get Profiles
+  source_operation: openapi/dow-jones-risk-profiles-api-openapi.json#getProfiles
+- name: getProfileNotes
+  description: Get Profile Notes by Profile id
+  source_operation: openapi/dow-jones-risk-profiles-api-openapi.json#getProfileNotes
+- name: getOneImage
+  description: Get Image by Image Reference
+  source_operation: openapi/dow-jones-risk-profiles-api-openapi.json#getOneImage
+- name: getRelationshipsFromProfile
+  description: Get the connection details for a profile
+  source_operation: openapi/dow-jones-risk-profiles-api-openapi.json#getRelationshipsFromProfile
+- name: searchRandC
+  description: Screening of Risk and Compliance
+  source_operation: openapi/dow-jones-risk-search-api-openapi.json#searchRandC
+- name: getLists
+  description: Risk and Compliance - Taxonomy lists
+  source_operation: openapi/dow-jones-risk-taxonomy-api-openapi.json#getLists
+- name: GetBusinessUnits
+  description: Retrieves all business units
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetBusinessUnits
+- name: GetFields
+  description: Retrieves all fields (optional filter)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetFields
+- name: GetGroups
+  description: Retrieves all groups (optional paging)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetGroups
+- name: GetLists
+  description: Retrieves all lists
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetLists
+- name: GetList
+  description: Retrieves a list by id
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetList
+- name: GetProcesses
+  description: Retrieves all processes (optional paging)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetProcesses
+- name: PostThirdParty
+  description: Creates a new third party
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#PostThirdParty
+- name: GetThirdParties
+  description: Retrieves all third-parties (optional filter)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetThirdParties
+- name: PatchThirdParty
+  description: Updates an existing third party
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#PatchThirdParty
+- name: DeleteThirdParty
+  description: Deletes a third party
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#DeleteThirdParty
+- name: GetThirdParty
+  description: Retrieves a third party by id
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetThirdParty
+- name: GetThirdPartyProperties
+  description: Retrieves all properties for a third party (optional filter)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetThirdPartyProperties
+- name: PutThirdPartyProperties
+  description: Updates a property
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#PutThirdPartyProperties
+- name: PutBatchThirdPartyProperties
+  description: Updates multiple properties
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#PutBatchThirdPartyProperties
+- name: GetMonitoredEntities
+  description: Retrieves all monitored entities for the given third party (optional paging)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetMonitoredEntities
+- name: PostMonitoredEntities
+  description: Adds a new monitored entity
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#PostMonitoredEntities
+- name: DeleteMonitoredEntities
+  description: Removes a monitored entity
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#DeleteMonitoredEntities
+- name: GetMonitoredEntitiesIdTypes
+  description: Retrieves all monitored entity id types
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetMonitoredEntitiesIdTypes
+- name: GetMonitoredEntitiesEntityTypes
+  description: Retrieves all monitored entity types
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json#GetMonitoredEntitiesEntityTypes
+- name: GetBusinessUnits
+  description: Retrieves all business units
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetBusinessUnits
+- name: GetFields
+  description: Retrieves all fields (optional filter)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetFields
+- name: GetFieldList
+  description: Get a List relationship for a Field
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetFieldList
+- name: GetGroups
+  description: Retrieves all groups (optional paging)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetGroups
+- name: GetLists
+  description: Retrieves all lists
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetLists
+- name: GetList
+  description: Retrieves a list by id
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetList
+- name: GetProcesses
+  description: Retrieves all processes (optional paging)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetProcesses
+- name: PostThirdParty
+  description: Creates a new third party
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#PostThirdParty
+- name: GetThirdParties
+  description: Retrieves all third-parties (optional filter)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetThirdParties
+- name: PatchThirdParty
+  description: Updates an existing third party
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#PatchThirdParty
+- name: DeleteThirdParty
+  description: Deletes a third party
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#DeleteThirdParty
+- name: GetThirdParty
+  description: Retrieves a third party by id
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetThirdParty
+- name: GetThirdPartyProperties
+  description: Retrieves all properties for a third party (optional filter)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetThirdPartyProperties
+- name: PutThirdPartyProperties
+  description: Updates a property
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#PutThirdPartyProperties
+- name: PutBatchThirdPartyProperties
+  description: Updates multiple properties
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#PutBatchThirdPartyProperties
+- name: GetMonitoredEntities
+  description: Retrieves all monitored entities for the given third party (optional paging)
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetMonitoredEntities
+- name: PostMonitoredEntities
+  description: Adds a new monitored entity
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#PostMonitoredEntities
+- name: DeleteMonitoredEntities
+  description: Removes a monitored entity
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#DeleteMonitoredEntities
+- name: GetMonitoredEntitiesIdTypes
+  description: Retrieves all monitored entity id types
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetMonitoredEntitiesIdTypes
+- name: GetMonitoredEntitiesEntityTypes
+  description: Retrieves all monitored entity types
+  source_operation: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json#GetMonitoredEntitiesEntityTypes
+- name: getAssociationsUsingGET
+  description: Retrieves all associations
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getAssociationsUsingGET
+- name: postAssociationUsingPOST
+  description: Adds a new association
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#postAssociationUsingPOST
+- name: getAssociationUsingGET
+  description: Retrieves an association by ID
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getAssociationUsingGET
+- name: deleteAssociationUsingDELETE
+  description: Removes an association
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#deleteAssociationUsingDELETE
+- name: patchAssociationUsingPATCH
+  description: Modifies an association
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#patchAssociationUsingPATCH
+- name: getAllCasesUsingGET
+  description: Retrieves all cases
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getAllCasesUsingGET
+- name: postCaseUsingPOST
+  description: Adds a new case
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#postCaseUsingPOST
+- name: saveCaseUsingPOST
+  description: Adds a new case with all associations. Returns a new transaction id of this operation
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#saveCaseUsingPOST
+- name: saveAssociationBatchUsingPOST
+  description: Creates a batch of associations and correlates them with the given case. Returns a new transaction
+    ID of this operation
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#saveAssociationBatchUsingPOST
+- name: getBulkTransactionUsingGET
+  description: Gets status of a bulk transaction
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getBulkTransactionUsingGET
+- name: getCaseByIdUsingGET
+  description: Retrieves a case by ID
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getCaseByIdUsingGET
+- name: deleteCaseUsingDELETE
+  description: Removes a case
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#deleteCaseUsingDELETE
+- name: patchCaseUsingPATCH
+  description: Modifies a case
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#patchCaseUsingPATCH
+- name: getMatchesByCaseIdUsingGET
+  description: Finds persons/entities matching search criteria given case ID
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getMatchesByCaseIdUsingGET
+- name: getMatchByIdUsingGET
+  description: Retrieves a single match by ID
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getMatchByIdUsingGET
+- name: patchMatchUsingPATCH
+  description: Adds a feedback to a Match
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#patchMatchUsingPATCH
+- name: patchMatchesUsingPATCH
+  description: Adds a feedback to a list of matches
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#patchMatchesUsingPATCH
+- name: findAssociationsUsingGET
+  description: Finds the associations of a given case ID
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#findAssociationsUsingGET
+- name: addAssociationUsingPOST
+  description: Adds one or more associations to a given case ID
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#addAssociationUsingPOST
+- name: decorrelateBulkAssociationsUsingPOST
+  description: Decorrelate a bulk of associations from a case
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#decorrelateBulkAssociationsUsingPOST
+- name: decorrelateCaseAssociationUsingDELETE
+  description: Decorrelate a single association from a case
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#decorrelateCaseAssociationUsingDELETE
+- name: getTransactionByCaseUsingGET
+  description: Gets status of a transaction by Case and Id
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getTransactionByCaseUsingGET
+- name: getTransactionUsingGET
+  description: Gets status of a transaction
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getTransactionUsingGET
+- name: validateCaseShortcutPOST
+  description: Validates that a Shortcut Case payload does not have validation errors. Returns a valid "status"
+    and information about any errors that might
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#validateCaseShortcutPOST
+- name: validateShortcutAssociationsPOST
+  description: Validates that a Shortcut Associations payload does not have validation errors. Returns a valid "status"
+    and information about any errors th
+  source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#validateShortcutAssociationsPOST
+- name: getProfileSourcesUsingGET
+  description: Retrieves the information of the Profiles Custom Sources from the given account
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#getProfileSourcesUsingGET
+- name: createProfileSourceUsingPOST
+  description: Creates a new Profiles Custom Source
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#createProfileSourceUsingPOST
+- name: retrieveGroupInfoUsingGET
+  description: Retrieves the attributes of the Profiles Custom Source
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#retrieveGroupInfoUsingGET
+- name: deleteProfileSourceUsingDELETE
+  description: Deletes a Profiles Custom Source
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#deleteProfileSourceUsingDELETE
+- name: updateSourceNameUsingPATCH
+  description: Modifies a Profiles Custom Source Name
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#updateSourceNameUsingPATCH
+- name: retrieveAllProfilesOnACustomSourceUsingGET
+  description: Retrieves all profiles from a custom source
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#retrieveAllProfilesOnACustomSourceUsingGET
+- name: insertProfileUsingPOST
+  description: Inserts one or more profiles
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#insertProfileUsingPOST
+- name: retrieveProfileUsingGET
+  description: Retrieves a Profile
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#retrieveProfileUsingGET
+- name: updateProfileUsingPUT
+  description: Updates a profile
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#updateProfileUsingPUT
+- name: removeProfileUsingDELETE
+  description: Removes a profile
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#removeProfileUsingDELETE
+- name: retrieveTransactionsUsingGET
+  description: Retrieves the status of a transaction
+  source_operation: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json#retrieveTransactionsUsingGET
+- name: GetContentByRef
+  description: "Gets a single content by its ref ID –a DowJones Resource Name (DRN).\r"
+  source_operation: openapi/dow-jones-top-stories-api-openapi.json#GetContentByRef
+- name: GetContentCollectionByRef
+  description: Gets the content of an entitled content-collection by its DRN ID
+  source_operation: openapi/dow-jones-top-stories-api-openapi.json#GetContentCollectionByRef
+- name: GetCollectionIdList
+  description: Gets a full list of entitled content-collection IDs
+  source_operation: openapi/dow-jones-top-stories-api-openapi.json#GetCollectionIdList

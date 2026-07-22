@@ -1,0 +1,5645 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Risk & Compliance Risk Reports",
+    "version": "1.18.11"
+  },
+  "tags": [
+    {
+      "name": "Risk Reports",
+      "description": "API"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "billingaccount_dataitem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "billing_accounts"
+          },
+          "id": {
+            "type": "string",
+            "example": "9PRO000200"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/billing_account"
+          }
+        }
+      },
+      "billing_account": {
+        "type": "object",
+        "properties": {
+          "currency_code": {
+            "type": "string",
+            "enum": [
+              "AUD",
+              "BRL",
+              "USD",
+              "EUR",
+              "GBP",
+              "INR",
+              "JPY",
+              "CAD",
+              "CNY",
+              "CHF",
+              "SGD",
+              "ZAR"
+            ]
+          },
+          "report_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Red Flag"
+                },
+                "value": {
+                  "type": "string",
+                  "example": "redflag"
+                }
+              }
+            }
+          },
+          "owner": {
+            "type": "object",
+            "properties": {
+              "company_name": {
+                "type": "string",
+                "example": "Hooli XYZ"
+              }
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2018-09-26T00:00:00.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2018-09-26T00:00:00.000Z"
+          }
+        }
+      },
+      "get_billingaccounts_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/billingaccount_dataitem"
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/billing-accounts"
+              }
+            }
+          }
+        }
+      },
+      "comment_dataitem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "comments"
+          },
+          "id": {
+            "type": "string",
+            "example": "d3a9c83656cd4a30814b1466e9689fbb"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "reportRequest": {
+                "type": "string",
+                "example": "http://api.dowjones.com/risk-reports/reportrequests/ba6e0ef7eda8481ca9b8db7112fb03bf"
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/comment"
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "users"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "E6OO2HVCQHVPE5X54D7W7XO5NI"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "create_comment_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/comment_dataitem"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments"
+              }
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/user_data_item"
+            }
+          }
+        }
+      },
+      "comment_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/comment_dataitem"
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "reportRequest": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934"
+              }
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/user_data_item"
+            }
+          }
+        }
+      },
+      "comment": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "example": "Hello world!"
+          },
+          "is_urgent": {
+            "type": "boolean",
+            "example": false
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2018-09-26T00:00:00.000Z"
+          }
+        }
+      },
+      "comment_create": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "example": "Hello world!"
+                  },
+                  "is_urgent": {
+                    "type": "boolean",
+                    "example": false
+                  }
+                },
+                "required": [
+                  "content",
+                  "is_urgent"
+                ]
+              }
+            },
+            "required": [
+              "attributes"
+            ]
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "document": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "8e1f7433184a4b59b8a3dd22bbe51537"
+          },
+          "file_name": {
+            "type": "string",
+            "example": "doc.txt"
+          },
+          "mimetype": {
+            "type": "string",
+            "example": "\"text/plain"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2018-09-26T00:00:00.000Z"
+          },
+          "size": {
+            "type": "number",
+            "example": 2048
+          }
+        }
+      },
+      "document_dataitem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "documents"
+          },
+          "id": {
+            "type": "string",
+            "example": "2009e814baef455fb7b062d0904d3a19"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/document"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents/4a68c4aaa8844043b8e2827b8d0f1948"
+              },
+              "reportRequest": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934"
+              }
+            }
+          }
+        }
+      },
+      "document_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/document_dataitem"
+          }
+        }
+      },
+      "documents_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/document_dataitem"
+            }
+          }
+        }
+      },
+      "document_links": {
+        "type": "object",
+        "properties": {
+          "self": {
+            "type": "string"
+          },
+          "download": {
+            "type": "string"
+          }
+        }
+      },
+      "bad_request_error_response": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/bad_request_error"
+            }
+          }
+        },
+        "required": [
+          "errors"
+        ]
+      },
+      "bad_request_error_detail": {
+        "type": "object",
+        "properties": {
+          "pointer": {
+            "description": "a JSON Pointer [RFC6901] to the associated entity in the request document [e.g. \"/data\" for a primary data object, or \"/data/attributes/title\" for a specific attribute]",
+            "example": "/data/attributes",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      "bad_request_links": {
+        "type": "object",
+        "properties": {
+          "about": {
+            "description": "a link that leads to further details about this particular occurrence of the problem",
+            "example": "https://wiki.dowjones.net/display/DSE/Error+Codes",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      "bad_request_error": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "a unique identifier for this particular occurrence of the problem.",
+            "example": "d5ee7ceb98a848a49420d7cce2601934",
+            "type": "string"
+          },
+          "status": {
+            "description": "the HTTP status code applicable to this problem, expressed as a string value.",
+            "example": "400",
+            "type": "string"
+          },
+          "code": {
+            "description": "an application-specific error code, expressed as a string value.",
+            "example": "302",
+            "type": "string"
+          },
+          "source": {
+            "type": "object",
+            "$ref": "#/components/schemas/bad_request_error_detail"
+          },
+          "links": {
+            "type": "object",
+            "$ref": "#/components/schemas/bad_request_links"
+          },
+          "meta": {
+            "description": "a meta object containing non-standard meta-information about the error",
+            "type": "string"
+          },
+          "title": {
+            "description": "a short, human-readable summary of the problem",
+            "example": "Missing required property: name",
+            "type": "string"
+          },
+          "detail": {
+            "description": "a human-readable explanation specific to this occurrence of the problem",
+            "example": "/data/attributes Missing required property: name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "detail",
+          "source"
+        ]
+      },
+      "proposals_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_rush_proposal_attributes"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_price_proposal_attributes"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_update_proposal_attributes"
+                }
+              ]
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/88e6e35adcb346e2b10dc14447419bc9/proposals"
+              }
+            }
+          }
+        }
+      },
+      "proposal_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/proposal_dataitem"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/88e6e35adcb346e2b10dc14447419bc9/proposals"
+              }
+            }
+          }
+        }
+      },
+      "proposal_dataitem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "proposals"
+          },
+          "id": {
+            "type": "string",
+            "example": "88e6e35adcb346e2b10dc14447419bc9"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "example": "http://api.dowjones.com/risk-reports/reportrequests/09bb9570e3254f96b2e89bb3ef56655b/proposals/88e6e35adcb346e2b10dc14447419bc9"
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "oneOf": [
+              {
+                "type": "object",
+                "$ref": "#/components/schemas/report_request_update_proposal_attributes"
+              },
+              {
+                "type": "object",
+                "$ref": "#/components/schemas/report_request_price_proposal_attributes"
+              },
+              {
+                "type": "object",
+                "$ref": "#/components/schemas/report_request_rush_proposal_attributes"
+              }
+            ]
+          }
+        }
+      },
+      "report_request_rush_proposal_attributes": {
+        "type": "object",
+        "properties": {
+          "proposal": {
+            "type": "string",
+            "description": "Rush Report",
+            "default": "rush"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "fsdds5a4264227477ad23fsas222d2223"
+          },
+          "params": {
+            "$ref": "#/components/schemas/report_request_params_rush"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ],
+            "default": "pending"
+          },
+          "initiated_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "report_request_price_proposal_attributes": {
+        "type": "object",
+        "properties": {
+          "proposal": {
+            "type": "string",
+            "description": "Additions or Changes in the price",
+            "default": "additional_price"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "ffc5a42642274771be036b927eaaf6af"
+          },
+          "params": {
+            "$ref": "#/components/schemas/report_request_params_price"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ],
+            "default": "pending"
+          },
+          "initiated_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "report_request_update_proposal_attributes": {
+        "type": "object",
+        "properties": {
+          "proposal": {
+            "type": "string",
+            "description": "Additions or Changes in Entities, Jurisdictions or Subjects",
+            "default": "update_report_request"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "sdbgfxcs27477ad23fsas222d2223"
+          },
+          "params": {
+            "$ref": "#/components/schemas/report_request_params_update_rr"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ],
+            "default": "pending"
+          },
+          "initiated_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "report_request_params_price": {
+        "type": "object",
+        "properties": {
+          "concept": {
+            "type": "string",
+            "enum": [
+              "Additional Research",
+              "Record Retrieval",
+              "Red Flag Checks",
+              "Miscellaneous",
+              "Deduction"
+            ]
+          },
+          "unit_price": {
+            "type": "number",
+            "example": 150
+          }
+        }
+      },
+      "report_request_params_rush": {
+        "type": "object",
+        "properties": {
+          "delivery_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "report_request_params_update_rr": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "number"
+          },
+          "item": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "rhs": {
+                "type": "object",
+                "properties": {
+                  "option": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "object",
+                    "properties": {
+                      "iso2": {
+                        "type": "string"
+                      },
+                      "iso3": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "kind": {
+            "type": "string"
+          },
+          "path": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "estimates_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "estimates"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "currency_code": {
+                    "type": "string",
+                    "example": "USD"
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "order_detail": {
+                    "type": "object",
+                    "properties": {
+                      "report_type": {
+                        "type": "string",
+                        "example": "level1"
+                      },
+                      "billing_account_id": {
+                        "type": "string",
+                        "example": "9PRO000200"
+                      },
+                      "base_report": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "DowJones report"
+                          },
+                          "unit_price": {
+                            "type": "number",
+                            "example": 1160
+                          }
+                        }
+                      },
+                      "additional_entities": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "Additional entity"
+                            },
+                            "unit_price": {
+                              "type": "number",
+                              "example": 750
+                            }
+                          }
+                        }
+                      },
+                      "additional_individuals": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "Ivan Ivanov"
+                            },
+                            "unit_price": {
+                              "type": "number",
+                              "example": 750
+                            }
+                          }
+                        }
+                      },
+                      "additional_jurisdictions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "Additional entity"
+                            },
+                            "unit_price": {
+                              "type": "number",
+                              "example": 600
+                            }
+                          }
+                        }
+                      },
+                      "rush_charge": {
+                        "type": "number",
+                        "example": 1630
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 4890
+                      },
+                      "formatted": {
+                        "type": "object",
+                        "properties": {
+                          "report_type": {
+                            "type": "string",
+                            "example": "level1"
+                          },
+                          "billing_account_id": {
+                            "type": "string",
+                            "example": "9PRO000200"
+                          },
+                          "base_report": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "example": "DowJones report"
+                              },
+                              "unit_price": {
+                                "type": "string",
+                                "example": "$1,160.00"
+                              }
+                            }
+                          },
+                          "additional_entities": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "example": "Additional entity"
+                                },
+                                "unit_price": {
+                                  "type": "string",
+                                  "example": "$750.00"
+                                }
+                              }
+                            }
+                          },
+                          "additional_individuals": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "example": "Ivan Ivanov"
+                                },
+                                "unit_price": {
+                                  "type": "string",
+                                  "example": "$750.00"
+                                }
+                              }
+                            }
+                          },
+                          "additional_jurisdictions": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string",
+                                  "example": "Additional entity"
+                                },
+                                "unit_price": {
+                                  "type": "number",
+                                  "example": "$600.00"
+                                }
+                              }
+                            }
+                          },
+                          "rush_charge": {
+                            "type": "number",
+                            "example": "$1,630.00"
+                          },
+                          "total": {
+                            "type": "number",
+                            "example": "$4,890.00"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "total": {
+                    "type": "number",
+                    "example": 4890
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/estimate"
+                  },
+                  "metadata": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/metadata"
+                  },
+                  "reportRequests": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "report_request_estimate_request": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_estimate_data_item"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_estimate_data_item": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_estimate_attributes"
+          }
+        },
+        "required": [
+          "attributes"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_estimate_attributes": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "example": "Dow Jones Report"
+          },
+          "report_type": {
+            "type": "string"
+          },
+          "is_rush": {
+            "type": "boolean"
+          },
+          "subject_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "individual"
+            ]
+          },
+          "subject": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "middle_name": {
+                    "type": "string",
+                    "example": "Allan"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "example": "Doe"
+                  },
+                  "jurisdictions": {
+                    "$ref": "#/components/schemas/report_request_individual_jurisdictions"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Dow Jones"
+                  },
+                  "jurisdictions": {
+                    "$ref": "#/components/schemas/report_request_entity_jurisdictions"
+                  }
+                }
+              }
+            ]
+          },
+          "additional_entities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Dow Jones"
+                },
+                "jurisdictions": {
+                  "$ref": "#/components/schemas/report_request_entity_jurisdictions"
+                }
+              }
+            }
+          },
+          "additional_individuals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "type": "string",
+                  "example": "John"
+                },
+                "middle_name": {
+                  "type": "string",
+                  "example": "Allan"
+                },
+                "last_name": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "jurisdictions": {
+                  "$ref": "#/components/schemas/report_request_individual_jurisdictions"
+                }
+              }
+            }
+          }
+        }
+      },
+      "report_request_estimate_query_attributes": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "example": "Dow Jones Report"
+          },
+          "report_type": {
+            "type": "string"
+          },
+          "is_rush": {
+            "type": "string"
+          },
+          "subject_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "individual"
+            ]
+          },
+          "subject": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Subject name"
+                  },
+                  "jurisdictions": {
+                    "$ref": "#/components/schemas/report_request_entity_jurisdictions"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "example": "First name"
+                  },
+                  "middle_name": {
+                    "type": "string",
+                    "example": "Middle name"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "example": "Last name"
+                  },
+                  "jurisdictions": {
+                    "$ref": "#/components/schemas/report_request_individual_jurisdictions"
+                  }
+                }
+              }
+            ]
+          },
+          "additional_entities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Dow Jones"
+                },
+                "jurisdictions": {
+                  "$ref": "#/components/schemas/report_request_entity_jurisdictions"
+                }
+              }
+            }
+          },
+          "additional_individuals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "type": "string",
+                  "example": "John"
+                },
+                "middle_name": {
+                  "type": "string",
+                  "example": "Allan"
+                },
+                "last_name": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "jurisdictions": {
+                  "$ref": "#/components/schemas/report_request_individual_jurisdictions"
+                }
+              }
+            }
+          }
+        }
+      },
+      "report_request_create_request": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_create_data_item"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_create_data_item": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "reportrequests"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_create_attributes"
+          }
+        },
+        "required": [
+          "attributes"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_create_attributes": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "example": "Dow Jones Report"
+          },
+          "report_type": {
+            "type": "string"
+          },
+          "is_rush": {
+            "type": "boolean",
+            "example": false
+          },
+          "subscription_on": {
+            "type": "boolean"
+          },
+          "subscription_id": {
+            "type": "string",
+            "format": "uuid",
+            "maxLength": 255
+          },
+          "workflow_state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted"
+            ]
+          },
+          "subject_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "individual"
+            ]
+          },
+          "subject": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/report_request_individual"
+              },
+              {
+                "$ref": "#/components/schemas/report_request_entity"
+              }
+            ]
+          },
+          "additional_entities": {
+            "$ref": "#/components/schemas/report_request_additional_entities"
+          },
+          "additional_individuals": {
+            "$ref": "#/components/schemas/report_request_additional_individuals"
+          }
+        },
+        "required": [
+          "report_type",
+          "name",
+          "subject_type",
+          "subject",
+          "workflow_state"
+        ],
+        "additionalProperties": false
+      },
+      "subscribe_response": {
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/subscribe_data_item"
+          }
+        }
+      },
+      "subscribe_data_item": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "subscriptions"
+          },
+          "id": {
+            "type": "string",
+            "example": "b5948eb9f7474aa8a0148b7be9b66e60"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/subscriptions/b5948eb9f7474aa8a0148b7be9b66e60"
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/subscribe_attributes"
+          }
+        },
+        "required": [
+          "attributes"
+        ]
+      },
+      "subscribe_attributes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "b5948eb9f7474aa8a0148b7be9b66e60"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "report_request_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_data_item"
+          }
+        }
+      },
+      "subscription_data_item": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "subscriptions"
+          },
+          "id": {
+            "type": "string",
+            "example": "c2be7b6ca73747faadd4420123db424a"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/subscribe_attributes"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "subscribe": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/subscribe"
+              },
+              "unsubscribe": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/unsubscribe"
+              }
+            }
+          }
+        }
+      },
+      "report_requests_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/report_request_data_item"
+            }
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/user_data_item"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/subscription_data_item"
+                },
+                {
+                  "type": "array",
+                  "$ref": "#/components/schemas/document_dataitem"
+                }
+              ]
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934"
+              },
+              "proposals": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals"
+              },
+              "comments": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments"
+              },
+              "documents": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents"
+              }
+            }
+          }
+        }
+      },
+      "report_request_data_item": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "reportrequests"
+          },
+          "id": {
+            "type": "string",
+            "example": "d5ee7ceb98a848a49420d7cce2601934"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request"
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "created_by_user": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "users"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "E6OO2HVCQHVPE5X54D7W7XO5NI"
+                      }
+                    }
+                  }
+                }
+              },
+              "subscription": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "subscriptions"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "c2be7b6ca73747faadd4420123db424a"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "attributes"
+        ]
+      },
+      "report_request_jurisdiction": {
+        "type": "object",
+        "properties": {
+          "option": {
+            "type": "string",
+            "example": "country_incorporation",
+            "enum": [
+              "country_unknown",
+              "country_affiliation",
+              "country_incorporation",
+              "country_registration"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "example": "US",
+            "enum": [
+              "ZZ",
+              "AF",
+              "AL",
+              "DZ",
+              "AS",
+              "AD",
+              "AO",
+              "AI",
+              "AQ",
+              "AG",
+              "AR",
+              "AM",
+              "AW",
+              "AU",
+              "AT",
+              "AZ",
+              "BS",
+              "BH",
+              "BD",
+              "BB",
+              "BY",
+              "BE",
+              "BZ",
+              "BJ",
+              "BM",
+              "BT",
+              "BO",
+              "BA",
+              "BW",
+              "BV",
+              "BR",
+              "IO",
+              "VG",
+              "BN",
+              "BG",
+              "BF",
+              "BI",
+              "KH",
+              "CM",
+              "CA",
+              "CV",
+              "KY",
+              "CF",
+              "TD",
+              "CL",
+              "CN",
+              "CX",
+              "CC",
+              "CO",
+              "KM",
+              "CG",
+              "CK",
+              "CR",
+              "CI",
+              "HR",
+              "CU",
+              "AN",
+              "CY",
+              "CZ",
+              "CD",
+              "DK",
+              "DJ",
+              "DM",
+              "DO",
+              "EC",
+              "EG",
+              "SV",
+              "GQ",
+              "ER",
+              "EE",
+              "ET",
+              "FK",
+              "FO",
+              "FJ",
+              "FI",
+              "FR",
+              "GF",
+              "PF",
+              "GA",
+              "GM",
+              "GE",
+              "DE",
+              "GH",
+              "GI",
+              "GR",
+              "GL",
+              "GD",
+              "GP",
+              "GU",
+              "GT",
+              "GG",
+              "GN",
+              "GW",
+              "GY",
+              "HT",
+              "HM",
+              "HN",
+              "HK",
+              "HU",
+              "IS",
+              "IN",
+              "ID",
+              "IR",
+              "IQ",
+              "IE",
+              "IM",
+              "IL",
+              "IT",
+              "JM",
+              "JP",
+              "JE",
+              "JO",
+              "KZ",
+              "KE",
+              "KI",
+              "XK",
+              "KW",
+              "KG",
+              "LA",
+              "LV",
+              "LB",
+              "LS",
+              "LR",
+              "LY",
+              "LI",
+              "LT",
+              "LU",
+              "MO",
+              "MK",
+              "MG",
+              "MW",
+              "MY",
+              "MV",
+              "ML",
+              "MT",
+              "MH",
+              "MQ",
+              "MR",
+              "MU",
+              "YT",
+              "MX",
+              "FM",
+              "MJ",
+              "MC",
+              "MN",
+              "ME",
+              "MS",
+              "MA",
+              "MZ",
+              "MM",
+              "NA",
+              "NR",
+              "NP",
+              "NL",
+              "NC",
+              "NZ",
+              "NI",
+              "NE",
+              "NG",
+              "NU",
+              "NF",
+              "KP",
+              "MP",
+              "NO",
+              "OM",
+              "PK",
+              "PW",
+              "PS",
+              "PA",
+              "PG",
+              "PY",
+              "PE",
+              "PH",
+              "PN",
+              "PL",
+              "PT",
+              "PR",
+              "QA",
+              "RE",
+              "RO",
+              "RU",
+              "RW",
+              "BL",
+              "LC",
+              "WS",
+              "SM",
+              "ST",
+              "SA",
+              "SN",
+              "RS",
+              "SC",
+              "SL",
+              "SG",
+              "SK",
+              "SI",
+              "SB",
+              "SO",
+              "ZA",
+              "GS",
+              "KR",
+              "SS",
+              "ES",
+              "LK",
+              "SH",
+              "KN",
+              "SX",
+              "MF",
+              "PM",
+              "VC",
+              "SD",
+              "SR",
+              "SJ",
+              "SZ",
+              "SE",
+              "CH",
+              "SY",
+              "TW",
+              "TJ",
+              "TZ",
+              "TH",
+              "TL",
+              "TG",
+              "TK",
+              "TO",
+              "TT",
+              "TN",
+              "TR",
+              "TM",
+              "TC",
+              "TV",
+              "VI",
+              "UG",
+              "UA",
+              "AE",
+              "GB",
+              "US",
+              "UY",
+              "UZ",
+              "VU",
+              "VA",
+              "VE",
+              "VN",
+              "WF",
+              "EH",
+              "YE",
+              "ZM",
+              "ZW"
+            ]
+          }
+        },
+        "required": [
+          "option",
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_additional_entities": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/report_request_entity"
+        },
+        "additionalProperties": false
+      },
+      "report_request_additional_individuals": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/report_request_individual"
+        },
+        "additionalProperties": false
+      },
+      "report_request": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Dow Jones Report"
+          },
+          "workflow_state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted"
+            ]
+          },
+          "report_type": {
+            "type": "string"
+          },
+          "delivery_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subject_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "individual"
+            ]
+          },
+          "subject": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/report_request_individual"
+              },
+              {
+                "$ref": "#/components/schemas/report_request_entity"
+              }
+            ]
+          },
+          "order_detail": {
+            "type": "object",
+            "properties": {
+              "base_report": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Dow Jones Report"
+                  },
+                  "unit_price": {
+                    "type": "number",
+                    "example": 600
+                  }
+                }
+              },
+              "additional_entities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 300
+                    }
+                  }
+                }
+              },
+              "additional_individuals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 300
+                    }
+                  }
+                }
+              },
+              "additional_requests": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 150
+                    }
+                  }
+                }
+              },
+              "additional_prices": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Additional Research"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 150
+                    }
+                  }
+                }
+              },
+              "sub_total": {
+                "type": "number",
+                "example": 600
+              },
+              "rush_charge": {
+                "type": "number",
+                "example": 0
+              },
+              "additional_total": {
+                "type": "number",
+                "example": 0
+              },
+              "total": {
+                "type": "number",
+                "example": 600
+              }
+            }
+          },
+          "additional_entities": {
+            "$ref": "#/components/schemas/report_request_additional_entities"
+          },
+          "additional_individuals": {
+            "$ref": "#/components/schemas/report_request_additional_individuals"
+          }
+        }
+      },
+      "report_request_response_entity": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_data_item_entity"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/user_data_item"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/subscription_data_item"
+                },
+                {
+                  "type": "array",
+                  "$ref": "#/components/schemas/document_dataitem"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "report_request_data_item_entity": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "reportrequests"
+          },
+          "id": {
+            "type": "string",
+            "example": "d5ee7ceb98a848a49420d7cce2601934"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_subject_entity"
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934"
+              },
+              "proposals": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals"
+              },
+              "comments": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments"
+              },
+              "documents": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents"
+              }
+            }
+          }
+        },
+        "required": [
+          "attributes"
+        ]
+      },
+      "report_request_response_individual": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_data_item_individual"
+          },
+          "included": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/user_data_item"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/subscription_data_item"
+                },
+                {
+                  "type": "array",
+                  "$ref": "#/components/schemas/document_dataitem"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "report_request_data_item_individual": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "reportrequests"
+          },
+          "id": {
+            "type": "string",
+            "example": "d5ee7ceb98a848a49420d7cce2601934"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_subject_individual"
+          },
+          "relationships": {
+            "type": "object",
+            "properties": {
+              "created_by_user": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "users"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "E6OO2HVCQHVPE5X54D7W7XO5NI"
+                      }
+                    }
+                  }
+                }
+              },
+              "subscription": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "subscriptions"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "c2be7b6ca73747faadd4420123db424a"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934"
+              },
+              "proposals": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals"
+              },
+              "comments": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments"
+              },
+              "documents": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents"
+              }
+            }
+          }
+        },
+        "required": [
+          "attributes"
+        ]
+      },
+      "report_request_subject_individual": {
+        "type": "object",
+        "properties": {
+          "proposals": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_rush_proposal_attributes"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_price_proposal_attributes"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_update_proposal_attributes"
+                }
+              ]
+            }
+          },
+          "name": {
+            "type": "string",
+            "example": "Dow Jones Report"
+          },
+          "workflow_state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted"
+            ]
+          },
+          "report_type": {
+            "type": "string",
+            "example": "redflag"
+          },
+          "delivery_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subject_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "individual"
+            ]
+          },
+          "subject": {
+            "$ref": "#/components/schemas/report_request_individual"
+          },
+          "order_detail": {
+            "type": "object",
+            "properties": {
+              "base_report": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Dow Jones Report"
+                  },
+                  "unit_price": {
+                    "type": "number",
+                    "example": 600
+                  }
+                }
+              },
+              "additional_entities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 300
+                    }
+                  }
+                }
+              },
+              "additional_individuals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 300
+                    }
+                  }
+                }
+              },
+              "additional_requests": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 150
+                    }
+                  }
+                }
+              },
+              "additional_prices": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Additional Research"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 150
+                    }
+                  }
+                }
+              },
+              "sub_total": {
+                "type": "number",
+                "example": 600
+              },
+              "currency_code": {
+                "type": "string",
+                "enum": [
+                  "AUD",
+                  "BRL",
+                  "USD",
+                  "EUR",
+                  "GBP",
+                  "INR",
+                  "JPY",
+                  "CAD",
+                  "CNY",
+                  "CHF",
+                  "SGD",
+                  "ZAR"
+                ]
+              },
+              "rush_charge": {
+                "type": "number",
+                "example": 0
+              },
+              "additional_total": {
+                "type": "number",
+                "example": 0
+              },
+              "total": {
+                "type": "number",
+                "example": 600
+              }
+            }
+          },
+          "total": {
+            "type": "number",
+            "example": 600
+          },
+          "is_rush": {
+            "type": "boolean",
+            "example": false
+          },
+          "billing_account_id": {
+            "type": "string",
+            "example": "9PRO000200"
+          },
+          "additional_entities": {
+            "$ref": "#/components/schemas/report_request_additional_entities"
+          },
+          "additional_individuals": {
+            "$ref": "#/components/schemas/report_request_additional_individuals"
+          }
+        }
+      },
+      "report_request_subject_entity": {
+        "type": "object",
+        "properties": {
+          "proposals": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_rush_proposal_attributes"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_price_proposal_attributes"
+                },
+                {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_request_update_proposal_attributes"
+                }
+              ]
+            }
+          },
+          "name": {
+            "type": "string",
+            "example": "Dow Jones Report"
+          },
+          "workflow_state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted"
+            ]
+          },
+          "report_type": {
+            "type": "string",
+            "example": "redflag"
+          },
+          "delivery_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subject_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "individual"
+            ]
+          },
+          "subject": {
+            "$ref": "#/components/schemas/report_request_entity"
+          },
+          "order_detail": {
+            "type": "object",
+            "properties": {
+              "base_report": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Dow Jones Report"
+                  },
+                  "unit_price": {
+                    "type": "number",
+                    "example": 600
+                  }
+                }
+              },
+              "additional_entities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 300
+                    }
+                  }
+                }
+              },
+              "additional_individuals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 300
+                    }
+                  }
+                }
+              },
+              "additional_requests": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Dow Jones Report"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 150
+                    }
+                  }
+                }
+              },
+              "additional_prices": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Additional Research"
+                    },
+                    "unit_price": {
+                      "type": "number",
+                      "example": 150
+                    }
+                  }
+                }
+              },
+              "sub_total": {
+                "type": "number",
+                "example": 600
+              },
+              "rush_charge": {
+                "type": "number",
+                "example": 0
+              },
+              "additional_total": {
+                "type": "number",
+                "example": 0
+              },
+              "total": {
+                "type": "number",
+                "example": 600
+              },
+              "currency_code": {
+                "type": "string",
+                "enum": [
+                  "AUD",
+                  "BRL",
+                  "USD",
+                  "EUR",
+                  "GBP",
+                  "INR",
+                  "JPY",
+                  "CAD",
+                  "CNY",
+                  "CHF",
+                  "SGD",
+                  "ZAR"
+                ]
+              }
+            }
+          },
+          "total": {
+            "type": "number",
+            "example": 600
+          },
+          "is_rush": {
+            "type": "boolean",
+            "example": false
+          },
+          "billing_account_id": {
+            "type": "string",
+            "example": "9PRO000200"
+          },
+          "additional_entities": {
+            "$ref": "#/components/schemas/report_request_additional_entities"
+          },
+          "additional_individuals": {
+            "$ref": "#/components/schemas/report_request_additional_individuals"
+          }
+        }
+      },
+      "report_request_create_request_individual": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_create_data_item_individual"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_create_data_item_individual": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "reportrequests"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_create_attributes_individual"
+          }
+        },
+        "required": [
+          "attributes"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_create_attributes_individual": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "example": "Dow Jones Report"
+          },
+          "report_type": {
+            "type": "string"
+          },
+          "subscription_on": {
+            "type": "boolean"
+          },
+          "subscription_id": {
+            "type": "string",
+            "format": "uuid",
+            "maxLength": 255
+          },
+          "workflow_state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted"
+            ]
+          },
+          "subject_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "individual"
+            ]
+          },
+          "subject": {
+            "$ref": "#/components/schemas/report_request_individual"
+          },
+          "additional_entities": {
+            "$ref": "#/components/schemas/report_request_additional_entities"
+          },
+          "additional_individuals": {
+            "$ref": "#/components/schemas/report_request_additional_individuals"
+          }
+        },
+        "required": [
+          "report_type",
+          "name",
+          "subject_type",
+          "subject",
+          "workflow_state"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_create_request_entity": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_create_data_item_entity"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_create_data_item_entity": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "reportrequests"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/report_request_create_attributes_entity"
+          }
+        },
+        "required": [
+          "attributes"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_create_attributes_entity": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "example": "Dow Jones Report"
+          },
+          "report_type": {
+            "type": "string"
+          },
+          "subscription_on": {
+            "type": "boolean"
+          },
+          "subscription_id": {
+            "type": "string",
+            "format": "uuid",
+            "maxLength": 255
+          },
+          "workflow_state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted"
+            ]
+          },
+          "subject_type": {
+            "type": "string",
+            "enum": [
+              "entity",
+              "individual"
+            ]
+          },
+          "subject": {
+            "$ref": "#/components/schemas/report_request_entity"
+          },
+          "additional_entities": {
+            "$ref": "#/components/schemas/report_request_additional_entities"
+          },
+          "additional_individuals": {
+            "$ref": "#/components/schemas/report_request_additional_individuals"
+          }
+        },
+        "required": [
+          "report_type",
+          "name",
+          "subject_type",
+          "subject",
+          "workflow_state"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_other_information": {
+        "type": "object",
+        "properties": {
+          "report_notes": {
+            "type": "string",
+            "example": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          },
+          "billing_notes": {
+            "type": "string",
+            "example": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          }
+        },
+        "additionalProperties": false
+      },
+      "report_request_individual": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "John"
+          },
+          "middle_name": {
+            "type": "string",
+            "example": "Allan"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "alternate_first_name": {
+            "type": "string",
+            "example": "Bob"
+          },
+          "alternate_middle_name": {
+            "type": "string",
+            "example": "The"
+          },
+          "alternate_last_name": {
+            "type": "string",
+            "example": "Builder"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "Male",
+              "Female",
+              "Other"
+            ]
+          },
+          "address": {
+            "$ref": "#/components/schemas/report_request_individual_address"
+          },
+          "birth_date": {
+            "type": "string",
+            "pattern": "^(([0-3][0-9]-)?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-)?[0-9]{4}$",
+            "example": "01-Jan-2016 or Jan-2016 or 2016"
+          },
+          "current_employer": {
+            "type": "string",
+            "example": "Dow Jones"
+          },
+          "current_position": {
+            "type": "string",
+            "example": "Web Developer"
+          },
+          "former_employer": {
+            "type": "string",
+            "example": "Western Union"
+          },
+          "former_position": {
+            "type": "string",
+            "example": "Web Developer"
+          },
+          "jurisdictions": {
+            "$ref": "#/components/schemas/report_request_individual_jurisdictions"
+          },
+          "national_id_numbers": {
+            "$ref": "#/components/schemas/report_request_individual_national_id_numbers"
+          },
+          "other_information": {
+            "$ref": "#/components/schemas/report_request_other_information"
+          }
+        },
+        "required": [
+          "last_name",
+          "first_name",
+          "gender",
+          "address",
+          "jurisdictions"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_individual_address": {
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string",
+            "example": "123 Paper Street"
+          },
+          "city": {
+            "type": "string",
+            "example": "Miami"
+          },
+          "postal_code": {
+            "type": "string",
+            "example": "55555"
+          },
+          "country": {
+            "type": "string",
+            "example": "United States"
+          },
+          "state": {
+            "type": "string",
+            "example": "Florida"
+          }
+        },
+        "required": [
+          "country"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_individual_jurisdictions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/report_request_individual_jurisdiction"
+        },
+        "minItems": 1,
+        "additionalProperties": false
+      },
+      "report_request_individual_jurisdiction": {
+        "type": "object",
+        "properties": {
+          "option": {
+            "type": "string",
+            "example": "country_residence",
+            "enum": [
+              "country_unknown",
+              "country_residence",
+              "country_citizenship",
+              "country_employment"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "example": "US",
+            "enum": [
+              "ZZ",
+              "AF",
+              "AL",
+              "DZ",
+              "AS",
+              "AD",
+              "AO",
+              "AI",
+              "AQ",
+              "AG",
+              "AR",
+              "AM",
+              "AW",
+              "AU",
+              "AT",
+              "AZ",
+              "BS",
+              "BH",
+              "BD",
+              "BB",
+              "BY",
+              "BE",
+              "BZ",
+              "BJ",
+              "BM",
+              "BT",
+              "BO",
+              "BA",
+              "BW",
+              "BV",
+              "BR",
+              "IO",
+              "VG",
+              "BN",
+              "BG",
+              "BF",
+              "BI",
+              "KH",
+              "CM",
+              "CA",
+              "CV",
+              "KY",
+              "CF",
+              "TD",
+              "CL",
+              "CN",
+              "CX",
+              "CC",
+              "CO",
+              "KM",
+              "CG",
+              "CK",
+              "CR",
+              "CI",
+              "HR",
+              "CU",
+              "AN",
+              "CY",
+              "CZ",
+              "CD",
+              "DK",
+              "DJ",
+              "DM",
+              "DO",
+              "EC",
+              "EG",
+              "SV",
+              "GQ",
+              "ER",
+              "EE",
+              "ET",
+              "FK",
+              "FO",
+              "FJ",
+              "FI",
+              "FR",
+              "GF",
+              "PF",
+              "GA",
+              "GM",
+              "GE",
+              "DE",
+              "GH",
+              "GI",
+              "GR",
+              "GL",
+              "GD",
+              "GP",
+              "GU",
+              "GT",
+              "GG",
+              "GN",
+              "GW",
+              "GY",
+              "HT",
+              "HM",
+              "HN",
+              "HK",
+              "HU",
+              "IS",
+              "IN",
+              "ID",
+              "IR",
+              "IQ",
+              "IE",
+              "IM",
+              "IL",
+              "IT",
+              "JM",
+              "JP",
+              "JE",
+              "JO",
+              "KZ",
+              "KE",
+              "KI",
+              "XK",
+              "KW",
+              "KG",
+              "LA",
+              "LV",
+              "LB",
+              "LS",
+              "LR",
+              "LY",
+              "LI",
+              "LT",
+              "LU",
+              "MO",
+              "MK",
+              "MG",
+              "MW",
+              "MY",
+              "MV",
+              "ML",
+              "MT",
+              "MH",
+              "MQ",
+              "MR",
+              "MU",
+              "YT",
+              "MX",
+              "FM",
+              "MJ",
+              "MC",
+              "MN",
+              "ME",
+              "MS",
+              "MA",
+              "MZ",
+              "MM",
+              "NA",
+              "NR",
+              "NP",
+              "NL",
+              "NC",
+              "NZ",
+              "NI",
+              "NE",
+              "NG",
+              "NU",
+              "NF",
+              "KP",
+              "MP",
+              "NO",
+              "OM",
+              "PK",
+              "PW",
+              "PS",
+              "PA",
+              "PG",
+              "PY",
+              "PE",
+              "PH",
+              "PN",
+              "PL",
+              "PT",
+              "PR",
+              "QA",
+              "RE",
+              "RO",
+              "RU",
+              "RW",
+              "BL",
+              "LC",
+              "WS",
+              "SM",
+              "ST",
+              "SA",
+              "SN",
+              "RS",
+              "SC",
+              "SL",
+              "SG",
+              "SK",
+              "SI",
+              "SB",
+              "SO",
+              "ZA",
+              "GS",
+              "KR",
+              "SS",
+              "ES",
+              "LK",
+              "SH",
+              "KN",
+              "SX",
+              "MF",
+              "PM",
+              "VC",
+              "SD",
+              "SR",
+              "SJ",
+              "SZ",
+              "SE",
+              "CH",
+              "SY",
+              "TW",
+              "TJ",
+              "TZ",
+              "TH",
+              "TL",
+              "TG",
+              "TK",
+              "TO",
+              "TT",
+              "TN",
+              "TR",
+              "TM",
+              "TC",
+              "TV",
+              "VI",
+              "UG",
+              "UA",
+              "AE",
+              "GB",
+              "US",
+              "UY",
+              "UZ",
+              "VU",
+              "VA",
+              "VE",
+              "VN",
+              "WF",
+              "EH",
+              "YE",
+              "ZM",
+              "ZW"
+            ]
+          }
+        },
+        "required": [
+          "option",
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_individual_national_id_numbers": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/report_request_individual_national_id_number"
+        },
+        "additionalProperties": false
+      },
+      "report_request_individual_national_id_number": {
+        "type": "object",
+        "properties": {
+          "option": {
+            "type": "string",
+            "example": "Driving Licence No.",
+            "enum": [
+              "Driving Licence No.",
+              "EU Consolidated Electronic List ID",
+              "EU Sanctions Programme Indicator",
+              "Federal Bureau of Prisons Register Number",
+              "HM Treasury Group ID",
+              "National Criminal Identification Code (USA)",
+              "National ID",
+              "National Provider Identifier (NPI)",
+              "National Tax No.",
+              "OFAC Program ID",
+              "OFAC Unique ID",
+              "Others",
+              "Passport No.",
+              "Social Security No.",
+              "UN Permanent Reference No."
+            ]
+          },
+          "value": {
+            "type": "string",
+            "example": "15000"
+          }
+        },
+        "required": [
+          "option",
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_entity": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Dow Jones"
+          },
+          "alternate_name": {
+            "type": "string",
+            "example": "Dow Jones"
+          },
+          "industry_sector_type": {
+            "type": "string",
+            "enum": [
+              "Unknown",
+              "Agriculture",
+              "Automotive",
+              "Basic Materials/Resources",
+              "Business/Consumer Services",
+              "Consumer Goods",
+              "Energy",
+              "Financial Services",
+              "Health Care/Life Sciences",
+              "Industrial Goods",
+              "Leisure/Arts/Hospitality",
+              "Media/Entertainment",
+              "Other",
+              "Real Estate/Construction",
+              "Retail/Wholesale",
+              "Technology",
+              "Telecommunication Services",
+              "Transportation/Logistics",
+              "Utilities"
+            ],
+            "example": "Basic Materials/Resources"
+          },
+          "industry_sector_type_value": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "identification_types": {
+            "$ref": "#/components/schemas/report_request_entity_identification_types"
+          },
+          "jurisdictions": {
+            "$ref": "#/components/schemas/report_request_entity_jurisdictions"
+          },
+          "address": {
+            "$ref": "#/components/schemas/report_request_entity_address"
+          },
+          "other_information": {
+            "$ref": "#/components/schemas/report_request_other_information"
+          }
+        },
+        "required": [
+          "name",
+          "address",
+          "jurisdictions"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_entity_address": {
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string",
+            "example": "123 Paper Street"
+          },
+          "city": {
+            "type": "string",
+            "example": "Miami"
+          },
+          "postal_code": {
+            "type": "string",
+            "example": "55555"
+          },
+          "country": {
+            "type": "string",
+            "example": "United States"
+          },
+          "state": {
+            "type": "string",
+            "example": "Florida"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.doe@example.com"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "555-555-5555"
+          },
+          "company_url": {
+            "type": "string",
+            "format": "hostname"
+          }
+        },
+        "required": [
+          "country"
+        ]
+      },
+      "report_request_entity_identification_types": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/report_request_entity_identification_type"
+        },
+        "additionalProperties": false
+      },
+      "report_request_entity_identification_type": {
+        "type": "object",
+        "properties": {
+          "option": {
+            "type": "string",
+            "example": "Aircraft Construction, Line, Fleet or Serial Number",
+            "enum": [
+              "Aircraft Construction, Line, Fleet or Serial Number",
+              "Aircraft Manufacturer's Serial Number (MSN)",
+              "Bank Identifier Code (BIC)",
+              "Company Identification No.",
+              "DUNS Number",
+              "EU Consolidated Electronic List ID",
+              "EU Sanctions Programme Indicator",
+              "HM Treasury Group ID",
+              "International Maritime Organization (IMO) Ship No.",
+              "International Securities Identification Number (ISIN)",
+              "Legal Entity Identifier (LEI)",
+              "NACE (European Union Economic Activity Classification System)",
+              "National Tax No.",
+              "North American Industry Classification System (NAICS)",
+              "OFAC Program ID",
+              "OFAC Unique ID",
+              "Others",
+              "Related EU Consolidated Electronic List ID",
+              "Related EU Sanctions Programme Indicator",
+              "Related OFAC Program ID",
+              "Related OFAC Unique ID",
+              "Standard Industrial Classification (SIC)",
+              "UN Permanent Reference No."
+            ]
+          },
+          "value": {
+            "type": "string",
+            "example": "557557557"
+          }
+        },
+        "required": [
+          "option",
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "report_request_entity_jurisdictions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/report_request_jurisdiction"
+        },
+        "minItems": 1,
+        "additionalProperties": false
+      },
+      "report_request_workflow_state": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Submitted"
+          },
+          "value": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "example": "The request has been submitted to the server."
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "metadata_patch_request": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "callback_url": {
+                    "type": "string",
+                    "example": "https://myserver.com/send/callback/here",
+                    "format": "hostname"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "metadata_response": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "metadata"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "report_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Level 1"
+                        },
+                        "value": {
+                          "type": "string",
+                          "example": "level1"
+                        },
+                        "expected_delivery": {
+                          "type": "number",
+                          "example": 15
+                        }
+                      }
+                    }
+                  },
+                  "industry_sectors": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "Automotive"
+                    }
+                  },
+                  "national_id_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "EU Consolidated Electronic List ID"
+                    }
+                  },
+                  "individual_jurisdiction_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Residence"
+                        },
+                        "value": {
+                          "type": "string",
+                          "example": "country_residence"
+                        }
+                      }
+                    }
+                  },
+                  "entity_jurisdiction_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Registration"
+                        },
+                        "value": {
+                          "type": "string",
+                          "example": "country_registration"
+                        }
+                      }
+                    }
+                  },
+                  "identification_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "Company Identification No."
+                    }
+                  },
+                  "subject_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "example": "individual"
+                    }
+                  },
+                  "proposal_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Additions or Changes in Entities, Jurisdictions or Subjects"
+                        },
+                        "value": {
+                          "type": "string",
+                          "example": "update_report_request"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/metadata"
+              },
+              "reportRequests": {
+                "type": "string",
+                "format": "hostname",
+                "example": "https://api.dowjones.com/risk-reports/reportrequests"
+              }
+            }
+          }
+        }
+      },
+      "subscribe_request": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "subscription_id": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "proposal_reject_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "proposal_reject"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "proposals"
+              },
+              "id": {
+                "type": "string",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  },
+                  "proposal": {
+                    "type": "string",
+                    "enum": [
+                      "rush",
+                      "additional_price",
+                      "update_report_request"
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "default": "rejected"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "proposal_approval_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "proposal_approval"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "proposals"
+              },
+              "id": {
+                "type": "string",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  },
+                  "proposal": {
+                    "type": "string",
+                    "enum": [
+                      "rush",
+                      "additional_price",
+                      "update_report_request"
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "default": "approved"
+                  },
+                  "approval_date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "proposal_update_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "proposal_update"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "proposals"
+              },
+              "id": {
+                "type": "string",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  },
+                  "proposal": {
+                    "type": "string",
+                    "enum": [
+                      "rush",
+                      "additional_price",
+                      "update_report_request"
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "default": "pending"
+                  },
+                  "initiated_date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "proposal_new_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "proposal_new"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "proposals"
+              },
+              "id": {
+                "type": "string",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  },
+                  "proposal": {
+                    "type": "string",
+                    "enum": [
+                      "rush",
+                      "additional_price",
+                      "update_report_request"
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "default": "pending"
+                  },
+                  "initiated_date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "document_delete_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "document_delete"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "documents"
+              },
+              "id": {
+                "type": "string",
+                "example": "0d131001d2034be89f85c0530d5424c9"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "document_update_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "document_update"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "documents"
+              },
+              "id": {
+                "type": "string",
+                "example": "0d131001d2034be89f85c0530d5424c9"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "document_new_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "document_new"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "documents"
+              },
+              "id": {
+                "type": "string",
+                "example": "0d131001d2034be89f85c0530d5424c9"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "comment_delete_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "comment_delete"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "comments"
+              },
+              "id": {
+                "type": "string",
+                "example": "ae85ce3af5fd43938f67893c77978540"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "parent_id": {
+                    "type": "string",
+                    "example": "6ebab821443848428ab02a028ac0bb3e"
+                  },
+                  "is_urgent": {
+                    "type": "boolean"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/ae85ce3af5fd43938f67893c77978540"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "comment_update_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "comment_update"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "comments"
+              },
+              "id": {
+                "type": "string",
+                "example": "ae85ce3af5fd43938f67893c77978540"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "parent_id": {
+                    "type": "string",
+                    "example": "6ebab821443848428ab02a028ac0bb3e"
+                  },
+                  "is_urgent": {
+                    "type": "boolean"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/ae85ce3af5fd43938f67893c77978540"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "comment_reply_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "comment_reply"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "comments"
+              },
+              "id": {
+                "type": "string",
+                "example": "ae85ce3af5fd43938f67893c77978540"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "parent_id": {
+                    "type": "string",
+                    "example": "6ebab821443848428ab02a028ac0bb3e"
+                  },
+                  "is_urgent": {
+                    "type": "boolean"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/ae85ce3af5fd43938f67893c77978540"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "comment_new_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "comment_new"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "comments"
+              },
+              "id": {
+                "type": "string",
+                "example": "6ebab821443848428ab02a028ac0bb3e"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "parent_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  },
+                  "is_urgent": {
+                    "type": "boolean"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "report_request_id": {
+                    "type": "string",
+                    "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/6ebab821443848428ab02a028ac0bb3e"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "reportrequest_transition_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "reportrequest_transition"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "reportRequests"
+              },
+              "id": {
+                "type": "string",
+                "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "subject_type": {
+                    "type": "string",
+                    "enum": [
+                      "entity",
+                      "individual"
+                    ]
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-20T21:00:00.000Z"
+                  },
+                  "workflow_state": {
+                    "type": "string",
+                    "enum": [
+                      "new",
+                      "draft",
+                      "submitted",
+                      "pending_customer_approval",
+                      "awaiting_information",
+                      "on_hold",
+                      "in_progress",
+                      "items_pending",
+                      "completed",
+                      "delivered",
+                      "cancelled"
+                    ]
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "reportrequest_update_callback": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {
+              "event": {
+                "type": "string",
+                "example": "reportrequest_update"
+              },
+              "subscription_id": {
+                "type": "string",
+                "description": "the id auto-generated or provided by client",
+                "example": "423a791f44ed4a22bfafe0a28288c437"
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "reportRequests"
+              },
+              "id": {
+                "type": "string",
+                "example": "de7b2bbd20b546fb93f8dd990a8f1562"
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "subject_type": {
+                    "type": "string",
+                    "enum": [
+                      "entity",
+                      "individual"
+                    ]
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-03-31T13:18:41.639Z"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-14T09:18:12.516"
+                  },
+                  "delivery_date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2020-04-20T21:00:00.000Z"
+                  },
+                  "workflow_state": {
+                    "type": "string",
+                    "enum": [
+                      "new",
+                      "draft",
+                      "submitted",
+                      "pending_customer_approval",
+                      "awaiting_information",
+                      "on_hold",
+                      "in_progress",
+                      "items_pending",
+                      "completed",
+                      "delivered",
+                      "cancelled"
+                    ]
+                  }
+                }
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "format": "hostname",
+                    "example": "https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "user_data": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "Dart"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Revan"
+          }
+        }
+      },
+      "user_data_item": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "users"
+          },
+          "id": {
+            "type": "string",
+            "example": "E6OO2HVCQHVPEDPYTIYWMTJFZE"
+          },
+          "attributes": {
+            "type": "object",
+            "$ref": "#/components/schemas/user_data"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OrderTool": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header",
+        "description": "Format: Bearer <jwt_token>"
+      }
+    }
+  },
+  "servers": [
+    {"url": "https://api.dowjones.com/risk-reports"}
+  ],
+  "paths": {
+    "/billing-accounts": {
+      "get": {
+        "summary": "Get a list of the billing accounts and their report types",
+        "operationId": "getBillingAccounts",
+        "tags": [
+          "Risk Reports"
+        ],
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/get_billingaccounts_response"
+                }
+              },
+              "application/vnd.dowjones.dna.metadata.v_1.0_beta+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/get_billingaccounts_response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/comments": {
+      "get": {
+        "summary": "Get comments by report request id",
+        "description": "Get a list of all comments for specified report request ID",
+        "operationId": "getReportRequestComments",
+        "tags": [
+          "Risk Reports"
+        ],
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/comment_response"
+                }
+              },
+              "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/comment_response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "report request with the given ID not found or user billing account doesn't match with billing account of report request"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new comment",
+        "description": "Create a new comment request for the given Report Request ID",
+        "operationId": "createReportRequestComment",
+        "tags": [
+          "Risk Reports"
+        ],
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/comment_create"
+              }
+            },
+            "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+              "schema": {
+                "$ref": "#/components/schemas/comment_create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/create_comment_response"
+                }
+              },
+              "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/create_comment_response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "report request with the given ID not found or user billing account doesn't match with billing account of report request"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/comments/{commentId}": {
+      "get": {
+        "summary": "Get comments by report and comment id",
+        "description": "Get a list of all comments for specified report request ID",
+        "operationId": "getCommentsbyId",
+        "tags": [
+          "Risk Reports"
+        ],
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          },
+          {
+            "name": "commentId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the comment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/comment_response"
+                }
+              },
+              "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/comment_response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "commentId with the given ID not found or user billing account doesn't match with billing account of report request"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/documents": {
+      "get": {
+        "summary": "Get all documents by report request id",
+        "description": "Get all documents by report request id",
+        "operationId": "getReportRequestDocuments",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "requested documents",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/documents_response"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/documents_response"
+                }
+              }
+            },
+            "links": {
+              "getReportRequestDocumentById": {
+                "operationId": "getReportRequestDocumentById",
+                "parameters": {
+                  "additionalPriceProposalId": "$response.body#/data/attributes/documents/#/0/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `documentId` parameter in `GET /reportrequests/{reportRequestId}/documents/{documentId}`.\n"
+              }
+            }
+          },
+          "404": {
+            "description": "bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_request_error_response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary":"Add a support document by report request id",
+        "description": "Receives document files and upload to s3",
+        "tags": [
+          "Risk Reports"
+        ],
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The uploaded document.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/document"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A report request was not found with the given ID"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/documents/{documentId}": {
+      "get": {
+        "summary": "Get document by report request and document id",
+        "description": "Get document by id",
+        "operationId": "getReportRequestDocumentById",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          },
+          {
+            "name": "documentId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the document"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "requested document",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/vnd.ms-excel": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/estimate": {
+      "post": {
+        "summary":"Send a report request to receive a price estimate",
+        "description": "Gets an estimate for a pending report request",
+        "operationId": "postEstimate",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Account ID of the user that performed the transaction"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/report_request_estimate_request"
+              }
+            },
+            "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+              "schema": {
+                "$ref": "#/components/schemas/report_request_estimate_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/estimates_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request body"
+          },
+          "404": {
+            "description": "the billing account hasn't been found"
+          }
+        }
+      }
+    },
+    "/metadata": {
+      "get": {
+        "summary": "Get data used to create report requests",
+        "operationId": "getMetadata",
+        "tags": [
+          "Risk Reports"
+        ],
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/metadata_response"
+                }
+              },
+              "application/vnd.dowjones.dna.metadata.v_1.0_beta+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/metadata_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Billing account id not found in the request body"
+          },
+          "401": {
+            "description": "You do not have the correct authorization to access this resource."
+          },
+          "404": {
+            "description": "Billing account with the given ID not found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update URL used for callback notification",
+        "description": "Update the data related to report requests and required for its creation",
+        "operationId": "patchMetadata",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Account ID of the user that performed the transaction"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/metadata_patch_request"
+              }
+            },
+            "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+              "schema": {
+                "$ref": "#/components/schemas/metadata_patch_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "success"
+          },
+          "400": {
+            "description": "bad request body"
+          },
+          "403": {
+            "description": "The service behind the callback url isn't accessible (https POST request, 200 response status code expected)"
+          },
+          "404": {
+            "description": "the billing account hasn't been found"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/proposals": {
+      "parameters": [
+        {
+          "name": "reportRequestId",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true,
+          "description": "The unique identifier of the report request"
+        }
+      ],
+      "get": {
+        "summary":"Get outstanding proposals by report request id",
+        "description": "Get proposals for a report request.",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "responses": {
+          "200": {
+            "description": "The report request proposals",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/proposals_response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A report request with the ID provided was not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/proposals/{proposalId}": {
+      "get": {
+        "summary":"Get a proposal by report request and proposal id",
+        "description": "Gets a proposal.",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          },
+          {
+            "name": "proposalId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the proposal"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The report request proposal",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/proposal_response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A report request or proposal with the ID was not found."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/proposals/{proposalType}/{additionalPriceProposalId}": {
+      "patch": {
+        "summary": "Approve proposal by report request id and proposal type",
+        "description": "Approve proposal",
+        "operationId": "approveReportRequestProposal",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          },
+          {
+            "name": "proposalType",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "rush",
+                "update_report_request",
+                "additional_price"
+              ]
+            },
+            "required": true,
+            "description": "The unique identifier of the proposal"
+          },
+          {
+            "name": "additionalPriceProposalId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique identifier of the additional price proposal"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "404": {
+            "description": "proposal not found"
+          },
+          "409": {
+            "description": "already approved/rejected"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Reject proposal by report request id and proposal type",
+        "description": "Reject proposal",
+        "operationId": "rejectReportRequestProposal",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The unique identifier of the report request"
+          },
+          {
+            "name": "proposalType",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "rush",
+                "update_report_request",
+                "additional_price"
+              ]
+            },
+            "required": true,
+            "description": "The unique identifier of the proposal"
+          },
+          {
+            "name": "additionalPriceProposalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique identifier of the additional price proposal"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "success"
+          },
+          "404": {
+            "description": "proposal not found"
+          },
+          "409": {
+            "description": "already approved/rejected"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/subscribe": {
+      "post": {
+        "operationId": "subscribeOnReportRequestByID",
+        "summary": "Subscribe to events related to a report request by id",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the report request",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/subscribe_request"
+              }
+            }
+          }
+        },
+        "callbacks": {
+          "event": {
+            "{$metadata#/callback_url}": {
+              "post": {
+                "responses": {
+                  "200": {
+                    "description": "Your server returns this code if it accepts the callback"
+                  }
+                },
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "oneOf": [
+                          {
+                            "$ref": "#/components/schemas/comment_delete_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/comment_update_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/comment_reply_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/comment_new_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/reportrequest_transition_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/reportrequest_update_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/document_new_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/document_update_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/document_delete_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/proposal_new_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/proposal_approval_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/proposal_update_callback"
+                          },
+                          {
+                            "$ref": "#/components/schemas/proposal_reject_callback"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscribe_response"
+                }
+              },
+              "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscribe_response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}/unsubscribe": {
+      "post": {
+        "operationId": "unsubscribeFromReportRequestById",
+        "summary": "Unsubscribe to events related to a report request by id",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the report request",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/reportrequests/{reportRequestId}": {
+      "get": {
+        "operationId": "getReportRequestById",
+        "summary": "Get a report request by id",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "reportRequestId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the report request",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/report_request_response_individual"
+                    },
+                    {
+                      "$ref": "#/components/schemas/report_request_response_entity"
+                    }
+                  ]
+                }
+              },
+              "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/report_request_response_individual"
+                    },
+                    {
+                      "$ref": "#/components/schemas/report_request_response_entity"
+                    }
+                  ]
+                }
+              }
+            },
+            "links": {
+              "approveReportRequestProposal": {
+                "operationId": "approveReportRequestProposal",
+                "parameters": {
+                  "additionalPriceProposalId": "$response.body#/data/attributes/proposals/#/0/id"
+                },
+                "description": "The `id` value in price proposals returned in the response can be used as the `additionalPriceProposalId` parameter in `PATCH /reportrequests/{reportRequestId}/proposals`.\n"
+              },
+              "rejectReportRequestProposal": {
+                "operationId": "rejectReportRequestProposal",
+                "parameters": {
+                  "additionalPriceProposalId": "$response.body#/data/attributes/proposals/#/0/id"
+                },
+                "description": "The `id` value in price proposals returned in the response can be used as the `additionalPriceProposalId` parameter in `DELETE /reportrequests/{reportRequestId}/proposals`.\n"
+              }
+            }
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/reportrequests": {
+      "post": {
+        "summary": "Create a new Enhanced Due Diligence report request",
+        "operationId": "createReportRequest",
+        "tags": [
+          "Risk Reports"
+        ],
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Account ID of the user that performed the transaction"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/report_request_create_request_individual"
+                  },
+                  {
+                    "$ref": "#/components/schemas/report_request_create_request_entity"
+                  }
+                ]
+              }
+            },
+            "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/report_request_create_request_individual"
+                  },
+                  {
+                    "$ref": "#/components/schemas/report_request_create_request_entity"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/report_request_response_individual"
+                    },
+                    {
+                      "$ref": "#/components/schemas/report_request_response_entity"
+                    }
+                  ]
+                }
+              },
+              "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/report_request_response_individual"
+                    },
+                    {
+                      "$ref": "#/components/schemas/report_request_response_entity"
+                    }
+                  ]
+                }
+              }
+            },
+            "links": {
+              "getReportRequestById": {
+                "operationId": "getReportRequestById",
+                "parameters": {
+                  "reportRequestId": "$response.body#/data/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `reportRequestId` parameter in `GET /reportrequests/{reportRequestId}`."
+              },
+              "getReportRequestDocuments": {
+                "operationId": "getReportRequestDocuments",
+                "parameters": {
+                  "reportRequestId": "$response.body#/data/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `reportRequestId` parameter in `GET /reportrequests/{reportRequestId}/documents`."
+              },
+              "getReportRequestComments": {
+                "operationId": "getReportRequestComments",
+                "parameters": {
+                  "reportRequestId": "$response.body#/data/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `reportRequestId` parameter in `GET /reportrequests/{reportRequestId}/comments`."
+              },
+              "createReportRequestComment": {
+                "operationId": "createReportRequestComment",
+                "parameters": {
+                  "reportRequestId": "$response.body#/data/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `reportRequestId` parameter in `POST /reportrequests/{reportRequestId}/comments`."
+              },
+              "approveReportRequestProposal": {
+                "operationId": "approveReportRequestProposal",
+                "parameters": {
+                  "reportRequestId": "$response.body#/data/id",
+                  "additionalPriceProposalId": "$response.body#/data/attributes/proposals/#/0/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `reportRequestId` parameter in `PATCH /reportrequests/{reportRequestId}/proposals`. The `id` value in price proposals returned in the response can be used as the `additionalPriceProposalId` parameter.\n"
+              },
+              "rejectReportRequestProposal": {
+                "operationId": "rejectReportRequestProposal",
+                "parameters": {
+                  "reportRequestId": "$response.body#/data/id",
+                  "additionalPriceProposalId": "$response.body#/data/attributes/proposals/#/0/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `reportRequestId` parameter in `DELETE /reportrequests/{reportRequestId}/proposals`. The `id` value in price proposals returned in the response can be used as the `additionalPriceProposalId` parameter.\n"
+              }
+            }
+          },
+          "400": {
+            "description": "bad request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_request_error_response"
+                }
+              },
+              "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_request_error_response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getReportRequests",
+        "summary": "Get all report requests",
+        "security": [
+          {
+            "OrderTool": []
+          }
+        ],
+        "tags": [
+          "Risk Reports"
+        ],
+        "parameters": [
+          {
+            "name": "filter[cilent_reference][eq]",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "The client reference of the report"
+          },
+          {
+            "name": "filter[report_type][eq]",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "redflag",
+                "custom",
+                "level1"
+              ]
+            },
+            "required": false,
+            "description": "The type of report"
+          },
+          {
+            "name": "filter[workflow_state.value][in]",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "new",
+                  "draft",
+                  "pending_customer_approval",
+                  "delivered",
+                  "submitted",
+                  "in_progress",
+                  "completed"
+                ],
+                "default": "submitted"
+              }
+            },
+            "required": false,
+            "description": "Filter on workflow_state"
+          },
+          {
+            "name": "filter[expected_delivery_beginning_date][lt]",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "description": "will filter the report requests that have the delivered date in the string provided (ISO8601)"
+          },
+          {
+            "name": "filter[expected_delivery_end_date][gt]",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false,
+            "description": "will filter the report requests based on the expected delivery date (ISO8601)"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Used the same way as filter[][] but returns all report requests matching at least one of the search criteria.  Most efficient when combined with filter.  All filter queries are supported as search queries."
+          },
+          {
+            "name": "page[size]",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "required": false,
+            "description": "The amount of report requests to return up to 100."
+          },
+          {
+            "name": "page[number]",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "required": false,
+            "description": "The page to retrieve of report requests."
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "required": false,
+            "description": "Retrieve just the count of the filtered set"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_requests_response"
+                }
+              },
+              "application/vnd.dowjones.dna.reportrequests.v_1.0_beta+json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/report_requests_response"
+                }
+              }
+            },
+            "links": {
+              "approveReportRequestProposal": {
+                "operationId": "approveReportRequestProposal",
+                "parameters": {
+                  "additionalPriceProposalId": "$response.body#/data/attributes/proposals/#/0/id"
+                },
+                "description": "The `id` value in price proposals returned in the response can be used as the `additionalPriceProposalId` parameter in `PATCH /reportrequests/{reportRequestId}/proposals`.\n"
+              },
+              "rejectReportRequestProposal": {
+                "operationId": "rejectReportRequestProposal",
+                "parameters": {
+                  "additionalPriceProposalId": "$response.body#/data/attributes/proposals/#/0/id"
+                },
+                "description": "The `id` value in price proposals returned in the response can be used as the `additionalPriceProposalId` parameter in `DELETE /reportrequests/{reportRequestId}/proposals`.\n"
+              }
+            }
+          },
+          "401": {
+            "description": "You do not have the correct authorization to access this resource."
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    }
+  }
+}

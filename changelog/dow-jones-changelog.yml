@@ -1,0 +1,30 @@
+generated: '2026-07-22'
+method: searched
+source: https://developer.dowjones.com/documents/site-docs-getting_started-whats-new
+scheme: dated platform "What's New" log plus per-API revision-history tables
+entries:
+  - date: '2026-04'
+    api: RiskCenter Third Party Platform API 0.2
+    changes:
+      - Removed hard 100-group limit on the Standard API group list operation; when page limit is absent or 0 all customer groups are returned.
+  - date: '2026-06'
+    api: Advanced Screening and Monitoring API
+    changes:
+      - Updated ASAM API Status Codes reference file published.
+  - date: '2024-11'
+    api: Developer Platform
+    changes:
+      - All site URLs moved to a new format (index.gsp removed, slashes replaced with hyphens, content-type segments such as /documents and /datasets added).
+  - date: '2023-11'
+    api: Risk & Compliance Feeds
+    changes:
+      - Behind-login documents consolidated into a Customer Resources section.
+  - date: '2023-07'
+    api: Developer Platform
+    changes:
+      - Product overview pages gained card grids per API/feed group.
+  - date: '2022-02'
+    api: RiskCenter Third Party Platform API
+    changes:
+      - Webhook notifications added for third-party status changes (versions 0.1 and 0.2).
+      - New GET /third-parties/properties/{fieldid}/list endpoint; table field property updates with file attachments; dedicated error-code ranges.

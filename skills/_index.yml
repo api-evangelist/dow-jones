@@ -1,0 +1,15 @@
+generated: '2026-07-22'
+method: generated
+skills:
+  - file: dow-jones-screen-entities.md
+    name: Screen entities against Dow Jones Risk & Compliance data
+    api: openapi/dow-jones-screening-and-monitoring-api-openapi.json
+    operations: [postCaseUsingPOST, addAssociationUsingPOST, getMatchesByCaseIdUsingGET, getMatchByIdUsingGET, patchMatchUsingPATCH]
+  - file: dow-jones-onboard-third-party.md
+    name: Onboard and monitor a third party in RiskCenter
+    api: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json
+    operations: [GetBusinessUnits, GetGroups, GetProcesses, PostThirdParty, GetThirdParty, PostMonitoredEntities, GetMonitoredEntities]
+  - file: dow-jones-search-risk-profiles.md
+    name: Search Risk & Compliance profiles and retrieve details
+    api: openapi/dow-jones-risk-search-api-openapi.json
+    operations: [searchRandC, getProfiles, getProfileNotes, getRelationshipsFromProfile]

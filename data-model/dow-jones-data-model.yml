@@ -1,0 +1,95 @@
+generated: '2026-07-22'
+method: derived
+source: openapi/dow-jones-screening-and-monitoring-api-openapi.json, openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json, openapi/dow-jones-risk-profiles-api-openapi.json
+entities:
+  - name: Case
+    domain: risk-screening
+    description: A screening case grouping the entities (associations) screened against Dow Jones Risk & Compliance data.
+  - name: Association
+    domain: risk-screening
+    description: A person or entity attached to a screening case for matching.
+  - name: Match
+    domain: risk-screening
+    description: A candidate match between an association and a Risk & Compliance profile.
+  - name: Transaction
+    domain: risk-screening
+    description: A bulk-association processing job within a case.
+  - name: RiskProfile
+    domain: risk-data
+    description: A Dow Jones Risk & Compliance profile (person, entity, vessel) returned by the Profiles and Search APIs.
+  - name: ThirdParty
+    domain: third-party-risk
+    description: An individual or business entity onboarded to the RiskCenter Third Party platform for screening and monitoring.
+  - name: ThirdPartyProperty
+    domain: third-party-risk
+    description: Data and risk attributes attached to a third party (table fields, list values, files).
+  - name: MonitoredEntity
+    domain: third-party-risk
+    description: A business or individual monitored against Risk & Compliance data on behalf of a third party.
+  - name: BusinessUnit
+    domain: third-party-risk
+    description: Organizational unit that owns third parties.
+  - name: Group
+    domain: third-party-risk
+    description: Owner group for third parties.
+  - name: Article
+    domain: news
+    description: A Factiva/Newswires news article addressed by reference (ref/accession number).
+  - name: Collection
+    domain: news
+    description: A curated content collection (Top Stories, newsletters, NewsPlus).
+  - name: Report
+    domain: due-diligence
+    description: A Risk & Compliance due-diligence report order and its deliverables.
+  - name: TaxonomyNode
+    domain: risk-data
+    description: Risk & Compliance taxonomy entries used to code profiles and queries.
+relationships:
+  - from: Case
+    to: Association
+    type: has_many
+    via: "/risk-entity-screening-cases/{case_id}/risk-entity-screening-associations"
+  - from: Case
+    to: Match
+    type: has_many
+    via: "/risk-entity-screening-cases/{case_id}/matches"
+  - from: Case
+    to: Transaction
+    type: has_many
+    via: "/risk-entity-screening-cases/{case_id}/transactions/{transaction_id}"
+  - from: Match
+    to: RiskProfile
+    type: belongs_to
+    via: "peid (profile identifier)"
+  - from: ThirdParty
+    to: ThirdPartyProperty
+    type: has_many
+    via: "/third-parties/{thirdpartyid}/properties"
+  - from: ThirdParty
+    to: MonitoredEntity
+    type: has_many
+    via: "/third-parties/{thirdpartyid}/monitored-entities"
+  - from: ThirdParty
+    to: BusinessUnit
+    type: belongs_to
+    via: "attributes.business_unit_id"
+  - from: ThirdParty
+    to: Group
+    type: belongs_to
+    via: "attributes.owner_group_id"
+  - from: MonitoredEntity
+    to: RiskProfile
+    type: belongs_to
+    via: "screening against Risk & Compliance data"
+  - from: Collection
+    to: Article
+    type: has_many
+    via: "/content-collections/{ref} member refs"
+  - from: Report
+    to: RiskProfile
+    type: belongs_to
+    via: "subject of the due-diligence report"
+  - from: RiskProfile
+    to: TaxonomyNode
+    type: has_many
+    via: "taxonomy codes on the profile"

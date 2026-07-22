@@ -1,0 +1,14 @@
+{
+  "repo": "dow-jones",
+  "feeds": [
+    {
+      "source": "https://www.dowjones.com/press-room/feed/",
+      "feed_url": "https://www.dowjones.com/press-room/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "fetched": "2026-07-20T13:31:34Z",
+  "post_count": 12
+}

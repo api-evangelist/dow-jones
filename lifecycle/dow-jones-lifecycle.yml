@@ -1,0 +1,31 @@
+generated: '2026-07-22'
+method: searched
+source: https://developer.dowjones.com/documents/site-docs-getting_started-deprecation_and_sunset_policies
+versioning:
+  scheme: media-type-header
+  detail: >-
+    Dow Jones Platform Services version resources via custom media types in the Accept and
+    Content-Type headers, format application/vnd.dowjones.<product>[.<resource>][.v_X.Y]+json
+    (for example application/vnd.dowjones.dna.riskentities.v_2.2+json). Factiva Integration
+    endpoints use the X-API-VERSION request header for active resources and URL-embedded
+    versions for legacy resources (REST 1, REST 2, SOAP/FDK).
+  docs:
+    - https://developer.dowjones.com/documents/site-docs-getting_started-versioning-api_versioning
+    - https://developer.dowjones.com/documents/factiva_integration-essentials-versioning
+deprecation:
+  policy_url: https://developer.dowjones.com/documents/deprecation-and-sunset-policy-for-risk-and-compliance-apis
+  factiva_policy_url: https://developer.dowjones.com/documents/factiva_integration-essentials-deprecation_and_sunset-policy
+  schedule_url: https://developer.dowjones.com/documents/site-docs-getting_started-deprecation_and_sunset_policies-risk_and_compliance_apis_deprecation_schedule
+  rules:
+    - Stable API versions are supported for at least 18 months or three releases, whichever is longer.
+    - Beta versions are supported for at least three months or three releases.
+    - An API version is not deprecated until a version at least as stable is released.
+    - An API unused for more than 90 days may be deprecated.
+    - Deprecation and sunset news is announced in the monthly product update at least six months before end of support.
+  sunset_header: false
+status_page: null
+status_page_note: No public status page was found for the Dow Jones Developer Platform (status.dowjones.com does not resolve; July 2026 probe).
+sla: null
+deprecated_generations:
+  - Factiva SOAP (FDK) v1.x-v3.x (legacy, deprecation schedule published)
+  - Factiva REST 1 and REST 2 (legacy, deprecation schedule published)

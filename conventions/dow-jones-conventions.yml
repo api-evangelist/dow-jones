@@ -1,0 +1,31 @@
+generated: '2026-07-22'
+method: searched
+source: https://developer.dowjones.com/documents/site-docs-getting_started-api_essentials
+authentication:
+  styles:
+    - OAuth 2.0 bearer (AuthZ JWT from the Dow Jones Identity Service, Authorization header)
+    - user-key header (Factiva Integration API-key authentication)
+    - Basic auth (Advanced Screening and Monitoring API legacy integrations, deprecated in favor of JWT)
+  artifact: authentication/dow-jones-authentication.yml
+versioning:
+  style: custom media types in Accept / Content-Type headers
+  example: 'Accept: application/vnd.dowjones.dna.riskentities.v_2.2+json'
+  factiva_header: X-API-VERSION
+  artifact: lifecycle/dow-jones-lifecycle.yml
+pagination:
+  style: mixed
+  detail: >-
+    RiskCenter Third Party API uses JSON:API-style page[limit] query parameters; Screening and
+    Monitoring and Content APIs use offset/limit-style parameters documented per endpoint.
+error_envelope:
+  shape: 'JSON body with an errors[] array; RCTP responses wrap resources in a top-level data object with links (JSON:API-style)'
+  artifact: errors/dow-jones-problem-types.yml
+idempotency:
+  supported: false
+  note: No idempotency-key contract is documented for the Dow Jones APIs (July 2026).
+request_tracing: null
+rate_limits:
+  note: Rate limits are enforced per contract/product; no public numeric rate-limit reference is published on the developer portal.
+webhooks:
+  detail: RiskCenter Third Party API sends webhook notifications when a third party's risk status changes.
+  artifact: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml

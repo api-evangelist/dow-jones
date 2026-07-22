@@ -1,0 +1,446 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Dow Jones Risk and Compliance Profile Version History API",
+    "description": "API Interface for Version History",
+    "version": "1.1.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.dowjones.com"
+    },
+    {
+      "url": "https://eu.api.dowjones.com"
+    }
+  ],
+  "paths": {
+    "/profiles/{profile-id}/versions/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Versions"
+        ],
+        "summary": "Gets a profile's history of versions",
+        "description": "Returns the list of versions (dates) given a profile id.",
+        "operationId": "getVersionsFromProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/profile-id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileVersionsResponse"
+                }
+              },
+              "application/vnd.dowjones.dna.versions.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileVersionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              },
+              "application/vnd.dowjones.dna.versions.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              },
+              "application/vnd.dowjones.dna.versions.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              },
+              "application/vnd.dowjones.dna.versions.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profiles/{profile-id}/revisions/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "Revisions"
+        ],
+        "summary": "Gets all revisions from a profile",
+        "description": "Given a profile id, gets all revisions from that profile. The revision_date can be used to filter.",
+        "operationId": "getProfileRevisionsFromProfile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/profile-id"
+          },
+          {
+            "$ref": "#/components/parameters/RevisionFilter"
+          },
+          {
+            "$ref": "#/components/parameters/PageOffset"
+          },
+          {
+            "$ref": "#/components/parameters/PageLimit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileRevisionsResponse"
+                }
+              },
+              "application/vnd.dowjones.dna.revisions.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileRevisionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              },
+              "application/vnd.dowjones.dna.revisions.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              },
+              "application/vnd.dowjones.dna.revisions.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              },
+              "application/vnd.dowjones.dna.revisions.v_1.0+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "ProfileVersionsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VersionObject"
+            }
+          }
+        }
+      },
+      "VersionObject": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "version_date": {
+                "type": "string",
+                "example": "2021-01-01"
+              },
+              "revision_count": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          },
+          "id": {
+            "type": "string",
+            "example": "12345-2021-01-01"
+          },
+          "type": {
+            "type": "string",
+            "example": "versions"
+          }
+        }
+      },
+      "ProfileRevisionsResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileRevision"
+            }
+          },
+          "links": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "count": {
+                "type": "integer",
+                "example": 1
+              },
+              "paging": {
+                "type": "object",
+                "properties": {
+                  "offset": {
+                    "$ref": "#/components/schemas/PaginationOffset"
+                  }
+                }
+              },
+              "total_count": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          }
+        }
+      },
+      "ProfileRevision": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "properties": {
+              "revision_date": {
+                "type": "string",
+                "example": "2021-01-01"
+              },
+              "revision_timestamp": {
+                "type": "string",
+                "example": "2021-01-01T11:07:54.356"
+              },
+              "asset": {
+                "type": "string",
+                "example": "Basic"
+              },
+              "section": {
+                "type": "string",
+                "example": "Names"
+              },
+              "sub_section": {
+                "type": "string",
+                "example": "Expanded Language Variation"
+              },
+              "field": {
+                "type": "string",
+                "example": "Name"
+              },
+              "additional_field_info": {
+                "type": "string",
+                "example": "Single String Name"
+              },
+              "change_type": {
+                "type": "string",
+                "example": "update"
+              },
+              "old_value": {
+                "type": "string",
+                "example": "The Director"
+              },
+              "new_value": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NewValueItem"
+                }
+              }
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "example": "revisions"
+          }
+        }
+      },
+      "NewValueItem": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "example": "Arabic"
+          },
+          "display_name": {
+            "type": "string",
+            "example": "Language"
+          }
+        }
+      },
+      "JsonError": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorObject"
+            }
+          }
+        }
+      },
+      "ErrorObject": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "meta": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginationLinks": {
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "string"
+          },
+          "last": {
+            "type": "string"
+          },
+          "next": {
+            "type": "string"
+          },
+          "prev": {
+            "type": "string"
+          }
+        }
+      },
+      "PaginationOffset": {
+        "type": "object",
+        "properties": {
+          "first": {
+            "type": "integer"
+          },
+          "last": {
+            "type": "integer"
+          },
+          "next": {
+            "type": "integer"
+          },
+          "prev": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "profile-id": {
+        "name": "profile-id",
+        "required": true,
+        "in": "path",
+        "description": "Unique profile id that identifies a profile",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "RevisionFilter": {
+        "name": "filter[revision_date]",
+        "in": "query",
+        "description": "Filters by the revision date",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "PageOffset": {
+        "name": "page[offset]",
+        "in": "query",
+        "description": "Page offset",
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "PageLimit": {
+        "name": "page[limit]",
+        "in": "query",
+        "description": "Limit of resources per page",
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

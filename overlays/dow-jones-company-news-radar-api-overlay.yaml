@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for API for Search realtime Content resource
+  version: 1.0.0
+extends: openapi/dow-jones-company-news-radar-api-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: dow-jones
+    x-apievangelist-review: https://apis.io/providers/dow-jones/
+- target: $.info
+  update:
+    x-apievangelist-tags:
+    - Financial
+    - News
+    - Risk and Compliance
+    - Market Data

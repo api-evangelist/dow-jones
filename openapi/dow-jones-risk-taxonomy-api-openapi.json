@@ -1,0 +1,206 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "Risk and Compliance Taxonomy API",
+        "version": "v1",
+        "title": "Risk and Compliance Taxonomy API",
+        "contact": {
+            "name": "Dow Jones"
+        },
+        "license": {
+            "name": "Dow Jones"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://api.dowjones.com"
+        },
+        {
+            "url": "https://eu.api.dowjones.com"
+        }
+    ],
+    "paths": {
+        "/taxonomy/riskentities/lists": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Risk and Compliance - Taxonomy"
+                ],
+                "summary": "Risk and Compliance - Taxonomy lists",
+                "description": "Returns Taxonomy Lists (AdverseMediaCategories, Locations, HighRiskFactor, HighRiskFactorPerson, HighRiskFactorEntity, OtherOfficialLists, OtherExclusionLists, SanctionLists, IdType, IdTypePerson, IdTypeEntity, SpecialInterestCategories, SpecialInterestCategoriesPerson, SpecialInterestCategoriesEntity, StateOwnerships, OccupationCategories). For latest version or 1.1, please use (CountryTerritory, CountryTerritoryType, CountryTerritoryTypePerson, CountryTerritoryTypeEntity) instead of (Country, CountryType, CountryTypePerson, CountryTypeEntity).",
+                "operationId": "getLists",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/control_data"
+                    },
+                    {
+                        "$ref": "#/components/parameters/accept-language"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "comma separated list of ids",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/ListIds"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaxonomyResponse"
+                                }
+                            },
+                            "application/vnd.dowjones.dna.taxonomy.v_1.1+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaxonomyResponse"
+                                }
+                            },
+                            "application/vnd.dowjones.dna.taxonomy.v_1.0+json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaxonomyResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+          "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+          }
+        },
+        "parameters": {
+            "control_data": {
+                "name": "control_data",
+                "in": "header",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "accept-language": {
+                "name": "accept-language",
+                "in": "header",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            }
+        },
+        "schemas": {
+            "ListIds": {
+                "type": "string",
+                "enum": [
+                    "AdverseMediaCategories",
+                    "Locations",
+                    "HighRiskFactor",
+                    "HighRiskFactorPerson",
+                    "HighRiskFactorEntity",
+                    "OtherOfficialLists",
+                    "OtherExclusionLists",
+                    "SanctionLists",
+                    "IdType",
+                    "IdTypePerson",
+                    "IdTypeEntity",
+                    "SpecialInterestCategories",
+                    "SpecialInterestCategoriesPerson",
+                    "SpecialInterestCategoriesEntity",
+                    "StateOwnerships",
+                    "OccupationCategories",
+                    "CountryTerritory",
+                    "CountryTerritoryType",
+                    "CountryTerritoryTypePerson",
+                    "CountryTerritoryTypeEntity"
+                ]
+            },
+            "TaxonomyResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ListItem"
+                        }
+                    }
+                }
+            },
+            "ListItem": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ListItemsContainer"
+                    }
+                }
+            },
+            "ListItemsContainer": {
+                "type": "object",
+                "properties": {
+                    "list_items": {
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/LeafListItem"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/LeafCountryListItem"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "LeafListItem": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "descriptor": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LeafCountryListItem": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "descriptor": {
+                        "type": "string"
+                    },
+                    "iso_alpha2": {
+                        "type": "string"
+                    },
+                    "iso_alpha3": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+  }
