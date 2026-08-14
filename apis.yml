@@ -32,7 +32,7 @@ description: >-
   search, and news content (Newswires real-time search, top stories, calendars, newsletters),
   secured by the Dow Jones Identity Service (OAuth 2.0 / OIDC) or Factiva user keys.
 created: '2026-05-05'
-modified: '2026-07-22'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 maintainers:
   - FN: Kin Lane
@@ -321,7 +321,7 @@ common:
   - type: Documentation
     url: https://developer.dowjones.com/documents
   - type: APIReference
-    url: https://developer.dowjones.com/apis
+    url: https://developer.dowjones.com/documents/site-docs-getting_started-api_essentials
   - type: GettingStarted
     url: https://developer.dowjones.com/documents/site-docs-getting_started
   - type: Support
@@ -384,3 +384,20 @@ common:
     url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
   - type: AgentSkill
     url: skills/_index.yml
+  - type: RateLimits
+    url: rate-limits/dow-jones-rate-limits.yml
+  - type: Plans
+    url: plans/dow-jones-plans-pricing.yml
+  - type: VulnerabilityDisclosure
+    url: security/dow-jones-vulnerability-disclosure.yml
+  - type: Security
+    url: security/dow-jones-vulnerability-disclosure.yml
+  - type: TrustCenter
+    url: security/dow-jones-trust-center.yml
+  - type: Compliance
+    url: security/dow-jones-trust-center.yml
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 4
+  pass: local-v1
