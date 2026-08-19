@@ -33,7 +33,7 @@ description: >-
   secured by the Dow Jones Identity Service (OAuth 2.0 / OIDC) or Factiva user keys.
 created: '2026-05-05'
 modified: '2026-08-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
