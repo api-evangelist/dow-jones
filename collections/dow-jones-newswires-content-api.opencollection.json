@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Content API Endpoint to Retrieve Article",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the realtime linked articles by the reference.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/content/:drn",
+            "params": [
+              {
+                "name": "drn",
+                "value": "drn:realtime.linkedarticle.DNCO20200603002169",
+                "type": "path",
+                "description": "DRN"
+              },
+              {
+                "name": "article_format",
+                "value": "",
+                "type": "query",
+                "description": "The format of the response to be returned"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the realtime linked articles by the reference."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

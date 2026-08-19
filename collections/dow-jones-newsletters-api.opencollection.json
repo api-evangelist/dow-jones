@@ -1,0 +1,244 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "DJ Factiva Newsletters API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Newsletters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of Newsletters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/newsletters",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Get all newsletters for ID comma separated list (no spaces) in filter criteria. id=15,16,17"
+              },
+              {
+                "name": "filter[shared_status]",
+                "value": "",
+                "type": "query",
+                "description": "Get all newsletters for a shared status in filter criteria."
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Starting index into lists"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Max number of newsletters to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by CreatedDate, LastModified, Name; use '-' for descending"
+              },
+              {
+                "name": "max_editions",
+                "value": "",
+                "type": "query",
+                "description": "Max number of editions to return"
+              },
+              {
+                "name": "max_deliveries",
+                "value": "",
+                "type": "query",
+                "description": "Max number of delivery to return"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve"
+              },
+              {
+                "name": "is_view_newsletter",
+                "value": "",
+                "type": "query",
+                "description": "Returns View Newsletter List"
+              },
+              {
+                "name": "external_reader_id",
+                "value": "",
+                "type": "query",
+                "description": "External reader ID (it is applied only if 'is_view_newsletter' is true )"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a list of newsletters"
+        },
+        {
+          "info": {
+            "name": "Reading a Newsletter by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/newsletters/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Newsletter ID"
+              },
+              {
+                "name": "tkn",
+                "value": "",
+                "type": "query",
+                "description": "Encrypted identity"
+              },
+              {
+                "name": "max_editions",
+                "value": "",
+                "type": "query",
+                "description": "Max number of editions to return"
+              },
+              {
+                "name": "max_deliveries",
+                "value": "",
+                "type": "query",
+                "description": "Max number of delivery to return"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get newsletter by id"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Editions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all Newsletter Editions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/newsletters/:id/editions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Newsletter ID"
+              },
+              {
+                "name": "tkn",
+                "value": "",
+                "type": "query",
+                "description": "Encrypted Newsletter identity"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by CreatedDate, LastModified, Name; use '-' for descending"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Starting index into lists"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Max number of editions to return"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get all newsletter editions"
+        },
+        {
+          "info": {
+            "name": "Get a Newsletter's Edition by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/newsletters/:id/editions/:editionId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Newsletter ID"
+              },
+              {
+                "name": "editionId",
+                "value": "",
+                "type": "path",
+                "description": "Newsletter's Edition ID"
+              },
+              {
+                "name": "tkn",
+                "value": "",
+                "type": "query",
+                "description": "Encrypted Newsletter identity"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get newsletter edition by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

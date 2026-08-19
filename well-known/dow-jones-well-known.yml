@@ -1,5 +1,12 @@
-generated: '2026-07-22'
+generated: '2026-08-13'
 method: searched
+note: >-
+  One real document is served across the whole Dow Jones estate: the OIDC discovery document for the
+  Dow Jones Identity Service at accounts.dowjones.com. Every other /.well-known/ path probed returns
+  404 on every host, including security.txt (a policy Dow Jones does publish, at
+  https://www.dowjones.com/security/, but does not make machine-discoverable). Note that
+  www.dowjones.com and developer.dowjones.com answer 404 with an HTML error page, not a JSON body —
+  no SPA catch-all 200s were observed, so these are genuine absences.
 hosts:
   - host: https://accounts.dowjones.com
     documents:
@@ -9,11 +16,23 @@ hosts:
         note: OIDC discovery for the Dow Jones Identity Service (issuer https://sso.accounts.dowjones.com/).
       - path: /.well-known/oauth-authorization-server
         status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
   - host: https://www.dowjones.com
     documents:
       - path: /.well-known/security.txt
         status: 404
+      - path: /security.txt
+        status: 404
       - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
         status: 404
   - host: https://api.dowjones.com
     documents:
@@ -23,9 +42,40 @@ hosts:
         status: 404
       - path: /.well-known/api-catalog
         status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://eu.api.dowjones.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+  - host: https://api-thirdparty.riskcenter.dowjones.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
   - host: https://developer.dowjones.com
     documents:
       - path: /.well-known/security.txt
         status: 404
       - path: /.well-known/api-catalog
         status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+checked: '2026-08-13'

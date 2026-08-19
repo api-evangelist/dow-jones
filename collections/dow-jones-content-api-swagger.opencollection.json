@@ -1,0 +1,1001 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Content API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /alerts/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/alerts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Alert Id"
+              },
+              {
+                "name": "snippet_type",
+                "value": "",
+                "type": "query",
+                "description": "Snippet Type"
+              },
+              {
+                "name": "is_preview",
+                "value": "",
+                "type": "query",
+                "description": "Is_Preview"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort"
+              },
+              {
+                "name": "filter.view_type",
+                "value": "",
+                "type": "query",
+                "description": "View Type"
+              },
+              {
+                "name": "filter.content_categories",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[context]",
+                "value": "",
+                "type": "query",
+                "description": "Context"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "deduplication_level",
+                "value": "",
+                "type": "query",
+                "description": "Gets or sets the deduplication level"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /refs/{ref}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/refs/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path",
+                "description": "Content Reference. Example drn:archive.newsarticle.AN12345678"
+              },
+              {
+                "name": "article_format",
+                "value": "",
+                "type": "query",
+                "description": "Article format"
+              },
+              {
+                "name": "highlight_string",
+                "value": "",
+                "type": "query",
+                "description": "Highlight string"
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Context"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve, only apply when articleFormat  set to Custom"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /refs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/refs",
+            "params": [
+              {
+                "name": "filter.ref",
+                "value": "",
+                "type": "query",
+                "description": "Content Reference(s)"
+              },
+              {
+                "name": "article_format",
+                "value": "",
+                "type": "query",
+                "description": "Article format"
+              },
+              {
+                "name": "highlight_string",
+                "value": "",
+                "type": "query",
+                "description": "Highlight string"
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Context"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve, only apply when articleFormat  set to Custom"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /refs/{ref}/redirect",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/refs/:ref/redirect",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path",
+                "description": "Content Reference. Example multimedia_AN12345678"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /refs/{ref}/binary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/refs/:ref/binary",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path",
+                "description": "Content Reference. Example 'drn:archive.picturearticle.X021400020160808ec8800001'"
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Context"
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query",
+                "description": "binary reference probj:archive/FAPORH2016081400234/48/235165 required for factiva binary only"
+              },
+              {
+                "name": "mime_type",
+                "value": "",
+                "type": "query",
+                "description": "mime type application/pdf required for factiva binary only"
+              },
+              {
+                "name": "image_type",
+                "value": "",
+                "type": "query",
+                "description": "image type pdf or html or dispix required for factiva binary only"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Collection_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/newsletter/editions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Collection_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/newsplus/collections/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Search_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search",
+            "params": [
+              {
+                "name": "filter.search_string",
+                "value": "",
+                "type": "query",
+                "description": "Search string"
+              },
+              {
+                "name": "filter.search_mode",
+                "value": "",
+                "type": "query",
+                "description": "Search mode"
+              },
+              {
+                "name": "filter.content_category",
+                "value": "",
+                "type": "query",
+                "description": "Content category. Default : Publications"
+              },
+              {
+                "name": "filter.deduplication_level",
+                "value": "",
+                "type": "query",
+                "description": "Deduplication level"
+              },
+              {
+                "name": "filter.from_date",
+                "value": "",
+                "type": "query",
+                "description": "From date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.to_date",
+                "value": "",
+                "type": "query",
+                "description": "To date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.days_range",
+                "value": "",
+                "type": "query",
+                "description": "Number of days from current day"
+              },
+              {
+                "name": "filter.language_codes",
+                "value": "",
+                "type": "query",
+                "description": "List of any Language Codes to be included"
+              },
+              {
+                "name": "filter.company_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any company fcodes to be included"
+              },
+              {
+                "name": "filter.industry_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any industry fcodes to be included"
+              },
+              {
+                "name": "filter.region_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any region fcodes to be included"
+              },
+              {
+                "name": "filter.news_subject_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any news subject codes to be included"
+              },
+              {
+                "name": "filter.source_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any source fcodes to be included"
+              },
+              {
+                "name": "filter.document_vector",
+                "value": "",
+                "type": "query",
+                "description": "Filed returned by a search, used to refine or exclude similar headlines from the search results"
+              },
+              {
+                "name": "filter.similarity_type",
+                "value": "",
+                "type": "query",
+                "description": "Similarity type, used along with filter.document_vector'"
+              },
+              {
+                "name": "filter.is_similarity_sort_by_on",
+                "value": "",
+                "type": "query",
+                "description": "Controls whether the results should be sorted by similarity, or the original sortOrder requested."
+              },
+              {
+                "name": "filter.similar_document_id",
+                "value": "",
+                "type": "query",
+                "description": "The document number of the original document to which the filter.document_vector corresponds"
+              },
+              {
+                "name": "filter.exclude_similar_document_id",
+                "value": "",
+                "type": "query",
+                "description": "Indicates if filter.similar_document_id is to be removed from the result set"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve"
+              },
+              {
+                "name": "snippet_type",
+                "value": "",
+                "type": "query",
+                "description": "Snippet type"
+              },
+              {
+                "name": "max_keywords",
+                "value": "",
+                "type": "query",
+                "description": "Max number of keywords"
+              },
+              {
+                "name": "max_navigators",
+                "value": "",
+                "type": "query",
+                "description": "Max number of navigators"
+              },
+              {
+                "name": "time_navigator_mode",
+                "value": "",
+                "type": "query",
+                "description": "Time navigator mode"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort By"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "page offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "page limit"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Search_Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/search"
+          }
+        },
+        {
+          "info": {
+            "name": "Search_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/refs",
+            "params": [
+              {
+                "name": "filter.ref",
+                "value": "",
+                "type": "query",
+                "description": "Accession numbers"
+              },
+              {
+                "name": "filter.content_category",
+                "value": "",
+                "type": "query",
+                "description": "Content category. Default : all"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort By"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Search_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/realtime",
+            "params": [
+              {
+                "name": "filter.search_string",
+                "value": "",
+                "type": "query",
+                "description": "Search string"
+              },
+              {
+                "name": "filter.deduplication_level",
+                "value": "",
+                "type": "query",
+                "description": "Deduplication level"
+              },
+              {
+                "name": "filter.from_date",
+                "value": "",
+                "type": "query",
+                "description": "From date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.to_date",
+                "value": "",
+                "type": "query",
+                "description": "To date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.days_range",
+                "value": "",
+                "type": "query",
+                "description": "Number of days from current day"
+              },
+              {
+                "name": "filter.language_codes",
+                "value": "",
+                "type": "query",
+                "description": "List of any Language Codes to be included"
+              },
+              {
+                "name": "filter.company_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any company fcodes to be included"
+              },
+              {
+                "name": "filter.industry_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any industry fcodes to be included"
+              },
+              {
+                "name": "filter.region_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any region fcodes to be included"
+              },
+              {
+                "name": "filter.news_subject_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any news subject codes to be included"
+              },
+              {
+                "name": "filter.source_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any source fcodes to be included"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve"
+              },
+              {
+                "name": "snippet_type",
+                "value": "",
+                "type": "query",
+                "description": "Snippet type"
+              },
+              {
+                "name": "max_keywords",
+                "value": "",
+                "type": "query",
+                "description": "Max number of keywords"
+              },
+              {
+                "name": "max_navigators",
+                "value": "",
+                "type": "query",
+                "description": "Max number of navigators"
+              },
+              {
+                "name": "time_navigator_mode",
+                "value": "",
+                "type": "query",
+                "description": "Time navigator mode"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort By"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "page offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "page limit"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Search_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/people/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "person code"
+              },
+              {
+                "name": "filter.content_category",
+                "value": "",
+                "type": "query",
+                "description": "Content category. Default : Publications"
+              },
+              {
+                "name": "filter.deduplication_level",
+                "value": "",
+                "type": "query",
+                "description": "Deduplication level"
+              },
+              {
+                "name": "filter.from_date",
+                "value": "",
+                "type": "query",
+                "description": "From date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.to_date",
+                "value": "",
+                "type": "query",
+                "description": "To date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.days_range",
+                "value": "",
+                "type": "query",
+                "description": "Number of days from current day"
+              },
+              {
+                "name": "filter.language_codes",
+                "value": "",
+                "type": "query",
+                "description": "List of any Language Codes to be included"
+              },
+              {
+                "name": "filter.company_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any company fcodes to be included"
+              },
+              {
+                "name": "filter.restrictor_codes",
+                "value": "",
+                "type": "query",
+                "description": "List of any restrictor codes to be included"
+              },
+              {
+                "name": "filter.industry_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any industry fcodes to be included"
+              },
+              {
+                "name": "filter.region_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any region fcodes to be included"
+              },
+              {
+                "name": "filter.news_subject_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any news subject codes to be included"
+              },
+              {
+                "name": "filter.source_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any source fcodes to be included"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve"
+              },
+              {
+                "name": "snippet_type",
+                "value": "",
+                "type": "query",
+                "description": "Snippet type"
+              },
+              {
+                "name": "max_keywords",
+                "value": "",
+                "type": "query",
+                "description": "Max number of keywords"
+              },
+              {
+                "name": "max_navigators",
+                "value": "",
+                "type": "query",
+                "description": "Max number of navigators"
+              },
+              {
+                "name": "time_navigator_mode",
+                "value": "",
+                "type": "query",
+                "description": "Time navigator mode"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort By"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "page offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "page limit"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Search_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/organization/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "company fcode"
+              },
+              {
+                "name": "filter.content_category",
+                "value": "",
+                "type": "query",
+                "description": "Content category. Default : Publications"
+              },
+              {
+                "name": "filter.deduplication_level",
+                "value": "",
+                "type": "query",
+                "description": "Deduplication level"
+              },
+              {
+                "name": "filter.from_date",
+                "value": "",
+                "type": "query",
+                "description": "From date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.to_date",
+                "value": "",
+                "type": "query",
+                "description": "To date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.days_range",
+                "value": "",
+                "type": "query",
+                "description": "Number of days from current day"
+              },
+              {
+                "name": "filter.language_codes",
+                "value": "",
+                "type": "query",
+                "description": "List of any Language Codes to be included"
+              },
+              {
+                "name": "filter.company_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any company fcodes to be included"
+              },
+              {
+                "name": "filter.restrictor_codes",
+                "value": "",
+                "type": "query",
+                "description": "List of any restrictor codes to be included"
+              },
+              {
+                "name": "filter.industry_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any industry fcodes to be included"
+              },
+              {
+                "name": "filter.region_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any region fcodes to be included"
+              },
+              {
+                "name": "filter.news_subject_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any news subject codes to be included"
+              },
+              {
+                "name": "filter.source_fcode",
+                "value": "",
+                "type": "query",
+                "description": "List of any source fcodes to be included"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Parts to retrieve"
+              },
+              {
+                "name": "snippet_type",
+                "value": "",
+                "type": "query",
+                "description": "Snippet type"
+              },
+              {
+                "name": "max_keywords",
+                "value": "",
+                "type": "query",
+                "description": "Max number of keywords"
+              },
+              {
+                "name": "max_navigators",
+                "value": "",
+                "type": "query",
+                "description": "Max number of navigators"
+              },
+              {
+                "name": "time_navigator_mode",
+                "value": "",
+                "type": "query",
+                "description": "Time navigator mode"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort By"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "page offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "page limit"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Search_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/consumer",
+            "params": [
+              {
+                "name": "filter.search_string",
+                "value": "",
+                "type": "query",
+                "description": "Search string"
+              },
+              {
+                "name": "filter.from_date",
+                "value": "",
+                "type": "query",
+                "description": "From date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.to_date",
+                "value": "",
+                "type": "query",
+                "description": "To date format : YYYY-MM-DD"
+              },
+              {
+                "name": "filter.days_range",
+                "value": "",
+                "type": "query",
+                "description": "Number of days from current day"
+              },
+              {
+                "name": "filter.database",
+                "value": "",
+                "type": "query",
+                "description": "List of database names to search"
+              },
+              {
+                "name": "query_language",
+                "value": "",
+                "type": "query",
+                "description": "List of any Language Codes to be included"
+              },
+              {
+                "name": "fields.return",
+                "value": "",
+                "type": "query",
+                "description": "Fields to retrieve"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort Possible values : none, relevance, date, -date, relevance-date"
+              },
+              {
+                "name": "stemming",
+                "value": "",
+                "type": "query",
+                "description": "With stemming enabled, search string for \"run\" will match documents with \"running\" and \"ran\""
+              },
+              {
+                "name": "time_zone",
+                "value": "",
+                "type": "query",
+                "description": "Timezone of the article, follows the formate of tz database"
+              },
+              {
+                "name": "frequency_fields",
+                "value": "",
+                "type": "query",
+                "description": "Frequency Fields"
+              },
+              {
+                "name": "is_google_like",
+                "value": "",
+                "type": "query",
+                "description": "Search the string like Google that is tolerant to errors and will attempt to return something meaningful"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "page offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "page limit"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Search for content based on portfolio companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/search/portfolio"
+          },
+          "docs": "Returns search results for content based on portfolio companies"
+        },
+        {
+          "info": {
+            "name": "Search for the most relevant emerging topics in the last hours",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/search/emerging",
+            "headers": [
+              {
+                "name": "accept-language",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns discovery navigators of 5 different types (Region, Industry, Subject, Company, People) with the biggest relevance in the last hours"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,564 @@
+{
+  "item": [
+    {
+      "id": "c2216d7e-1813-4c57-b760-2b6a55ff8cc0",
+      "name": "Default",
+      "description": {
+        "content": "Default section",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51bff5cf-c6bb-4700-b4ac-00faff4e4f1e",
+          "name": "Get swagger json",
+          "request": {
+            "name": "Get swagger json",
+            "description": {
+              "content": "Use for swagger viewer endpoint",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "swagger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf30ff8a-d2ae-40d0-a3f6-507d146a2365",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "89eaff43-db58-4328-a0c2-8ef44bfe7127",
+              "name": "Bad Request - Incorrect Parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "832bee01-7b17-4064-8dfe-24af10f802d3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fad00601-c087-4bb0-9eca-af1164262fa7",
+              "name": "Not Found - No resource found for the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aef9ec0b-36a1-403a-8502-4c6b511ab01d",
+              "name": "Internal Server Error - Server encountered an unexpected condition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a59dbc9-3498-4e42-b739-068c1485450e",
+              "name": "Service Unavailable - Server is currently unable to handle the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "swagger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "366b09c7-73b7-4b83-9f5c-c0fc4ab6de46",
+      "name": "Content",
+      "description": {
+        "content": "Performs a realitme search of the PIB search system.",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "b4ae4c19-0273-485c-af5e-6e3da1e1c122",
+      "name": "Content Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "145264b4-49c2-4f89-8d2a-ac572e2b5b8e",
+          "name": "Performs a full search of the PIB search system.",
+          "request": {
+            "name": "Performs a full search of the PIB search system.",
+            "description": {},
+            "url": {
+              "path": [
+                "content",
+                "realtime",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"<string>\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": \"<integer>\",\n      \"page_limit\": \"<integer>\"\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2794b271-e1e8-4b30-8a81-a7b927bd0286",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": {\n    \"self\": \"string\"\n  },\n  \"meta\": {\n    \"context\": \"string\",\n    \"count\": 8256,\n    \"metering\": {\n      \"limit\": 1766,\n      \"remaining\": \"string\",\n      \"in_grace_period\": true,\n      \"time_period_window\": \"Yearly\"\n    }\n  },\n  \"data\": [\n    {\n      \"type\": \"content\",\n      \"id\": \"string\",\n      \"links\": {\n        \"audio_uri\": \"string\",\n        \"parent_uri\": \"string\",\n        \"self\": \"string\",\n        \"video_uri\": \"string\",\n        \"webpage_uri\": \"string\"\n      },\n      \"meta\": {\n        \"alternate_document_id\": \"string\",\n        \"alternate_document_ref\": \"string\",\n        \"bill_data\": \"string\",\n        \"clipping_date\": \"1970-12-09\",\n        \"clipping_time\": \"1951-06-14T14:50:59.163Z\",\n        \"code_sets\": [\n          {\n            \"type\": \"Author\",\n            \"id\": \"co\",\n            \"codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"type\": \"InformationProviderDescriptors\",\n            \"id\": \"pr\",\n            \"codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"document_vector\": \"string\",\n        \"edition\": {\n          \"name\": \"string\",\n          \"print\": {\n            \"date\": \"2018-11-08\",\n            \"headline\": \"string\",\n            \"page\": \"string\",\n            \"section\": \"string\",\n            \"value\": \"string\"\n          }\n        },\n        \"emphasis\": {\n          \"hot\": true,\n          \"dominant\": true,\n          \"analysis\": true\n        },\n        \"geo_relevance\": [\n          {\n            \"latitude\": 7882.319889322846,\n            \"longitude\": 6251.580357961768\n          },\n          {\n            \"latitude\": 39.225768666748536,\n            \"longitude\": 386.9772810196426\n          }\n        ],\n        \"is_translation_allowed\": false,\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"language\": {\n          \"code\": \"string\",\n          \"descriptor\": \"string\"\n        },\n        \"metrics\": {\n          \"character_count\": 2904,\n          \"word_count\": 9005,\n          \"image_count\": 458,\n          \"chart_count\": 4199\n        },\n        \"original_doc_id\": \"string\",\n        \"rank\": 5792,\n        \"source\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"logo\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"truncation_rules\": [\n          {\n            \"rule\": \"ExtraSmall\",\n            \"length\": 7109\n          },\n          {\n            \"rule\": \"ExtraSmall\",\n            \"length\": 8789\n          }\n        ]\n      },\n      \"attributes\": {\n        \"art\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"associations\": {\n          \"root_id\": \"string\",\n          \"parent_id\": \"string\",\n          \"parent_id_ref\": \"string\"\n        },\n        \"authors\": [\n          {\n            \"full_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"topic_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"full_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"topic_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"best_date\": \"2000-04-29\",\n        \"best_time\": \"1989-12-09T13:30:33.590Z\",\n        \"body\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"byline\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"column_name\": \"string\",\n        \"contact\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_collection\": \"string\",\n        \"content_status\": \"string\",\n        \"content_type\": \"Article\",\n        \"copyright\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"corrections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dist_publish_date\": \"2002-11-09\",\n        \"dist_publish_time\": \"1946-09-10T10:01:21.723Z\",\n        \"headline\": {\n          \"flashline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"main\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deck\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"live_date\": \"1983-06-16\",\n        \"live_time\": \"1977-01-07T15:36:09.311Z\",\n        \"load_date\": \"1980-04-18\",\n        \"load_time\": \"1950-03-12T22:11:03.220Z\",\n        \"modification_date\": \"2018-03-16\",\n        \"modification_time\": \"1995-07-05T05:07:26.419Z\",\n        \"notes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"page\": \"string\",\n        \"publication_date\": \"1970-04-21\",\n        \"publication_time\": \"1998-12-10T13:00:09.861Z\",\n        \"publisher\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"group_code\": \"string\",\n          \"group_name\": \"string\"\n        },\n        \"section_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"seo_id\": \"string\",\n        \"snippet\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summary\": {\n          \"body\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"byline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"destination_type\": \"string\",\n          \"headline\": {\n            \"flashline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"main\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deck\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pages\": [\n            \"string\",\n            \"string\"\n          ],\n          \"related_links\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"variant\": \"string\"\n        },\n        \"upstream_origin\": \"string\",\n        \"upstream_origin_id\": \"string\",\n        \"volume\": \"string\"\n      },\n      \"relationships\": {\n        \"included_content\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ]\n        },\n        \"duplicate_content\": {\n          \"data\": [\n            {\n              \"type\": \"content\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"content\",\n              \"id\": \"string\"\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"type\": \"content\",\n      \"id\": \"string\",\n      \"links\": {\n        \"audio_uri\": \"string\",\n        \"parent_uri\": \"string\",\n        \"self\": \"string\",\n        \"video_uri\": \"string\",\n        \"webpage_uri\": \"string\"\n      },\n      \"meta\": {\n        \"alternate_document_id\": \"string\",\n        \"alternate_document_ref\": \"string\",\n        \"bill_data\": \"string\",\n        \"clipping_date\": \"2013-05-20\",\n        \"clipping_time\": \"2006-03-15T00:00:38.105Z\",\n        \"code_sets\": [\n          {\n            \"type\": \"Government\",\n            \"id\": \"ipd\",\n            \"codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"type\": \"Government\",\n            \"id\": \"re\",\n            \"codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"document_vector\": \"string\",\n        \"edition\": {\n          \"name\": \"string\",\n          \"print\": {\n            \"date\": \"1951-05-24\",\n            \"headline\": \"string\",\n            \"page\": \"string\",\n            \"section\": \"string\",\n            \"value\": \"string\"\n          }\n        },\n        \"emphasis\": {\n          \"hot\": true,\n          \"dominant\": true,\n          \"analysis\": false\n        },\n        \"geo_relevance\": [\n          {\n            \"latitude\": 4607.032051724765,\n            \"longitude\": 1803.6287643926007\n          },\n          {\n            \"latitude\": 8524.379839377609,\n            \"longitude\": 8870.827293765564\n          }\n        ],\n        \"is_translation_allowed\": true,\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"language\": {\n          \"code\": \"string\",\n          \"descriptor\": \"string\"\n        },\n        \"metrics\": {\n          \"character_count\": 6536,\n          \"word_count\": 273,\n          \"image_count\": 682,\n          \"chart_count\": 0\n        },\n        \"original_doc_id\": \"string\",\n        \"rank\": 4065,\n        \"source\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"logo\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"truncation_rules\": [\n          {\n            \"rule\": \"ExtraSmall\",\n            \"length\": 6543\n          },\n          {\n            \"rule\": \"ExtraSmall\",\n            \"length\": 5415\n          }\n        ]\n      },\n      \"attributes\": {\n        \"art\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"associations\": {\n          \"root_id\": \"string\",\n          \"parent_id\": \"string\",\n          \"parent_id_ref\": \"string\"\n        },\n        \"authors\": [\n          {\n            \"full_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"topic_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"full_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"topic_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"best_date\": \"2016-01-25\",\n        \"best_time\": \"2010-09-13T07:22:39.426Z\",\n        \"body\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"byline\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"column_name\": \"string\",\n        \"contact\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_collection\": \"string\",\n        \"content_status\": \"string\",\n        \"content_type\": \"HTML\",\n        \"copyright\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"corrections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dist_publish_date\": \"2009-05-10\",\n        \"dist_publish_time\": \"1961-04-05T00:51:15.229Z\",\n        \"headline\": {\n          \"flashline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"main\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deck\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"live_date\": \"1982-01-30\",\n        \"live_time\": \"1966-01-06T13:32:35.129Z\",\n        \"load_date\": \"1963-10-09\",\n        \"load_time\": \"1994-10-28T20:27:13.663Z\",\n        \"modification_date\": \"1946-09-18\",\n        \"modification_time\": \"1969-03-19T23:27:32.078Z\",\n        \"notes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"page\": \"string\",\n        \"publication_date\": \"1960-05-07\",\n        \"publication_time\": \"2022-10-21T07:47:12.330Z\",\n        \"publisher\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"group_code\": \"string\",\n          \"group_name\": \"string\"\n        },\n        \"section_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"seo_id\": \"string\",\n        \"snippet\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summary\": {\n          \"body\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"byline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"destination_type\": \"string\",\n          \"headline\": {\n            \"flashline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"main\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deck\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pages\": [\n            \"string\",\n            \"string\"\n          ],\n          \"related_links\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"variant\": \"string\"\n        },\n        \"upstream_origin\": \"string\",\n        \"upstream_origin_id\": \"string\",\n        \"volume\": \"string\"\n      },\n      \"relationships\": {\n        \"included_content\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ]\n        },\n        \"duplicate_content\": {\n          \"data\": [\n            {\n              \"type\": \"content\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"content\",\n              \"id\": \"string\"\n            }\n          ]\n        }\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"Audio\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"bytes\": 7105,\n        \"external\": false,\n        \"height\": 2632,\n        \"id_ref\": \"string\",\n        \"is_responsive\": false,\n        \"mime_type\": \"string\",\n        \"size_code\": \"string\",\n        \"slug\": \"string\",\n        \"sub_type\": \"string\",\n        \"width\": 6567\n      },\n      \"links\": {\n        \"self\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Chart\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"bytes\": 6376,\n        \"external\": true,\n        \"height\": 7641,\n        \"id_ref\": \"string\",\n        \"is_responsive\": false,\n        \"mime_type\": \"string\",\n        \"size_code\": \"string\",\n        \"slug\": \"string\",\n        \"sub_type\": \"string\",\n        \"width\": 6422\n      },\n      \"links\": {\n        \"self\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eeea98c6-6b71-4129-a951-c20eb6fdc459",
+              "name": "Bad Request - Incorrect Parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18298c01-2c59-4dad-9b76-4f2ddbfafd88",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "265175fa-dea6-4e03-a8d7-e5e2b39a844b",
+              "name": "Not Found - No resource found for the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e97179c-1145-46c4-81cf-945b7c84581a",
+              "name": "Internal Server Error - Server encountered an unexpected condition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dowjones.com/search-realtime",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a318941c-efa2-40fe-baf7-b71ac3b2924e",
+    "name": "API for Search realtime Content resource",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use this API to perform a  search of the realtime Search system, using a Rest Request that provides  the same functionality as the PerformContentSearch of the Search SOAP service.",
+      "type": "text/plain"
+    }
+  }
+}

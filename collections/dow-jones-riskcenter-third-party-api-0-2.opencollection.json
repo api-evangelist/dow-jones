@@ -1,0 +1,715 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RiskCenter Third Party Platform API 0.2",
+    "version": "v0.2-beta"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BusinessUnit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all business units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/business-units",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all business units"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Field",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all fields (optional filter)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/properties/fields",
+            "params": [
+              {
+                "name": "filter[name]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[is_key_risk]",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all fields (optional filter)"
+        },
+        {
+          "info": {
+            "name": "Get a List relationship for a Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/properties/fields/:id/list",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a List relationship for a Field"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "File",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Downloads a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/files/:fileId",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads a file."
+        },
+        {
+          "info": {
+            "name": "Uploads a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/files",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads a file."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Group",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all groups (optional paging)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/groups",
+            "params": [
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[context]",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all groups (optional paging)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "List",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/lists",
+            "params": [
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[context]",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all lists"
+        },
+        {
+          "info": {
+            "name": "Retrieves a list by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/lists/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list by id"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Process",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all processes (optional paging)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/processes",
+            "params": [
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[context]",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all processes (optional paging)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ThirdParty",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all third-parties (optional filter)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties",
+            "params": [
+              {
+                "name": "filter[name]",
+                "value": "",
+                "type": "query",
+                "description": "Case insensitive name filter."
+              },
+              {
+                "name": "filter[business_unit]",
+                "value": "",
+                "type": "query",
+                "description": "Business unit id filter"
+              },
+              {
+                "name": "filter[is_active]",
+                "value": "",
+                "type": "query",
+                "description": "Active status filter"
+              },
+              {
+                "name": "filter[tags]",
+                "value": "",
+                "type": "query",
+                "description": "Case sensitive tag filter."
+              },
+              {
+                "name": "filter[risk_level]",
+                "value": "",
+                "type": "query",
+                "description": "Case sensitive risk level filter."
+              },
+              {
+                "name": "filter[risk_status]",
+                "value": "",
+                "type": "query",
+                "description": "Case sensitive risk status filter"
+              },
+              {
+                "name": "filter[internal_reference]",
+                "value": "",
+                "type": "query",
+                "description": "Case insensitive internal reference filter."
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[context]",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all third-parties (optional filter)"
+        },
+        {
+          "info": {
+            "name": "Creates a new third party",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new third party"
+        },
+        {
+          "info": {
+            "name": "Retrieves a third party by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a third party by id"
+        },
+        {
+          "info": {
+            "name": "Updates an existing third party",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing third party"
+        },
+        {
+          "info": {
+            "name": "Deletes a third party",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a third party"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ThirdPartyProperties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all properties for a third party (optional filter)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:thirdpartyid/properties",
+            "params": [
+              {
+                "name": "thirdpartyid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter[field_name]",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all properties for a third party (optional filter)"
+        },
+        {
+          "info": {
+            "name": "Updates a property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:thirdpartyid/properties/:id",
+            "params": [
+              {
+                "name": "thirdpartyid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a property"
+        },
+        {
+          "info": {
+            "name": "Updates multiple properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:thirdpartyid/properties/batch-update",
+            "params": [
+              {
+                "name": "thirdpartyid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates multiple properties"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ThirdPartyScreening",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all monitored entities for the given third party (optional paging)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:thirdpartyid/monitored-entities",
+            "params": [
+              {
+                "name": "thirdpartyid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[context]",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all monitored entities for the given third party (optional paging)"
+        },
+        {
+          "info": {
+            "name": "Adds a new monitored entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:thirdpartyid/monitored-entities",
+            "params": [
+              {
+                "name": "thirdpartyid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Adds a new monitored entity"
+        },
+        {
+          "info": {
+            "name": "Removes a monitored entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/:thirdpartyid/monitored-entities/:id",
+            "params": [
+              {
+                "name": "thirdpartyid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes a monitored entity"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ThirdPartyScreeningTypes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all monitored entity id types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/monitored-entities/id-types",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all monitored entity id types"
+        },
+        {
+          "info": {
+            "name": "Retrieves all monitored entity types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-thirdparty.riskcenter.dowjones.com/third-parties/monitored-entities/types",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all monitored entity types"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3758 @@
+{
+  "item": [
+    {
+      "id": "7a2d2815-9c09-4440-a1df-f1af6ba234f0",
+      "name": "Custom Sources",
+      "description": {
+        "content": "Operations related to the custom sources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5526542c-e241-4d3c-9677-62b2bba896e5",
+          "name": "Retrieves the information of the Profiles Custom Sources from the given account",
+          "request": {
+            "name": "Retrieves the information of the Profiles Custom Sources from the given account",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[offset]",
+                  "value": "<integer>",
+                  "description": "page offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[limit]",
+                  "value": "<integer>",
+                  "description": "page limit"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b0e2b115-b19d-43ad-8733-f0ee3574d133",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[offset]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"source_name\": \"string\",\n        \"profile_count\": 4,\n        \"created_at\": \"2021-01-01T12:00:00Z\"\n      },\n      \"type\": \"risk-profiles-custom-sources\",\n      \"links\": {\n        \"self\": \"https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000\"\n      },\n      \"id\": \"string\"\n    },\n    {\n      \"attributes\": {\n        \"source_name\": \"string\",\n        \"profile_count\": 4,\n        \"created_at\": \"2021-01-01T12:00:00Z\"\n      },\n      \"type\": \"risk-profiles-custom-sources\",\n      \"links\": {\n        \"self\": \"https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000\"\n      },\n      \"id\": \"string\"\n    }\n  ],\n  \"links\": {\n    \"first\": \"https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20\",\n    \"next\": \"https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=40&page[limit]=20\",\n    \"prev\": \"https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20\",\n    \"last\": \"https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=210\"\n  },\n  \"meta\": {\n    \"count\": 0,\n    \"paging\": {\n      \"offset\": {\n        \"first\": 0,\n        \"last\": 0\n      }\n    },\n    \"total_count\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67de7e0b-097f-4512-bb46-61a3ca844542",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[offset]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29182dc4-220c-4623-afaa-b1cc0c8df903",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[offset]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "465085b8-a833-4e9d-847b-0cbcc99313ca",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[offset]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0acb697a-cffd-4871-a4e1-2584f6f78d53",
+          "name": "Creates a new Profiles Custom Source",
+          "request": {
+            "name": "Creates a new Profiles Custom Source",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "490a6745-dd91-46ea-9010-b67819a4fe60",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"string\",\n      \"profile_count\": 4,\n      \"created_at\": \"2021-01-01T12:00:00Z\"\n    },\n    \"type\": \"risk-profiles-custom-sources\",\n    \"links\": {\n      \"self\": \"https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000\"\n    },\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa34ed2c-ed0e-4e5a-a054-988cd197ac01",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac5b9c15-b48a-4f8e-ac28-2b0938fc927d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c68f3ae-97f0-4d41-be3e-7e8898ffc5cf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79d7451d-bbb4-4b9e-be7a-e9785c74d15d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc1db727-fea3-4c6f-9731-05f9942f75a1",
+          "name": "Retrieves the attributes of the Profiles Custom Source",
+          "request": {
+            "name": "Retrieves the attributes of the Profiles Custom Source",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the source."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "77aaeca0-9f47-4ab0-9356-e137eff6776d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"string\",\n      \"profile_count\": 4,\n      \"created_at\": \"2021-01-01T12:00:00Z\"\n    },\n    \"type\": \"risk-profiles-custom-sources\",\n    \"links\": {\n      \"self\": \"https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000\"\n    },\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29575e5d-aa0f-48ca-9a98-b54ab49a5187",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ad880b3-52db-44ca-bf7e-4683981e62e0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbc2187f-3988-4b47-b923-d61b3c2d285c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bea40e9-1e90-4f55-8ab9-020b65839008",
+          "name": "Deletes a Profiles Custom Source",
+          "request": {
+            "name": "Deletes a Profiles Custom Source",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the source."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b5037749-90be-4649-a783-8769b5739abe",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1af556e1-7367-40d7-820a-2ddbda5457d0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31fd45b5-08e4-4a66-92b4-f2b25d8304de",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "821303b6-8863-4b31-9dda-c62fc6b67d0b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02cc19a8-6eab-4806-a0a6-8c8a6b345283",
+          "name": "Modifies a Profiles Custom Source Name",
+          "request": {
+            "name": "Modifies a Profiles Custom Source Name",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the source."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b97a585-b868-4c31-9c10-ba324e822031",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"string\",\n      \"profile_count\": 4,\n      \"created_at\": \"2021-01-01T12:00:00Z\"\n    },\n    \"type\": \"risk-profiles-custom-sources\",\n    \"links\": {\n      \"self\": \"https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000\"\n    },\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fe2a017-d62d-450f-8af1-04e042b0263f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe21fa87-8c69-4157-91ff-bf14a973bfd8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fa1a138-6b5a-4739-ac26-e8f7ac6e4f50",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bbb6bea-2da7-4d12-b5cd-8347ac49e6ed",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"source_name\": \"<string>\"\n    },\n    \"type\": \"risk-profiles-custom-sources\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "88e87afd-d45f-4099-ae4c-f63b3bc8a37e",
+      "name": "Profiles",
+      "description": {
+        "content": "Operations related to the profiles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0c11218-a0f7-49d5-aef8-0d905105a6f2",
+          "name": "Retrieves all profiles from a custom source",
+          "request": {
+            "name": "Retrieves all profiles from a custom source",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                ":id",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[offset]",
+                  "value": "0",
+                  "description": "page offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[limit]",
+                  "value": "100",
+                  "description": "page limit, should not be higher than 500"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Specifies if the profiles should be returned with all attributes or only the ids.\n  * all_attributes - Return all attributes for the profiles\n  * id_only - Returns only the profile ids (Default value)\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the custom source."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "25c56b97-665e-4cb5-8f43-83a36e1bb232",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "id_only"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the custom source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"attributes\": {\n    \"data\": [\n      {\n        \"external_id\": \"string\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"MALE\",\n        \"is_deceased\": false,\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"string\",\n          \"string\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"string\",\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"middle_name\": \"string\",\n            \"name_type\": \"ELV\",\n            \"prefix\": \"string\",\n            \"suffix\": \"string\",\n            \"single_string_name\": \"string\"\n          },\n          {\n            \"entity_name\": \"string\",\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"middle_name\": \"string\",\n            \"name_type\": \"LQAKA\",\n            \"prefix\": \"string\",\n            \"suffix\": \"string\",\n            \"single_string_name\": \"string\"\n          }\n        ],\n        \"record_type\": \"UNKNOWN\",\n        \"payload\": \"string\"\n      },\n      {\n        \"external_id\": \"string\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"MALE\",\n        \"is_deceased\": false,\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"string\",\n          \"string\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"string\",\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"middle_name\": \"string\",\n            \"name_type\": \"AKA\",\n            \"prefix\": \"string\",\n            \"suffix\": \"string\",\n            \"single_string_name\": \"string\"\n          },\n          {\n            \"entity_name\": \"string\",\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"middle_name\": \"string\",\n            \"name_type\": \"OSN\",\n            \"prefix\": \"string\",\n            \"suffix\": \"string\",\n            \"single_string_name\": \"string\"\n          }\n        ],\n        \"record_type\": \"PERSON\",\n        \"payload\": \"string\"\n      }\n    ],\n    \"links\": {\n      \"self\": \"https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000/profiles/123e4567-e89b-12d3-a456-426614174000\"\n    }\n  },\n  \"links\": {\n    \"first\": \"https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20\",\n    \"next\": \"https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=40&page[limit]=20\",\n    \"prev\": \"https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20\",\n    \"last\": \"https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=210\"\n  },\n  \"meta\": {\n    \"count\": 0,\n    \"paging\": {\n      \"offset\": {\n        \"first\": 0,\n        \"last\": 0\n      }\n    },\n    \"total_count\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bee2613a-1eed-41ac-85bc-7d0e9477547b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "id_only"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the custom source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f500e125-16cc-4210-b381-56d033987553",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "id_only"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the custom source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dafee11-d398-456d-9d81-7f06a1b0ec67",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "id_only"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the custom source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90a2cefe-e60e-4e55-83ac-2b6dbdcf0756",
+          "name": "Inserts one or more profiles",
+          "request": {
+            "name": "Inserts one or more profiles",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                ":id",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the source."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"<string>\",\n        \"countries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          },\n          {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": \"<integer>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<integer>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"industry_sector\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"<string>\"\n    },\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"<string>\",\n        \"countries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          },\n          {\n            \"year\": \"<integer>\",\n            \"month\": \"<integer>\",\n            \"day\": \"<integer>\"\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": \"<integer>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<integer>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"industry_sector\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0aa1573-c809-4f20-a0d3-40deba623c67",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"profiles\"\n    },\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"profiles\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"operation\": \"INSERTION\",\n      \"status\": \"PENDING\",\n      \"source_id\": \"string\",\n      \"valid_profiles\": 0,\n      \"invalid_profiles\": 0,\n      \"pending_profiles\": 1,\n      \"processiong_profiles\": 0\n    },\n    \"type\": \"transactions\",\n    \"links\": {\n      \"self\": \"https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000\"\n    },\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e67f53c-4114-43f2-b3b9-2d9660c00f99",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"profiles\"\n    },\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"profiles\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b0cf4a9-0ade-4a80-bde2-7dcb99ad32be",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"profiles\"\n    },\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"profiles\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b652e80d-955c-44a7-85b1-7d958a8a9066",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"profiles\"\n    },\n    {\n      \"attributes\": {\n        \"external_id\": \"<string>\",\n        \"primary_country\": \"FRA\",\n        \"countries\": [\n          \"USA, RUSS\",\n          \"USA, RUSS\"\n        ],\n        \"birth_dates\": [\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          },\n          {\n            \"year\": 1990,\n            \"month\": 12,\n            \"day\": 25\n          }\n        ],\n        \"gender\": \"<string>\",\n        \"is_deceased\": \"<boolean>\",\n        \"identification_details\": [\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          },\n          {\n            \"type\": 1023,\n            \"value\": \"passport\"\n          }\n        ],\n        \"industry_sector\": [\n          \"ITECH\",\n          \"ITECH\"\n        ],\n        \"content_category\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"names\": [\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          },\n          {\n            \"entity_name\": \"<string>\",\n            \"first_name\": \"<string>\",\n            \"last_name\": \"<string>\",\n            \"middle_name\": \"<string>\",\n            \"name_type\": \"<string>\",\n            \"prefix\": \"<string>\",\n            \"suffix\": \"<string>\",\n            \"single_string_name\": \"<string>\"\n          }\n        ],\n        \"record_type\": \"<string>\",\n        \"payload\": \"<string>\"\n      },\n      \"type\": \"profiles\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a06949e-5742-42b3-8d29-71abce5306e6",
+          "name": "Retrieves a Profile",
+          "request": {
+            "name": "Retrieves a Profile",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                ":id",
+                "profiles",
+                ":peid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the source."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "peid",
+                  "description": "(Required) Id of the profile."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b62a1fab-2691-4ed6-a80e-96396f860ad4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"external_id\": \"<string>\",\n      \"primary_country\": \"FRA\",\n      \"countries\": [\n        \"USA, RUSS\",\n        \"USA, RUSS\"\n      ],\n      \"birth_dates\": [\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        },\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        }\n      ],\n      \"gender\": \"<string>\",\n      \"is_deceased\": \"<boolean>\",\n      \"identification_details\": [\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        },\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        }\n      ],\n      \"industry_sector\": [\n        \"ITECH\",\n        \"ITECH\"\n      ],\n      \"content_category\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        },\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        }\n      ],\n      \"record_type\": \"<string>\",\n      \"payload\": \"<string>\"\n    },\n    \"type\": \"profiles\",\n    \"links\": {\n      \"self\": \"https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000/profiles/123e4567-e89b-12d3-a456-426614174000\"\n    },\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55cf3228-b544-4e5c-90b6-db62935adf4e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9a0f575-3f6d-41ba-9588-7fcdeccaf25f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef89d17e-389a-4545-9b71-0a2fce9c409f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96eb8a8b-251e-4ff6-a248-4996a4846b78",
+          "name": "Updates a profile",
+          "request": {
+            "name": "Updates a profile",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                ":id",
+                "profiles",
+                ":peid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the source."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "peid",
+                  "description": "(Required) Id of the profile."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"external_id\": \"<string>\",\n      \"primary_country\": \"<string>\",\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"birth_dates\": [\n        {\n          \"year\": \"<integer>\",\n          \"month\": \"<integer>\",\n          \"day\": \"<integer>\"\n        },\n        {\n          \"year\": \"<integer>\",\n          \"month\": \"<integer>\",\n          \"day\": \"<integer>\"\n        }\n      ],\n      \"gender\": \"<string>\",\n      \"is_deceased\": \"<boolean>\",\n      \"identification_details\": [\n        {\n          \"type\": \"<integer>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<integer>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"industry_sector\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"content_category\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        },\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        }\n      ],\n      \"record_type\": \"<string>\",\n      \"payload\": \"<string>\"\n    },\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b7aebf4-b721-44af-a6bb-25d26431ff0e",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"external_id\": \"<string>\",\n      \"primary_country\": \"FRA\",\n      \"countries\": [\n        \"USA, RUSS\",\n        \"USA, RUSS\"\n      ],\n      \"birth_dates\": [\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        },\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        }\n      ],\n      \"gender\": \"<string>\",\n      \"is_deceased\": \"<boolean>\",\n      \"identification_details\": [\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        },\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        }\n      ],\n      \"industry_sector\": [\n        \"ITECH\",\n        \"ITECH\"\n      ],\n      \"content_category\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        },\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        }\n      ],\n      \"record_type\": \"<string>\",\n      \"payload\": \"<string>\"\n    },\n    \"type\": \"profiles\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"operation\": \"INSERTION\",\n      \"status\": \"PENDING\",\n      \"source_id\": \"string\",\n      \"valid_profiles\": 0,\n      \"invalid_profiles\": 0,\n      \"pending_profiles\": 1,\n      \"processiong_profiles\": 0\n    },\n    \"type\": \"transactions\",\n    \"links\": {\n      \"self\": \"https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000\"\n    },\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59414d3f-4da7-4eae-bc91-11db5a5c3289",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"external_id\": \"<string>\",\n      \"primary_country\": \"FRA\",\n      \"countries\": [\n        \"USA, RUSS\",\n        \"USA, RUSS\"\n      ],\n      \"birth_dates\": [\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        },\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        }\n      ],\n      \"gender\": \"<string>\",\n      \"is_deceased\": \"<boolean>\",\n      \"identification_details\": [\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        },\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        }\n      ],\n      \"industry_sector\": [\n        \"ITECH\",\n        \"ITECH\"\n      ],\n      \"content_category\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        },\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        }\n      ],\n      \"record_type\": \"<string>\",\n      \"payload\": \"<string>\"\n    },\n    \"type\": \"profiles\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edcdce8d-d160-44e1-bb35-34f82f740766",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"external_id\": \"<string>\",\n      \"primary_country\": \"FRA\",\n      \"countries\": [\n        \"USA, RUSS\",\n        \"USA, RUSS\"\n      ],\n      \"birth_dates\": [\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        },\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        }\n      ],\n      \"gender\": \"<string>\",\n      \"is_deceased\": \"<boolean>\",\n      \"identification_details\": [\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        },\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        }\n      ],\n      \"industry_sector\": [\n        \"ITECH\",\n        \"ITECH\"\n      ],\n      \"content_category\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        },\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        }\n      ],\n      \"record_type\": \"<string>\",\n      \"payload\": \"<string>\"\n    },\n    \"type\": \"profiles\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09b69db8-2c17-44a4-8ba2-0f157edc238c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the request body is being sent. The API supports gzip encoding for request body.",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"external_id\": \"<string>\",\n      \"primary_country\": \"FRA\",\n      \"countries\": [\n        \"USA, RUSS\",\n        \"USA, RUSS\"\n      ],\n      \"birth_dates\": [\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        },\n        {\n          \"year\": 1990,\n          \"month\": 12,\n          \"day\": 25\n        }\n      ],\n      \"gender\": \"<string>\",\n      \"is_deceased\": \"<boolean>\",\n      \"identification_details\": [\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        },\n        {\n          \"type\": 1023,\n          \"value\": \"passport\"\n        }\n      ],\n      \"industry_sector\": [\n        \"ITECH\",\n        \"ITECH\"\n      ],\n      \"content_category\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        },\n        {\n          \"entity_name\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"name_type\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"single_string_name\": \"<string>\"\n        }\n      ],\n      \"record_type\": \"<string>\",\n      \"payload\": \"<string>\"\n    },\n    \"type\": \"profiles\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b16fff28-192a-48ff-b28a-44c4af7b7cde",
+          "name": "Removes a profile",
+          "request": {
+            "name": "Removes a profile",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                ":id",
+                "profiles",
+                ":peid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the source."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "peid",
+                  "description": "(Required) Id of the profile."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b200efcc-448d-454e-a392-577c2e2bd8f6",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80220278-cf6c-4bf9-8446-9e388c3938f3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c4c6567-ea4e-45e1-a160-52a43cc56be9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c439eca1-db85-4a91-8097-d537128e9df6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    ":id",
+                    "profiles",
+                    ":peid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the source."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peid",
+                      "description": "(Required) Id of the profile."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.profiles.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "61ca399d-db50-4e42-8306-f5a70d8c4f34",
+      "name": "Transaction",
+      "description": {
+        "content": "Operations related to the transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "55bece64-e271-4acb-90f7-8699e14a7d03",
+          "name": "Retrieves the status of a transaction",
+          "request": {
+            "name": "Retrieves the status of a transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "risk-profiles-custom-sources",
+                "transactions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Id of the transaction."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                "key": "Accept-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c3e38199-2a2c-435f-899e-af9b7ce941bb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"operation\": \"INSERTION\",\n      \"status\": \"PENDING\",\n      \"source_id\": \"string\",\n      \"valid_profiles\": 1,\n      \"invalid_profiles\": 1,\n      \"pending_profiles\": 1,\n      \"processing_profiles\": 1,\n      \"valid_profile_details\": [\n        {\n          \"id\": \"31f90e11-a0b2-459d-9f22-765c6b62cac0\",\n          \"external_id\": \"external_id\",\n          \"request_index\": 0\n        },\n        {\n          \"id\": \"31f90e11-a0b2-459d-9f22-765c6b62cac0\",\n          \"external_id\": \"external_id\",\n          \"request_index\": 0\n        }\n      ],\n      \"invalid_profile_details\": [\n        {\n          \"external_id\": \"external_id\",\n          \"request_index\": 1,\n          \"errors\": [\n            {\n              \"title\": \"There was an error in the request, please recheck and try again\",\n              \"status\": 400,\n              \"code\": 1100001,\n              \"detail\": \"names[0] {The profile name contains invalid characters}\"\n            },\n            {\n              \"title\": \"There was an error in the request, please recheck and try again\",\n              \"status\": 400,\n              \"code\": 1100001,\n              \"detail\": \"names[0] {The profile name contains invalid characters}\"\n            }\n          ]\n        },\n        {\n          \"external_id\": \"external_id\",\n          \"request_index\": 1,\n          \"errors\": [\n            {\n              \"title\": \"There was an error in the request, please recheck and try again\",\n              \"status\": 400,\n              \"code\": 1100001,\n              \"detail\": \"names[0] {The profile name contains invalid characters}\"\n            },\n            {\n              \"title\": \"There was an error in the request, please recheck and try again\",\n              \"status\": 400,\n              \"code\": 1100001,\n              \"detail\": \"names[0] {The profile name contains invalid characters}\"\n            }\n          ]\n        }\n      ]\n    },\n    \"type\": \"transactions\",\n    \"links\": {\n      \"self\": \"https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000\"\n    },\n    \"id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9346c62-cbaf-4f85-93ad-23634b66a9a7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "513e199b-e70c-42c5-b7fc-f8a69e064e98",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dc2cffb-da0b-43ff-bad2-c7d866a2bb49",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk-profiles-custom-sources",
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Id of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to \"gzip\" and the payload exceeds the threshold of 8MB",
+                    "key": "Accept-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.transactions.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dowjones.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ecfaa0b4-184d-4f31-9d4d-debee8b5598c",
+    "name": "Screening and Monitoring Private Lists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Dow Jones",
+      "type": "text/plain"
+    }
+  }
+}

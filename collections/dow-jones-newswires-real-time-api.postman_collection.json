@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "b2532d6e-2069-496f-9074-0ee438d49cdd",
+      "name": "Content Search",
+      "description": {
+        "content": "Performs a full search of the PIB search system.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "361e64e0-39f1-48c0-98cf-e4c637cb3bbc",
+          "name": "/content/realtime/search",
+          "request": {
+            "name": "/content/realtime/search",
+            "description": {},
+            "url": {
+              "path": [
+                "content",
+                "realtime",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"<string>\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": \"<integer>\",\n      \"page_limit\": \"<integer>\"\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eaa96df4-e371-4337-91ab-a9f19d5ca32b",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"links\": {\n    \"self\": \"string\"\n  },\n  \"meta\": {\n    \"context\": \"string\",\n    \"count\": 8813,\n    \"metering\": {\n      \"limit\": 7884,\n      \"remaining\": \"string\",\n      \"in_grace_period\": true,\n      \"time_period_window\": \"Monthly\"\n    }\n  },\n  \"data\": [\n    {\n      \"type\": \"content\",\n      \"id\": \"string\",\n      \"links\": {\n        \"audio_uri\": \"string\",\n        \"parent_uri\": \"string\",\n        \"self\": \"string\",\n        \"video_uri\": \"string\",\n        \"webpage_uri\": \"string\"\n      },\n      \"meta\": {\n        \"alternate_document_id\": \"string\",\n        \"alternate_document_ref\": \"string\",\n        \"bill_data\": \"string\",\n        \"clipping_date\": \"2001-06-19\",\n        \"clipping_time\": \"1991-05-20T15:19:06.958Z\",\n        \"code_sets\": [\n          {\n            \"type\": \"MarketSector\",\n            \"id\": \"in\",\n            \"codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"type\": \"Government\",\n            \"id\": \"co\",\n            \"codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"document_vector\": \"string\",\n        \"edition\": {\n          \"name\": \"string\",\n          \"print\": {\n            \"date\": \"2025-08-29\",\n            \"headline\": \"string\",\n            \"page\": \"string\",\n            \"section\": \"string\",\n            \"value\": \"string\"\n          }\n        },\n        \"emphasis\": {\n          \"hot\": false,\n          \"dominant\": false,\n          \"analysis\": false\n        },\n        \"geo_relevance\": [\n          {\n            \"latitude\": 6532.847058340111,\n            \"longitude\": 8568.241531475034\n          },\n          {\n            \"latitude\": 6840.597891117024,\n            \"longitude\": 4564.3254767324615\n          }\n        ],\n        \"is_translation_allowed\": false,\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"language\": {\n          \"code\": \"string\",\n          \"descriptor\": \"string\"\n        },\n        \"metrics\": {\n          \"character_count\": 2220,\n          \"word_count\": 703,\n          \"image_count\": 6335,\n          \"chart_count\": 9198\n        },\n        \"original_doc_id\": \"string\",\n        \"rank\": 1580,\n        \"source\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"logo\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"truncation_rules\": [\n          {\n            \"rule\": \"ExtraSmall\",\n            \"length\": 8055\n          },\n          {\n            \"rule\": \"Medium\",\n            \"length\": 280\n          }\n        ]\n      },\n      \"attributes\": {\n        \"art\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"associations\": {\n          \"root_id\": \"string\",\n          \"parent_id\": \"string\",\n          \"parent_id_ref\": \"string\"\n        },\n        \"authors\": [\n          {\n            \"full_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"topic_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"full_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"topic_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"best_date\": \"1993-01-07\",\n        \"best_time\": \"1991-08-16T10:27:06.648Z\",\n        \"body\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"byline\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"column_name\": \"string\",\n        \"contact\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_collection\": \"string\",\n        \"content_status\": \"string\",\n        \"content_type\": \"HTML\",\n        \"copyright\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"corrections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dist_publish_date\": \"1995-02-03\",\n        \"dist_publish_time\": \"2009-01-08T15:55:19.991Z\",\n        \"headline\": {\n          \"flashline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"main\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deck\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"live_date\": \"1968-04-09\",\n        \"live_time\": \"2023-08-29T07:36:15.266Z\",\n        \"load_date\": \"2018-06-23\",\n        \"load_time\": \"1947-02-26T20:22:57.165Z\",\n        \"modification_date\": \"1954-06-11\",\n        \"modification_time\": \"1988-08-24T04:32:37.526Z\",\n        \"notes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"page\": \"string\",\n        \"publication_date\": \"1969-12-12\",\n        \"publication_time\": \"2021-02-02T10:16:00.645Z\",\n        \"publisher\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"group_code\": \"string\",\n          \"group_name\": \"string\"\n        },\n        \"section_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"seo_id\": \"string\",\n        \"snippet\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summary\": {\n          \"body\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"byline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"destination_type\": \"string\",\n          \"headline\": {\n            \"flashline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"main\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deck\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pages\": [\n            \"string\",\n            \"string\"\n          ],\n          \"related_links\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"variant\": \"string\"\n        },\n        \"upstream_origin\": \"string\",\n        \"upstream_origin_id\": \"string\",\n        \"volume\": \"string\"\n      },\n      \"relationships\": {\n        \"included_content\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ]\n        },\n        \"duplicate_content\": {\n          \"data\": [\n            {\n              \"type\": \"content\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"content\",\n              \"id\": \"string\"\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"type\": \"content\",\n      \"id\": \"string\",\n      \"links\": {\n        \"audio_uri\": \"string\",\n        \"parent_uri\": \"string\",\n        \"self\": \"string\",\n        \"video_uri\": \"string\",\n        \"webpage_uri\": \"string\"\n      },\n      \"meta\": {\n        \"alternate_document_id\": \"string\",\n        \"alternate_document_ref\": \"string\",\n        \"bill_data\": \"string\",\n        \"clipping_date\": \"1970-06-19\",\n        \"clipping_time\": \"2019-06-06T04:25:35.857Z\",\n        \"code_sets\": [\n          {\n            \"type\": \"NewsSubject\",\n            \"id\": \"re\",\n            \"codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"type\": \"Author\",\n            \"id\": \"gv\",\n            \"codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"document_vector\": \"string\",\n        \"edition\": {\n          \"name\": \"string\",\n          \"print\": {\n            \"date\": \"1978-03-16\",\n            \"headline\": \"string\",\n            \"page\": \"string\",\n            \"section\": \"string\",\n            \"value\": \"string\"\n          }\n        },\n        \"emphasis\": {\n          \"hot\": false,\n          \"dominant\": false,\n          \"analysis\": false\n        },\n        \"geo_relevance\": [\n          {\n            \"latitude\": 8863.748682757487,\n            \"longitude\": 7080.665678113909\n          },\n          {\n            \"latitude\": 3000.4919035083367,\n            \"longitude\": 5469.321206976377\n          }\n        ],\n        \"is_translation_allowed\": false,\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"language\": {\n          \"code\": \"string\",\n          \"descriptor\": \"string\"\n        },\n        \"metrics\": {\n          \"character_count\": 9714,\n          \"word_count\": 6771,\n          \"image_count\": 2107,\n          \"chart_count\": 1244\n        },\n        \"original_doc_id\": \"string\",\n        \"rank\": 6327,\n        \"source\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"logo\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"truncation_rules\": [\n          {\n            \"rule\": \"ExtraSmall\",\n            \"length\": 6341\n          },\n          {\n            \"rule\": \"ExtraSmall\",\n            \"length\": 7532\n          }\n        ]\n      },\n      \"attributes\": {\n        \"art\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"associations\": {\n          \"root_id\": \"string\",\n          \"parent_id\": \"string\",\n          \"parent_id_ref\": \"string\"\n        },\n        \"authors\": [\n          {\n            \"full_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"topic_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"full_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"topic_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"best_date\": \"2007-12-22\",\n        \"best_time\": \"2011-09-06T20:47:57.167Z\",\n        \"body\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"byline\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"column_name\": \"string\",\n        \"contact\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_collection\": \"string\",\n        \"content_status\": \"string\",\n        \"content_type\": \"Blog\",\n        \"copyright\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"corrections\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"credit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dist_publish_date\": \"1947-09-12\",\n        \"dist_publish_time\": \"2022-07-11T03:18:25.820Z\",\n        \"headline\": {\n          \"flashline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"main\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deck\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"live_date\": \"2008-03-25\",\n        \"live_time\": \"1984-05-25T17:12:18.448Z\",\n        \"load_date\": \"1981-03-24\",\n        \"load_time\": \"1950-02-18T22:26:59.076Z\",\n        \"modification_date\": \"2007-05-26\",\n        \"modification_time\": \"2020-05-11T22:49:26.869Z\",\n        \"notes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"page\": \"string\",\n        \"publication_date\": \"2024-09-12\",\n        \"publication_time\": \"2025-12-28T11:31:52.124Z\",\n        \"publisher\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"group_code\": \"string\",\n          \"group_name\": \"string\"\n        },\n        \"section_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"seo_id\": \"string\",\n        \"snippet\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"summary\": {\n          \"body\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"byline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"destination_type\": \"string\",\n          \"headline\": {\n            \"flashline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"main\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deck\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pages\": [\n            \"string\",\n            \"string\"\n          ],\n          \"related_links\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"variant\": \"string\"\n        },\n        \"upstream_origin\": \"string\",\n        \"upstream_origin_id\": \"string\",\n        \"volume\": \"string\"\n      },\n      \"relationships\": {\n        \"included_content\": {\n          \"data\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": \"string\"\n            }\n          ]\n        },\n        \"duplicate_content\": {\n          \"data\": [\n            {\n              \"type\": \"content\",\n              \"id\": \"string\"\n            },\n            {\n              \"type\": \"content\",\n              \"id\": \"string\"\n            }\n          ]\n        }\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"Illustration\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"bytes\": 7800,\n        \"external\": false,\n        \"height\": 649,\n        \"id_ref\": \"string\",\n        \"is_responsive\": true,\n        \"mime_type\": \"string\",\n        \"size_code\": \"string\",\n        \"slug\": \"string\",\n        \"sub_type\": \"string\",\n        \"width\": 1478\n      },\n      \"links\": {\n        \"self\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Illustration\",\n      \"id\": \"string\",\n      \"attributes\": {\n        \"bytes\": 6268,\n        \"external\": false,\n        \"height\": 3941,\n        \"id_ref\": \"string\",\n        \"is_responsive\": true,\n        \"mime_type\": \"string\",\n        \"size_code\": \"string\",\n        \"slug\": \"string\",\n        \"sub_type\": \"string\",\n        \"width\": 4742\n      },\n      \"links\": {\n        \"self\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ffef276-b40c-4829-9a76-54508d26e0a9",
+              "name": "Bad Request - Incorrect Parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0d09c27-4625-4ac0-aca3-7d6a4b73f7fb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9815d360-5596-4c61-a572-5dcee2a7f27b",
+              "name": "Not Found - No resource found for the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db576fd3-83ad-4f14-b2c1-cb907c2963ab",
+              "name": "Internal Server Error - Server encountered an unexpected condition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    "realtime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": {\n        \"content_collection\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"search_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"boost_string\": [\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"scope\": \"<string>\",\n            \"value\": \"<string>\",\n            \"boost\": \"<string>\"\n          }\n        ],\n        \"date\": {\n          \"days_range\": \"<string>\"\n        },\n        \"original_doc_id_filter\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"similarity_filter\": {\n        \"is_sort_by\": false,\n        \"document_vector\": \"<string>\",\n        \"type\": \"<string>\",\n        \"article_id\": \"<string>\",\n        \"is_exclude_original\": false\n      },\n      \"linguistics\": {\n        \"query_language\": \"<string>\",\n        \"is_lemmatization_on\": false\n      },\n      \"formatting\": {\n        \"snippet_type\": \"<string>\",\n        \"markup_type\": \"<string>\",\n        \"sort_order\": \"-PublicationDateChronological\",\n        \"is_return_rich_article_id\": false\n      },\n      \"navigation\": {\n        \"is_return_collection_count\": false,\n        \"content_collection_count\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"is_return_headline_coding\": false,\n        \"is_return_djn_headline_coding\": false,\n        \"keyword_navigators\": {\n          \"is_return_keywords\": false,\n          \"max_keywords\": \"<integer>\"\n        },\n        \"code_navigators\": {\n          \"mode\": \"<string>\",\n          \"sub_type\": \"<string>\",\n          \"min_buckets\": \"<integer>\",\n          \"max_buckets\": \"<integer>\",\n          \"custom_navigator\": [\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            },\n            {\n              \"navigator_type\": [\n                \"<string>\",\n                \"<string>\"\n              ],\n              \"sub_type\": \"<string>\",\n              \"min_buckets\": \"<integer>\",\n              \"max_buckets\": \"<integer>\"\n            }\n          ]\n        },\n        \"time_navigators\": [\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          },\n          {\n            \"mode\": \"<string>\",\n            \"min_buckets\": \"<integer>\",\n            \"max_buckets\": \"<integer>\"\n          }\n        ]\n      },\n      \"descriptor\": {\n        \"mode\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      \"page_offset\": 0,\n      \"page_limit\": 5\n    },\n    \"id\": \"Search\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.content.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"meta\": {\n    \"id\": \"string\",\n    \"type\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dowjones.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ddc545b1-0c77-42bc-bbe3-57940571e34d",
+    "name": "Dow Jones Newswires Real-time API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use this API to perform a search of the real-time system, using a Rest Request that provides  the same functionality as the PerformContentSearch of the Search SOAP service.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "item": [
+    {
+      "id": "a132af3e-025f-4e21-95ef-549d547c4863",
+      "name": "Risk and Compliance search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa5e6652-e910-40b3-9bda-cdc6dba47d69",
+          "name": "Screening of Risk and Compliance",
+          "request": {
+            "name": "Screening of Risk and Compliance",
+            "description": {
+              "content": "Returns Screening of Risk and Compliance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "riskentities",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "control_data",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "disabled": false,
+                "description": "Credential information for the transaction",
+                "key": "djip-UserCredentialData",
+                "value": "{\"userId\":\"EnterUserId\",\"accountId\":\"EnterAccountID\",\"userPassword\":\"EnterPassword\",\"namespace\":\"EnterNameSpace\"}"
+              },
+              {
+                "disabled": false,
+                "description": "Session ID for the transaction",
+                "key": "djip-SessionID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Authorization Data for the transaction",
+                "key": "djip-AuthorizationData",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.dowjones.dna.riskentities.v_2.0+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.riskentities.v_2.6+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"filter_group_and\": {\n        \"group_operator\": \"<string>\",\n        \"filters\": {\n          \"search_keyword\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"country_territory\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"identification\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"entity_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"date_of_birth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"person_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"record_types\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"content_set\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"filter_group_or\": {\n        \"group_operator\": \"<string>\",\n        \"filters\": {\n          \"sanctions_list\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"content_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"other_official_list\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"other_exclusion_list\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"state_ownership\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"occupation_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hrf_category\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"paging\": {\n        \"offset\": \"<integer>\",\n        \"limit\": \"<integer>\"\n      },\n      \"screening_context\": \"<string>\",\n      \"sort\": \"<string>\",\n      \"is_audit\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77bb6556-e6f2-4382-ae99-a702e878b652",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "riskentities",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "control_data",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Credential information for the transaction",
+                    "key": "djip-UserCredentialData",
+                    "value": "{\"userId\":\"EnterUserId\",\"accountId\":\"EnterAccountID\",\"userPassword\":\"EnterPassword\",\"namespace\":\"EnterNameSpace\"}"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Session ID for the transaction",
+                    "key": "djip-SessionID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Authorization Data for the transaction",
+                    "key": "djip-AuthorizationData",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.riskentities.v_2.6+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"is_audit\": true,\n      \"filter_group_and\": {\n        \"group_operator\": \"AND\",\n        \"filters\": {\n          \"search_keyword\": {\n            \"scope\": [\n              \"Name\"\n            ],\n            \"type\": \"Precise\",\n            \"text\": \"keyword to search\"\n          },\n          \"country_territory\": {\n            \"country_territory_types\": {\n              \"country_territory_types\": [\n                \"3\"\n              ],\n              \"operator\": \"AND\"\n            },\n            \"countries_territories\": {\n              \"codes\": [\n                \"USA\",\n                \"GFR\"\n              ],\n              \"exclude_codes\": [],\n              \"operator\": \"OR\"\n            }\n          },\n          \"date_of_birth\": {\n            \"date\": {\n              \"month\": \"1\",\n              \"year\": \"2020\",\n              \"is_strict_match\": false,\n              \"day\": \"1\"\n            },\n            \"year_range\": {\n              \"from\": \"1\",\n              \"to\": \"1\"\n            },\n            \"is_deceased_excluded\": false\n          },\n          \"record_types\": [\n            \"Person\"\n          ],\n          \"content_set\": [\n            \"Watchlist\",\n            \"Locations\",\n            \"StateOwnedCompanies\",\n            \"AntiCorruption\",\n            \"AdverseMedia\"\n          ]\n        }\n      },\n      \"filter_group_or\": {\n        \"group_operator\": \"OR\",\n        \"filters\": {\n          \"sanctions_list\": {\n            \"codes\": [\n              \"AE-CAE\",\n              \"AR-MOJDH\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          },\n          \"content_category\": {\n            \"special_interest\": {\n              \"codes\": [\n                \"1001\",\n                \"1002\"\n              ],\n              \"exclude_codes\": [],\n              \"is_all_excluded\": false,\n              \"operator\": \"AND\"\n            },\n            \"adverse_media\": {\n              \"codes\": [\n                \"33\",\n                \"34\"\n              ],\n              \"exclude_codes\": [],\n              \"is_all_excluded\": false,\n              \"operator\": \"AND\"\n            },\n            \"location\": {\n              \"codes\": [\n                \"121\"\n              ],\n              \"exclude_codes\": [],\n              \"is_all_excluded\": false,\n              \"operator\": \"AND\"\n            }\n          },\n          \"other_official_list\": {\n            \"codes\": [\n              \"ADB\",\n              \"AE-DFSA\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          },\n          \"other_exclusion_list\": {\n            \"codes\": [\n              \"AFDB\",\n              \"BR-CGU\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          },\n          \"state_ownership\": {\n            \"code\": \"5\",\n            \"is_unknown_excluded\": false,\n            \"is_all_excluded\": false\n          },\n          \"occupation_category\": {\n            \"codes\": [\n              \"18\",\n              \"6\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          },\n          \"hrf_category\": {\n            \"codes\": [\n              \"1011\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          }\n        }\n      },\n      \"paging\": {\n        \"offset\": 0,\n        \"limit\": 10\n      },\n      \"sort\": \"PercentMatch\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.riskentities.v_2.6+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"attributes\": {\n        \"type\": \"string\",\n        \"primary_name\": \"string\",\n        \"title\": \"string\",\n        \"country_territory_code\": \"string\",\n        \"country_territory_name\": \"string\",\n        \"gender\": \"string\",\n        \"is_subsidiary\": false,\n        \"score\": \"string\",\n        \"countries_territories\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"date_of_birth\": [\n          {\n            \"month\": \"1\",\n            \"year\": \"2020\",\n            \"day\": \"1\",\n            \"is_strict_match\": true\n          },\n          {\n            \"month\": \"1\",\n            \"year\": \"2020\",\n            \"day\": \"1\",\n            \"is_strict_match\": true\n          }\n        ],\n        \"matched_criteria\": {\n          \"date_of_birth\": {\n            \"month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"year\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"day\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_strict_match\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": {\n            \"is_structural_variation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_non_linguistic_variation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_linguistic_variation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"icon_hints\": [\n          {\n            \"icon_hint\": \"SI-PERSON\",\n            \"status\": \"Active\"\n          },\n          {\n            \"icon_hint\": \"SI-PERSON\",\n            \"status\": \"Active\"\n          }\n        ],\n        \"filter_source\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"attributes\": {\n        \"type\": \"string\",\n        \"primary_name\": \"string\",\n        \"title\": \"string\",\n        \"country_territory_code\": \"string\",\n        \"country_territory_name\": \"string\",\n        \"gender\": \"string\",\n        \"is_subsidiary\": false,\n        \"score\": \"string\",\n        \"countries_territories\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"date_of_birth\": [\n          {\n            \"month\": \"1\",\n            \"year\": \"2020\",\n            \"day\": \"1\",\n            \"is_strict_match\": true\n          },\n          {\n            \"month\": \"1\",\n            \"year\": \"2020\",\n            \"day\": \"1\",\n            \"is_strict_match\": false\n          }\n        ],\n        \"matched_criteria\": {\n          \"date_of_birth\": {\n            \"month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"year\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"day\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_strict_match\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": {\n            \"is_structural_variation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_non_linguistic_variation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"is_linguistic_variation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"icon_hints\": [\n          {\n            \"icon_hint\": \"SI-PERSON\",\n            \"status\": \"Active\"\n          },\n          {\n            \"icon_hint\": \"SI-PERSON\",\n            \"status\": \"Active\"\n          }\n        ],\n        \"filter_source\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"count\": 13,\n    \"first\": 0,\n    \"last\": 0,\n    \"total_count\": 13,\n    \"screening_context\": \"string\",\n    \"is_audit\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3215a794-368b-4022-9a73-6df0585e889a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "riskentities",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "control_data",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Credential information for the transaction",
+                    "key": "djip-UserCredentialData",
+                    "value": "{\"userId\":\"EnterUserId\",\"accountId\":\"EnterAccountID\",\"userPassword\":\"EnterPassword\",\"namespace\":\"EnterNameSpace\"}"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Session ID for the transaction",
+                    "key": "djip-SessionID",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Authorization Data for the transaction",
+                    "key": "djip-AuthorizationData",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"is_audit\": true,\n      \"filter_group_and\": {\n        \"group_operator\": \"AND\",\n        \"filters\": {\n          \"search_keyword\": {\n            \"scope\": [\n              \"Name\"\n            ],\n            \"type\": \"Precise\",\n            \"text\": \"keyword to search\"\n          },\n          \"country_territory\": {\n            \"country_territory_types\": {\n              \"country_territory_types\": [\n                \"3\"\n              ],\n              \"operator\": \"AND\"\n            },\n            \"countries_territories\": {\n              \"codes\": [\n                \"USA\",\n                \"GFR\"\n              ],\n              \"exclude_codes\": [],\n              \"operator\": \"OR\"\n            }\n          },\n          \"date_of_birth\": {\n            \"date\": {\n              \"month\": \"1\",\n              \"year\": \"2020\",\n              \"is_strict_match\": false,\n              \"day\": \"1\"\n            },\n            \"year_range\": {\n              \"from\": \"1\",\n              \"to\": \"1\"\n            },\n            \"is_deceased_excluded\": false\n          },\n          \"record_types\": [\n            \"Person\"\n          ],\n          \"content_set\": [\n            \"Watchlist\",\n            \"Locations\",\n            \"StateOwnedCompanies\",\n            \"AntiCorruption\",\n            \"AdverseMedia\"\n          ]\n        }\n      },\n      \"filter_group_or\": {\n        \"group_operator\": \"OR\",\n        \"filters\": {\n          \"sanctions_list\": {\n            \"codes\": [\n              \"AE-CAE\",\n              \"AR-MOJDH\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          },\n          \"content_category\": {\n            \"special_interest\": {\n              \"codes\": [\n                \"1001\",\n                \"1002\"\n              ],\n              \"exclude_codes\": [],\n              \"is_all_excluded\": false,\n              \"operator\": \"AND\"\n            },\n            \"adverse_media\": {\n              \"codes\": [\n                \"33\",\n                \"34\"\n              ],\n              \"exclude_codes\": [],\n              \"is_all_excluded\": false,\n              \"operator\": \"AND\"\n            },\n            \"location\": {\n              \"codes\": [\n                \"121\"\n              ],\n              \"exclude_codes\": [],\n              \"is_all_excluded\": false,\n              \"operator\": \"AND\"\n            }\n          },\n          \"other_official_list\": {\n            \"codes\": [\n              \"ADB\",\n              \"AE-DFSA\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          },\n          \"other_exclusion_list\": {\n            \"codes\": [\n              \"AFDB\",\n              \"BR-CGU\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          },\n          \"state_ownership\": {\n            \"code\": \"5\",\n            \"is_unknown_excluded\": false,\n            \"is_all_excluded\": false\n          },\n          \"occupation_category\": {\n            \"codes\": [\n              \"18\",\n              \"6\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          },\n          \"hrf_category\": {\n            \"codes\": [\n              \"1011\"\n            ],\n            \"exclude_codes\": [],\n            \"is_all_excluded\": false,\n            \"operator\": \"AND\"\n          }\n        }\n      },\n      \"paging\": {\n        \"offset\": 0,\n        \"limit\": 10\n      },\n      \"sort\": \"PercentMatch\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dowjones.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "24b892c0-8c82-48b9-af07-4c2807fffdff",
+    "name": "Risk and Compliance APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Risk and Compliance APIs\n\nContact Support:\n Name: Dow Jones",
+      "type": "text/plain"
+    }
+  }
+}

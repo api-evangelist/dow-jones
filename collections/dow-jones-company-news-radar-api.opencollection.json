@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API for Search realtime Content resource",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get swagger json",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/search-realtime/swagger"
+          },
+          "docs": "Use for swagger viewer endpoint"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Content Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Performs a full search of the PIB search system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/search-realtime/content/realtime/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a full search of the PIB search system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

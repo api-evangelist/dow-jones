@@ -1,0 +1,434 @@
+{
+  "item": [
+    {
+      "id": "fc4dcbfa-5339-4846-bfe1-f8a672944ece",
+      "name": "Content",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a636c8c9-af95-44d5-9253-c712706929fc",
+          "name": "Gets a single content by its ref ID –a DowJones Resource Name (DRN).\r\nExamples of ref ID (DRN ID): drn:content.article.BL-PENTAB-3839",
+          "request": {
+            "name": "Gets a single content by its ref ID –a DowJones Resource Name (DRN).\r\nExamples of ref ID (DRN ID): drn:content.article.BL-PENTAB-3839",
+            "description": {},
+            "url": {
+              "path": [
+                "content",
+                ":ref"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ref",
+                  "description": "(Required) A reference ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3302596e-c62a-408f-8f80-0d94fa67701d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) A reference ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna+json"
+                }
+              ],
+              "body": "{\n  \"jsonapi\": {\n    \"version\": \"string\"\n  },\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"attributes\": {\n      \"content_type\": \"string\",\n      \"associations\": {\n        \"root_id\": \"string\",\n        \"parent_id\": \"string\",\n        \"parent_id_ref\": \"string\",\n        \"mantis_id\": \"string\",\n        \"editor_id\": \"string\"\n      },\n      \"authors\": [\n        {\n          \"full_name\": \"string\",\n          \"topic_id\": \"string\"\n        },\n        {\n          \"full_name\": \"string\",\n          \"topic_id\": \"string\"\n        }\n      ],\n      \"body\": [\n        {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        }\n      ],\n      \"byline\": {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"ref\": \"string\",\n        \"content\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          }\n        ],\n        \"text\": \"string\",\n        \"variant\": \"string\",\n        \"debug\": \"string\"\n      },\n      \"credit\": {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"ref\": \"string\",\n        \"content\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          }\n        ],\n        \"text\": \"string\",\n        \"variant\": \"string\",\n        \"debug\": \"string\"\n      },\n      \"contact\": {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"ref\": \"string\",\n        \"content\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          }\n        ],\n        \"text\": \"string\",\n        \"variant\": \"string\",\n        \"debug\": \"string\"\n      },\n      \"corrections\": {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"ref\": \"string\",\n        \"content\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          }\n        ],\n        \"text\": \"string\",\n        \"variant\": \"string\",\n        \"debug\": \"string\"\n      },\n      \"column_name\": \"string\",\n      \"copyright\": {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"ref\": \"string\",\n        \"content\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          }\n        ],\n        \"text\": \"string\",\n        \"variant\": \"string\",\n        \"debug\": \"string\"\n      },\n      \"display_name\": \"string\",\n      \"headline\": {\n        \"flashline\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"main\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"deck\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        }\n      },\n      \"hosted_url\": \"string\",\n      \"id_ref\": \"string\",\n      \"live_date\": \"string\",\n      \"live_time\": \"1996-06-03T00:48:50.414Z\",\n      \"major_revision_date\": \"1960-08-19T03:29:05.426Z\",\n      \"minor_revision\": false,\n      \"modification_date\": \"string\",\n      \"modification_time\": \"2001-10-01T14:50:41.578Z\",\n      \"order\": 391,\n      \"original_headline\": {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"ref\": \"string\",\n        \"content\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          }\n        ],\n        \"text\": \"string\",\n        \"variant\": \"string\",\n        \"debug\": \"string\"\n      },\n      \"page\": \"string\",\n      \"product\": \"string\",\n      \"publication_date\": \"string\",\n      \"publication_time\": \"2017-12-01T02:25:39.489Z\",\n      \"publisher\": {\n        \"code\": \"string\",\n        \"name\": \"string\",\n        \"group_code\": \"string\",\n        \"group_name\": \"string\"\n      },\n      \"section_name\": {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"ref\": \"string\",\n        \"content\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n          }\n        ],\n        \"text\": \"string\",\n        \"variant\": \"string\",\n        \"debug\": \"string\"\n      },\n      \"section_type\": \"string\",\n      \"seo_id\": \"string\",\n      \"summary\": {\n        \"variant\": \"string\",\n        \"destination_type\": \"string\",\n        \"pages\": [\n          \"string\",\n          \"string\"\n        ],\n        \"byline\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"headline\": {\n          \"flashline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"main\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deck\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"body\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"related_links\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"id\": \"string\",\n      \"attributes\": {},\n      \"errors\": [\n        {\n          \"title\": \"string\",\n          \"id\": \"string\",\n          \"detail\": \"string\",\n          \"status\": \"temporaryRedirect\",\n          \"code\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"id\": \"string\",\n          \"detail\": \"string\",\n          \"status\": \"oK\",\n          \"code\": \"string\"\n        }\n      ],\n      \"links\": {\n        \"self\": \"string\",\n        \"related\": {\n          \"href\": \"string\",\n          \"meta\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"meta\": {\n        \"count\": 3244\n      }\n    },\n    \"links\": {},\n    \"meta\": {}\n  },\n  \"links\": {},\n  \"meta\": {\n    \"problems\": [\n      {\n        \"origin_id\": \"string\",\n        \"type\": \"string\",\n        \"problem_xml\": \"string\",\n        \"timestamp\": \"1973-11-01T10:48:13.622Z\"\n      },\n      {\n        \"origin_id\": \"string\",\n        \"type\": \"string\",\n        \"problem_xml\": \"string\",\n        \"timestamp\": \"2023-04-05T06:18:24.278Z\"\n      }\n    ],\n    \"codes\": {\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"code_with_significance\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"parser_version\": {\n      \"major\": 8780,\n      \"minor\": 5854,\n      \"build\": 5077,\n      \"revision\": 8102,\n      \"major_revision\": 9238,\n      \"minor_revision\": 571\n    },\n    \"source\": {\n      \"parameter\": \"string\"\n    },\n    \"original_doc_id\": \"string\",\n    \"language\": {\n      \"code\": \"string\"\n    }\n  },\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"detail\": \"string\",\n      \"status\": \"ambiguous\",\n      \"code\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"detail\": \"string\",\n      \"status\": \"unused\",\n      \"code\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65a13311-46ed-4344-9ba1-ca9fd1ba0a22",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) A reference ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna+json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"id\": \"string\",\n  \"detail\": \"string\",\n  \"status\": \"temporaryRedirect\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0415e993-f80a-4974-a185-2f0507347baa",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) A reference ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna+json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"id\": \"string\",\n  \"detail\": \"string\",\n  \"status\": \"temporaryRedirect\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "edc2632b-951d-4346-9548-15a5de2cd783",
+      "name": "ContentCollections",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d464f90-a1d2-422f-9c27-7f15dfd4d63a",
+          "name": "Gets the content of an entitled content-collection by its DRN ID",
+          "request": {
+            "name": "Gets the content of an entitled content-collection by its DRN ID",
+            "description": {},
+            "url": {
+              "path": [
+                "content-collections",
+                ":ref"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "prepub",
+                  "value": "false",
+                  "description": "Specifies if search should be prepub"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ref",
+                  "description": "(Required) A reference ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8200fecb-6c5c-4373-89ca-4f3df1227dcd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content-collections",
+                    ":ref"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prepub",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ref",
+                      "description": "(Required) A reference ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna+json"
+                }
+              ],
+              "body": "{\n  \"jsonapi\": {\n    \"version\": \"string\"\n  },\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"string\",\n    \"attributes\": {\n      \"description\": \"string\"\n    },\n    \"relationships\": {\n      \"articles\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"videos\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"audio\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"errors\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  },\n  \"links\": {},\n  \"included\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"attributes\": {\n        \"content_type\": \"string\",\n        \"associations\": {\n          \"root_id\": \"string\",\n          \"parent_id\": \"string\",\n          \"parent_id_ref\": \"string\",\n          \"mantis_id\": \"string\",\n          \"editor_id\": \"string\"\n        },\n        \"authors\": [\n          {\n            \"full_name\": \"string\",\n            \"topic_id\": \"string\"\n          },\n          {\n            \"full_name\": \"string\",\n            \"topic_id\": \"string\"\n          }\n        ],\n        \"body\": [\n          {\n            \"type\": \"string\",\n            \"id\": \"string\",\n            \"ref\": \"string\",\n            \"content\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"text\": \"string\",\n            \"variant\": \"string\",\n            \"debug\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"id\": \"string\",\n            \"ref\": \"string\",\n            \"content\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"text\": \"string\",\n            \"variant\": \"string\",\n            \"debug\": \"string\"\n          }\n        ],\n        \"byline\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"credit\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"contact\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"corrections\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"column_name\": \"string\",\n        \"copyright\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"display_name\": \"string\",\n        \"headline\": {\n          \"flashline\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"main\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"deck\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"hosted_url\": \"string\",\n        \"id_ref\": \"string\",\n        \"live_date\": \"string\",\n        \"live_time\": \"2001-01-28T13:27:55.104Z\",\n        \"major_revision_date\": \"1988-11-21T15:27:44.174Z\",\n        \"minor_revision\": true,\n        \"modification_date\": \"string\",\n        \"modification_time\": \"1981-11-04T01:55:01.296Z\",\n        \"order\": 8455,\n        \"original_headline\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"page\": \"string\",\n        \"product\": \"string\",\n        \"publication_date\": \"string\",\n        \"publication_time\": \"1967-08-22T11:41:49.527Z\",\n        \"publisher\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"group_code\": \"string\",\n          \"group_name\": \"string\"\n        },\n        \"section_name\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"section_type\": \"string\",\n        \"seo_id\": \"string\",\n        \"summary\": {\n          \"variant\": \"string\",\n          \"destination_type\": \"string\",\n          \"pages\": [\n            \"string\",\n            \"string\"\n          ],\n          \"byline\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headline\": {\n            \"flashline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"main\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deck\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"body\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"related_links\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"id\": \"string\",\n        \"attributes\": {},\n        \"errors\": [\n          {\n            \"title\": \"string\",\n            \"id\": \"string\",\n            \"detail\": \"string\",\n            \"status\": \"redirectKeepVerb\",\n            \"code\": \"string\"\n          },\n          {\n            \"title\": \"string\",\n            \"id\": \"string\",\n            \"detail\": \"string\",\n            \"status\": \"internalServerError\",\n            \"code\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"string\",\n          \"related\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"meta\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"meta\": {\n          \"count\": 8403\n        }\n      },\n      \"links\": {},\n      \"meta\": {}\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"attributes\": {\n        \"content_type\": \"string\",\n        \"associations\": {\n          \"root_id\": \"string\",\n          \"parent_id\": \"string\",\n          \"parent_id_ref\": \"string\",\n          \"mantis_id\": \"string\",\n          \"editor_id\": \"string\"\n        },\n        \"authors\": [\n          {\n            \"full_name\": \"string\",\n            \"topic_id\": \"string\"\n          },\n          {\n            \"full_name\": \"string\",\n            \"topic_id\": \"string\"\n          }\n        ],\n        \"body\": [\n          {\n            \"type\": \"string\",\n            \"id\": \"string\",\n            \"ref\": \"string\",\n            \"content\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"text\": \"string\",\n            \"variant\": \"string\",\n            \"debug\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"id\": \"string\",\n            \"ref\": \"string\",\n            \"content\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"text\": \"string\",\n            \"variant\": \"string\",\n            \"debug\": \"string\"\n          }\n        ],\n        \"byline\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"credit\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"contact\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"corrections\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"column_name\": \"string\",\n        \"copyright\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"display_name\": \"string\",\n        \"headline\": {\n          \"flashline\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"main\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"deck\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"hosted_url\": \"string\",\n        \"id_ref\": \"string\",\n        \"live_date\": \"string\",\n        \"live_time\": \"1977-01-05T16:28:14.012Z\",\n        \"major_revision_date\": \"1995-03-10T08:25:03.589Z\",\n        \"minor_revision\": true,\n        \"modification_date\": \"string\",\n        \"modification_time\": \"1965-08-14T00:27:42.955Z\",\n        \"order\": 8789,\n        \"original_headline\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"page\": \"string\",\n        \"product\": \"string\",\n        \"publication_date\": \"string\",\n        \"publication_time\": \"1999-09-13T21:33:04.890Z\",\n        \"publisher\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"group_code\": \"string\",\n          \"group_name\": \"string\"\n        },\n        \"section_name\": {\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"ref\": \"string\",\n          \"content\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/BaseContent detected>\"\n            }\n          ],\n          \"text\": \"string\",\n          \"variant\": \"string\",\n          \"debug\": \"string\"\n        },\n        \"section_type\": \"string\",\n        \"seo_id\": \"string\",\n        \"summary\": {\n          \"variant\": \"string\",\n          \"destination_type\": \"string\",\n          \"pages\": [\n            \"string\",\n            \"string\"\n          ],\n          \"byline\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"variant\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"debug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headline\": {\n            \"flashline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"main\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deck\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"body\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"related_links\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"id\": \"string\",\n        \"attributes\": {},\n        \"errors\": [\n          {\n            \"title\": \"string\",\n            \"id\": \"string\",\n            \"detail\": \"string\",\n            \"status\": \"resetContent\",\n            \"code\": \"string\"\n          },\n          {\n            \"title\": \"string\",\n            \"id\": \"string\",\n            \"detail\": \"string\",\n            \"status\": \"serviceUnavailable\",\n            \"code\": \"string\"\n          }\n        ],\n        \"links\": {\n          \"self\": \"string\",\n          \"related\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"meta\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"meta\": {\n          \"count\": 4225\n        }\n      },\n      \"links\": {},\n      \"meta\": {}\n    }\n  ],\n  \"meta\": {\n    \"metrics\": {\n      \"count\": 297\n    }\n  },\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"detail\": \"string\",\n      \"status\": \"expectationFailed\",\n      \"code\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"id\": \"string\",\n      \"detail\": \"string\",\n      \"status\": \"requestEntityTooLarge\",\n      \"code\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4e2babc-8616-4a84-837b-5000e5cff4dd",
+          "name": "Gets a full list of entitled content-collection IDs",
+          "request": {
+            "name": "Gets a full list of entitled content-collection IDs",
+            "description": {},
+            "url": {
+              "path": [
+                "content-collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "92a86967-fdb7-4499-896e-237c69850986",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content-collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dowjones.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9091d7df-2da7-4900-bb7c-cbf8f98fbee7",
+    "name": "Top Stories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

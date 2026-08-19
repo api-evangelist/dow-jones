@@ -1,0 +1,3953 @@
+{
+  "item": [
+    {
+      "id": "b2f1b498-631d-4d7c-bf30-81841b49b11b",
+      "name": "Risk Reports",
+      "description": {
+        "content": "API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77b36334-0bab-42d1-adc6-4ec371b31804",
+          "name": "Get a list of the billing accounts and their report types",
+          "request": {
+            "name": "Get a list of the billing accounts and their report types",
+            "description": {},
+            "url": {
+              "path": [
+                "billing-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3ab057f3-4abf-4c2d-b67b-8ab8d21006aa",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"billing_accounts\",\n      \"id\": \"9PRO000200\",\n      \"attributes\": {\n        \"currency_code\": \"BRL\",\n        \"report_types\": [\n          {\n            \"name\": \"Red Flag\",\n            \"value\": \"redflag\"\n          },\n          {\n            \"name\": \"Red Flag\",\n            \"value\": \"redflag\"\n          }\n        ],\n        \"owner\": {\n          \"company_name\": \"Hooli XYZ\"\n        },\n        \"created_at\": \"2018-09-26T00:00:00.000Z\",\n        \"updated_at\": \"2018-09-26T00:00:00.000Z\"\n      }\n    },\n    {\n      \"type\": \"billing_accounts\",\n      \"id\": \"9PRO000200\",\n      \"attributes\": {\n        \"currency_code\": \"ZAR\",\n        \"report_types\": [\n          {\n            \"name\": \"Red Flag\",\n            \"value\": \"redflag\"\n          },\n          {\n            \"name\": \"Red Flag\",\n            \"value\": \"redflag\"\n          }\n        ],\n        \"owner\": {\n          \"company_name\": \"Hooli XYZ\"\n        },\n        \"created_at\": \"2018-09-26T00:00:00.000Z\",\n        \"updated_at\": \"2018-09-26T00:00:00.000Z\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"CNVVaDHGsxQxFBgCMOwznfEWeUrca.ehp\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a81ab142-b7a8-4c11-9b4d-9af157bb2fbd",
+          "name": "Get comments by report request id",
+          "request": {
+            "name": "Get comments by report request id",
+            "description": {
+              "content": "Get a list of all comments for specified report request ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "626d0190-c71b-4f0b-aa82-f2905c5b29c9",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"comments\",\n      \"id\": \"d3a9c83656cd4a30814b1466e9689fbb\",\n      \"links\": {\n        \"reportRequest\": \"http://api.dowjones.com/risk-reports/reportrequests/ba6e0ef7eda8481ca9b8db7112fb03bf\"\n      },\n      \"attributes\": {\n        \"content\": \"Hello world!\",\n        \"is_urgent\": false,\n        \"created_at\": \"2018-09-26T00:00:00.000Z\"\n      },\n      \"relationships\": {\n        \"user\": {\n          \"data\": {\n            \"type\": \"users\",\n            \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"comments\",\n      \"id\": \"d3a9c83656cd4a30814b1466e9689fbb\",\n      \"links\": {\n        \"reportRequest\": \"http://api.dowjones.com/risk-reports/reportrequests/ba6e0ef7eda8481ca9b8db7112fb03bf\"\n      },\n      \"attributes\": {\n        \"content\": \"Hello world!\",\n        \"is_urgent\": false,\n        \"created_at\": \"2018-09-26T00:00:00.000Z\"\n      },\n      \"relationships\": {\n        \"user\": {\n          \"data\": {\n            \"type\": \"users\",\n            \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"reportRequest\": \"av.ic\"\n  },\n  \"included\": [\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    },\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad79bf5e-9186-40b4-b014-bb97bf074249",
+              "name": "report request with the given ID not found or user billing account doesn't match with billing account of report request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea87b45d-7e64-419f-b358-d1a1469297d9",
+          "name": "Create a new comment",
+          "request": {
+            "name": "Create a new comment",
+            "description": {
+              "content": "Create a new comment request for the given Report Request ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"content\": \"<string>\",\n      \"is_urgent\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20dfe95d-8260-4ad2-b75d-939c37f72f47",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"content\": \"Hello world!\",\n      \"is_urgent\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"comments\",\n    \"id\": \"d3a9c83656cd4a30814b1466e9689fbb\",\n    \"links\": {\n      \"reportRequest\": \"http://api.dowjones.com/risk-reports/reportrequests/ba6e0ef7eda8481ca9b8db7112fb03bf\"\n    },\n    \"attributes\": {\n      \"content\": \"Hello world!\",\n      \"is_urgent\": false,\n      \"created_at\": \"2018-09-26T00:00:00.000Z\"\n    },\n    \"relationships\": {\n      \"user\": {\n        \"data\": {\n          \"type\": \"users\",\n          \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n        }\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"kSaKAUxVJMRAPbPMIAcvS.rcp\"\n  },\n  \"included\": [\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    },\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "804f38d5-ced2-49c9-bc5d-5cf434ba94c7",
+              "name": "report request with the given ID not found or user billing account doesn't match with billing account of report request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"content\": \"Hello world!\",\n      \"is_urgent\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5dddc3b-dd84-4bf3-8ecc-174e647143d5",
+          "name": "Get comments by report and comment id",
+          "request": {
+            "name": "Get comments by report and comment id",
+            "description": {
+              "content": "Get a list of all comments for specified report request ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "comments",
+                ":commentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commentId",
+                  "description": "(Required) The unique identifier of the comment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "952d5d9f-7f3f-4b30-9fc5-fe2bbf3ddeb2",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "comments",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commentId",
+                      "description": "(Required) The unique identifier of the comment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"comments\",\n      \"id\": \"d3a9c83656cd4a30814b1466e9689fbb\",\n      \"links\": {\n        \"reportRequest\": \"http://api.dowjones.com/risk-reports/reportrequests/ba6e0ef7eda8481ca9b8db7112fb03bf\"\n      },\n      \"attributes\": {\n        \"content\": \"Hello world!\",\n        \"is_urgent\": false,\n        \"created_at\": \"2018-09-26T00:00:00.000Z\"\n      },\n      \"relationships\": {\n        \"user\": {\n          \"data\": {\n            \"type\": \"users\",\n            \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n          }\n        }\n      }\n    },\n    {\n      \"type\": \"comments\",\n      \"id\": \"d3a9c83656cd4a30814b1466e9689fbb\",\n      \"links\": {\n        \"reportRequest\": \"http://api.dowjones.com/risk-reports/reportrequests/ba6e0ef7eda8481ca9b8db7112fb03bf\"\n      },\n      \"attributes\": {\n        \"content\": \"Hello world!\",\n        \"is_urgent\": false,\n        \"created_at\": \"2018-09-26T00:00:00.000Z\"\n      },\n      \"relationships\": {\n        \"user\": {\n          \"data\": {\n            \"type\": \"users\",\n            \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n          }\n        }\n      }\n    }\n  ],\n  \"links\": {\n    \"reportRequest\": \"jEBkPTSXXwJhKRkwwU.cvxj\"\n  },\n  \"included\": [\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    },\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ceb298d-77b0-43b4-8ae9-7b85a2feafc8",
+              "name": "commentId with the given ID not found or user billing account doesn't match with billing account of report request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "comments",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commentId",
+                      "description": "(Required) The unique identifier of the comment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0488de2-004e-4d9b-a256-4b7be90887fd",
+          "name": "Get all documents by report request id",
+          "request": {
+            "name": "Get all documents by report request id",
+            "description": {
+              "content": "Get all documents by report request id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c72ad172-ec89-4264-89de-1159beb38121",
+              "name": "requested documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"documents\",\n      \"id\": \"2009e814baef455fb7b062d0904d3a19\",\n      \"attributes\": {\n        \"id\": \"8e1f7433184a4b59b8a3dd22bbe51537\",\n        \"file_name\": \"doc.txt\",\n        \"mimetype\": \"\\\"text/plain\",\n        \"created_at\": \"2018-09-26T00:00:00.000Z\",\n        \"size\": 2048\n      },\n      \"links\": {\n        \"self\": \"eikOFZnAnMoVnuOYbnbPcApmHl.ah\",\n        \"reportRequest\": \"HlwqQKoYrTbWKkETPBvFEvnCszyFuC.rvjt\"\n      }\n    },\n    {\n      \"type\": \"documents\",\n      \"id\": \"2009e814baef455fb7b062d0904d3a19\",\n      \"attributes\": {\n        \"id\": \"8e1f7433184a4b59b8a3dd22bbe51537\",\n        \"file_name\": \"doc.txt\",\n        \"mimetype\": \"\\\"text/plain\",\n        \"created_at\": \"2018-09-26T00:00:00.000Z\",\n        \"size\": 2048\n      },\n      \"links\": {\n        \"self\": \"iQDdDiNxYqpuBXah.zr\",\n        \"reportRequest\": \"WirqkKYjzSLyjYvBaW.klg\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "692d7167-7772-43bd-a27d-334794be32c3",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Missing required property: name\",\n      \"detail\": \"/data/attributes Missing required property: name\",\n      \"source\": {\n        \"pointer\": \"/data/attributes\"\n      },\n      \"id\": \"d5ee7ceb98a848a49420d7cce2601934\",\n      \"status\": \"400\",\n      \"code\": \"302\",\n      \"links\": {\n        \"about\": \"https://wiki.dowjones.net/display/DSE/Error+Codes\"\n      },\n      \"meta\": \"string\"\n    },\n    {\n      \"title\": \"Missing required property: name\",\n      \"detail\": \"/data/attributes Missing required property: name\",\n      \"source\": {\n        \"pointer\": \"/data/attributes\"\n      },\n      \"id\": \"d5ee7ceb98a848a49420d7cce2601934\",\n      \"status\": \"400\",\n      \"code\": \"302\",\n      \"links\": {\n        \"about\": \"https://wiki.dowjones.net/display/DSE/Error+Codes\"\n      },\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf5c0dd4-4f58-4ce0-9b3b-5168d033dece",
+          "name": "Add a support document by report request id",
+          "request": {
+            "name": "Add a support document by report request id",
+            "description": {
+              "content": "Receives document files and upload to s3",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa5052e9-f743-4b62-a71b-9e6910d3ca14",
+              "name": "The uploaded document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8e1f7433184a4b59b8a3dd22bbe51537\",\n  \"file_name\": \"doc.txt\",\n  \"mimetype\": \"\\\"text/plain\",\n  \"created_at\": \"2018-09-26T00:00:00.000Z\",\n  \"size\": 2048\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9c93db0-b364-4ae6-adc6-6f9a79f228a8",
+              "name": "A report request was not found with the given ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0283084c-6ca6-430f-90df-8d1dd2973e10",
+          "name": "Get document by report request and document id",
+          "request": {
+            "name": "Get document by report request and document id",
+            "description": {
+              "content": "Get document by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "documents",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "documentId",
+                  "description": "(Required) The unique identifier of the document"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75e97a04-6a1c-42b6-8e7f-8ccf87834d3a",
+              "name": "requested document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "documentId",
+                      "description": "(Required) The unique identifier of the document"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7318ef97-1234-4836-a6ad-17cf9748161d",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "documentId",
+                      "description": "(Required) The unique identifier of the document"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d49314eb-0fe9-46c2-874b-2350871dafa0",
+          "name": "Send a report request to receive a price estimate",
+          "request": {
+            "name": "Send a report request to receive a price estimate",
+            "description": {
+              "content": "Gets an estimate for a pending report request",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Account ID of the user that performed the transaction"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"report_type\": \"<string>\",\n      \"is_rush\": \"<boolean>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": {\n        \"first_name\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"jurisdictions\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"additional_entities\": [\n        {\n          \"name\": \"<string>\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"first_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"first_name\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "304eb771-4a7f-4e7c-8274-1ac53da30105",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"Dow Jones Report\",\n      \"report_type\": \"<string>\",\n      \"is_rush\": \"<boolean>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": {\n        \"first_name\": \"John\",\n        \"middle_name\": \"Allan\",\n        \"last_name\": \"Doe\",\n        \"jurisdictions\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"additional_entities\": [\n        {\n          \"name\": \"Dow Jones\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"Dow Jones\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"first_name\": \"John\",\n          \"middle_name\": \"Allan\",\n          \"last_name\": \"Doe\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"first_name\": \"John\",\n          \"middle_name\": \"Allan\",\n          \"last_name\": \"Doe\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"estimates\",\n    \"attributes\": {\n      \"currency_code\": \"USD\",\n      \"delivery_date\": \"2013-03-19T17:31:23.465Z\",\n      \"order_detail\": {\n        \"report_type\": \"level1\",\n        \"billing_account_id\": \"9PRO000200\",\n        \"base_report\": {\n          \"name\": \"DowJones report\",\n          \"unit_price\": 1160\n        },\n        \"additional_entities\": [\n          {\n            \"name\": \"Additional entity\",\n            \"unit_price\": 750\n          },\n          {\n            \"name\": \"Additional entity\",\n            \"unit_price\": 750\n          }\n        ],\n        \"additional_individuals\": [\n          {\n            \"name\": \"Ivan Ivanov\",\n            \"unit_price\": 750\n          },\n          {\n            \"name\": \"Ivan Ivanov\",\n            \"unit_price\": 750\n          }\n        ],\n        \"additional_jurisdictions\": [\n          {\n            \"name\": \"Additional entity\",\n            \"unit_price\": 600\n          },\n          {\n            \"name\": \"Additional entity\",\n            \"unit_price\": 600\n          }\n        ],\n        \"rush_charge\": 1630,\n        \"total\": 4890,\n        \"formatted\": {\n          \"report_type\": \"level1\",\n          \"billing_account_id\": \"9PRO000200\",\n          \"base_report\": {\n            \"name\": \"DowJones report\",\n            \"unit_price\": \"$1,160.00\"\n          },\n          \"additional_entities\": [\n            {\n              \"name\": \"Additional entity\",\n              \"unit_price\": \"$750.00\"\n            },\n            {\n              \"name\": \"Additional entity\",\n              \"unit_price\": \"$750.00\"\n            }\n          ],\n          \"additional_individuals\": [\n            {\n              \"name\": \"Ivan Ivanov\",\n              \"unit_price\": \"$750.00\"\n            },\n            {\n              \"name\": \"Ivan Ivanov\",\n              \"unit_price\": \"$750.00\"\n            }\n          ],\n          \"additional_jurisdictions\": [\n            {\n              \"name\": \"Additional entity\",\n              \"unit_price\": 5802.524565618583\n            },\n            {\n              \"name\": \"Additional entity\",\n              \"unit_price\": 868.5042832622225\n            }\n          ],\n          \"rush_charge\": 6098.057065739568,\n          \"total\": 6998.8695345146825\n        }\n      },\n      \"total\": 4890\n    },\n    \"links\": {\n      \"self\": \"NuYEHyTCdSjUhByHs.jcul\",\n      \"metadata\": \"AxvcxuXQFkBa.at\",\n      \"reportRequests\": \"rUWOvsuMsCd.eac\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "248b36cf-765b-4020-90b9-69aded1cb13a",
+              "name": "bad request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"Dow Jones Report\",\n      \"report_type\": \"<string>\",\n      \"is_rush\": \"<boolean>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": {\n        \"first_name\": \"John\",\n        \"middle_name\": \"Allan\",\n        \"last_name\": \"Doe\",\n        \"jurisdictions\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"additional_entities\": [\n        {\n          \"name\": \"Dow Jones\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"Dow Jones\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"first_name\": \"John\",\n          \"middle_name\": \"Allan\",\n          \"last_name\": \"Doe\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"first_name\": \"John\",\n          \"middle_name\": \"Allan\",\n          \"last_name\": \"Doe\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d6465a3f-e308-4cb8-897f-4ef081496f24",
+              "name": "the billing account hasn't been found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"Dow Jones Report\",\n      \"report_type\": \"<string>\",\n      \"is_rush\": \"<boolean>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": {\n        \"first_name\": \"John\",\n        \"middle_name\": \"Allan\",\n        \"last_name\": \"Doe\",\n        \"jurisdictions\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"additional_entities\": [\n        {\n          \"name\": \"Dow Jones\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"Dow Jones\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"first_name\": \"John\",\n          \"middle_name\": \"Allan\",\n          \"last_name\": \"Doe\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"first_name\": \"John\",\n          \"middle_name\": \"Allan\",\n          \"last_name\": \"Doe\",\n          \"jurisdictions\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d41abd81-0587-4965-b34e-d8b92d3cbf6e",
+          "name": "Get data used to create report requests",
+          "request": {
+            "name": "Get data used to create report requests",
+            "description": {},
+            "url": {
+              "path": [
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ef592b5b-fa4a-4603-b6fa-2fe4886275fc",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"metadata\",\n    \"attributes\": {\n      \"report_types\": [\n        {\n          \"name\": \"Level 1\",\n          \"value\": \"level1\",\n          \"expected_delivery\": 15\n        },\n        {\n          \"name\": \"Level 1\",\n          \"value\": \"level1\",\n          \"expected_delivery\": 15\n        }\n      ],\n      \"industry_sectors\": [\n        \"Automotive\",\n        \"Automotive\"\n      ],\n      \"national_id_types\": [\n        \"EU Consolidated Electronic List ID\",\n        \"EU Consolidated Electronic List ID\"\n      ],\n      \"individual_jurisdiction_types\": [\n        {\n          \"name\": \"Residence\",\n          \"value\": \"country_residence\"\n        },\n        {\n          \"name\": \"Residence\",\n          \"value\": \"country_residence\"\n        }\n      ],\n      \"entity_jurisdiction_types\": [\n        {\n          \"name\": \"Registration\",\n          \"value\": \"country_registration\"\n        },\n        {\n          \"name\": \"Registration\",\n          \"value\": \"country_registration\"\n        }\n      ],\n      \"identification_types\": [\n        \"Company Identification No.\",\n        \"Company Identification No.\"\n      ],\n      \"subject_types\": [\n        \"individual\",\n        \"individual\"\n      ],\n      \"proposal_types\": [\n        {\n          \"name\": \"Additions or Changes in Entities, Jurisdictions or Subjects\",\n          \"value\": \"update_report_request\"\n        },\n        {\n          \"name\": \"Additions or Changes in Entities, Jurisdictions or Subjects\",\n          \"value\": \"update_report_request\"\n        }\n      ]\n    }\n  },\n  \"links\": {\n    \"self\": \"KH.an\",\n    \"reportRequests\": \"lXNCByfDkAfQNtTxjBH.doqk\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30b2261a-b86c-4b61-83c2-bb935fb602b9",
+              "name": "Billing account id not found in the request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4fc3e13-4c30-461b-8006-36ade0c5302d",
+              "name": "You do not have the correct authorization to access this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b73cb3d6-d50b-438b-aac0-11b05bce225f",
+              "name": "Billing account with the given ID not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c1facd0-cfab-4810-b8ab-7f912488ae0d",
+          "name": "Update URL used for callback notification",
+          "request": {
+            "name": "Update URL used for callback notification",
+            "description": {
+              "content": "Update the data related to report requests and required for its creation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Account ID of the user that performed the transaction"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"callback_url\": \"<hostname>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ef140e5-1ec4-43d8-96bc-f03f8856e2e3",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"callback_url\": \"<hostname>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b3e429e-9f94-4621-8253-19f069ebdd7c",
+              "name": "bad request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"callback_url\": \"<hostname>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f2c79f9-2412-4e1e-9812-c3b79696d4e5",
+              "name": "The service behind the callback url isn't accessible (https POST request, 200 response status code expected)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"callback_url\": \"<hostname>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dbfadd8c-cf61-4c12-be09-65ac38b3eda0",
+              "name": "the billing account hasn't been found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"callback_url\": \"<hostname>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ef08df2-8672-4ed1-bb5f-d2df089baa29",
+          "name": "Get outstanding proposals by report request id",
+          "request": {
+            "name": "Get outstanding proposals by report request id",
+            "description": {
+              "content": "Get proposals for a report request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "proposals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "50595b7b-aa8f-4459-93ba-090fad18e840",
+              "name": "The report request proposals",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"proposal\": \"rush\",\n      \"id\": \"6e3a0247-2890-0f5e-2eab-2731a62c3422\",\n      \"params\": {\n        \"delivery_date\": \"2002-06-23T01:56:30.578Z\"\n      },\n      \"status\": \"pending\",\n      \"initiated_date\": \"2005-01-07T02:23:04.371Z\"\n    },\n    {\n      \"proposal\": \"rush\",\n      \"id\": \"a1b60ce8-3130-9c1c-b8eb-40b12820623c\",\n      \"params\": {\n        \"delivery_date\": \"1971-03-24T05:13:37.893Z\"\n      },\n      \"status\": \"pending\",\n      \"initiated_date\": \"2001-06-21T13:59:23.690Z\"\n    }\n  ],\n  \"links\": {\n    \"self\": \"kAniooOmzMurFiiHHGkrKRA.fzq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72ae939b-d998-4e70-91cb-152a1a36fb86",
+              "name": "A report request with the ID provided was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b54070d-fe42-476c-9037-d8096b68fb69",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42502644-8cdf-489f-83e4-28f72756e450",
+          "name": "Get a proposal by report request and proposal id",
+          "request": {
+            "name": "Get a proposal by report request and proposal id",
+            "description": {
+              "content": "Gets a proposal.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "proposals",
+                ":proposalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "proposalId",
+                  "description": "(Required) The unique identifier of the proposal"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4cb7fe01-3072-47cd-96a5-c42abf39171a",
+              "name": "The report request proposal",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalId",
+                      "description": "(Required) The unique identifier of the proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"type\": \"proposals\",\n    \"id\": \"88e6e35adcb346e2b10dc14447419bc9\",\n    \"links\": {\n      \"self\": \"http://api.dowjones.com/risk-reports/reportrequests/09bb9570e3254f96b2e89bb3ef56655b/proposals/88e6e35adcb346e2b10dc14447419bc9\"\n    },\n    \"attributes\": {\n      \"proposal\": \"update_report_request\",\n      \"id\": \"9f70e92f-06b5-0777-b8db-3d7b6a14fcd2\",\n      \"params\": {\n        \"index\": 1609.3386866056646,\n        \"item\": {\n          \"kind\": \"string\",\n          \"rhs\": {\n            \"option\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"kind\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"status\": \"pending\",\n      \"initiated_date\": \"2000-09-11T11:07:54.159Z\"\n    }\n  },\n  \"links\": {\n    \"self\": \"JDnpo.isu\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64c5262e-1a04-466e-a100-d30f1af522e6",
+              "name": "A report request or proposal with the ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalId",
+                      "description": "(Required) The unique identifier of the proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a3fdb5a-1931-4b93-8224-c7a668d59fcb",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalId",
+                      "description": "(Required) The unique identifier of the proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a72983ed-86ea-4b82-80fc-0458d391de22",
+          "name": "Approve proposal by report request id and proposal type",
+          "request": {
+            "name": "Approve proposal by report request id and proposal type",
+            "description": {
+              "content": "Approve proposal",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "proposals",
+                ":proposalType",
+                ":additionalPriceProposalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "proposalType",
+                  "description": "(Required) The unique identifier of the proposal"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "additionalPriceProposalId",
+                  "description": "(Required) The unique identifier of the additional price proposal"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e1d4b0a-792a-4df3-af53-33cad0f79f7c",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalType",
+                    ":additionalPriceProposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalType",
+                      "description": "(Required) The unique identifier of the proposal"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "additionalPriceProposalId",
+                      "description": "(Required) The unique identifier of the additional price proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0dcdc6bf-496c-4b37-a6dc-678cd07248eb",
+              "name": "proposal not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalType",
+                    ":additionalPriceProposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalType",
+                      "description": "(Required) The unique identifier of the proposal"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "additionalPriceProposalId",
+                      "description": "(Required) The unique identifier of the additional price proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "efe6a05b-90ca-4031-a0b3-607709e298a0",
+              "name": "already approved/rejected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalType",
+                    ":additionalPriceProposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalType",
+                      "description": "(Required) The unique identifier of the proposal"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "additionalPriceProposalId",
+                      "description": "(Required) The unique identifier of the additional price proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c9759b9-ab2f-475f-b57f-0ed6374743ca",
+          "name": "Reject proposal by report request id and proposal type",
+          "request": {
+            "name": "Reject proposal by report request id and proposal type",
+            "description": {
+              "content": "Reject proposal",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "proposals",
+                ":proposalType",
+                ":additionalPriceProposalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "proposalType",
+                  "description": "(Required) The unique identifier of the proposal"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "additionalPriceProposalId",
+                  "description": "(Required) The unique identifier of the additional price proposal"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1f07de3d-77f4-4f73-acfc-b5b2e50c388d",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalType",
+                    ":additionalPriceProposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalType",
+                      "description": "(Required) The unique identifier of the proposal"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "additionalPriceProposalId",
+                      "description": "(Required) The unique identifier of the additional price proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6db24011-2117-42d0-8c26-6e0ca7f13537",
+              "name": "proposal not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalType",
+                    ":additionalPriceProposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalType",
+                      "description": "(Required) The unique identifier of the proposal"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "additionalPriceProposalId",
+                      "description": "(Required) The unique identifier of the additional price proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae5821e7-7c68-4abc-b588-ab6d5e213ab0",
+              "name": "already approved/rejected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "proposals",
+                    ":proposalType",
+                    ":additionalPriceProposalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "proposalType",
+                      "description": "(Required) The unique identifier of the proposal"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "additionalPriceProposalId",
+                      "description": "(Required) The unique identifier of the additional price proposal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8713407-6535-434b-bc2c-ea44b2f48ee9",
+          "name": "Subscribe to events related to a report request by id",
+          "request": {
+            "name": "Subscribe to events related to a report request by id",
+            "description": {},
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "subscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"subscription_id\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4428abc2-6e9a-479f-9a4a-76b461f1840e",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "subscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"subscription_id\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": {\n    \"self\": \"DyQlffBLAobFeRDhaIRCVTKxvwU.iw\"\n  },\n  \"data\": {\n    \"attributes\": {\n      \"id\": \"b5948eb9f7474aa8a0148b7be9b66e60\",\n      \"created_at\": \"1957-05-27T02:25:05.759Z\"\n    },\n    \"type\": \"subscriptions\",\n    \"id\": \"b5948eb9f7474aa8a0148b7be9b66e60\",\n    \"links\": {\n      \"self\": \"RLHaPvmPhsIVMYDexvATeXHYMXOrZU.phy\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dc236cf-81b0-479d-a50b-9bb87c82f8e2",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "subscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"subscription_id\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76704c75-466d-467c-97b5-e17fd6406bb3",
+          "name": "Unsubscribe to events related to a report request by id",
+          "request": {
+            "name": "Unsubscribe to events related to a report request by id",
+            "description": {},
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId",
+                "unsubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fb8cba2c-544b-4d64-a9d2-8f1a32f7ba93",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5809e152-5138-493d-8d10-bba7fd80ab9a",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9f37f63-c382-4b17-a6cd-b3ffbc28acd1",
+          "name": "Get a report request by id",
+          "request": {
+            "name": "Get a report request by id",
+            "description": {},
+            "url": {
+              "path": [
+                "reportrequests",
+                ":reportRequestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportRequestId",
+                  "description": "(Required) The unique identifier of the report request"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "283260b9-1934-48de-9f6b-85c57aacf245",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"proposals\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"name\": \"Dow Jones Report\",\n      \"workflow_state\": \"draft\",\n      \"report_type\": \"redflag\",\n      \"delivery_date\": \"1951-04-28T14:40:32.262Z\",\n      \"created_at\": \"2014-08-12T19:02:53.072Z\",\n      \"user_id\": \"d01f7602-7205-55a5-4d8b-3af658c5658b\",\n      \"updated_at\": \"1947-05-25T04:15:35.108Z\",\n      \"subject_type\": \"individual\",\n      \"subject\": {\n        \"last_name\": \"Doe\",\n        \"first_name\": \"John\",\n        \"gender\": \"Male\",\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"jurisdictions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"middle_name\": \"Allan\",\n        \"alternate_first_name\": \"Bob\",\n        \"alternate_middle_name\": \"The\",\n        \"alternate_last_name\": \"Builder\",\n        \"birth_date\": \"04-Aug-0976\",\n        \"current_employer\": \"Dow Jones\",\n        \"current_position\": \"Web Developer\",\n        \"former_employer\": \"Western Union\",\n        \"former_position\": \"Web Developer\",\n        \"national_id_numbers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"other_information\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"order_detail\": {\n        \"base_report\": {\n          \"name\": \"Dow Jones Report\",\n          \"unit_price\": 600\n        },\n        \"additional_entities\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"additional_individuals\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"additional_requests\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"additional_prices\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"sub_total\": 600,\n        \"currency_code\": \"SGD\",\n        \"rush_charge\": 0,\n        \"additional_total\": 0,\n        \"total\": 600\n      },\n      \"total\": 600,\n      \"is_rush\": false,\n      \"billing_account_id\": \"9PRO000200\",\n      \"additional_entities\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"type\": \"reportrequests\",\n    \"id\": \"d5ee7ceb98a848a49420d7cce2601934\",\n    \"relationships\": {\n      \"created_by_user\": {\n        \"data\": {\n          \"type\": \"users\",\n          \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n        }\n      },\n      \"subscription\": {\n        \"data\": {\n          \"type\": \"subscriptions\",\n          \"id\": \"c2be7b6ca73747faadd4420123db424a\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"WYxWEfoaDlxcnyuKOqpBJZdlvVJeXs.lg\",\n      \"proposals\": \"LetLXObFlvssLiYqMLsA.upbr\",\n      \"comments\": \"ZKtolxwFVlgDrVomXVAbtEvQJb.nipc\",\n      \"documents\": \"UZXOaCSwLHXJxJeNBwUBiFDYC.qzw\"\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    },\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f5bad7b-6776-4bb2-a753-d083e832c5b5",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests",
+                    ":reportRequestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportRequestId",
+                      "description": "(Required) The unique identifier of the report request"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ec57512-b697-43ff-befb-6054f97ff00d",
+          "name": "Create a new Enhanced Due Diligence report request",
+          "request": {
+            "name": "Create a new Enhanced Due Diligence report request",
+            "description": {},
+            "url": {
+              "path": [
+                "reportrequests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>",
+                  "description": "Account ID of the user that performed the transaction"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"report_type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"subject_type\": \"<string>\",\n      \"subject\": {\n        \"last_name\": \"<string>\",\n        \"first_name\": \"<string>\",\n        \"gender\": \"<string>\",\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"jurisdictions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"middle_name\": \"<string>\",\n        \"alternate_first_name\": \"<string>\",\n        \"alternate_middle_name\": \"<string>\",\n        \"alternate_last_name\": \"<string>\",\n        \"birth_date\": \"<string>\",\n        \"current_employer\": \"<string>\",\n        \"current_position\": \"<string>\",\n        \"former_employer\": \"<string>\",\n        \"former_position\": \"<string>\",\n        \"national_id_numbers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"other_information\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"workflow_state\": \"<string>\",\n      \"subscription_on\": \"<boolean>\",\n      \"subscription_id\": \"<uuid>\",\n      \"additional_entities\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "360a0ed8-0c97-48b5-ab2d-352c906ad0b1",
+              "name": "created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"report_type\": \"<string>\",\n      \"name\": \"Dow Jones Report\",\n      \"subject_type\": \"<string>\",\n      \"subject\": {\n        \"last_name\": \"Doe\",\n        \"first_name\": \"John\",\n        \"gender\": \"<string>\",\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"jurisdictions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"middle_name\": \"Allan\",\n        \"alternate_first_name\": \"Bob\",\n        \"alternate_middle_name\": \"The\",\n        \"alternate_last_name\": \"Builder\",\n        \"birth_date\": \"<string>\",\n        \"current_employer\": \"Dow Jones\",\n        \"current_position\": \"Web Developer\",\n        \"former_employer\": \"Western Union\",\n        \"former_position\": \"Web Developer\",\n        \"national_id_numbers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"other_information\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"workflow_state\": \"<string>\",\n      \"subscription_on\": \"<boolean>\",\n      \"subscription_id\": \"<uuid>\",\n      \"additional_entities\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"type\": \"reportrequests\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"proposals\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"name\": \"Dow Jones Report\",\n      \"workflow_state\": \"submitted\",\n      \"report_type\": \"redflag\",\n      \"delivery_date\": \"1997-12-05T03:45:30.216Z\",\n      \"created_at\": \"2007-03-19T18:22:09.653Z\",\n      \"user_id\": \"7377d68b-3b49-8164-9e62-094e07f75d80\",\n      \"updated_at\": \"1955-04-22T19:29:36.856Z\",\n      \"subject_type\": \"entity\",\n      \"subject\": {\n        \"last_name\": \"Doe\",\n        \"first_name\": \"John\",\n        \"gender\": \"<string>\",\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"jurisdictions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"middle_name\": \"Allan\",\n        \"alternate_first_name\": \"Bob\",\n        \"alternate_middle_name\": \"The\",\n        \"alternate_last_name\": \"Builder\",\n        \"birth_date\": \"<string>\",\n        \"current_employer\": \"Dow Jones\",\n        \"current_position\": \"Web Developer\",\n        \"former_employer\": \"Western Union\",\n        \"former_position\": \"Web Developer\",\n        \"national_id_numbers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"other_information\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"order_detail\": {\n        \"base_report\": {\n          \"name\": \"Dow Jones Report\",\n          \"unit_price\": 600\n        },\n        \"additional_entities\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"additional_individuals\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"additional_requests\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"additional_prices\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"unit_price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"sub_total\": 600,\n        \"currency_code\": \"CAD\",\n        \"rush_charge\": 0,\n        \"additional_total\": 0,\n        \"total\": 600\n      },\n      \"total\": 600,\n      \"is_rush\": false,\n      \"billing_account_id\": \"9PRO000200\",\n      \"additional_entities\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"type\": \"reportrequests\",\n    \"id\": \"d5ee7ceb98a848a49420d7cce2601934\",\n    \"relationships\": {\n      \"created_by_user\": {\n        \"data\": {\n          \"type\": \"users\",\n          \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n        }\n      },\n      \"subscription\": {\n        \"data\": {\n          \"type\": \"subscriptions\",\n          \"id\": \"c2be7b6ca73747faadd4420123db424a\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"AXezvhioLiGWUnZpJmhHINTRxQSg.vbej\",\n      \"proposals\": \"gp.cj\",\n      \"comments\": \"iIzIHBnkAySr.cv\",\n      \"documents\": \"zVOodCmlAwdHRlEbErFOIUrkwT.zip\"\n    }\n  },\n  \"included\": [\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    },\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73af668f-52b4-4861-a4b1-396042cefd34",
+              "name": "bad request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"report_type\": \"<string>\",\n      \"name\": \"Dow Jones Report\",\n      \"subject_type\": \"<string>\",\n      \"subject\": {\n        \"last_name\": \"Doe\",\n        \"first_name\": \"John\",\n        \"gender\": \"<string>\",\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"jurisdictions\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"middle_name\": \"Allan\",\n        \"alternate_first_name\": \"Bob\",\n        \"alternate_middle_name\": \"The\",\n        \"alternate_last_name\": \"Builder\",\n        \"birth_date\": \"<string>\",\n        \"current_employer\": \"Dow Jones\",\n        \"current_position\": \"Web Developer\",\n        \"former_employer\": \"Western Union\",\n        \"former_position\": \"Web Developer\",\n        \"national_id_numbers\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"other_information\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"workflow_state\": \"<string>\",\n      \"subscription_on\": \"<boolean>\",\n      \"subscription_id\": \"<uuid>\",\n      \"additional_entities\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"additional_individuals\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ]\n    },\n    \"type\": \"reportrequests\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"Missing required property: name\",\n      \"detail\": \"/data/attributes Missing required property: name\",\n      \"source\": {\n        \"pointer\": \"/data/attributes\"\n      },\n      \"id\": \"d5ee7ceb98a848a49420d7cce2601934\",\n      \"status\": \"400\",\n      \"code\": \"302\",\n      \"links\": {\n        \"about\": \"https://wiki.dowjones.net/display/DSE/Error+Codes\"\n      },\n      \"meta\": \"string\"\n    },\n    {\n      \"title\": \"Missing required property: name\",\n      \"detail\": \"/data/attributes Missing required property: name\",\n      \"source\": {\n        \"pointer\": \"/data/attributes\"\n      },\n      \"id\": \"d5ee7ceb98a848a49420d7cce2601934\",\n      \"status\": \"400\",\n      \"code\": \"302\",\n      \"links\": {\n        \"about\": \"https://wiki.dowjones.net/display/DSE/Error+Codes\"\n      },\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff608f5b-c244-4145-ba49-5032bab2e7e3",
+          "name": "Get all report requests",
+          "request": {
+            "name": "Get all report requests",
+            "description": {},
+            "url": {
+              "path": [
+                "reportrequests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[cilent_reference][eq]",
+                  "value": "<string>",
+                  "description": "The client reference of the report"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[report_type][eq]",
+                  "value": "<string>",
+                  "description": "The type of report"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[workflow_state.value][in]",
+                  "value": "submitted",
+                  "description": "Filter on workflow_state"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[workflow_state.value][in]",
+                  "value": "submitted",
+                  "description": "Filter on workflow_state"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[expected_delivery_beginning_date][lt]",
+                  "value": "<date>",
+                  "description": "will filter the report requests that have the delivered date in the string provided (ISO8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[expected_delivery_end_date][gt]",
+                  "value": "<date>",
+                  "description": "will filter the report requests based on the expected delivery date (ISO8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Used the same way as filter[][] but returns all report requests matching at least one of the search criteria.  Most efficient when combined with filter.  All filter queries are supported as search queries."
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "100",
+                  "description": "The amount of report requests to return up to 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "The page to retrieve of report requests."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "false",
+                  "description": "Retrieve just the count of the filtered set"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e6e7008e-9115-4409-a64a-8ef34a770f56",
+              "name": "success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[cilent_reference][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[report_type][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[workflow_state.value][in]",
+                      "value": "submitted"
+                    },
+                    {
+                      "key": "filter[workflow_state.value][in]",
+                      "value": "submitted"
+                    },
+                    {
+                      "key": "filter[expected_delivery_beginning_date][lt]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "filter[expected_delivery_end_date][gt]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"attributes\": {\n        \"name\": \"Dow Jones Report\",\n        \"workflow_state\": \"draft\",\n        \"report_type\": \"string\",\n        \"delivery_date\": \"1967-03-17T13:02:15.499Z\",\n        \"created_at\": \"1967-10-28T14:59:33.207Z\",\n        \"updated_at\": \"2008-09-09T07:36:48.641Z\",\n        \"subject_type\": \"entity\",\n        \"subject\": {\n          \"last_name\": \"Doe\",\n          \"first_name\": \"John\",\n          \"gender\": \"<string>\",\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"jurisdictions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"middle_name\": \"Allan\",\n          \"alternate_first_name\": \"Bob\",\n          \"alternate_middle_name\": \"The\",\n          \"alternate_last_name\": \"Builder\",\n          \"birth_date\": \"<string>\",\n          \"current_employer\": \"Dow Jones\",\n          \"current_position\": \"Web Developer\",\n          \"former_employer\": \"Western Union\",\n          \"former_position\": \"Web Developer\",\n          \"national_id_numbers\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"other_information\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"order_detail\": {\n          \"base_report\": {\n            \"name\": \"Dow Jones Report\",\n            \"unit_price\": 600\n          },\n          \"additional_entities\": [\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 300\n            },\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 300\n            }\n          ],\n          \"additional_individuals\": [\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 300\n            },\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 300\n            }\n          ],\n          \"additional_requests\": [\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 150\n            },\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 150\n            }\n          ],\n          \"additional_prices\": [\n            {\n              \"name\": \"Additional Research\",\n              \"unit_price\": 150\n            },\n            {\n              \"name\": \"Additional Research\",\n              \"unit_price\": 150\n            }\n          ],\n          \"sub_total\": 600,\n          \"rush_charge\": 0,\n          \"additional_total\": 0,\n          \"total\": 600\n        },\n        \"additional_entities\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"jurisdictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industry_sector_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industry_sector_type_value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identification_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"other_information\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"jurisdictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industry_sector_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industry_sector_type_value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identification_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"other_information\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"additional_individuals\": [\n          {\n            \"last_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"first_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gender\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"jurisdictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"middle_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_first_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_middle_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_last_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"birth_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"current_employer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"current_position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"former_employer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"former_position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"national_id_numbers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"other_information\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"last_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"first_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gender\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"jurisdictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"middle_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_first_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_middle_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_last_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"birth_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"current_employer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"current_position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"former_employer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"former_position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"national_id_numbers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"other_information\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"type\": \"reportrequests\",\n      \"id\": \"d5ee7ceb98a848a49420d7cce2601934\",\n      \"relationships\": {\n        \"created_by_user\": {\n          \"data\": {\n            \"type\": \"users\",\n            \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n          }\n        },\n        \"subscription\": {\n          \"data\": {\n            \"type\": \"subscriptions\",\n            \"id\": \"c2be7b6ca73747faadd4420123db424a\"\n          }\n        }\n      }\n    },\n    {\n      \"attributes\": {\n        \"name\": \"Dow Jones Report\",\n        \"workflow_state\": \"submitted\",\n        \"report_type\": \"string\",\n        \"delivery_date\": \"1973-03-13T21:13:55.852Z\",\n        \"created_at\": \"1951-06-11T02:30:34.733Z\",\n        \"updated_at\": \"1950-06-27T12:41:56.448Z\",\n        \"subject_type\": \"individual\",\n        \"subject\": {\n          \"last_name\": \"Doe\",\n          \"first_name\": \"John\",\n          \"gender\": \"<string>\",\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"jurisdictions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"middle_name\": \"Allan\",\n          \"alternate_first_name\": \"Bob\",\n          \"alternate_middle_name\": \"The\",\n          \"alternate_last_name\": \"Builder\",\n          \"birth_date\": \"<string>\",\n          \"current_employer\": \"Dow Jones\",\n          \"current_position\": \"Web Developer\",\n          \"former_employer\": \"Western Union\",\n          \"former_position\": \"Web Developer\",\n          \"national_id_numbers\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"other_information\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"order_detail\": {\n          \"base_report\": {\n            \"name\": \"Dow Jones Report\",\n            \"unit_price\": 600\n          },\n          \"additional_entities\": [\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 300\n            },\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 300\n            }\n          ],\n          \"additional_individuals\": [\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 300\n            },\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 300\n            }\n          ],\n          \"additional_requests\": [\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 150\n            },\n            {\n              \"name\": \"Dow Jones Report\",\n              \"unit_price\": 150\n            }\n          ],\n          \"additional_prices\": [\n            {\n              \"name\": \"Additional Research\",\n              \"unit_price\": 150\n            },\n            {\n              \"name\": \"Additional Research\",\n              \"unit_price\": 150\n            }\n          ],\n          \"sub_total\": 600,\n          \"rush_charge\": 0,\n          \"additional_total\": 0,\n          \"total\": 600\n        },\n        \"additional_entities\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"jurisdictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industry_sector_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industry_sector_type_value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identification_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"other_information\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"jurisdictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industry_sector_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"industry_sector_type_value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identification_types\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"other_information\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"additional_individuals\": [\n          {\n            \"last_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"first_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gender\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"jurisdictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"middle_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_first_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_middle_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_last_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"birth_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"current_employer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"current_position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"former_employer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"former_position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"national_id_numbers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"other_information\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"last_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"first_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"gender\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"jurisdictions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"middle_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_first_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_middle_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_last_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"birth_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"current_employer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"current_position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"former_employer\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"former_position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"national_id_numbers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"other_information\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"type\": \"reportrequests\",\n      \"id\": \"d5ee7ceb98a848a49420d7cce2601934\",\n      \"relationships\": {\n        \"created_by_user\": {\n          \"data\": {\n            \"type\": \"users\",\n            \"id\": \"E6OO2HVCQHVPE5X54D7W7XO5NI\"\n          }\n        },\n        \"subscription\": {\n          \"data\": {\n            \"type\": \"subscriptions\",\n            \"id\": \"c2be7b6ca73747faadd4420123db424a\"\n          }\n        }\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    },\n    {\n      \"type\": \"users\",\n      \"id\": \"E6OO2HVCQHVPEDPYTIYWMTJFZE\",\n      \"attributes\": {\n        \"first_name\": \"Dart\",\n        \"last_name\": \"Revan\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"OFQVG.ria\",\n    \"proposals\": \"DGYMQDtS.qesm\",\n    \"comments\": \"XsvwnmpxDJiOEToOnsDizyDFvqCklto.ci\",\n    \"documents\": \"zGDv.skbj\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32e40015-1378-4bdd-bd48-93c71e5ffafa",
+              "name": "You do not have the correct authorization to access this resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[cilent_reference][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[report_type][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[workflow_state.value][in]",
+                      "value": "submitted"
+                    },
+                    {
+                      "key": "filter[workflow_state.value][in]",
+                      "value": "submitted"
+                    },
+                    {
+                      "key": "filter[expected_delivery_beginning_date][lt]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "filter[expected_delivery_end_date][gt]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a973f90-b8e1-4bd7-a368-d63530ddf143",
+              "name": "not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportrequests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[cilent_reference][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[report_type][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[workflow_state.value][in]",
+                      "value": "submitted"
+                    },
+                    {
+                      "key": "filter[workflow_state.value][in]",
+                      "value": "submitted"
+                    },
+                    {
+                      "key": "filter[expected_delivery_beginning_date][lt]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "filter[expected_delivery_end_date][gt]",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "count",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dowjones.com/risk-reports",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f0c855a1-77f5-4deb-ae3d-a7ac9a258b64",
+    "name": "Risk & Compliance Risk Reports",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

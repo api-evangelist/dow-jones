@@ -1,6 +1,8 @@
-generated: '2026-07-22'
-method: derived
-source: openapi/ + developer.dowjones.com docs
+generated: '2026-08-13'
+method: searched
+source: >-
+  openapi/ + developer.dowjones.com docs + https://www.dowjones.com/iso-certification/ +
+  https://www.dowjones.com/dow-jones-risk-compliance-quality-reports/
 standards:
   - id: oauth2
     conforms: true
@@ -26,3 +28,54 @@ standards:
   - id: openapi-3
     conforms: true
     evidence: Sixteen OpenAPI 3.0/3.1 definitions (plus one Swagger 2.0) are published on developer.dowjones.com.
+  - id: ietf-ratelimit-headers
+    conforms: partial
+    evidence: >-
+      The Advanced Screening and Monitoring API returns RateLimit and RateLimit-Policy headers
+      explicitly declared as conforming to draft-ietf-httpapi-ratelimit-headers-08, plus Retry-After
+      on the periodic policy. No other Dow Jones API declares rate-limit headers.
+      See rate-limits/dow-jones-rate-limits.yml.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: >-
+      A vulnerability disclosure program is published at https://www.dowjones.com/security/ (managed by
+      Bugcrowd, VDP@dowjones.com) but no security.txt is served on any Dow Jones host — every
+      /.well-known/security.txt probed on 2026-08-13 returned 404.
+  - id: rfc8615-well-known
+    conforms: partial
+    evidence: >-
+      Only /.well-known/openid-configuration on accounts.dowjones.com returns a document; api-catalog,
+      oauth-authorization-server, oauth-protected-resource, ai-plugin.json and agent-card.json all 404
+      across every host. See well-known/dow-jones-well-known.yml.
+  - id: a2a-agent-card
+    conforms: false
+    evidence: >-
+      No A2A Agent Card is served. /.well-known/agent-card.json and the legacy /.well-known/agent.json
+      were probed on api.dowjones.com, eu.api.dowjones.com, www.dowjones.com, developer.dowjones.com and
+      api-thirdparty.riskcenter.dowjones.com on 2026-08-13 — all 404.
+compliance:
+  - id: iso-27001
+    certified: true
+    scope: Information Security Management System covering Risk & Compliance, Factiva and Newsplus.
+    auditor: Schellman
+    evidence: https://www.dowjones.com/iso-certification/
+  - id: isae-3000
+    certified: true
+    scope: >-
+      Independent assurance over the design, implementation and operating effectiveness of Dow Jones
+      Risk & Compliance sanctions platform and data-set controls (Sanctions Assurance report).
+    auditor: PricewaterhouseCoopers LLP
+    cadence: annual
+    evidence: https://www.dowjones.com/dow-jones-risk-compliance-quality-reports/
+  - id: soc-2
+    certified: false
+    evidence: No SOC 2 report or attestation is published or referenced on any Dow Jones public page (checked 2026-08-13).
+  - id: gdpr
+    certified: partial
+    evidence: >-
+      EU data residency is offered as a distinct API host (eu.api.dowjones.com appears in the servers[]
+      of the Risk Search, Risk Taxonomy, Risk Profiles, Profile Version History, Screening and
+      Monitoring and Private Lists specs); privacy commitments are published at
+      https://www.dowjones.com/privacy-notice/ and https://www.dowjones.com/pibcontentprivacynotice/.
+      No formal GDPR certification is claimed.
+compliance_artifact: security/dow-jones-trust-center.yml

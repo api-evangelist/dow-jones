@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dow Jones Newswires Real-time API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /content/realtime/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/content/realtime/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

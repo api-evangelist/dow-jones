@@ -1,0 +1,1797 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Screening and Monitoring API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alert",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Close an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/:alert_id/close",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the alert to close"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Close an alert with the specified reasons, actions and consequences.\nNOTE: Alerts can only be closed if they are eligible for closure according to the workflow configuration.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n*Generated from limited sample size.*\n\n**Latency dis"
+        },
+        {
+          "info": {
+            "name": "Assign alert to user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/:alert_id/assign",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the alert to assign"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign an alert to a user, optionally changing the status. NOTE: Alerts can only be assigned if they are eligible for assignment to the specified user in the specified status according to the workflow configuration. ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Assign alert to the previous assignee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/:alert_id/assign/previous",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Assign the alert to the previous assignee in the previous status. NOTE: The alert must have been assigned to a previous user in a different status. NOTE: Alerts can only be assigned if they are eligible for assignment to the specified user in the specified status according to the workflow configuration. ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Reopen an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/:alert_id/reopen",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reopen a closed alert.  NOTE: Alerts can only be reopened if they are eligible for reopening and can transition to the specified status according to the workflow configuration. ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Update status/assignment of an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/:alert_id/status",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update status and optionally the assigned user of an alert. NOTE: Alerts can only be assigned or change status if they are eligible for assignment to the specified user in the specified status according to the workflow configuration. ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Bulk assign alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/assign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk assign alerts to the specified user, optionally changing the status of the alerts to the specified status.\nNOTE: Alerts can only be assigned if they are eligible for assignment to the specified user in the specified status according to the workflow configuration.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production t"
+        },
+        {
+          "info": {
+            "name": "Assess an item of evidence on an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/:alert_id/evidence/:evidence_id/assess",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "evidence_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks an evidence item as Relevant/Not Relevant based on the assessment code passed in. Returns the assessed evidence item.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n*Generated from limited sample size.*\n\n**Latency distribution**\n\nLatency values are shown as millisecon"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alert Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/export/jsonl",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request to export alerts in the system as JSON-L format.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds with "
+        },
+        {
+          "info": {
+            "name": "Export alert activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/activity/export/jsonl",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request to export alert activities in the system as JSON-L format\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seco"
+        },
+        {
+          "info": {
+            "name": "Export evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/alert/evidence/export/jsonl",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Streaming filtered export of evidence in jsonl format.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds with on"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PDF Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a PDF Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/pdf/export/create/alert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a Job ID which can be used to check the status of the export. Once complete the ID can be used to request the full PDF document from the download endpoint\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as millisecon"
+        },
+        {
+          "info": {
+            "name": "Create a PDF Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/pdf/export/create/assessment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a Job ID which can be used to check the status of the export. Once complete the ID can be used to request the full PDF document from the download endpoint\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as millisecon"
+        },
+        {
+          "info": {
+            "name": "Create a PDF Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/pdf/export/create/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a Job ID which can be used to check the status of the export. Once complete the ID can be used to request the full PDF document from the download endpoint\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nOperational data for this endpoint has not yet been collected.\n<!-- operational-characteristics:end -->\n"
+        },
+        {
+          "info": {
+            "name": "List PDF exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/pdf/export/list"
+          },
+          "docs": "Returns a list of previously requested PDF export jobs.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Check the status of a PDF export job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/pdf/export/status/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the status of a given job id\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n*Generated from limited sample size.*\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).\n\n| M"
+        },
+        {
+          "info": {
+            "name": "Download PDF export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/pdf/export/download/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Given a job ID, returns the generated PDF (If the job status is 'done'). It is recommended to save a copy of the response as the generated document will be pruned from the system after 24 hours\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n*Generated from limited sample si"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Excel Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Excel Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/excel/export/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Excel export job for client screening results using simplified parameters. Specify the export type, date range, and optional filters. Returns job ID which can be used to check the status and download the completed export. Maximum number of clients per export is 750,000.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured f"
+        },
+        {
+          "info": {
+            "name": "Get Excel Export Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/excel/export/status/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the export job"
+              }
+            ]
+          },
+          "docs": "Retrieves the current status of an Excel export job.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n*Generated from limited sample size.*\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as "
+        },
+        {
+          "info": {
+            "name": "Download Excel Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/excel/export/download/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the export job"
+              }
+            ]
+          },
+          "docs": "Downloads the completed Excel export file as a ZIP file. Each compressed file will be an Excel workbook - each containing worksheet(s) of up to 500,000 rows each.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n*Generated from limited sample size.*\n\n**Latency distribution**\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assessment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get assessments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/assessment",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paged list of assessments\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Create an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This creates a new Assessment for a new entity, returning an assessment ID\nthat can be used to request the status and detail of the assessment.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, secon"
+        },
+        {
+          "info": {
+            "name": "Bulk delete assessments",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "API_INSTANCE/assessment",
+            "params": [
+              {
+                "name": "atSystemHigh",
+                "value": "",
+                "type": "query",
+                "description": "Defaults to false if not set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "\"Request to delete multiple assessments using filters\"\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Search assessments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/search",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a paged list of assessments that match the given filters, sorted by the given sort criteria.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Create an assessment synchronously",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/synchronous",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This creates a new Assessment for a new entity, blocking until the assessment\nhas completed, and returning the summary form of the assessment.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Lat"
+        },
+        {
+          "info": {
+            "name": "Retrieve an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/assessment/:assessment_id",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "The details of the assessment and summary of any results\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "API_INSTANCE/assessment/:assessment_id",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "atSystemHigh",
+                "value": "",
+                "type": "query",
+                "description": "Defaults to false if not set"
+              }
+            ]
+          },
+          "docs": "Request to delete the assessment with specified id\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Close an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/:assessment_id/close",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "An endpoint for closing assessments\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).\n\n| Metric | Value |\n| --- | --- |\n| Median |"
+        },
+        {
+          "info": {
+            "name": "Get the high-level state of the assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/assessment/:assessment_id/state",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the state of the given assessment\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Update the status of an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "API_INSTANCE/assessment/:assessment_id/status",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status of an assessment\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Assign and change the status of the assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/:assessment_id/assign",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign and change the status of the assessment\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Bulk assess a number of pieces of evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/:assessment_id/bulk-assess",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk assess a number of pieces of evidence. They are assessed as Relevant/Not Relevant depending on the assessment codes passed in.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve the full content of evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/assessment/:assessment_id/evidence/:evidence_id",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "evidence_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "documentFields",
+                "value": "",
+                "type": "query",
+                "description": "Return specific fields from the supporting evidence document. By default core.content.value and entity are returned."
+              }
+            ]
+          },
+          "docs": "Retrieve the full content of evidence, including list profiles and article content and metadata\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve the full content of evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/:assessment_id/evidence/:evidence_id",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "evidence_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the full content of evidence, including list profiles and article content and metadata\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Search evidence summaries for an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/assessment/:assessment_id/evidence",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "convert_timestamps",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a paged list of evidence that match the given filters and sorted by the given sort criteria.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Search evidence summaries for an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/:assessment_id/evidence",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "convert_timestamps",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a paged list of evidence that match the given filters and sorted by the given sort criteria.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, othe"
+        },
+        {
+          "info": {
+            "name": "Assess an item of evidence in an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/:assessment_id/evidence/:evidence_id/assess",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "evidence_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks an evidence item as Relevant/Not Relevant based on the assessment code passed in.  Returns the assessed evidence item & activity.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Bookmark an item of evidence in an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/:assessment_id/evidence/:evidence_id/bookmark",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "evidence_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Bookmark an item of evidence in an assessment\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Delete bookmark evidence in an assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "API_INSTANCE/assessment/:assessment_id/evidence/:evidence_id/bookmark",
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "evidence_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete bookmark evidence in an assessment\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assessment Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch assessments in JSON-L format",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/export/jsonl",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request to export assessments in the system as JSON-L format.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds "
+        },
+        {
+          "info": {
+            "name": "Export evidence in JSON-L format",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/evidence/export/jsonl",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Streaming filtered export of evidence in jsonl format. If the assessment is closed the matches enrichment will not be populated.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribut"
+        },
+        {
+          "info": {
+            "name": "Export assessment activity in JSON-L format",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/assessment/activity/export/jsonl",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request to export assessment activities in the system as JSON-L format\n\nPlease note, at scale some queries to this endpoint may slowdown. Please test your particular access pattern at the scale you are running at.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are me"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attachment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload an attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/attachment/alert/:alertId",
+            "params": [
+              {
+                "name": "alertId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "attachment",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This endpoint allows to upload attachments to alerts\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Client Delete",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete client records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/client/delete",
+            "headers": [
+              {
+                "name": "formData",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Provide a list of client ids to be deleted.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n"
+        },
+        {
+          "info": {
+            "name": "Client delete job errors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/delete/:jobId/errors",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the client delete job."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of jobs to skip ahead."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retreive the errors associated with a given client delete job. Results are returned in pages, defined using the `from` and `to` query parameters.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Client delete filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/client/delete/filter"
+          },
+          "docs": "Retrieve the Client Delete jobs created by all users.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Client Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all import jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/import"
+          },
+          "docs": "This endpoint lists all client import jobs\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Bulk import client records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/client/import",
+            "params": [
+              {
+                "name": "removeInvalidRelationships",
+                "value": "",
+                "type": "query",
+                "description": "This flag controls how the system handles cases where a client that is referenced in a relationship is not found in the client import job and is not already loaded.\n\nIf the flag is set to `true`, the relationship will be ignored and not loaded. If the flag is set to `false`, the relationship will be loaded, allowing the missing referenced client to be loaded as part of a subsequence client load job.\n"
+              },
+              {
+                "name": "batch",
+                "value": "",
+                "type": "query",
+                "description": "Indicates that the clients in this client import job should be handled as a single batch and immediately loaded together.\n\nIf this value is set to `false`, the system will not load the clients in this job immediately and will instead wait until there are more clients to load in requests where this parameter is set to `false`, or until a certain amount of time has passed. This allows the system to batch smaller client load jobs internally and process them as part of a larger internal batch, which is more efficiently.\n\nIMPORTANT: Loading large numbers of smaller client load jobs without this value set to `false` is not recommended as it can lead to overheads that can impact system performance.\n"
+              }
+            ]
+          },
+          "docs": "Labyrinth Screening supports ongoing monitoring of entities (referred to as \"clients\") against risks. The Client Import API supports the loading and updating of clients that should be monitored.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from product"
+        },
+        {
+          "info": {
+            "name": "Import a single client synchronously",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/client/import/synchronous",
+            "params": [
+              {
+                "name": "jobname",
+                "value": "",
+                "type": "query",
+                "description": "Optional label for the created import job (defaults to \"Sync Client Import\")."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import or update **one** client record and block until screening has completed, then return\nthe current alerts for that client.\n\nUnlike `POST /client/import`, which accepts a bulk upload and returns immediately with a\njob identifier, this endpoint holds the HTTP connection open until the import job reaches\n`COMPLETE` and assessment counters have caught up. The client is processed through the\nstandard client import pipeline using high-priority routing.\n\n### Request body\n\nSubmit a **single client "
+        },
+        {
+          "info": {
+            "name": "Reload clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/client/import/reload"
+          },
+          "docs": "Reloads all clients in the system\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n"
+        },
+        {
+          "info": {
+            "name": "Search client import jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/import/search",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of a client job to search for. This parameter can be specified multiple times to retrieve multiple import jobs."
+              },
+              {
+                "name": "jobname",
+                "value": "",
+                "type": "query",
+                "description": "The partial name of a job to search for. Strings will be matched from the beginning of the job name. For example, searching for \"Bulk Client\" will return \"Bulk Client Job\", but not \"Job for Bulk Clients Load\""
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "The sort order of the results."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to retrieve."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "The number of entries to skip before retrieving results."
+              }
+            ]
+          },
+          "docs": "An endpoint used to search client import jobs\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Get a job by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/import/:job_id",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the job to fetch"
+              }
+            ]
+          },
+          "docs": "This endpoint fetches a client import job by ID\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Get a report for a client import job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/import/:job_id/report",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Client import job ID"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Starting point for pagination"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Size for pagination"
+              }
+            ]
+          },
+          "docs": "Fetches a client import job report based on the given ID and optional parameters, detailing errors for that job\"\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Stream a report for a client import job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/import/:job_id/report/stream",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Client import job ID"
+              }
+            ]
+          },
+          "docs": "Streams a client import job report based on the given ID and optional parameters, detailing errors for that job\"\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Client import job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/import/:job_id/status",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the client import job."
+              }
+            ]
+          },
+          "docs": "Retrieve the status of a given client import job.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Client import job errors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/import/:job_id/errors",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the client import job."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The index of the error to start from."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The index of the error to end with."
+              }
+            ]
+          },
+          "docs": "Retrieve the errors associated with a given client import job. Results are returned in pages, defined using the `from` and `to` query parameters.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Client import job errors stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/client/import/:job_id/errors/stream",
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the client import job."
+              }
+            ]
+          },
+          "docs": "Retrieve the errors associated with a given client import job as a stream.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Disposition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get historical dispositions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/disposition",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "Client identifier used to scope historical dispositions"
+              },
+              {
+                "name": "sourceSystemId",
+                "value": "",
+                "type": "query",
+                "description": "Source system identifier associated with historical dispositions"
+              },
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "query",
+                "description": "Profile identifier to filter historical dispositions"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip from the beginning"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Request to get historical dispositions by filters ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Create a historical disposition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/disposition",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Request to create a historical disposition in the system ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Get a historical disposition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/disposition/:disposition_id",
+            "params": [
+              {
+                "name": "disposition_id",
+                "value": "42",
+                "type": "path",
+                "description": "Identifier of the historical disposition"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Request to get a historical disposition identified by id ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Update a historical disposition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "API_INSTANCE/disposition/:disposition_id",
+            "params": [
+              {
+                "name": "disposition_id",
+                "value": "42",
+                "type": "path",
+                "description": "Identifier of the historical disposition"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Request to update a historical disposition in the system ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a historical disposition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "API_INSTANCE/disposition/:disposition_id",
+            "params": [
+              {
+                "name": "disposition_id",
+                "value": "42",
+                "type": "path",
+                "description": "Identifier of the historical disposition"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes an existing historical disposition identified by id ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Bulk delete historical dispositions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/disposition/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Bulk delete historical dispositions by list of disposition IDs ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Entity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch the number of clients in the system",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/entity/client-count",
+            "params": [
+              {
+                "name": "ignoreSecurity",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to ignore security and either return the full count in LS or return the visible count for the authenticated user. If `false`, the counts represent the number of entities that are visible to the authenticated calling user based on the user's security settings. If `true`, the counts returned are the totals for all entities in the system, ignoring the authenticated user's security settings.\n"
+              }
+            ]
+          },
+          "docs": "Returns the total number of clients in the system including counts of active and inactive clients.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n"
+        },
+        {
+          "info": {
+            "name": "Queries the clients in LS and streams response",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/entity/client-query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns clients filtered by the query specified in the request. For example, requesting all Active clients will return the list of active clients that the calling user has permission to see.\nClient records are streamed as line-delimited JSON records conforming to the schema.\nThe records returned are restricted by the calling user's security settings, so that the user will not see restricted information that is outside their own permissions.\n### Rate Limits\n\nThis endpoint is subject to a general "
+        },
+        {
+          "info": {
+            "name": "Query full profile details for a list of profile IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/entity/risk-profile-query",
+            "params": [
+              {
+                "name": "relationships",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, include each profile's `relationships` (`relationshipType`, `profileId`, optional `name`).\n"
+              },
+              {
+                "name": "retrieveDeleted",
+                "value": "",
+                "type": "query",
+                "description": "When `false`, deleted profiles are returned as inline `NOT_FOUND` entries instead of being included in the response.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the most recent version of profile records for up to 200 profile IDs in a single request.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n*Generated from limited sample size.*\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds with"
+        },
+        {
+          "info": {
+            "name": "Exports the clients in LS and streams response, optionally filtered by Last Modified Date only",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/entity/client-export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unlike /entity/client-query, this endpoint optionally filters by Last Modified Date only. If Last Modified Date is provided it will return all clients that have been modified since the Last Modified Date. If no Last Modified Date is provided it will return all clients. Unlike /entity/client-query, this endpoint does not filter by any other fields.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of"
+        },
+        {
+          "info": {
+            "name": "Delete multiple clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "API_INSTANCE/entity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete all of the clients specified in the request body. This is a hard delete that deletes the client along with all of their alerts and associated information.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Delete single client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "API_INSTANCE/entity/:entity_id",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the client to delete"
+              }
+            ]
+          },
+          "docs": "Delete the client with the specified ID. This is a hard delete of the client along with all of their alerts and associated information.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Validate list entity and client data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/entity/validate-data",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "The endpoint takes a prefix parameter that defines the prefix used for the key of the entity. Only entities whose key starts with the given prefix will be validated.\n\n**List entities (profiles):** The keys are generated within the system, and are of the form:\nlistEntity:internal:provider:source:<ListEntityId>\nProvider and source are the values provided in the call to the list import API when this entity was loaded. The ListEntityId corresponds to the profileId of the specific list entity. Keys for list entities are automatically prefixed with listEntity, and so to validate list data the query should be: `…/entity/validate-data?prefix=listEntity`\n\n**Clients:** The keys are generated within the system, and are of the form:\neoi:<ClientId>\nTo validate clients for a given client key, use: `…/entity/validate-data?prefix=eoi`.\n"
+              }
+            ]
+          },
+          "docs": "Check the validity of list entity (profile) and client data by comparing the hash stored on the entity with the expected hash in the request. Use the `prefix` parameter to scope validation to list entities or clients.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\nHashes must be supplied when loading data (list import API or client import API). Ripjar does not generate hashes; they are supplied by the client to reconcile the version"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Articles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve one news article by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/articles/:article_id",
+            "params": [
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path",
+                "description": "Article id or original id (see operation description)."
+              }
+            ]
+          },
+          "docs": "Returns the news article for the given path value. That value may be either the article id (document id) or the original id from the article source;\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Stream news articles linked to an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/articles/entity/:entity_id",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "path",
+                "description": "Entity id."
+              }
+            ]
+          },
+          "docs": "Streams linked news articles as JSON-L, empty body if none.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "List Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new or update a current list entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/list/import",
+            "params": [
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "The source is the name of the collection of list entities within the provider. This string is shown in the user interface, and should be URL encoded, for example “My Test List” would be encoded as “My%20Test%20List”."
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "The provider URL query parameter identifies who created the list entities, for example dowjones. This should be a single word without special characters."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The List entity API allows identities to be screened against entities that appear on lists, for example, watchlists including sanctioned entities or PEP's.\nThis API endpoint is used to add or change list entities.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are me"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search against one or more identifiers using a strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/search/:strategy",
+            "params": [
+              {
+                "name": "recordProperties",
+                "value": "",
+                "type": "query",
+                "description": "A comma-delimited list of the names of properties that should be included when returning records.\nIf returnRecords is false, this parameter is ignored.  If this parameter isn't specified, and\nreturnRecords is true, entire records are returned for matches.\n"
+              },
+              {
+                "name": "returnQuery",
+                "value": "",
+                "type": "query",
+                "description": "Returns the query object as given under the “query” key."
+              },
+              {
+                "name": "returnReasons",
+                "value": "",
+                "type": "query",
+                "description": "Returns the match reasons for each result. Can be verbose."
+              },
+              {
+                "name": "returnRecords",
+                "value": "",
+                "type": "query",
+                "description": "Returns the full details for each match."
+              },
+              {
+                "name": "strategy",
+                "value": "",
+                "type": "path",
+                "description": "Search strategy to employ. Options are configuration-dependent.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This performs a search against the Identity Resolution service to see\nwhat possible matches we have for the provided identifier(s).\nA result is returned for each entity record specified in the request body,\nand the order of the results matches the order of the entities in the request.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured "
+        },
+        {
+          "info": {
+            "name": "Retrieve a profile record given the ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "API_INSTANCE/search/record/:profileId",
+            "params": [
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier for a structured data profile of an entity that the\nsearch service might match a query against.\n"
+              }
+            ]
+          },
+          "docs": "The search endpoint returns profile identifiers with their scores.\nThis endpoint retrieves the full records for those profiles.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/user/search",
+            "params": [
+              {
+                "name": "includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Return deleted users"
+              }
+            ]
+          },
+          "docs": "Search users that\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Bulk import multiple users to the system",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/user/import"
+          },
+          "docs": "Create or update multiple user accounts within the system.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a list of users from the system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "API_INSTANCE/users"
+          },
+          "docs": "The Delete Users Endpoint is used to delete a large number of users in a single call. ### Rate Limits\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.\nUser records are soft-deleted: the system retains basic essential information about the user for audit and display purposes, but the user account will be inaccessible.\n"
+        },
+        {
+          "info": {
+            "name": "Synchronize users to the system by replacing all current users with a new set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "API_INSTANCE/users/sync"
+          },
+          "docs": "The Synchronize Users endpoint will replace all of the users currently defined in the Labyrinth system with those in the payload received. The following rules are observed: - Any user currently within the system and not mentioned in the payload will be deleted. - The system will update any existing user where the `id` or `externalId` fields match. - Any user that is absent, both the `id` and `externalId` fields will be created. - If an `id` is provided, but could not be found, then an error will"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

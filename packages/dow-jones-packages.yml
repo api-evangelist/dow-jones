@@ -1,6 +1,14 @@
-generated: '2026-07-22'
+generated: '2026-08-13'
 method: searched
-source: https://pypi.org/user/DowJones-CSE/ and https://github.com/dowjones
+source: >-
+  https://pypi.org/user/DowJones-CSE/ and https://github.com/dowjones — versions and dates read from
+  registry.npmjs.org / pypi.org/pypi/<pkg>/json and the GitHub tags/releases API on 2026-08-13.
+currency_note: >-
+  Every first-party Dow Jones client library published to a package registry is stale. The three
+  Factiva PyPI packages last shipped in 2022, and the two GitHub-distributed DNA Streams clients have
+  no registry presence at all — they are installed from a git URL, so a consumer cannot resolve a
+  version through normal dependency tooling. factiva-analytics is the only one whose source repo is
+  still active (pushed 2026-04-28) while its published artifact remains at 0.3.0 from 2022-11-29.
 packages:
   - language: python
     registry: pypi
@@ -8,38 +16,105 @@ packages:
     url: https://pypi.org/project/factiva-analytics/
     install: pip install factiva-analytics
     official: true
+    version: 0.3.0
+    published: '2022-11-29'
     author: Dow Jones Customer Engineers
     description: Python package to interact with Factiva Analytics APIs (Snapshots, Streams, Taxonomy).
     repository: https://github.com/dowjones/factiva-analytics-python
+    repo_last_push: '2026-04-28'
+    note: >-
+      Source repository is actively maintained but no new release has been published to PyPI since
+      2022-11-29 — the installable artifact is nearly four years behind the code.
   - language: python
     registry: pypi
     name: factiva-core
     url: https://pypi.org/project/factiva-core/
     install: pip install factiva-core
     official: true
+    version: 0.2.5
+    published: '2022-08-31'
     author: Dow Jones Customer Engineers
     description: Root definitions and dictionaries supporting the Factiva Python packages.
     repository: https://github.com/dowjones/factiva-core-python
+    repo_last_push: '2022-11-07'
   - language: python
     registry: pypi
     name: factiva-news
     url: https://pypi.org/project/factiva-news/
     install: pip install factiva-news
     official: true
+    version: 0.2.5
+    published: '2022-12-02'
     author: Dow Jones Customer Engineers
     description: Python package to interact with Factiva news-related APIs (Snapshots and Streams).
     repository: https://github.com/dowjones/factiva-news-python
+    repo_last_push: '2023-02-15'
   - language: javascript
     registry: github
     name: dj-dna-streams-javascript
     url: https://github.com/dowjones/dj-dna-streams-javascript
     install: npm install git+https://github.com/dowjones/dj-dna-streams-javascript.git
     official: true
-    description: JavaScript client for the Dow Jones DNA (Factiva) Streams API. Distributed from GitHub, not published to npm.
+    version: null
+    published: null
+    latest_tag: release-1.4.0
+    latest_release: release-1.3.0
+    latest_release_date: '2024-11-28'
+    repo_last_push: '2026-04-09'
+    description: JavaScript client for the Dow Jones DNA (Factiva) Streams API.
+    note: >-
+      Not published to npm (registry.npmjs.org returns 404 for the name). Distribution is an unpinned
+      git URL, so `version`/`published` are null by construction — a consumer installing from the
+      default branch cannot tell which build they are getting. Latest git tag is release-1.4.0; the most
+      recent GitHub release is release-1.3.0 (2024-11-28).
   - language: python
     registry: github
     name: dj-dna-streams-python
     url: https://github.com/dowjones/dj-dna-streams-python
     install: pip install git+https://github.com/dowjones/dj-dna-streams-python.git
     official: true
-    description: Python client for the Dow Jones DNA (Factiva) Streams API. Distributed from GitHub, not published to PyPI.
+    version: null
+    published: null
+    latest_tag: release-2.4.0
+    latest_release: release-2.4.0
+    latest_release_date: '2026-04-09'
+    repo_last_push: '2026-04-09'
+    description: Python client for the Dow Jones DNA (Factiva) Streams API.
+    note: >-
+      Not published to PyPI. Distribution is an unpinned git URL, so `version`/`published` are null —
+      the release tag release-2.4.0 (2026-04-09) is the only version signal available, and it is
+      readable only from the GitHub API, not from a package registry.
+related_repositories:
+  - name: factiva-sample-notebooks
+    url: https://github.com/dowjones/factiva-sample-notebooks
+    last_push: '2025-06-17'
+    kind: samples
+  - name: factiva-retrievalapi-demo
+    url: https://github.com/dowjones/factiva-retrievalapi-demo
+    last_push: '2025-10-27'
+    kind: demo
+  - name: factiva-stream-docker-python
+    url: https://github.com/dowjones/factiva-stream-docker-python
+    last_push: '2022-03-31'
+    kind: template
+  - name: factiva-stream-docker-javascript
+    url: https://github.com/dowjones/factiva-stream-docker-javascript
+    last_push: '2022-03-31'
+    kind: template
+registries_checked:
+  - registry: pypi
+    result: 3 first-party packages found (DowJones-CSE)
+  - registry: npm
+    result: no first-party Dow Jones / Factiva package found
+  - registry: maven-central
+    result: none found
+  - registry: nuget
+    result: none found
+  - registry: rubygems
+    result: none found
+  - registry: packagist
+    result: none found
+  - registry: crates.io
+    result: none found
+  - registry: pkg.go.dev
+    result: none found

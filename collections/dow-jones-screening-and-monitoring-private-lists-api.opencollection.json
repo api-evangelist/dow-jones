@@ -1,0 +1,407 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screening and Monitoring Private Lists API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the information of the Profiles Custom Sources from the given account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "page offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "page limit"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the information of the Profiles Custom Sources from the given account"
+        },
+        {
+          "info": {
+            "name": "Creates a new Profiles Custom Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new Profiles Custom Source"
+        },
+        {
+          "info": {
+            "name": "Retrieves the attributes of the Profiles Custom Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/:id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the source."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the attributes of the Profiles Custom Source"
+        },
+        {
+          "info": {
+            "name": "Modifies a Profiles Custom Source Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/:id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the source."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Modifies a Profiles Custom Source Name"
+        },
+        {
+          "info": {
+            "name": "Deletes a Profiles Custom Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the source."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes a Profiles Custom Source"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all profiles from a custom source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/:id/profiles",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "page offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "page limit, should not be higher than 500"
+              },
+              {
+                "name": "parts",
+                "value": "id_only",
+                "type": "query",
+                "description": "Specifies if the profiles should be returned with all attributes or only the ids.\n  * all_attributes - Return all attributes for the profiles\n  * id_only - Returns only the profile ids (Default value)\n"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the custom source."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all profiles from a custom source"
+        },
+        {
+          "info": {
+            "name": "Inserts one or more profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/:id/profiles",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the source."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Inserts one or more profiles"
+        },
+        {
+          "info": {
+            "name": "Retrieves a Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/:id/profiles/:peid",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the source."
+              },
+              {
+                "name": "peid",
+                "value": "",
+                "type": "path",
+                "description": "Id of the profile."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a Profile"
+        },
+        {
+          "info": {
+            "name": "Updates a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/:id/profiles/:peid",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the source."
+              },
+              {
+                "name": "peid",
+                "value": "",
+                "type": "path",
+                "description": "Id of the profile."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates a profile"
+        },
+        {
+          "info": {
+            "name": "Removes a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/:id/profiles/:peid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the source."
+              },
+              {
+                "name": "peid",
+                "value": "",
+                "type": "path",
+                "description": "Id of the profile."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes a profile"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the status of a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-profiles-custom-sources/transactions/:id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the transaction."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the status of a transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

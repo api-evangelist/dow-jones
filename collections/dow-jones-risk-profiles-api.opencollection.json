@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dow Jones R&C Profile API",
+    "version": "1.5"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/riskentities/profiles/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique id that identities the resource"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Specify which parts of the profile to return, can be one or more separated by comma ( , ). If not specified (empty), all assets will be returned"
+              },
+              {
+                "name": "has_lists_description",
+                "value": "",
+                "type": "query",
+                "description": "If true, returns a description for the three lists types (Sanctions List, Other Exclusion List and Other Official Lists), if false, then no description is returned."
+              },
+              {
+                "name": "is_audit",
+                "value": "",
+                "type": "query",
+                "description": "(Available from version 2.3+) Boolean flag to control if a request should be auditted of not."
+              },
+              {
+                "name": "profile_notes_target_language",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the language to translate to using iso-639-1 language code."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get R&C profile given an profile id. It is possible to get only parts of the profile, to reduce response size, using the parts parameter."
+        },
+        {
+          "info": {
+            "name": "Get Profile Notes by Profile id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/riskentities/profiles/:id/profile-notes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique id that identities the resource"
+              },
+              {
+                "name": "parts",
+                "value": "",
+                "type": "query",
+                "description": "Specify which parts of the profile notes to return, can be one or more separated by comma ( , ). If not specified (empty), all assets will be returned"
+              },
+              {
+                "name": "target_language",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the language to translate to using iso-639-1 language code."
+              }
+            ]
+          },
+          "docs": "Get profile notes from a profile given its id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Image by Image Reference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/riskentities/images/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique id that identities the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get an image given an image reference id.  Can only retrieve one image at a time"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Connection Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the connection details for a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/riskentities/profiles/:id/connection-details",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique id that identities the resource"
+              },
+              {
+                "name": "filter[type]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by profile type (available up to version 2.6)"
+              },
+              {
+                "name": "filter[type_code]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by profile type code (available from version 2.7)"
+              },
+              {
+                "name": "filter[connection_type]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by connection type (available up to version 2.6)"
+              },
+              {
+                "name": "filter[connection_type_code]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by connection type code (available from version 2.7)"
+              },
+              {
+                "name": "filter[full_name]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by full name"
+              },
+              {
+                "name": "filter[icon_hint]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by iconHint"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "sort"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "page"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "number of items in each page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a list of connectionDetails for a given profile ID. It is possible to filter through name, type, connection and icon. It is also possible to get the results ordered and with pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,33 @@
+generated: '2026-08-13'
+method: searched
+source: https://developer.dowjones.com/request-trial/
+plan_count: 0
+public_pricing: false
+model: enterprise contract / contact sales
+note: >-
+  Dow Jones publishes no public plans, tiers or list prices for any of its developer APIs. Every
+  surface — the Developer Platform (developer.dowjones.com), Factiva, Newswires and Risk & Compliance —
+  routes to a "Request trial" form or a sales-inquiry form rather than a pricing page. There is no
+  self-serve signup, no free tier, and no published quota-per-price mapping. Access is granted per
+  contract, and the Advanced Screening and Monitoring API's own documentation confirms limits are
+  negotiated ("Please contact support if these rate limit quotas are inappropriate for your usage").
+  Third-party resellers and review sites quote ranges for Factiva seats, but nothing published by
+  Dow Jones itself was found, so no plan rows are recorded here.
+plans: []
+access_paths:
+  - label: Request trial (Developer Platform)
+    url: https://developer.dowjones.com/request-trial/
+    status: 200
+  - label: Sales inquiry — Risk Management & Compliance
+    url: https://www.dowjones.com/contact/sales-inquiry/
+    status: 200
+  - label: Contact Dow Jones
+    url: https://www.dowjones.com/contact/
+    status: 200
+probed:
+  - url: https://www.dowjones.com/pricing
+    status: 404
+  - url: https://www.dowjones.com/professional/factiva/pricing/
+    status: 404
+  - url: https://developer.dowjones.com/request-trial/
+    status: 200

@@ -1,0 +1,953 @@
+{
+  "item": [
+    {
+      "id": "dda6f3ed-b762-4cfd-a3b5-65e93f180743",
+      "name": "Profiles",
+      "description": {
+        "content": "Operations to retrieve R&C Profiles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d751f75f-18f0-4c41-89c4-28d15058a049",
+          "name": "Get Profiles",
+          "request": {
+            "name": "Get Profiles",
+            "description": {
+              "content": "Get R&C profile given an profile id. It is possible to get only parts of the profile, to reduce response size, using the parts parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Specify which parts of the profile to return, can be one or more separated by comma ( , ). If not specified (empty), all assets will be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "has_lists_description",
+                  "value": "<boolean>",
+                  "description": "If true, returns a description for the three lists types (Sanctions List, Other Exclusion List and Other Official Lists), if false, then no description is returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_audit",
+                  "value": "<boolean>",
+                  "description": "(Available from version 2.3+) Boolean flag to control if a request should be auditted of not."
+                },
+                {
+                  "disabled": false,
+                  "key": "profile_notes_target_language",
+                  "value": "en",
+                  "description": "Specifies the language to translate to using iso-639-1 language code."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique id that identities the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Language key for Translations",
+                "key": "Accept-Language",
+                "value": "en"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d9e1dabc-8298-4b30-bcd0-d05089e588e7",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_lists_description",
+                      "value": "true"
+                    },
+                    {
+                      "key": "is_audit",
+                      "value": "true"
+                    },
+                    {
+                      "key": "profile_notes_target_language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique id that identities the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Language key for Translations",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"12300\",\n    \"type\": \"profiles\",\n    \"links\": {\n      \"self\": \"https://XGRHfiXGEbPniwkrvECUvmYSVTkmsA.yfCzCTvaS.3RG4hq\"\n    },\n    \"attributes\": {\n      \"basic\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"factiva_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"location_name_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"person\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"country_territory_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"date_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identification_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"places_of_birth\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"gender\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"is_deceased\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"associated_entity_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"icon_hints\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_sets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email_addresses\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"entity\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"country_territory_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identification_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"date_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"industries\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"icon_hints\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_sets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"location\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identification_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"country_territory_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"state_owned_companies\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"state_owned_company_detail\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"country_territory_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"role_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"comment_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"date_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"adverse_media_entity\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"adverse_media_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"comment_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"watchlist\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identification_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"country_territory_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reported_allegation_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"role_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"aircraft_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"ship_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"comment_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"high_risk_factor\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"licence_detail\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"comment_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"role_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"relationship\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"connection_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"list_reference\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"sanctions_lists\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"other_official_lists\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"other_exclusion_lists\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"image\": {\n        \"asset_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_reviewed_date\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_notice\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"image_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"meta\": {\n      \"duns\": \"000000001\",\n      \"is_ubo_available\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c51e6f6d-0619-4d7e-82b0-1b5c4e01b488",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "has_lists_description",
+                      "value": "true"
+                    },
+                    {
+                      "key": "is_audit",
+                      "value": "true"
+                    },
+                    {
+                      "key": "profile_notes_target_language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique id that identities the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Language key for Translations",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb7b8e4e-e3d4-44af-8163-da462af368e2",
+          "name": "Get Profile Notes by Profile id",
+          "request": {
+            "name": "Get Profile Notes by Profile id",
+            "description": {
+              "content": "Get profile notes from a profile given its id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profiles",
+                ":id",
+                "profile-notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>,<string>",
+                  "description": "Specify which parts of the profile notes to return, can be one or more separated by comma ( , ). If not specified (empty), all assets will be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "target_language",
+                  "value": "en",
+                  "description": "Specifies the language to translate to using iso-639-1 language code."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique id that identities the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4d0e637-c3b1-4a0d-902f-ba65a74be0ba",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ":id",
+                    "profile-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parts",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "target_language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique id that identities the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"12300\",\n    \"type\": \"profile-notes\",\n    \"links\": {\n      \"self\": \"http://DOFJolBcRQJEJqFkKtAMzCplid.ejqa.5094uRAzDNMw0TM,.iPb3mvDw15K\"\n    },\n    \"attributes\": {\n      \"state_owned_company\": {\n        \"comment_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"adverse_media_entity\": {\n        \"comment_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"watchlist\": {\n        \"comment_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"high_risk_factor\": {\n        \"comment_details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "677214ca-de33-41e9-bc1f-5c8287966876",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ":id",
+                    "profile-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parts",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "target_language",
+                      "value": "en"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique id that identities the resource"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b435ec6b-552a-4467-8b6b-05658665077b",
+      "name": "Images",
+      "description": {
+        "content": "Operations to retrieve R&C Images",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "116f6891-ccc5-4a21-bbb0-e8ea889b02e8",
+          "name": "Get Image by Image Reference",
+          "request": {
+            "name": "Get Image by Image Reference",
+            "description": {
+              "content": "Get an image given an image reference id.  Can only retrieve one image at a time",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "images",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique id that identities the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e1d21fc-026a-4fe9-a09c-5cfad3089af8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "images",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique id that identities the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "nosniff",
+                  "key": "X-Content-Type-Options",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "1; mode=block",
+                  "key": "X-XSS-Protection",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"image_bytes\": \"string\",\n      \"image_type\": \"image/jpg\",\n      \"commerce_letter\": {\n        \"accession_number\": \"string\",\n        \"function_code\": \"string\",\n        \"publication_code\": \"string\",\n        \"response_id\": \"string\",\n        \"status_indicator\": \"string\"\n      }\n    },\n    \"type\": \"images\",\n    \"links\": {\n      \"self\": \"https://a.kkfpbV8qvnHlK.DNI\"\n    },\n    \"id\": \"12300\"\n  },\n  \"meta\": {\n    \"count\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "885999f2-7ee2-4fb4-a4d5-4a4711063810",
+      "name": "Connection Details",
+      "description": {
+        "content": "Operations to retrieve the Connection Details of a R&C Profile",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ea06310f-8741-4090-8367-e417aad26c05",
+          "name": "Get the connection details for a profile",
+          "request": {
+            "name": "Get the connection details for a profile",
+            "description": {
+              "content": "Get a list of connectionDetails for a given profile ID. It is possible to filter through name, type, connection and icon. It is also possible to get the results ordered and with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profiles",
+                ":id",
+                "connection-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter[type]",
+                  "value": "<string>",
+                  "description": "Filter by profile type (available up to version 2.6)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[type_code]",
+                  "value": "<string>",
+                  "description": "Filter by profile type code (available from version 2.7)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[connection_type]",
+                  "value": "<string>",
+                  "description": "Filter by connection type (available up to version 2.6)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[connection_type_code]",
+                  "value": "<integer>",
+                  "description": "Filter by connection type code (available from version 2.7)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[full_name]",
+                  "value": "<string>",
+                  "description": "Filter by full name"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[icon_hint]",
+                  "value": "<string>",
+                  "description": "Filter by iconHint"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "sort"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[offset]",
+                  "value": "<number>",
+                  "description": "page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[limit]",
+                  "value": "<number>",
+                  "description": "number of items in each page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique id that identities the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Language key for Translations",
+                "key": "Accept-Language",
+                "value": "en"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.dowjones.dna.riskentities-connection-details.v_1.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "23bb48d3-1f8d-4136-9459-a1529bdcc36f",
+              "name": "succesful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ":id",
+                    "connection-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[type]",
+                      "value": "Person"
+                    },
+                    {
+                      "key": "filter[type_code]",
+                      "value": "Person"
+                    },
+                    {
+                      "key": "filter[connection_type]",
+                      "value": "Colleague"
+                    },
+                    {
+                      "key": "filter[connection_type_code]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "filter[full_name]",
+                      "value": "Google"
+                    },
+                    {
+                      "key": "filter[icon_hint]",
+                      "value": "SI-PERSON"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-name"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique id that identities the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Language key for Translations",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.dowjones.dna.riskentities-connection-details.v_1.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.dowjones.dna.riskentities-connection-details.v_1.0+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"attributes\": {\n      \"connection_details\": [\n        {\n          \"profile_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_current\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"connection_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reverse_connection_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name_detail\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"icon_hints\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"profile_id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"is_current\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"connection_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reverse_connection_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name_detail\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"icon_hints\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"meta\": {\n        \"paging\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"duns\": \"000000001\",\n        \"is_ubo_available\": true,\n        \"is_audit\": true,\n        \"total_count\": 8088,\n        \"count\": 2955,\n        \"filter_values\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7911da43-9d89-4b0f-b6ae-074ee39531e5",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ":id",
+                    "connection-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[type]",
+                      "value": "Person"
+                    },
+                    {
+                      "key": "filter[type_code]",
+                      "value": "Person"
+                    },
+                    {
+                      "key": "filter[connection_type]",
+                      "value": "Colleague"
+                    },
+                    {
+                      "key": "filter[connection_type_code]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "filter[full_name]",
+                      "value": "Google"
+                    },
+                    {
+                      "key": "filter[icon_hint]",
+                      "value": "SI-PERSON"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-name"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique id that identities the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Language key for Translations",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45aab33a-e0e4-41b1-9fa4-d2a781e87437",
+              "name": "Not Acceptable - application/json is not supported for this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles",
+                    ":id",
+                    "connection-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[type]",
+                      "value": "Person"
+                    },
+                    {
+                      "key": "filter[type_code]",
+                      "value": "Person"
+                    },
+                    {
+                      "key": "filter[connection_type]",
+                      "value": "Colleague"
+                    },
+                    {
+                      "key": "filter[connection_type_code]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "filter[full_name]",
+                      "value": "Google"
+                    },
+                    {
+                      "key": "filter[icon_hint]",
+                      "value": "SI-PERSON"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-name"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "3"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique id that identities the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Language key for Translations",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dowjones.com/riskentities",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3dbc4a0a-e450-4769-98d7-a7f1543d8617",
+    "name": "Dow Jones R&C Profile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "R&C Profile API delivers the capability for clients to retrieve the R&C Assets.",
+      "type": "text/plain"
+    }
+  }
+}

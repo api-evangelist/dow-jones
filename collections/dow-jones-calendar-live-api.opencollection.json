@@ -1,0 +1,826 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Calendar Live API",
+    "version": "1.1.9"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calendar Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Searches for a single event by its unique identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/calendar-events/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Number that uniquely identifies the event."
+              },
+              {
+                "name": "filter[event_language]",
+                "value": "",
+                "type": "query",
+                "description": "Translate descriptions to this language if translation is available, otherwise show English version"
+              },
+              {
+                "name": "options[show_ecoinfo]",
+                "value": "",
+                "type": "query",
+                "description": "Include ecoinfo as part of the event result."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for a single event by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Searches for specific events based on the given filter.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/calendar-events/search",
+            "params": [
+              {
+                "name": "filter[has_key_events_only]",
+                "value": "",
+                "type": "query",
+                "description": "Include only macroeconomic events that Dow Jones editors have classified as having a market impact. This categorization is based on news judgement and is updated on news merit."
+              },
+              {
+                "name": "filter[has_confirmed_events_only]",
+                "value": "",
+                "type": "query",
+                "description": "Include only events whose date and time have been confirmed."
+              },
+              {
+                "name": "filter[time_specified]",
+                "value": "",
+                "type": "query",
+                "description": "Filter events based on time specified"
+              },
+              {
+                "name": "filter[country]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of countries associated with the event (e.g. BH-Bahrain, AZ-Azerbaijan). These are countries related to the entity that provides data or sponsorship for the event. Use ISO codes and separate them with new lines when providing multiple codes."
+              },
+              {
+                "name": "filter[region]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of regions associated with the event (e.g. EMEM, EU, G10). These are regions related to the entity that provides data or sponsorship for the event. Use new lines when providing multiple region codes."
+              },
+              {
+                "name": "filter[event_code]",
+                "value": "",
+                "type": "query",
+                "description": "Event type: ICC-Corporate events, IEP-Economic and Political events, IDC-Treasury Auctions."
+              },
+              {
+                "name": "filter[series_code]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of event series codes (e.g. TrdBal-Trade Balance, ImptPx-Import Prices). Series codes enable searching for historical and upcoming repeatable events. Use new lines when providing multiple series codes."
+              },
+              {
+                "name": "filter[event_class]",
+                "value": "",
+                "type": "query",
+                "description": "Single classification of the event (e.g. IEP_STAT-Statistics and Economic Indicators, ICC_ANL-Earnings/Analysts Calls and GMs)."
+              },
+              {
+                "name": "filter[start_date]",
+                "value": "",
+                "type": "query",
+                "description": "Earliest date and time of interest, yyyy-MM-dd'T'HH:mm:ss'Z'."
+              },
+              {
+                "name": "filter[end_date]",
+                "value": "",
+                "type": "query",
+                "description": "Latest date and time of interest, yyyy-MM-dd'T'HH:mm:ss'Z'."
+              },
+              {
+                "name": "filter[ticker]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of Newswires codes. Use new lines when providing multiple ticker codes."
+              },
+              {
+                "name": "filter[isin]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of ISINs. Use new lines when providing multiple isin codes."
+              },
+              {
+                "name": "filter[event_language]",
+                "value": "",
+                "type": "query",
+                "description": "Translate descriptions to this language if translation is available; otherwise, show English version."
+              },
+              {
+                "name": "options[show_ecoinfo]",
+                "value": "",
+                "type": "query",
+                "description": "Include ecoinfo as part of the events results."
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results for a single request, max size 1000."
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Paging offset, the event ID given serves as a reference point to request additional events (beyond what was returned according to the limit value). The response does not include the reference ID. To page backward to get older events, make the event number negative."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for specific events based on the given filter."
+        },
+        {
+          "info": {
+            "name": "Searches for specific events based on the given filters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/calendar-events/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for specific events based on the given filters."
+        },
+        {
+          "info": {
+            "name": "Searches for requested events with options for updated events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/calendar-events/",
+            "params": [
+              {
+                "name": "filter[id]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of event IDs. Separate each event ID with a comma when providing multiple events."
+              },
+              {
+                "name": "filter[last_updated_time]",
+                "value": "",
+                "type": "query",
+                "description": "Search only for events that have been updated since this date and time, (yyyy-MM-dd'T'HH:mm:ss'Z')."
+              },
+              {
+                "name": "filter[has_updates]",
+                "value": "",
+                "type": "query",
+                "description": "Search only for events that have been updated."
+              },
+              {
+                "name": "filter[event_language]",
+                "value": "",
+                "type": "query",
+                "description": "Translate descriptions to this language if translation is available; otherwise, show English version."
+              },
+              {
+                "name": "options[show_ecoinfo]",
+                "value": "",
+                "type": "query",
+                "description": "Include ecoinfo as part of the events results."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for requested events with options for updated events."
+        },
+        {
+          "info": {
+            "name": "Searches for requested events with options for updated events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/calendar-events/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for requested events with options for updated events."
+        },
+        {
+          "info": {
+            "name": "Searches for requested events with options for updated events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/calendar-events",
+            "params": [
+              {
+                "name": "filter[id]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of event IDs. Separate each event ID with a comma when providing multiple events."
+              },
+              {
+                "name": "filter[last_updated_time]",
+                "value": "",
+                "type": "query",
+                "description": "Search only for events that have been updated since this date and time, (yyyy-MM-dd'T'HH:mm:ss'Z')."
+              },
+              {
+                "name": "filter[has_updates]",
+                "value": "",
+                "type": "query",
+                "description": "Search only for events that have been updated."
+              },
+              {
+                "name": "filter[event_language]",
+                "value": "",
+                "type": "query",
+                "description": "Translate descriptions to this language if translation is available; otherwise, show English version."
+              },
+              {
+                "name": "options[show_ecoinfo]",
+                "value": "",
+                "type": "query",
+                "description": "Include ecoinfo as part of the events results."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for requested events with options for updated events."
+        },
+        {
+          "info": {
+            "name": "Searches for requested events with options for updated events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/calendar-events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for requested events with options for updated events"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Calendar Taxonomy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the list of available country codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/countries",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available country codes."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an individual country by its ISO code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/countries/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "ISO country code (e.g. IN-India, BR-Brazil)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an individual country by its ISO code."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of available region codes and the countries each clusters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/regions",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available region codes and the countries each clusters."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an individual region by its code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/regions/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "Region code (e.g. G10, EMEM, EU)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an individual region by its code."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of available language codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/languages",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available language codes."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an individual language by its code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/languages/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "Language code (e.g. ar-Arabic, de-German)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an individual language by its code."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of available event type codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/eventcodes",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available event type codes."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an individual event type by its code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/eventcodes/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "Event type code: ICC-Corporate events, IEP-Economic and Political events, IDC-Treasury Auctions."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an individual event type by its code."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of available event series codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/seriescodes",
+            "params": [
+              {
+                "name": "filter[event_code]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter[country]",
+                "value": "",
+                "type": "query",
+                "description": "Include only events from these countries (ISO Code)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available event series codes."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an individual event series by its code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/seriescodes/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "Event series code, which enables searching for historical and upcoming repeatable events (e.g. TrdBal-Trade Balance, ImptPx-Import Prices)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an individual event series by its code."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of available event class codes (subclassification of events).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/eventclass",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available event class codes (subclassification of events)."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an individual event class by its code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/eventclass/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "Event class code that provides a single classification of the event (e.g. IEP_STAT-Statistics and Economic Indicators, ICC_ANL-Earnings/Analysts Calls and GMs)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an individual event class by its code."
+        },
+        {
+          "info": {
+            "name": "Searches for the list of event classes by event type code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/eventclass/eventcode/:eventcode",
+            "params": [
+              {
+                "name": "eventcode",
+                "value": "",
+                "type": "path",
+                "description": "Event type code: ICC-Corporate events, IEP-Economic and Political events, IDC-Treasury Auctions."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the list of event classes by event type code."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of available currency codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/currency",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available currency codes."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an individual currency by its code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-events/currency/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "Currency code (e.g. BRE-Brazilian Cruzeiro, BGN-Bulgarian Lev)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an individual currency by its code."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IPO Calendar Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Searches for IPO events given a comma-separated list of unique identifiers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/calendar-ipo-events/:ids",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of unique identifiers corresponding to the IPO events you want to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for IPO events given a comma-separated list of unique identifiers."
+        },
+        {
+          "info": {
+            "name": "Searches for specific IPO events based on the given filter.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/calendar-ipo-events/search",
+            "params": [
+              {
+                "name": "filter[date_type]",
+                "value": "",
+                "type": "query",
+                "description": "Date type."
+              },
+              {
+                "name": "filter[start_date]",
+                "value": "",
+                "type": "query",
+                "description": "Earliest date and time of interest, yyyy-MM-dd'T'HH:mm:ss'Z'."
+              },
+              {
+                "name": "filter[end_date]",
+                "value": "",
+                "type": "query",
+                "description": "Latest date and time of interest, yyyy-MM-dd'T'HH:mm:ss'Z'."
+              },
+              {
+                "name": "filter[issuer_country]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of issuer countries associated with the IPO event (e.g. BH-Bahrain, AZ-Azerbaijan). These are countries related to the entity that provides data or sponsorship for the  IPO event. Use ISO codes and separate them with new lines when providing multiple codes."
+              },
+              {
+                "name": "filter[exchange_country]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of exchange countries associated with the IPO event (e.g. BH-Bahrain, AZ-Azerbaijan). These are countries related to the entity that provides data or sponsorship for the  IPO event. Use ISO codes and separate them with new lines when providing multiple codes."
+              },
+              {
+                "name": "filter[exchange]",
+                "value": "",
+                "type": "query",
+                "description": "ORed list of exchange associated with the IPO event (e.g. BH-Bahrain, AZ-Azerbaijan). Use ISO codes (MIC) and separate them with new lines when providing multiple codes."
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results for a single request, max size 1000."
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Paging offset, the IPO event ID given serves as a reference point to request additional events (beyond what was returned according to the limit value). The response does not include the reference ID. To page backward to get older events, make the event number negative."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for specific IPO events based on the given filter."
+        },
+        {
+          "info": {
+            "name": "Searches for specific IPO events based on the given filters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/calendar-ipo-events/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for specific IPO events based on the given filters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IPO Calendar Taxonomy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves the list of available country codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-ipo-events/countries",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available country codes."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an individual country by its ISO code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-ipo-events/countries/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "ISO country code (e.g. IN-India, BR-Brazil)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an individual country by its ISO code."
+        },
+        {
+          "info": {
+            "name": "Retrieves the list of available exchanges.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-ipo-events/exchanges",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the list of available exchanges."
+        },
+        {
+          "info": {
+            "name": "Searches for the data of an exchange by its ISO code (MIC).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/calendar-ipo-events/exchanges/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "ISO exchange code (e.g. XNYS-New York Stock Exchange, XMEX-Mexican Stock Exchange)."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Searches for the data of an exchange by its ISO code (MIC)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

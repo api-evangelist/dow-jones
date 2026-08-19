@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dow Jones Risk and Compliance Profile Version History API",
+    "version": "1.1.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a profile's history of versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/profiles/:profile-id/versions/",
+            "params": [
+              {
+                "name": "profile-id",
+                "value": "",
+                "type": "path",
+                "description": "Unique profile id that identifies a profile"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the list of versions (dates) given a profile id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Revisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all revisions from a profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/profiles/:profile-id/revisions/",
+            "params": [
+              {
+                "name": "profile-id",
+                "value": "",
+                "type": "path",
+                "description": "Unique profile id that identifies a profile"
+              },
+              {
+                "name": "filter[revision_date]",
+                "value": "",
+                "type": "query",
+                "description": "Filters by the revision date"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Page offset"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Limit of resources per page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Given a profile id, gets all revisions from that profile. The revision_date can be used to filter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,597 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Risk & Compliance Risk Reports",
+    "version": "1.18.11"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Risk Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of the billing accounts and their report types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/billing-accounts",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of the billing accounts and their report types"
+        },
+        {
+          "info": {
+            "name": "Get comments by report request id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/comments",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all comments for specified report request ID"
+        },
+        {
+          "info": {
+            "name": "Create a new comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/comments",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new comment request for the given Report Request ID"
+        },
+        {
+          "info": {
+            "name": "Get comments by report and comment id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/comments/:commentId",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              },
+              {
+                "name": "commentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the comment"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a list of all comments for specified report request ID"
+        },
+        {
+          "info": {
+            "name": "Get all documents by report request id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/documents",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all documents by report request id"
+        },
+        {
+          "info": {
+            "name": "Add a support document by report request id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/documents",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Receives document files and upload to s3"
+        },
+        {
+          "info": {
+            "name": "Get document by report request and document id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/documents/:documentId",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the document"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get document by id"
+        },
+        {
+          "info": {
+            "name": "Send a report request to receive a price estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-reports/estimate",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID of the user that performed the transaction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets an estimate for a pending report request"
+        },
+        {
+          "info": {
+            "name": "Get data used to create report requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/metadata",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get data used to create report requests"
+        },
+        {
+          "info": {
+            "name": "Update URL used for callback notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.dowjones.com/risk-reports/metadata",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID of the user that performed the transaction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update the data related to report requests and required for its creation"
+        },
+        {
+          "info": {
+            "name": "Get outstanding proposals by report request id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/proposals",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get proposals for a report request."
+        },
+        {
+          "info": {
+            "name": "Get a proposal by report request and proposal id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/proposals/:proposalId",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              },
+              {
+                "name": "proposalId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the proposal"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets a proposal."
+        },
+        {
+          "info": {
+            "name": "Approve proposal by report request id and proposal type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/proposals/:proposalType/:additionalPriceProposalId",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              },
+              {
+                "name": "proposalType",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the proposal"
+              },
+              {
+                "name": "additionalPriceProposalId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the additional price proposal"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Approve proposal"
+        },
+        {
+          "info": {
+            "name": "Reject proposal by report request id and proposal type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/proposals/:proposalType/:additionalPriceProposalId",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              },
+              {
+                "name": "proposalType",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the proposal"
+              },
+              {
+                "name": "additionalPriceProposalId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the additional price proposal"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Reject proposal"
+        },
+        {
+          "info": {
+            "name": "Subscribe to events related to a report request by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/subscribe",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Subscribe to events related to a report request by id"
+        },
+        {
+          "info": {
+            "name": "Unsubscribe to events related to a report request by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId/unsubscribe",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Unsubscribe to events related to a report request by id"
+        },
+        {
+          "info": {
+            "name": "Get a report request by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests/:reportRequestId",
+            "params": [
+              {
+                "name": "reportRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the report request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a report request by id"
+        },
+        {
+          "info": {
+            "name": "Get all report requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests",
+            "params": [
+              {
+                "name": "filter[cilent_reference][eq]",
+                "value": "",
+                "type": "query",
+                "description": "The client reference of the report"
+              },
+              {
+                "name": "filter[report_type][eq]",
+                "value": "",
+                "type": "query",
+                "description": "The type of report"
+              },
+              {
+                "name": "filter[workflow_state.value][in]",
+                "value": "",
+                "type": "query",
+                "description": "Filter on workflow_state"
+              },
+              {
+                "name": "filter[expected_delivery_beginning_date][lt]",
+                "value": "",
+                "type": "query",
+                "description": "will filter the report requests that have the delivered date in the string provided (ISO8601)"
+              },
+              {
+                "name": "filter[expected_delivery_end_date][gt]",
+                "value": "",
+                "type": "query",
+                "description": "will filter the report requests based on the expected delivery date (ISO8601)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Used the same way as filter[][] but returns all report requests matching at least one of the search criteria.  Most efficient when combined with filter.  All filter queries are supported as search queries."
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "The amount of report requests to return up to 100."
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "The page to retrieve of report requests."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve just the count of the filtered set"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all report requests"
+        },
+        {
+          "info": {
+            "name": "Create a new Enhanced Due Diligence report request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-reports/reportrequests",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID of the user that performed the transaction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new Enhanced Due Diligence report request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

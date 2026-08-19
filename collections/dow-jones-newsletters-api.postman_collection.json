@@ -1,0 +1,1803 @@
+{
+  "item": [
+    {
+      "id": "9b1f20e9-1f1a-4710-ba5f-ba0132e46fc7",
+      "name": "Newsletters",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7cc9449-99e3-4783-af44-a20d63cf574f",
+          "name": "Gets a list of Newsletters",
+          "request": {
+            "name": "Gets a list of Newsletters",
+            "description": {
+              "content": "Gets a list of newsletters",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsletters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Get all newsletters for ID comma separated list (no spaces) in filter criteria. id=15,16,17"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[shared_status]",
+                  "value": "<string>",
+                  "description": "Get all newsletters for a shared status in filter criteria."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[shared_status]",
+                  "value": "<string>",
+                  "description": "Get all newsletters for a shared status in filter criteria."
+                },
+                {
+                  "disabled": false,
+                  "key": "page[offset]",
+                  "value": "0",
+                  "description": "Starting index into lists"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[limit]",
+                  "value": "10",
+                  "description": "Max number of newsletters to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort by CreatedDate, LastModified, Name; use '-' for descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_editions",
+                  "value": "<integer>",
+                  "description": "Max number of editions to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_deliveries",
+                  "value": "<integer>",
+                  "description": "Max number of delivery to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Parts to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Parts to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_view_newsletter",
+                  "value": "<boolean>",
+                  "description": "Returns View Newsletter List"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_reader_id",
+                  "value": "<string>",
+                  "description": "External reader ID (it is applied only if 'is_view_newsletter' is true )"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cf450b7b-5e91-4235-a778-4e87e7c99268",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[shared_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[shared_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_view_newsletter",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "external_reader_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1234\",\n      \"type\": \"newsletters\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"token\": \"string\",\n        \"shared_status\": \"User\",\n        \"access_scope\": \"Account\",\n        \"is_owner\": false,\n        \"is_online_view_group_assignment\": false,\n        \"total_editions\": 1104.8834309042154,\n        \"user_type\": \"User\",\n        \"details\": {\n          \"title\": \"string\",\n          \"summary\": \"string\",\n          \"is_table_of_contents_shown\": true,\n          \"has_articles_included\": false,\n          \"has_included_source_names\": true,\n          \"is_date_displayed\": true,\n          \"is_snippet_included\": false,\n          \"is_published_date_default\": true,\n          \"additional_dateline_text\": \"string\",\n          \"publication_date\": \"1997-07-16\",\n          \"additional_information\": \"string\",\n          \"footer\": \"string\",\n          \"created_by\": \"string\",\n          \"created_by_namespace\": \"string\",\n          \"created_by_account_id\": \"string\",\n          \"created_by_is_active\": true,\n          \"created_date_time\": \"1997-07-16T19:20:30+00:00\",\n          \"last_modified_by\": \"string\",\n          \"last_modified_by_namespace\": \"string\",\n          \"last_modified_by_account_id\": \"string\",\n          \"last_modified_by_is_active\": true,\n          \"last_modified_date_time\": \"1997-07-16T19:20:30+00:00\",\n          \"large_masthead\": \"string\",\n          \"small_masthead\": \"string\",\n          \"is_edition_archive_view_enabled\": true,\n          \"is_subscribe_link_included\": false,\n          \"is_newsletter_image_enabled\": false,\n          \"is_full_text_enabled\": true,\n          \"is_auto_prune_enabled\": true,\n          \"is_web_redirect_enabled\": true,\n          \"is_rss_active\": false,\n          \"has_rss_feed\": true,\n          \"is_widget_active\": false,\n          \"has_widget\": false,\n          \"online_distribution\": \"On\",\n          \"audience\": {\n            \"audience_options\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"proxy_credentials\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_account_credentials\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"document_date\": \"1997-07-16T19:20:30+00:00\",\n          \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n          \"rss_sent_date\": \"1997-07-16T19:20:30+00:00\",\n          \"widget_sent_date\": \"1997-07-16T19:20:30+00:00\",\n          \"image\": {\n            \"image_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"drn\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"original_doc_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"current_update_status\": {\n          \"is_updating\": true,\n          \"start_date_time\": \"1997-07-16T19:20:30+00:00\"\n        },\n        \"sections\": [\n          {\n            \"name\": \"string\",\n            \"position\": 2875,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"subsections\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"position\": 1430,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"subsections\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"relationships\": {\n        \"editions\": {\n          \"links\": {\n            \"related\": \"https://localhost:8080/assets/newsletters/1234567890/editions\"\n          },\n          \"data\": [\n            {\n              \"type\": \"editions\",\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": \"editions\",\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"deliveries\": {\n          \"links\": {\n            \"related\": \"https://localhost:8080/assets/newsletters/1234567890/deliveries\"\n          },\n          \"data\": [\n            {\n              \"type\": \"deliveries\",\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": \"deliveries\",\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      \"links\": {\n        \"self\": \"https://localhost:8080/assets/newsletters/1234567890\"\n      }\n    },\n    {\n      \"id\": \"1234\",\n      \"type\": \"newsletters\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"token\": \"string\",\n        \"shared_status\": \"User\",\n        \"access_scope\": \"Account\",\n        \"is_owner\": false,\n        \"is_online_view_group_assignment\": false,\n        \"total_editions\": 2289.7921807787934,\n        \"user_type\": \"User\",\n        \"details\": {\n          \"title\": \"string\",\n          \"summary\": \"string\",\n          \"is_table_of_contents_shown\": true,\n          \"has_articles_included\": true,\n          \"has_included_source_names\": true,\n          \"is_date_displayed\": false,\n          \"is_snippet_included\": false,\n          \"is_published_date_default\": false,\n          \"additional_dateline_text\": \"string\",\n          \"publication_date\": \"1997-07-16\",\n          \"additional_information\": \"string\",\n          \"footer\": \"string\",\n          \"created_by\": \"string\",\n          \"created_by_namespace\": \"string\",\n          \"created_by_account_id\": \"string\",\n          \"created_by_is_active\": true,\n          \"created_date_time\": \"1997-07-16T19:20:30+00:00\",\n          \"last_modified_by\": \"string\",\n          \"last_modified_by_namespace\": \"string\",\n          \"last_modified_by_account_id\": \"string\",\n          \"last_modified_by_is_active\": true,\n          \"last_modified_date_time\": \"1997-07-16T19:20:30+00:00\",\n          \"large_masthead\": \"string\",\n          \"small_masthead\": \"string\",\n          \"is_edition_archive_view_enabled\": true,\n          \"is_subscribe_link_included\": false,\n          \"is_newsletter_image_enabled\": false,\n          \"is_full_text_enabled\": true,\n          \"is_auto_prune_enabled\": false,\n          \"is_web_redirect_enabled\": true,\n          \"is_rss_active\": true,\n          \"has_rss_feed\": false,\n          \"is_widget_active\": false,\n          \"has_widget\": true,\n          \"online_distribution\": \"Off\",\n          \"audience\": {\n            \"audience_options\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"proxy_credentials\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"profile_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"external_account_credentials\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"document_date\": \"1997-07-16T19:20:30+00:00\",\n          \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n          \"rss_sent_date\": \"1997-07-16T19:20:30+00:00\",\n          \"widget_sent_date\": \"1997-07-16T19:20:30+00:00\",\n          \"image\": {\n            \"image_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"drn\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"original_doc_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"current_update_status\": {\n          \"is_updating\": true,\n          \"start_date_time\": \"1997-07-16T19:20:30+00:00\"\n        },\n        \"sections\": [\n          {\n            \"name\": \"string\",\n            \"position\": 5015,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"subsections\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"position\": 7709,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"subsections\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ]\n      },\n      \"relationships\": {\n        \"editions\": {\n          \"links\": {\n            \"related\": \"https://localhost:8080/assets/newsletters/1234567890/editions\"\n          },\n          \"data\": [\n            {\n              \"type\": \"editions\",\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": \"editions\",\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"deliveries\": {\n          \"links\": {\n            \"related\": \"https://localhost:8080/assets/newsletters/1234567890/deliveries\"\n          },\n          \"data\": [\n            {\n              \"type\": \"deliveries\",\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": \"deliveries\",\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      \"links\": {\n        \"self\": \"https://localhost:8080/assets/newsletters/1234567890\"\n      }\n    }\n  ],\n  \"included\": [\n    {\n      \"id\": \"1234\",\n      \"type\": \"editions\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"parent_workspace_id\": 1234,\n        \"last_modified_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"document_date\": \"1997-07-16T19:20:30+00:00\",\n        \"is_sent\": true\n      },\n      \"links\": {\n        \"self\": \"https://localhost:8080/assets/newsletters/9876/editions/1234\"\n      }\n    },\n    {\n      \"id\": \"1234\",\n      \"type\": \"editions\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"parent_workspace_id\": 1234,\n        \"last_modified_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"document_date\": \"1997-07-16T19:20:30+00:00\",\n        \"is_sent\": true\n      },\n      \"links\": {\n        \"self\": \"https://localhost:8080/assets/newsletters/9876/editions/1234\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"count\": 9170,\n    \"total_count\": 906,\n    \"total_pages\": 1958,\n    \"paging\": {\n      \"offset\": {\n        \"first\": 5371,\n        \"prev\": 159,\n        \"next\": 3794,\n        \"last\": 5156,\n        \"current\": 1081\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"https://localhost:8080/assets/newsletters/\",\n    \"first\": \"https://localhost:8080/assets/newsletters/?page[offset]=0&page[limit]=20\",\n    \"prev\": \"https://localhost:8080/assets/newsletters/?page[offset]=0&page[limit]=20\",\n    \"next\": \"https://localhost:8080/assets/newsletters/?page[offset]=40&page[limit]=20\",\n    \"last\": \"https://localhost:8080/assets/newsletters/?page[offset]=210\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7851c078-044a-452b-b626-f65341ed18e2",
+              "name": "Bad Request - Incorrect Parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[shared_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[shared_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_view_newsletter",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "external_reader_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9582,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9326,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25b57eb9-7522-4906-ba57-5e60fccd3ec6",
+              "name": "Internal Server Error - Server encountered an unexpected condition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[shared_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[shared_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_view_newsletter",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "external_reader_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9582,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9326,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14c330d4-cdfd-443c-b9f7-53a248c1e549",
+              "name": "Service Unavailable - Server is currently unable to handle the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[shared_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[shared_status]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_view_newsletter",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "external_reader_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "924a6ea9-b35f-47dc-a99f-927e8d392d0d",
+          "name": "Reading a Newsletter by ID",
+          "request": {
+            "name": "Reading a Newsletter by ID",
+            "description": {
+              "content": "Get newsletter by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsletters",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tkn",
+                  "value": "<string>",
+                  "description": "Encrypted identity"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_editions",
+                  "value": "<integer>",
+                  "description": "Max number of editions to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_deliveries",
+                  "value": "<integer>",
+                  "description": "Max number of delivery to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Parts to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Parts to retrieve"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Newsletter ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1195c0c1-8452-4be7-b0d8-554f8f4ab69f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1234\",\n    \"type\": \"newsletters\",\n    \"attributes\": {\n      \"name\": \"string\",\n      \"token\": \"string\",\n      \"shared_status\": \"User\",\n      \"access_scope\": \"Account\",\n      \"is_owner\": false,\n      \"is_online_view_group_assignment\": true,\n      \"total_editions\": 5869.212729023693,\n      \"user_type\": \"Account\",\n      \"details\": {\n        \"title\": \"string\",\n        \"summary\": \"string\",\n        \"is_table_of_contents_shown\": true,\n        \"has_articles_included\": true,\n        \"has_included_source_names\": false,\n        \"is_date_displayed\": false,\n        \"is_snippet_included\": true,\n        \"is_published_date_default\": false,\n        \"additional_dateline_text\": \"string\",\n        \"publication_date\": \"1997-07-16\",\n        \"additional_information\": \"string\",\n        \"footer\": \"string\",\n        \"created_by\": \"string\",\n        \"created_by_namespace\": \"string\",\n        \"created_by_account_id\": \"string\",\n        \"created_by_is_active\": true,\n        \"created_date_time\": \"1997-07-16T19:20:30+00:00\",\n        \"last_modified_by\": \"string\",\n        \"last_modified_by_namespace\": \"string\",\n        \"last_modified_by_account_id\": \"string\",\n        \"last_modified_by_is_active\": true,\n        \"last_modified_date_time\": \"1997-07-16T19:20:30+00:00\",\n        \"large_masthead\": \"string\",\n        \"small_masthead\": \"string\",\n        \"is_edition_archive_view_enabled\": true,\n        \"is_subscribe_link_included\": true,\n        \"is_newsletter_image_enabled\": false,\n        \"is_full_text_enabled\": false,\n        \"is_auto_prune_enabled\": false,\n        \"is_web_redirect_enabled\": true,\n        \"is_rss_active\": false,\n        \"has_rss_feed\": false,\n        \"is_widget_active\": true,\n        \"has_widget\": false,\n        \"online_distribution\": \"Off\",\n        \"audience\": {\n          \"audience_options\": \"ExternalReader\",\n          \"proxy_credentials\": {\n            \"authentication_scheme\": \"Email\",\n            \"user_id\": \"string\",\n            \"email_id\": \"string\",\n            \"namespace\": \"string\",\n            \"password\": \"string\",\n            \"encrypted_token\": \"string\"\n          },\n          \"profile_id\": \"string\",\n          \"external_account_credentials\": {\n            \"account_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"namespace\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"document_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"rss_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"widget_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"image\": {\n          \"image_id\": \"string\",\n          \"image_type\": \"External\",\n          \"position\": 1510,\n          \"drn\": \"string\",\n          \"original_doc_id\": \"string\",\n          \"image_url\": \"string\"\n        }\n      },\n      \"current_update_status\": {\n        \"is_updating\": false,\n        \"start_date_time\": \"1997-07-16T19:20:30+00:00\"\n      },\n      \"sections\": [\n        {\n          \"name\": \"string\",\n          \"position\": 9608,\n          \"items\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"subsections\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"images\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"images\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"image_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"drn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"original_doc_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"image_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"drn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"original_doc_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"position\": 3150,\n          \"items\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"subsections\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"images\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"images\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"image_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"drn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"original_doc_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"image_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"drn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"original_doc_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    \"relationships\": {\n      \"editions\": {\n        \"links\": {\n          \"related\": \"https://localhost:8080/assets/newsletters/1234567890/editions\"\n        },\n        \"data\": [\n          {\n            \"type\": \"editions\",\n            \"id\": \"1234\"\n          },\n          {\n            \"type\": \"editions\",\n            \"id\": \"1234\"\n          }\n        ]\n      },\n      \"deliveries\": {\n        \"links\": {\n          \"related\": \"https://localhost:8080/assets/newsletters/1234567890/deliveries\"\n        },\n        \"data\": [\n          {\n            \"type\": \"deliveries\",\n            \"id\": \"1234\"\n          },\n          {\n            \"type\": \"deliveries\",\n            \"id\": \"1234\"\n          }\n        ]\n      },\n      \"content\": {\n        \"links\": {\n          \"related\": \"string\"\n        },\n        \"data\": [\n          {\n            \"type\": \"content\",\n            \"id\": \"1234\"\n          },\n          {\n            \"type\": \"content\",\n            \"id\": \"1234\"\n          }\n        ]\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"id\": \"1234\",\n      \"type\": \"editions\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"parent_workspace_id\": 1234,\n        \"last_modified_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"document_date\": \"1997-07-16T19:20:30+00:00\",\n        \"is_sent\": true\n      },\n      \"links\": {\n        \"self\": \"https://localhost:8080/assets/newsletters/9876/editions/1234\"\n      }\n    },\n    {\n      \"id\": \"1234\",\n      \"type\": \"editions\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"parent_workspace_id\": 1234,\n        \"last_modified_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"document_date\": \"1997-07-16T19:20:30+00:00\",\n        \"is_sent\": false\n      },\n      \"links\": {\n        \"self\": \"https://localhost:8080/assets/newsletters/9876/editions/1234\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://localhost:8080/assets/newsletters/1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12bc675c-ea01-4f24-b02b-14e362be7831",
+              "name": "Bad Request - Incorrect Parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9582,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9326,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10e99f90-21bb-4a05-8a12-410884330b76",
+              "name": "Newsletter Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea80b0c7-a353-4bee-9157-33b51acef60b",
+              "name": "Internal Server Error - Server encountered an unexpected condition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9582,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9326,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8c9c686-d93f-4fd4-bbc9-f2182bd0af1d",
+              "name": "Service Unavailable - Server is currently unable to handle the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_editions",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_deliveries",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8b445b5c-3e98-45e1-a090-554b801fb816",
+      "name": "Editions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa364af4-08f2-49a6-a860-3b4e61bc77b1",
+          "name": "Get all Newsletter Editions",
+          "request": {
+            "name": "Get all Newsletter Editions",
+            "description": {
+              "content": "Get all newsletter editions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsletters",
+                ":id",
+                "editions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tkn",
+                  "value": "<string>",
+                  "description": "Encrypted Newsletter identity"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort by CreatedDate, LastModified, Name; use '-' for descending"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[offset]",
+                  "value": "<integer>",
+                  "description": "Starting index into lists"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[limit]",
+                  "value": "<integer>",
+                  "description": "Max number of editions to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Parts to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Parts to retrieve"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Newsletter ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b0553369-d4dc-4ddf-b71a-d478cb70ac2e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1234\",\n      \"type\": \"editions\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"parent_workspace_id\": 1234,\n        \"creation_date\": \"1997-07-16T19:20:30+00:00\",\n        \"last_modified_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_job_id\": \"string\",\n        \"document_date\": \"1997-07-16T19:20:30+00:00\",\n        \"sections\": [\n          {\n            \"name\": \"string\",\n            \"position\": 1772,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"subsections\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"position\": 3567,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"subsections\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"details\": {\n          \"has_snippet_included\": false,\n          \"free_text\": \"string\",\n          \"title\": \"string\",\n          \"summary\": \"string\",\n          \"has_table_of_contents\": true,\n          \"has_fulltext_enabled\": true,\n          \"large_masthead\": \"string\",\n          \"small_masthead\": \"string\",\n          \"footer\": \"string\",\n          \"additional_dateline_text\": \"string\",\n          \"image\": {\n            \"image_id\": \"string\",\n            \"image_type\": \"External\",\n            \"position\": 144,\n            \"drn\": \"string\",\n            \"original_doc_id\": \"string\",\n            \"image_url\": \"string\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"https://localhost:8080/assets/newsletters/9876/editions/1234\"\n      }\n    },\n    {\n      \"id\": \"1234\",\n      \"type\": \"editions\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"parent_workspace_id\": 1234,\n        \"creation_date\": \"1997-07-16T19:20:30+00:00\",\n        \"last_modified_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n        \"email_job_id\": \"string\",\n        \"document_date\": \"1997-07-16T19:20:30+00:00\",\n        \"sections\": [\n          {\n            \"name\": \"string\",\n            \"position\": 5137,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"subsections\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"position\": 4661,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"subsections\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"details\": {\n          \"has_snippet_included\": false,\n          \"free_text\": \"string\",\n          \"title\": \"string\",\n          \"summary\": \"string\",\n          \"has_table_of_contents\": true,\n          \"has_fulltext_enabled\": false,\n          \"large_masthead\": \"string\",\n          \"small_masthead\": \"string\",\n          \"footer\": \"string\",\n          \"additional_dateline_text\": \"string\",\n          \"image\": {\n            \"image_id\": \"string\",\n            \"image_type\": \"Internal\",\n            \"position\": 2332,\n            \"drn\": \"string\",\n            \"original_doc_id\": \"string\",\n            \"image_url\": \"string\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"https://localhost:8080/assets/newsletters/9876/editions/1234\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"count\": 2717,\n    \"total_count\": 6513,\n    \"total_pages\": 7000,\n    \"paging\": {\n      \"offset\": {\n        \"first\": 2637,\n        \"prev\": 8735,\n        \"next\": 5998,\n        \"last\": 5246,\n        \"current\": 6544\n      }\n    }\n  },\n  \"links\": {\n    \"self\": \"https://localhost:8080/assets/newsletters/9876/editions\",\n    \"first\": \"https://localhost:8080/assets/newsletters/9876/editions/?page[offset]=0&page[limit]=10\",\n    \"prev\": \"https://localhost:8080/assets/newsletters/9876/editions/?page[offset]=0&page[limit]=10\",\n    \"next\": \"https://localhost:8080/assets/newsletters/9876/editions/?page[offset]=20&page[limit]=20\",\n    \"last\": \"https://localhost:8080/assets/newsletters/9876/editions/?page[offset]=40&page[limit]=20\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d200a871-96c4-49ab-bd0e-c0a7423bf19e",
+              "name": "Bad Request - Incorrect Parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 8638,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 2317,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cb62d49-738a-4ca2-a26a-39acdba286ff",
+              "name": "Internal Server Error - Server encountered an unexpected condition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9582,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9326,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e39bc34-c690-40f7-9aba-283ea1cc3300",
+              "name": "Service Unavailable - Server is currently unable to handle the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[limit]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e28d5dd-3e1a-46ab-a3e7-a909ed490bcd",
+          "name": "Get a Newsletter's Edition by ID",
+          "request": {
+            "name": "Get a Newsletter's Edition by ID",
+            "description": {
+              "content": "Get newsletter edition by id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "newsletters",
+                ":id",
+                "editions",
+                ":editionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tkn",
+                  "value": "<string>",
+                  "description": "Encrypted Newsletter identity"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Parts to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "parts",
+                  "value": "<string>",
+                  "description": "Parts to retrieve"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) Newsletter ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "editionId",
+                  "description": "(Required) Newsletter's Edition ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "53c7e68e-849e-4a02-b01d-afe33ac64a13",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions",
+                    ":editionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "editionId",
+                      "description": "(Required) Newsletter's Edition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"1234\",\n    \"type\": \"editions\",\n    \"attributes\": {\n      \"name\": \"string\",\n      \"parent_workspace_id\": 1234,\n      \"creation_date\": \"1997-07-16T19:20:30+00:00\",\n      \"last_modified_date\": \"1997-07-16T19:20:30+00:00\",\n      \"email_sent_date\": \"1997-07-16T19:20:30+00:00\",\n      \"email_job_id\": \"string\",\n      \"document_date\": \"1997-07-16T19:20:30+00:00\",\n      \"sections\": [\n        {\n          \"name\": \"string\",\n          \"position\": 2563,\n          \"items\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"subsections\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"images\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"images\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"image_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"drn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"original_doc_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"image_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"drn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"original_doc_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"position\": 492,\n          \"items\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"subsections\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"images\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"items\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"images\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"image_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"drn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"original_doc_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"image_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"position\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"drn\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"original_doc_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"image_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"details\": {\n        \"has_snippet_included\": true,\n        \"free_text\": \"string\",\n        \"title\": \"string\",\n        \"summary\": \"string\",\n        \"has_table_of_contents\": true,\n        \"has_fulltext_enabled\": true,\n        \"large_masthead\": \"string\",\n        \"small_masthead\": \"string\",\n        \"footer\": \"string\",\n        \"additional_dateline_text\": \"string\",\n        \"image\": {\n          \"image_id\": \"string\",\n          \"image_type\": \"External\",\n          \"position\": 5251,\n          \"drn\": \"string\",\n          \"original_doc_id\": \"string\",\n          \"image_url\": \"string\"\n        }\n      }\n    },\n    \"relationships\": {\n      \"content\": {\n        \"links\": {\n          \"related\": \"string\"\n        },\n        \"data\": [\n          {\n            \"type\": \"content\",\n            \"id\": \"string\"\n          },\n          {\n            \"type\": \"content\",\n            \"id\": \"string\"\n          }\n        ]\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"content\",\n      \"links\": {\n        \"self\": \"string\"\n      },\n      \"meta\": {\n        \"alternate_document_id\": \"string\",\n        \"alternate_document_ref\": \"string\",\n        \"count\": 8181.063829713357,\n        \"context\": \"string\",\n        \"code_sets\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"edition\": {\n          \"name\": \"string\",\n          \"print\": {\n            \"value\": \"string\",\n            \"page\": \"string\",\n            \"headlline\": \"string\",\n            \"section\": \"string\",\n            \"date\": \"string\"\n          }\n        },\n        \"emphasis\": {\n          \"hot\": true,\n          \"dominant\": false,\n          \"analysis\": false\n        },\n        \"geo_relevance\": [\n          {\n            \"latitude\": 7225.679004749321,\n            \"longitude\": 4967.351134351819\n          },\n          {\n            \"latitude\": 1958.0471910447827,\n            \"longitude\": 780.4940956990436\n          }\n        ],\n        \"is_translation_allowed\": true,\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"language\": {\n          \"code\": \"en\",\n          \"descriptor\": \"string\"\n        },\n        \"metrics\": {\n          \"character_count\": 1024,\n          \"word_count\": 256,\n          \"image_count\": 4,\n          \"chart_count\": 2\n        },\n        \"original_doc_id\": \"string\",\n        \"source\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"logo\": {\n            \"alternate_text\": \"string\",\n            \"alt_images\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"caption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"credit\": \"string\",\n            \"media_type\": \"string\",\n            \"name\": \"string\",\n            \"uri\": \"string\",\n            \"slug\": \"string\",\n            \"width\": 5317.17503883427,\n            \"height\": 1799.0379754216735,\n            \"type\": \"string\"\n          }\n        },\n        \"bill_data\": \"string\"\n      },\n      \"attributes\": {\n        \"content_type\": \"Article\",\n        \"art\": {\n          \"text\": \"string\"\n        },\n        \"associations\": {\n          \"root_id\": \"string\",\n          \"parent_id\": \"string\",\n          \"parent_id_ref\": \"string\"\n        },\n        \"authors\": [\n          {\n            \"full_name\": \"string\",\n            \"topic_id\": \"string\"\n          },\n          {\n            \"full_name\": \"string\",\n            \"topic_id\": \"string\"\n          }\n        ],\n        \"best_date\": \"string\",\n        \"best_time\": \"string\",\n        \"body\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"paragraph_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sub_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fragment_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alt_images\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"caption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"credit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"media_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uri\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"slug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inset_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ordered\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content_encoding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"paragraph_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sub_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fragment_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alt_images\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"caption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"credit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"media_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uri\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"slug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inset_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ordered\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content_encoding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"byline\": {\n          \"text\": \"string\"\n        },\n        \"column_name\": \"string\",\n        \"contact\": {\n          \"text\": \"string\"\n        },\n        \"content_status\": \"string\",\n        \"copyright\": {\n          \"text\": \"string\"\n        },\n        \"corrections\": [\n          {\n            \"text\": \"string\",\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"text\": \"string\",\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"credit\": {\n          \"text\": \"string\"\n        },\n        \"headline\": {\n          \"flashline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"main\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deck\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"live_date\": \"string\",\n        \"live_time\": \"string\",\n        \"load_date\": \"string\",\n        \"load_time\": \"string\",\n        \"modification_date\": \"string\",\n        \"modification_time\": \"string\",\n        \"notes\": {\n          \"text\": \"string\"\n        },\n        \"page\": \"string\",\n        \"publication_date\": \"string\",\n        \"publication_time\": \"string\",\n        \"publisher\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"group_code\": \"string\",\n          \"group_name\": \"string\"\n        },\n        \"section_name\": {\n          \"text\": \"string\"\n        },\n        \"seo_id\": \"string\",\n        \"snippet\": {\n          \"content\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"summary\": {\n          \"destination_type\": \"string\",\n          \"byline\": {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headline\": {\n            \"flashline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"main\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deck\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"body\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pages\": [\n            \"string\",\n            \"string\"\n          ],\n          \"related_links\": [\n            {\n              \"text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"content\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"content\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"variant\": \"string\"\n        },\n        \"upstream_origin\": \"string\",\n        \"upstream_origin_id\": \"string\",\n        \"volume\": \"string\",\n        \"bytes\": 4166.996843228733,\n        \"external\": false,\n        \"height\": 5711.940106104315,\n        \"width\": 1647.210644257836,\n        \"id_ref\": \"string\",\n        \"size_code\": \"string\",\n        \"is_responsive\": false,\n        \"mime_type\": \"string\",\n        \"slug\": \"string\",\n        \"sub_type\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"content\",\n      \"links\": {\n        \"self\": \"string\"\n      },\n      \"meta\": {\n        \"alternate_document_id\": \"string\",\n        \"alternate_document_ref\": \"string\",\n        \"count\": 9905.127946949799,\n        \"context\": \"string\",\n        \"code_sets\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"edition\": {\n          \"name\": \"string\",\n          \"print\": {\n            \"value\": \"string\",\n            \"page\": \"string\",\n            \"headlline\": \"string\",\n            \"section\": \"string\",\n            \"date\": \"string\"\n          }\n        },\n        \"emphasis\": {\n          \"hot\": false,\n          \"dominant\": true,\n          \"analysis\": false\n        },\n        \"geo_relevance\": [\n          {\n            \"latitude\": 4834.408136582968,\n            \"longitude\": 1281.789909034713\n          },\n          {\n            \"latitude\": 6755.157253252252,\n            \"longitude\": 4039.473524121895\n          }\n        ],\n        \"is_translation_allowed\": false,\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"language\": {\n          \"code\": \"en\",\n          \"descriptor\": \"string\"\n        },\n        \"metrics\": {\n          \"character_count\": 1024,\n          \"word_count\": 256,\n          \"image_count\": 4,\n          \"chart_count\": 2\n        },\n        \"original_doc_id\": \"string\",\n        \"source\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"logo\": {\n            \"alternate_text\": \"string\",\n            \"alt_images\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"caption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"credit\": \"string\",\n            \"media_type\": \"string\",\n            \"name\": \"string\",\n            \"uri\": \"string\",\n            \"slug\": \"string\",\n            \"width\": 3624.1590265646605,\n            \"height\": 8658.714658380406,\n            \"type\": \"string\"\n          }\n        },\n        \"bill_data\": \"string\"\n      },\n      \"attributes\": {\n        \"content_type\": \"Article\",\n        \"art\": {\n          \"text\": \"string\"\n        },\n        \"associations\": {\n          \"root_id\": \"string\",\n          \"parent_id\": \"string\",\n          \"parent_id_ref\": \"string\"\n        },\n        \"authors\": [\n          {\n            \"full_name\": \"string\",\n            \"topic_id\": \"string\"\n          },\n          {\n            \"full_name\": \"string\",\n            \"topic_id\": \"string\"\n          }\n        ],\n        \"best_date\": \"string\",\n        \"best_time\": \"string\",\n        \"body\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"paragraph_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sub_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fragment_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alt_images\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"caption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"credit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"media_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uri\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"slug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inset_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ordered\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content_encoding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"paragraph_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sub_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fragment_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alternate_text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"alt_images\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"caption\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"credit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"media_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uri\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"slug\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"format\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"inset_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ref\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ordered\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content_encoding\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"byline\": {\n          \"text\": \"string\"\n        },\n        \"column_name\": \"string\",\n        \"contact\": {\n          \"text\": \"string\"\n        },\n        \"content_status\": \"string\",\n        \"copyright\": {\n          \"text\": \"string\"\n        },\n        \"corrections\": [\n          {\n            \"text\": \"string\",\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"text\": \"string\",\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"credit\": {\n          \"text\": \"string\"\n        },\n        \"headline\": {\n          \"flashline\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"main\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deck\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"live_date\": \"string\",\n        \"live_time\": \"string\",\n        \"load_date\": \"string\",\n        \"load_time\": \"string\",\n        \"modification_date\": \"string\",\n        \"modification_time\": \"string\",\n        \"notes\": {\n          \"text\": \"string\"\n        },\n        \"page\": \"string\",\n        \"publication_date\": \"string\",\n        \"publication_time\": \"string\",\n        \"publisher\": {\n          \"code\": \"string\",\n          \"name\": \"string\",\n          \"group_code\": \"string\",\n          \"group_name\": \"string\"\n        },\n        \"section_name\": {\n          \"text\": \"string\"\n        },\n        \"seo_id\": \"string\",\n        \"snippet\": {\n          \"content\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"summary\": {\n          \"destination_type\": \"string\",\n          \"byline\": {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"headline\": {\n            \"flashline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"main\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"deck\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"body\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"pages\": [\n            \"string\",\n            \"string\"\n          ],\n          \"related_links\": [\n            {\n              \"text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"content\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"content\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"variant\": \"string\"\n        },\n        \"upstream_origin\": \"string\",\n        \"upstream_origin_id\": \"string\",\n        \"volume\": \"string\",\n        \"bytes\": 1203.219192773517,\n        \"external\": false,\n        \"height\": 7833.535741120002,\n        \"width\": 631.897788727368,\n        \"id_ref\": \"string\",\n        \"size_code\": \"string\",\n        \"is_responsive\": false,\n        \"mime_type\": \"string\",\n        \"slug\": \"string\",\n        \"sub_type\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"https://localhost:8080/assets/newsletters/9876/editions/1234\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acf1e79b-cffc-4c52-9c77-9f7c9280d7be",
+              "name": "Bad Request - Incorrect Parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions",
+                    ":editionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "editionId",
+                      "description": "(Required) Newsletter's Edition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9582,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9326,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "314a2baa-c564-498c-b35b-4d8cde481f65",
+              "name": "Newsletter Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions",
+                    ":editionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "editionId",
+                      "description": "(Required) Newsletter's Edition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3486b835-c8d6-46c7-aa02-7bcdcbbd5456",
+              "name": "Internal Server Error - Server encountered an unexpected condition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions",
+                    ":editionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "editionId",
+                      "description": "(Required) Newsletter's Edition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9582,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"title\": \"string\",\n      \"status\": 9326,\n      \"detail\": \"string\",\n      \"meta\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c57fb7a-b77d-4add-a885-81d39eff5dd6",
+              "name": "Service Unavailable - Server is currently unable to handle the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "newsletters",
+                    ":id",
+                    "editions",
+                    ":editionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tkn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parts",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) Newsletter ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "editionId",
+                      "description": "(Required) Newsletter's Edition ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.dowjones.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ba8d9626-1595-4e78-858a-a5f8db53f448",
+    "name": "DJ Factiva Newsletters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,8 +1,8 @@
 generated: '2026-07-22'
 method: derived
 status: candidate
-note: No official Dow Jones-hosted MCP server was found (July 2026). This is a candidate tool list derived from
-  the published OpenAPI definitions.
+note: No official Dow Jones-hosted MCP server was found (July 2026). This is a candidate tool list derived
+  from the published OpenAPI definitions.
 server:
   name: dow-jones
   transport: http
@@ -203,7 +203,8 @@ tools:
   description: Query full profile details for a list of profile IDs
   source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#entityRiskProfileQuery
 - name: clientExport
-  description: Exports the clients in LS and streams response, optionally filtered by Last Modified Date only
+  description: Exports the clients in LS and streams response, optionally filtered by Last Modified Date
+    only
   source_operation: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json#clientExport
 - name: entityMultipleDelete
   description: Delete multiple clients
@@ -500,8 +501,8 @@ tools:
   description: Adds a new case with all associations. Returns a new transaction id of this operation
   source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#saveCaseUsingPOST
 - name: saveAssociationBatchUsingPOST
-  description: Creates a batch of associations and correlates them with the given case. Returns a new transaction
-    ID of this operation
+  description: Creates a batch of associations and correlates them with the given case. Returns a new
+    transaction ID of this operation
   source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#saveAssociationBatchUsingPOST
 - name: getBulkTransactionUsingGET
   description: Gets status of a bulk transaction
@@ -546,12 +547,12 @@ tools:
   description: Gets status of a transaction
   source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#getTransactionUsingGET
 - name: validateCaseShortcutPOST
-  description: Validates that a Shortcut Case payload does not have validation errors. Returns a valid "status"
-    and information about any errors that might
+  description: Validates that a Shortcut Case payload does not have validation errors. Returns a valid
+    "status" and information about any errors that might
   source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#validateCaseShortcutPOST
 - name: validateShortcutAssociationsPOST
-  description: Validates that a Shortcut Associations payload does not have validation errors. Returns a valid "status"
-    and information about any errors th
+  description: Validates that a Shortcut Associations payload does not have validation errors. Returns
+    a valid "status" and information about any errors th
   source_operation: openapi/dow-jones-screening-and-monitoring-api-openapi.json#validateShortcutAssociationsPOST
 - name: getProfileSourcesUsingGET
   description: Retrieves the information of the Profiles Custom Sources from the given account
@@ -595,3 +596,19 @@ tools:
 - name: GetCollectionIdList
   description: Gets a full list of entitled content-collection IDs
   source_operation: openapi/dow-jones-top-stories-api-openapi.json#GetCollectionIdList
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+  tools: 195
+  checked: '2026-08-13'
+  source: catalog MCP census; re-searched 2026-08-13
+  note: >-
+    Dow Jones ships no MCP server of any kind — no hosted remote endpoint and no stdio package.
+    Re-checked 2026-08-13: no @dowjones or @factiva MCP package on npm or PyPI, no MCP mention on
+    developer.dowjones.com, and mcp.dowjones.com does not resolve (DNS failure), api.dowjones.com/mcp
+    returns 404. The tools[] list below is a candidate projection of the published OpenAPI
+    operations, not a surface an agent can call today.

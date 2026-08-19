@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.dowjones.com/iso-certification/
+trust_center:
+  hosted_portal: false
+  note: >-
+    Dow Jones runs no branded trust portal (trust.dowjones.com does not resolve — DNS failure on probe
+    2026-08-13). Certification and assurance evidence is published as individual pages on
+    www.dowjones.com instead, and the underlying certificates and reports are released to customers
+    on request rather than downloadable anonymously.
+  pages:
+    - label: ISO 27001 Certification
+      url: https://www.dowjones.com/iso-certification/
+      status: 200
+    - label: Dow Jones Risk & Compliance 2025 Quality Reports
+      url: https://www.dowjones.com/dow-jones-risk-compliance-quality-reports/
+      status: 200
+    - label: Security / Vulnerability Disclosure Program
+      url: https://www.dowjones.com/security/
+      status: 200
+certifications:
+  - name: ISO/IEC 27001
+    standard: ISO/IEC 27001 Information Security Management System
+    status: certified
+    scope: >-
+      Dow Jones Inc.'s Information Security Management System, covering the information security
+      framework and associated activities for Risk & Compliance, Factiva and Newsplus.
+    auditor: Schellman
+    cycle: 3-year certification with annual surveillance audits
+    certificate_availability: Copy of the certificate linked from the ISO certification page; auditor listing on the Schellman site.
+    source: https://www.dowjones.com/iso-certification/
+  - name: ISAE 3000 (Revised) — Sanctions Assurance
+    standard: International Standard on Assurance Engagements 3000 (Revised)
+    status: assured
+    scope: >-
+      Independent assurance over the design, implementation and operating effectiveness of Dow Jones
+      Risk & Compliance controls covering key aspects of the sanctions platform and data set.
+    auditor: PricewaterhouseCoopers LLP (PwC)
+    cadence: annual
+    certificate_availability: Available to customers on request via the 2025 data quality reports request page.
+    source: https://www.dowjones.com/dow-jones-risk-compliance-quality-reports/
+attestations:
+  - name: Dow Jones Risk & Compliance Annual Data Quality Report
+    year: 2025
+    producer: Dow Jones (internally produced)
+    availability: Customers on request
+    request_url: https://www.dowjones.com/business-intelligence/resources/data-quality-reports-2025/
+    source: https://www.dowjones.com/dow-jones-risk-compliance-quality-reports/
+not_found:
+  - SOC 2 Type II report or public listing
+  - PCI DSS attestation
+  - HIPAA / FedRAMP
+  - A subprocessor list or uptime/SLA commitment page
+  - trust.dowjones.com (DNS does not resolve)
+governance_pages:
+  - label: Legal Notices
+    url: https://www.dowjones.com/legal-notices/
+  - label: Privacy Notice
+    url: https://www.dowjones.com/privacy-notice/
+  - label: Code of Conduct
+    url: https://www.dowjones.com/code-conduct/
+  - label: Modern Slavery Statement
+    url: https://www.dowjones.com/modern-slavery-statement/
+x-evidence:
+  fetched: '2026-08-13'
+  probes:
+    - url: https://www.dowjones.com/iso-certification/
+      status: 200
+    - url: https://www.dowjones.com/dow-jones-risk-compliance-quality-reports/
+      status: 200
+    - url: https://trust.dowjones.com
+      status: 0

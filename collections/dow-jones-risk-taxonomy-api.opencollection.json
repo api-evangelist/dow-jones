@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Risk and Compliance Taxonomy API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Risk and Compliance - Taxonomy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Risk and Compliance - Taxonomy lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/taxonomy/riskentities/lists",
+            "headers": [
+              {
+                "name": "control_data",
+                "value": ""
+              },
+              {
+                "name": "accept-language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "comma separated list of ids"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns Taxonomy Lists (AdverseMediaCategories, Locations, HighRiskFactor, HighRiskFactorPerson, HighRiskFactorEntity, OtherOfficialLists, OtherExclusionLists, SanctionLists, IdType, IdTypePerson, IdTypeEntity, SpecialInterestCategories, SpecialInterestCategoriesPerson, SpecialInterestCategoriesEntity, StateOwnerships, OccupationCategories). For latest version or 1.1, please use (CountryTerritory, CountryTerritoryType, CountryTerritoryTypePerson, CountryTerritoryTypeEntity) instead of (Country, "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

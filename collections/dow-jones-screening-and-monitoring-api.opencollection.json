@@ -1,0 +1,969 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screening and Monitoring API",
+    "version": "v7.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Risk and Compliance Screening and Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves all associations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-associations",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Page offset."
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Page limit."
+              },
+              {
+                "name": "filter[correlated]",
+                "value": "",
+                "type": "query",
+                "description": "Filters associations by if they are correlated or not to any case."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves all associations for the account with optional filters and pagination."
+        },
+        {
+          "info": {
+            "name": "Adds a new association",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-entity-screening-associations",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new risk-entity-screening association for the account.\nWhen using versioned media types, the Accept and Content-Type headers must use the same version; otherwise the API returns 406 Not Acceptable.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieves an association by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-associations/:association_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "association_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Association."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a single association by its ID."
+        },
+        {
+          "info": {
+            "name": "Modifies an association",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.dowjones.com/risk-entity-screening-associations/:association_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "association_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the association."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Partially updates an association. Returns a transaction for async status."
+        },
+        {
+          "info": {
+            "name": "Removes an association",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dowjones.com/risk-entity-screening-associations/:association_id",
+            "params": [
+              {
+                "name": "association_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the association."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an association by ID. Returns 204 No Content on success."
+        },
+        {
+          "info": {
+            "name": "Retrieves all cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Page offset. Supported in all versions."
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Page limit. Supported in all versions."
+              },
+              {
+                "name": "filter[last_match_activity_on][from]",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Returns only cases with last_match_activity_on\ngreater or equal to this date (ISO 8601).\nAvailable from v1.1 onwards; ignored when Accept is v1.0.\n"
+              },
+              {
+                "name": "filter[last_match_activity_on][to]",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Returns only cases with last_match_activity_on\nless or equal to this date (ISO 8601).\nAvailable from v1.1 onwards; ignored when Accept is v1.0.\n"
+              },
+              {
+                "name": "filter[correlated]",
+                "value": "",
+                "type": "query",
+                "description": "Optional. Filters cases by whether they are correlated\nto any association (true, false, or any).\nAvailable from v1.1 onwards; ignored when Accept is v1.0.\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns paginated cases for the account.\nPagination (page[offset], page[limit]) is supported in all versions.\nFilters (filter[last_match_activity_on][from|to], filter[correlated])\nare supported only when Accept is v1.1+ (e.g. cases.v_1.1+json).\nWith Accept v1.0, filter params are ignored.\n"
+        },
+        {
+          "info": {
+            "name": "Adds a new case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new risk-entity-screening case for the account."
+        },
+        {
+          "info": {
+            "name": "Adds a new case with all associations. Returns a new transaction id of this operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/bulk-associations",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new case with all associations in one request. Returns a transaction ID for async status."
+        },
+        {
+          "info": {
+            "name": "Creates a batch of associations and correlates them with the given case. Returns a new transaction ID of this operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/bulk-associations",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a batch of associations and correlates them to the case. Returns a transaction ID for async status."
+        },
+        {
+          "info": {
+            "name": "Gets status of a bulk transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/bulk-associations/:transaction_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              },
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the transaction."
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "Flag to control details fetching"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the status and details of a bulk-associations transaction by case and transaction ID."
+        },
+        {
+          "info": {
+            "name": "Retrieves a case by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a single risk-entity-screening case by its ID."
+        },
+        {
+          "info": {
+            "name": "Modifies a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Partially updates a case. Response type depends on Accept header (case resource or transaction for async).\nNote: The filter_content_category structure must match the case's original version.\nv1.0 uses simple string array, v1.1+ uses nested objects.\n"
+        },
+        {
+          "info": {
+            "name": "Removes a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id",
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes a case by ID. Returns 204 No Content on success."
+        },
+        {
+          "info": {
+            "name": "Finds persons/entities matching search criteria given case ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/matches",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based index of the first item to return. Optional; when omitted the server uses 0 (first page). Response meta.offset.first reflects the applied offset.\n"
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of matches to return per page. Optional; when omitted the server uses 100. Response meta.count reflects the number of items returned.\n"
+              },
+              {
+                "name": "associationId",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by association Id"
+              },
+              {
+                "name": "filter[association.id]",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by association Id only for version 3.0 or greater"
+              },
+              {
+                "name": "hasAlerts",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by matches with alerts only for version 1.0"
+              },
+              {
+                "name": "filter[has_alerts]",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by matches with alerts only for version 1.1 or greater"
+              },
+              {
+                "name": "filter[is_match_valid]",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by matches with validity only for version 1.1 or greater"
+              },
+              {
+                "name": "filter[match_update_date][timestamp_from]",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by match update from date only for version 3.0 or greater"
+              },
+              {
+                "name": "filter[match_update_date][timestamp_to]",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by match update to date only for version 3.0 or greater"
+              },
+              {
+                "name": "filter[alert_update.date][timestamp_from]",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by match alert update from date only for version 3.0 or greater"
+              },
+              {
+                "name": "filter[alert_update.date][timestamp_to]",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by match alert update to date only for version 3.0 or greater"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Optional sort parameter only for version 3.0 or greater. Format: +field (ascending) or -field (descending). Valid fields: percentage_match, match_update_date, match_creation_date, subscription_name. In URL query strings, use %2B for ascending (e.g. sort=%2Bpercentage_match); a literal + may be interpreted as a space."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns matches (persons/entities) for a case with optional filters and pagination."
+        },
+        {
+          "info": {
+            "name": "Retrieves a single match by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/matches/:match_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              },
+              {
+                "name": "match_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Match."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a single match by ID"
+        },
+        {
+          "info": {
+            "name": "Adds a feedback to a Match",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/matches/:match_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              },
+              {
+                "name": "match_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Match."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates feedback or status for a single match by case and match ID.\nWhen using versioned media types, the Accept and Content-Type headers must use the same version; otherwise the API returns 406 Not Acceptable.\n"
+        },
+        {
+          "info": {
+            "name": "Adds a feedback to a list of matches",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/bulk-match-update",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Bulk update of feedback or status for multiple matches in a case."
+        },
+        {
+          "info": {
+            "name": "Finds the associations of a given case ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/risk-entity-screening-associations",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Page offset."
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Page limit."
+              },
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns paginated associations linked to the given case."
+        },
+        {
+          "info": {
+            "name": "Adds one or more associations to a given case ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/risk-entity-screening-associations",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Correlates existing associations to a case. Request body lists association IDs. Returns transaction for async status."
+        },
+        {
+          "info": {
+            "name": "Decorrelate a bulk of associations from a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/risk-entity-screening-associations/delete",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes multiple associations from a case in one request. Request body lists association IDs. Returns transaction for async status."
+        },
+        {
+          "info": {
+            "name": "Decorrelate a single association from a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/risk-entity-screening-associations/:association_id",
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              },
+              {
+                "name": "association_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the association."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes one association from a case. Returns 202 Accepted with transaction for async status."
+        },
+        {
+          "info": {
+            "name": "Gets status of a transaction by Case and Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/transactions/:transaction_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              },
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the transaction."
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "Flag to control details fetching"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query",
+                "description": "Page offset."
+              },
+              {
+                "name": "page[limit]",
+                "value": "",
+                "type": "query",
+                "description": "Page limit."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the status and details of a transaction scoped to a case."
+        },
+        {
+          "info": {
+            "name": "Gets status of a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/risk-entity-screening-transactions/:transaction_id",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the transaction."
+              },
+              {
+                "name": "details",
+                "value": "",
+                "type": "query",
+                "description": "Flag to control details fetching"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the status and details of a risk-entity-screening transaction by ID."
+        },
+        {
+          "info": {
+            "name": "Validates that a Shortcut Case payload does not have validation errors. Returns a valid \"status\" and information about any errors that might be in the request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/validate-bulk-associations",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Validates a shortcut case payload without persisting. Returns validation status and any errors."
+        },
+        {
+          "info": {
+            "name": "Validates that a Shortcut Associations payload does not have validation errors. Returns a valid \"status\" and information about any errors that might be in the request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dowjones.com/risk-entity-screening-cases/:case_id/validate-bulk-associations",
+            "headers": [
+              {
+                "name": "Accept-Encoding",
+                "value": ""
+              },
+              {
+                "name": "Content-Encoding",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "case_id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the case."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Validates a shortcut associations payload for a case without persisting. Returns validation status and any errors."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

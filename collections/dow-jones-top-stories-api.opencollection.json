@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Top Stories API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a single content by its ref ID –a DowJones Resource Name (DRN).\r\nExamples of ref ID (DRN ID): drn:content.article.BL-PENTAB-3839",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/content/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path",
+                "description": "A reference ID"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a single content by its ref ID –a DowJones Resource Name (DRN).\r\nExamples of ref ID (DRN ID): drn:content.article.BL-PENTAB-3839"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ContentCollections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the content of an entitled content-collection by its DRN ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/content-collections/:ref",
+            "params": [
+              {
+                "name": "ref",
+                "value": "",
+                "type": "path",
+                "description": "A reference ID"
+              },
+              {
+                "name": "prepub",
+                "value": "",
+                "type": "query",
+                "description": "Specifies if search should be prepub"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets the content of an entitled content-collection by its DRN ID"
+        },
+        {
+          "info": {
+            "name": "Gets a full list of entitled content-collection IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dowjones.com/content-collections",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a full list of entitled content-collection IDs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
