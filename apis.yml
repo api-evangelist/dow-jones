@@ -60,6 +60,9 @@ apis:
     baseURL: https://api.dowjones.com
     tags:
       - Screening
+      - Watchlist
+    tags_raw:
+      - Screening
       - Watchlists
     properties:
       - type: Documentation
@@ -165,6 +168,10 @@ apis:
     humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
     baseURL: https://api-thirdparty.riskcenter.dowjones.com
     tags:
+      - Third-Party Risk
+      - Monitoring
+      - Webhook
+    tags_raw:
       - Third Party Risk
       - Monitoring
       - Webhooks
