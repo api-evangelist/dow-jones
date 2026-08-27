@@ -38,291 +38,2854 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 apis:
-  - aid: dow-jones:screening-and-monitoring-api
-    name: Dow Jones Screening and Monitoring API
-    description: Case-based batch screening of people and entities against Dow Jones Risk & Compliance data, with associations, matches, and adjudication workflows.
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
-    baseURL: https://api.dowjones.com
-    tags:
-      - Screening
-      - Risk and Compliance
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
-      - type: OpenAPI
-        url: openapi/dow-jones-screening-and-monitoring-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-screening-and-monitoring-api-overlay.yaml
-  - aid: dow-jones:screening-and-monitoring-private-lists-api
-    name: Dow Jones Screening and Monitoring Private Lists API
-    description: Manage private watchlists used in screening alongside Dow Jones Risk & Compliance content sets.
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
-    baseURL: https://api.dowjones.com
-    tags:
-      - Screening
-      - Watchlist
-    tags_raw:
-      - Screening
-      - Watchlists
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
-      - type: OpenAPI
-        url: openapi/dow-jones-screening-and-monitoring-private-lists-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-screening-and-monitoring-private-lists-api-overlay.yaml
-  - aid: dow-jones:advanced-screening-and-monitoring-api
-    name: Dow Jones Advanced Screening and Monitoring API
-    description: Alerting and assessment workflows for continuous screening, with alert states, assessments, and workflow status codes (ASAM).
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
-    baseURL: https://api.dowjones.com
-    tags:
-      - Screening
-      - Monitoring
-      - Alerts
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
-      - type: OpenAPI
-        url: openapi/dow-jones-advanced-screening-and-monitoring-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-advanced-screening-and-monitoring-api-overlay.yaml
-  - aid: dow-jones:risk-search-api
-    name: Dow Jones Risk Search API
-    description: Ad-hoc search across Dow Jones Risk & Compliance profiles (Watchlist, State-Owned Companies, Adverse Media).
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
-    baseURL: https://api.dowjones.com
-    tags:
-      - Risk and Compliance
-      - Search
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
-      - type: OpenAPI
-        url: openapi/dow-jones-risk-search-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-risk-search-api-overlay.yaml
-  - aid: dow-jones:risk-profiles-api
-    name: Dow Jones Risk Profiles API
-    description: Retrieve full Risk & Compliance profiles, analyst notes, images, and connection graphs by profile ID.
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
-    baseURL: https://api.dowjones.com/riskentities
-    tags:
-      - Risk and Compliance
-      - Profiles
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
-      - type: OpenAPI
-        url: openapi/dow-jones-risk-profiles-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-risk-profiles-api-overlay.yaml
-  - aid: dow-jones:risk-taxonomy-api
-    name: Dow Jones Risk Taxonomy API
-    description: Retrieve the Risk & Compliance taxonomy used to code profiles and build screening queries.
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
-    baseURL: https://api.dowjones.com
-    tags:
-      - Risk and Compliance
-      - Taxonomy
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
-      - type: OpenAPI
-        url: openapi/dow-jones-risk-taxonomy-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-risk-taxonomy-api-overlay.yaml
-  - aid: dow-jones:profile-version-history-api
-    name: Dow Jones Profile Version History API
-    description: Retrieve the version history of Risk & Compliance profiles for audit and change tracking.
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
-    baseURL: https://api.dowjones.com
-    tags:
-      - Risk and Compliance
-      - Audit
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
-      - type: OpenAPI
-        url: openapi/dow-jones-profile-version-history-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-profile-version-history-api-overlay.yaml
-  - aid: dow-jones:due-diligence-reports-api
-    name: Dow Jones Due Diligence Reports API
-    description: Order and retrieve Risk & Compliance due-diligence reports (Risk Reports order tool).
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
-    baseURL: https://api.dowjones.com/risk-reports
-    tags:
-      - Due Diligence
-      - Reports
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
-      - type: OpenAPI
-        url: openapi/dow-jones-due-diligence-reports-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-due-diligence-reports-api-overlay.yaml
-  - aid: dow-jones:riskcenter-third-party-api
-    name: Dow Jones RiskCenter Third Party Platform API
-    description: Create, update, and monitor third parties against Risk & Compliance data, with properties, monitored entities, and webhook notifications on risk-status changes. Versions 0.1 and 0.2 (beta).
-    humanURL: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
-    baseURL: https://api-thirdparty.riskcenter.dowjones.com
-    tags:
-      - Third-Party Risk
-      - Monitoring
-      - Webhook
-    tags_raw:
-      - Third Party Risk
-      - Monitoring
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
-      - type: OpenAPI
-        url: openapi/dow-jones-riskcenter-third-party-api-0-2-openapi.json
-      - type: OpenAPI
-        url: openapi/dow-jones-riskcenter-third-party-api-0-1-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-riskcenter-third-party-api-0-2-overlay.yaml
-      - type: Webhooks
-        url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
-  - aid: dow-jones:newswires-real-time-api
-    name: Dow Jones Newswires Real-Time API
-    description: Real-time search over Dow Jones Newswires content.
-    humanURL: https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
-    baseURL: https://api.dowjones.com
-    tags:
-      - News
-      - Newswires
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
-      - type: OpenAPI
-        url: openapi/dow-jones-newswires-real-time-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-newswires-real-time-api-overlay.yaml
-  - aid: dow-jones:top-stories-api
-    name: Dow Jones Top Stories API
-    description: Retrieve curated top-stories content collections and articles from Dow Jones Newswires.
-    humanURL: https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
-    baseURL: https://api.dowjones.com
-    tags:
-      - News
-      - Newswires
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
-      - type: OpenAPI
-        url: openapi/dow-jones-top-stories-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-top-stories-api-overlay.yaml
-  - aid: dow-jones:calendar-live-api
-    name: Dow Jones Calendar Live API
-    description: Financial calendars (earnings, economic events) from Dow Jones Newswires.
-    humanURL: https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
-    baseURL: https://api.dowjones.com
-    tags:
-      - Financial
-      - Calendars
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
-      - type: OpenAPI
-        url: openapi/dow-jones-calendar-live-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-calendar-live-api-overlay.yaml
-  - aid: dow-jones:newswires-content-api
-    name: Dow Jones Newswires Content API
-    description: Retrieve a Newswires article by reference.
-    humanURL: https://developer.dowjones.com/documents/site-docs-newswires_apis
-    baseURL: https://api.dowjones.com
-    tags:
-      - News
-      - Content
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-newswires_apis
-      - type: OpenAPI
-        url: openapi/dow-jones-newswires-content-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-newswires-content-api-overlay.yaml
-  - aid: dow-jones:content-api
-    name: Dow Jones Content API
-    description: Factiva Workflow Toolkit Content API for retrieving articles, references, binaries, and running search across Factiva content.
-    humanURL: https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
-    baseURL: https://api.dowjones.com
-    tags:
-      - News
-      - Content
-      - Factiva
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
-      - type: OpenAPI
-        url: openapi/dow-jones-content-api-swagger.json
-      - type: Overlay
-        url: overlays/dow-jones-content-api-overlay.yaml
-  - aid: dow-jones:newsletters-api
-    name: Dow Jones Factiva Newsletters API
-    description: Retrieve Factiva newsletter editions and collections.
-    humanURL: https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
-    baseURL: https://api.dowjones.com
-    tags:
-      - News
-      - Newsletters
-      - Factiva
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
-      - type: OpenAPI
-        url: openapi/dow-jones-newsletters-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-newsletters-api-overlay.yaml
-  - aid: dow-jones:company-news-radar-api
-    name: Dow Jones Company News Radar API
-    description: Real-time company news search (News Radar) over Factiva content.
-    humanURL: https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
-    baseURL: https://api.dowjones.com/search-realtime
-    tags:
-      - News
-      - Companies
-      - Factiva
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
-      - type: OpenAPI
-        url: openapi/dow-jones-company-news-radar-api-openapi.json
-      - type: Overlay
-        url: overlays/dow-jones-company-news-radar-api-overlay.yaml
-  - aid: dow-jones:factiva-analytics
-    name: Factiva Analytics APIs
-    description: Snapshots, Streams, Time Series, and Explain endpoints for bulk and streaming access to the Factiva news archive (33,000+ sources). Streams delivers events over Google Cloud Pub/Sub subscriptions. Authenticated with the user-key header; no public OpenAPI is published for this suite.
-    humanURL: https://developer.dowjones.com/documents/factiva_integration-factiva_analytics
-    baseURL: https://api.dowjones.com/alpha
-    tags:
-      - News
-      - Analytics
-      - Factiva
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/factiva_integration-factiva_analytics
-      - type: GettingStarted
-        url: https://developer.dowjones.com/documents/factiva_integration-factiva_analytics-getting_started
-  - aid: dow-jones:factiva-retrieval-api
-    name: Factiva Retrieval API
-    description: Retrieval endpoint for grounding generative-AI applications (RAG) in licensed Factiva content. No public OpenAPI is published; access requires a Factiva Retrieval agreement.
-    humanURL: https://developer.dowjones.com/documents/factiva_integration-factiva_retrieval_api
-    baseURL: https://api.dowjones.com
-    tags:
-      - News
-      - Generative AI
-      - Factiva
-    properties:
-      - type: Documentation
-        url: https://developer.dowjones.com/documents/factiva_integration-factiva_retrieval_api
-      - type: GettingStarted
-        url: https://developer.dowjones.com/documents/factiva_integration-factiva_retrieval_api-getting_started
+- aid: dow-jones:factiva-analytics
+  name: Factiva Analytics APIs
+  description: >-
+    Snapshots, Streams, Time Series, and Explain endpoints for bulk and streaming access to the Factiva
+    news archive (33,000+ sources). Streams delivers events over Google Cloud Pub/Sub subscriptions. Authenticated
+    with the user-key header; no public OpenAPI is published for this suite.
+  humanURL: https://developer.dowjones.com/documents/factiva_integration-factiva_analytics
+  baseURL: https://api.dowjones.com/alpha
+  tags:
+  - News
+  - Analytics
+  - Factiva
+  properties:
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/factiva_integration-factiva_analytics
+  - type: GettingStarted
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_analytics-getting_started
+- aid: dow-jones:factiva-retrieval-api
+  name: Factiva Retrieval API
+  description: >-
+    Retrieval endpoint for grounding generative-AI applications (RAG) in licensed Factiva content. No
+    public OpenAPI is published; access requires a Factiva Retrieval agreement.
+  humanURL: https://developer.dowjones.com/documents/factiva_integration-factiva_retrieval_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - News
+  - Generative AI
+  - Factiva
+  properties:
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/factiva_integration-factiva_retrieval_api
+  - type: GettingStarted
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_retrieval_api-getting_started
+- aid: dow-jones:dow-jones-alert-api
+  name: Dow Jones Alert API
+  description: >-
+    The Alert API allows clients to interact with alerts that have been raised through continuous monitoring.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Alert
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-alert-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-alert-export-api
+  name: Dow Jones Alert Export API
+  description: >-
+    The Alert Export API allows clients to export details of alerts, alert evidence and alert activities.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Alert Export
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-alert-export-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-articles-api
+  name: Dow Jones Articles API
+  description: Fetch a news article by id, or stream news articles linked to an entity as JSON-L.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Articles
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-articles-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-assessment-api
+  name: Dow Jones Assessment API
+  description: The Assessment API allows clients to create and interact with assessments.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Assessment
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-assessment-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-assessment-export-api
+  name: Dow Jones Assessment Export API
+  description: >-
+    The Assessment Export API allows clients to export details of assessments, assessment evidence and
+    assessment activities.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Assessment Export
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-assessment-export-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-attachment-api
+  name: Dow Jones Attachment API
+  description: The Attachment API allows clients to upload attachment files to alerts
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Attachment
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-attachment-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-businessunit-api
+  name: Dow Jones Business Unit API
+  description: The BusinessUnit API from Dow Jones — 1 operation(s) for businessunit.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - BusinessUnit
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-businessunit-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-calendar-events-api
+  name: Dow Jones Calendar Events API
+  description: The Calendar Events API from Dow Jones — 4 operation(s) for calendar events.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Calendar Events
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-calendar-events-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-calendar-taxonomy-api
+  name: Dow Jones Calendar Taxonomy API
+  description: The Calendar Taxonomy API from Dow Jones — 15 operation(s) for calendar taxonomy.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Calendar Taxonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-calendar-taxonomy-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-client-delete-api
+  name: Dow Jones Client Delete API
+  description: The Client Delete endpoint allows clients to hard delete client records in the system.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Client Delete
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-client-delete-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-client-import-api
+  name: Dow Jones Client Import API
+  description: >-
+    The Client Import API allows clients to bulk load client records representing entities to be screened
+    as part of continuous monitoring.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Client Import
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-client-import-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-connection-details-api
+  name: Dow Jones Connection Details API
+  description: Operations to retrieve the Connection Details of a R&C Profile
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Connection Details
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-connection-details-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-content-api
+  name: Dow Jones Content API
+  description: The Content API from Dow Jones — 17 operation(s) for content.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-content-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-content-search-api
+  name: Dow Jones Content Search API
+  description: The Content Search API from Dow Jones — 1 operation(s) for content search.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Content Search
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-content-search-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-contentcollections-api
+  name: Dow Jones Content Collections API
+  description: The ContentCollections API from Dow Jones — 2 operation(s) for contentcollections.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - ContentCollections
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-contentcollections-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-custom-sources-api
+  name: Dow Jones Custom Sources API
+  description: Operations related to the custom sources
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Custom Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-custom-sources-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-default-api
+  name: Dow Jones Default API
+  description: Default section
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Default
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-default-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-disposition-api
+  name: Dow Jones Disposition API
+  description: >-
+    The Disposition API allows clients to create, retrieve, update and delete historical dispositions
+    representing prior adjudication decisions.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Disposition
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-disposition-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-editions-api
+  name: Dow Jones Editions API
+  description: The Editions API from Dow Jones — 2 operation(s) for editions.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Editions
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-editions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-entity-api
+  name: Dow Jones Entity API
+  description: >-
+    The Entity API allows clients to retrieve details of and reconcile entities (i.e. clients, risk profiles
+    and internal list entities) stored in the system.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Entity
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-entity-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-excel-export-api
+  name: Dow Jones Excel Export API
+  description: >-
+    The Excel Export API allows clients to create Excel spreadsheets containing client screening results
+    and evidence.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Excel Export
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-excel-export-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-field-api
+  name: Dow Jones Field API
+  description: The Field API from Dow Jones — 2 operation(s) for field.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Field
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-field-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-file-api
+  name: Dow Jones File API
+  description: The File API from Dow Jones — 2 operation(s) for file.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - File
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-file-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-group-api
+  name: Dow Jones Group API
+  description: The Group API from Dow Jones — 1 operation(s) for group.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Group
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-group-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-images-api
+  name: Dow Jones Images API
+  description: Operations to retrieve R&C Images
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-images-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-ipo-calendar-events-api
+  name: Dow Jones IPO Calendar Events API
+  description: The IPO Calendar Events API from Dow Jones — 2 operation(s) for ipo calendar events.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - IPO Calendar Events
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-ipo-calendar-events-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-ipo-calendar-taxonomy-api
+  name: Dow Jones IPO Calendar Taxonomy API
+  description: The IPO Calendar Taxonomy API from Dow Jones — 4 operation(s) for ipo calendar taxonomy.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - IPO Calendar Taxonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-ipo-calendar-taxonomy-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-list-api
+  name: Dow Jones List API
+  description: The List API from Dow Jones — 2 operation(s) for list.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - List
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-list-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-list-import-api
+  name: Dow Jones List Import API
+  description: >-
+    The List API allows clients to bulk load internal list entities into the Screening system.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - List Import
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-list-import-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-newsletters-api
+  name: Dow Jones Newsletters API
+  description: The Newsletters API from Dow Jones — 2 operation(s) for newsletters.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Newsletters
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-newsletters-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-pdf-export-api
+  name: Dow Jones PDF Export API
+  description: >-
+    The PDF Export API allows clients to create PDF documents of Alerts, Assessments and Searches.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - PDF Export
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-pdf-export-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-process-api
+  name: Dow Jones Process API
+  description: The Process API from Dow Jones — 1 operation(s) for process.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Process
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-process-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-profiles-api
+  name: Dow Jones Profiles API
+  description: Operations to retrieve R&C Profiles
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-profiles-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-revisions-api
+  name: Dow Jones Revisions API
+  description: The Revisions API from Dow Jones — 1 operation(s) for revisions.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Revisions
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-revisions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-risk-and-compliance-screening-and-monitoring-api
+  name: Dow Jones Risk and Compliance Screening and Monitoring API
+  description: >-
+    APIs for screening and monitoring third parties against Dow Jones Risk & Compliance data.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Risk and Compliance Screening and Monitoring
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-risk-and-compliance-screening-and-monitoring-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-risk-and-compliance-search-api
+  name: Dow Jones Risk and Compliance search API
+  description: >-
+    The Risk and Compliance search API from Dow Jones — 1 operation(s) for risk and compliance search.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Risk and Compliance search
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-risk-and-compliance-search-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-risk-and-compliance-taxonomy-api
+  name: Dow Jones Risk and Compliance - Taxonomy API
+  description: >-
+    The Risk and Compliance - Taxonomy API from Dow Jones — 1 operation(s) for risk and compliance - taxonomy.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Risk and Compliance - Taxonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-risk-and-compliance-taxonomy-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-risk-reports-api
+  name: Dow Jones Risk Reports API
+  description: API
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Risk Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-risk-reports-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-search-api
+  name: Dow Jones Search API
+  description: >-
+    The Search API allows clients to run ad-hoc, low-latency searches. Results from searches are not persisted
+    in the system.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-search-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-thirdparty-api
+  name: Dow Jones Third Party API
+  description: The ThirdParty API from Dow Jones — 2 operation(s) for thirdparty.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - ThirdParty
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-thirdparty-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-thirdpartyproperties-api
+  name: Dow Jones Third Party Properties API
+  description: The ThirdPartyProperties API from Dow Jones — 3 operation(s) for thirdpartyproperties.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - ThirdPartyProperties
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-thirdpartyproperties-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-thirdpartyscreening-api
+  name: Dow Jones Third Party Screening API
+  description: The ThirdPartyScreening API from Dow Jones — 2 operation(s) for thirdpartyscreening.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - ThirdPartyScreening
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-thirdpartyscreening-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-thirdpartyscreeningtypes-api
+  name: Dow Jones Third Party Screening Types API
+  description: >-
+    The ThirdPartyScreeningTypes API from Dow Jones — 2 operation(s) for thirdpartyscreeningtypes.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - ThirdPartyScreeningTypes
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-thirdpartyscreeningtypes-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-transaction-api
+  name: Dow Jones Transaction API
+  description: Operations related to the transactions
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-transaction-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-user-api
+  name: Dow Jones User API
+  description: The User API allows clients to import and manage user accounts in the system.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-user-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:dow-jones-versions-api
+  name: Dow Jones Versions API
+  description: The Versions API from Dow Jones — 1 operation(s) for versions.
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  baseURL: https://api.dowjones.com
+  tags:
+  - Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/dow-jones-versions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api_private_list
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-advanced-screening-and-monitoring-api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-risk_and_compliance_profiles
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_taxonomy_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-risk_and_compliance_2_0-risk_profiles_api-profile_history_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-due_diligence_reports_api-risk_reports_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-third_party_api
+  - type: Webhooks
+    url: asyncapi/dow-jones-riskcenter-third-party-webhooks.yml
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_real_time_api-real_time_search_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_newswires_top_stories_api-top_stories_api
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-newswires_apis-dow_jones_financial_calendars_api-financial_calendars_api
+  - type: Documentation
+    url: https://developer.dowjones.com/documents/site-docs-newswires_apis
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-get_article
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/factiva_integration-factiva_workflow_toolkit-endpoints-newsletters-newsletters
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
 common:
+  - type: Overlay
+    url: overlays/dow-jones-screening-and-monitoring-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-screening-and-monitoring-private-lists-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-advanced-screening-and-monitoring-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-risk-search-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-risk-profiles-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-risk-taxonomy-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-profile-version-history-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-due-diligence-reports-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-riskcenter-third-party-api-0-2-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-newswires-real-time-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-top-stories-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-calendar-live-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-newswires-content-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-content-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-newsletters-api-overlay.yaml
+  - type: Overlay
+    url: overlays/dow-jones-company-news-radar-api-overlay.yaml
   - type: DeveloperPortal
     url: https://developer.dowjones.com/
   - type: Documentation
