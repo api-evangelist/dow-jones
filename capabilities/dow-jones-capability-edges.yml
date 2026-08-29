@@ -3,7 +3,7 @@ provider: Dow Jones
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
-- Software & Technology
+- Media, Entertainment & Telecom Content
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -11,61 +11,51 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 5
+edge_count: 4
 edges:
 - tag: Risk and Compliance Screening and Monitoring
   spec_file: dow-jones-risk-and-compliance-screening-and-monitoring-api-openapi.yml
   capability_id: BC-130
   capability_id_l1: BC-130
   capability_name: Compliance Management
-  confidence: 0.85
-  evidence: RESTful API that enables your client application to screen and monitor third parties (individuals
-    and entities) against Dow Jones Risk & Compliance data. Supports cases, associations, matches, and
-    bulk operations.
-  reason: Case- and match-based screening/monitoring of counterparties against risk & compliance data
-    — squarely Compliance Management. Ambiguous between sanctions/regulatory compliance and ABC third-party
-    due diligence, so only L1 is asserted.
+  confidence: 0.8
+  evidence: '"RESTful API that enables your client application to screen and monitor third parties (individuals
+    and entities) against Dow Jones Risk & Compliance data. Supports cases, associations, matches"'
+  reason: Operations create and manage screening cases, associations and match adjudication against Risk
+    & Compliance data — this is compliance screening and ongoing monitoring of third parties. L1 Compliance
+    Management is clear; the L2 split between regulatory (sanctions/AML) compliance and anti-bribery third-party
+    due diligence is not determinable from the surface.
 - tag: Risk and Compliance search
   spec_file: dow-jones-risk-and-compliance-search-api-openapi.yml
   capability_id: BC-130
   capability_id_l1: BC-130
   capability_name: Compliance Management
-  confidence: 0.8
-  evidence: POST /riskentities/search searchRandC Screening of Risk and Compliance; schemas SanctionsListV26,
-    AdverseMediaV26, OtherExclusionListV26
-  reason: Despite the generic 'search' tag, the operation performs entity screening against sanctions,
-    adverse-media and exclusion lists — a compliance screening capability rather than generic text search.
-- tag: Disposition
-  spec_file: dow-jones-disposition-api-openapi.yml
+  confidence: 0.75
+  evidence: POST /riskentities/search searchRandC 'Screening of Risk and Compliance'; schemas 'SanctionsListV26',
+    'AdverseMediaV26', 'OtherExclusionListV26', 'ScreeningResponseV25'
+  reason: Search endpoint that performs screening of entities against sanctions, exclusion and adverse-media
+    data. Although 'search' is often plumbing, the operationId and screening/sanctions schemas ground
+    it in compliance screening; L1 only as the sub-capability is ambiguous.
+- tag: Alert
+  spec_file: dow-jones-alert-api-openapi.yml
   capability_id: BC-130.10
   capability_id_l1: BC-130
   capability_name: Regulatory Compliance Management
   confidence: 0.7
-  evidence: POST /disposition  dispositionCreate  Create a historical disposition (Advanced Screening
-    and Monitoring)
-  reason: Dispositions are the recorded adjudication decisions on screening matches/alerts in the Advanced
-    Screening and Monitoring service, the audit-trail core of AML/sanctions alert handling, which realises
-    regulatory compliance management. Some residual ambiguity as the surface is generic CRUD over disposition
-    records.
-- tag: Profiles
-  spec_file: dow-jones-profiles-api-openapi.yml
-  capability_id: BC-130
-  capability_id_l1: BC-130
-  capability_name: Compliance Management
-  confidence: 0.7
-  evidence: GET /profiles/{id} Get Profiles; schemas AdverseMediaAttributes, WatchlistMonetaryValueDetail,
-    TradeRestrictedAssociatedEntityAttributesV28, ListReferenceAttributes
-  reason: Serves and maintains risk profiles of persons/entities carrying watchlist, adverse-media and
-    trade-restriction attributes — the data substrate of compliance screening. L1 Compliance Management
-    is clear; the specific sub-capability (sanctions/regulatory vs ABC due diligence) is not pinned down
-    by the operations.
+  evidence: openapi title 'Advanced Screening and Monitoring Alert API'; POST /alert/{alert_id}/close
+    'Close an alert'; POST /alert/{alert_id}/evidence/{evidence_id}/assess 'Assess an item of evidence
+    on an alert'
+  reason: These are screening/monitoring alert triage workflows (assign, close, reopen, assess evidence)
+    from Dow Jones Risk & Compliance entity screening — an alert-adjudication process supporting regulatory
+    (sanctions/PEP/AML) compliance. Mapped to Regulatory Compliance Management; the frame offers no dedicated
+    financial-crime capability, so confidence is tempered.
 - tag: ThirdPartyScreening
   spec_file: dow-jones-thirdpartyscreening-api-openapi.yml
   capability_id: BC-130.40
   capability_id_l1: BC-130
   capability_name: Anti-Bribery & Corruption Management
   confidence: 0.7
-  evidence: GET /third-parties/{thirdpartyid}/monitored-entities Retrieves all monitored entities for
-    the given third party; schemas ScreeningMatchResults, ThirdPartyScreeningEntityCreate
-  reason: Enrols and manages entities of a third party under ongoing screening and returns screening match
-    results — third-party due diligence and ongoing monitoring within a compliance programme.
+  evidence: GET /third-parties/{thirdpartyid}/monitored-entities 'Retrieves all monitored entities for
+    the given third party'; schemas ThirdPartyScreeningEntity, ScreeningMatchResults
+  reason: Registers and monitors entities associated with a third party and returns screening match results
+    — the operational core of third-party due diligence/screening in a compliance programme.
