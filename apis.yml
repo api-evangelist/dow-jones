@@ -2866,6 +2866,9 @@ apis:
     url: >-
       https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
 common:
+  - type: CapabilityMap
+    url: capabilities/dow-jones-capability-edges.yml
+    name: Dow Jones Business Capability Map
   - type: Overlay
     url: overlays/dow-jones-screening-and-monitoring-api-overlay.yaml
   - type: Overlay
