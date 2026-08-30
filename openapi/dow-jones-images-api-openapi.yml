@@ -1,0 +1,109 @@
+openapi: 3.2.0
+info:
+  title: Dow Jones R&C Profile Images API
+  description: R&C Profile API delivers the capability for clients to retrieve the R&C Assets.
+  version: '1.5'
+servers:
+- url: https://api.dowjones.com/riskentities
+- url: https://eu.api.dowjones.com/riskentities
+tags:
+- name: Images
+  description: Operations to retrieve R&C Images
+paths:
+  /images/{id}:
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - Images
+      summary: Get Image by Image Reference
+      description: Get an image given an image reference id.  Can only retrieve one image at a time
+      operationId: getOneImage
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-Content-Type-Options:
+              description: nosniff
+              schema:
+                type: string
+            X-XSS-Protection:
+              description: 1; mode=block
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+            application/vnd.dowjones.dna.riskentities-images.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/ImageResponse'
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      description: Unique id that identities the resource
+      required: true
+      schema:
+        type: string
+  schemas:
+    Links:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+    MetaCount:
+      required:
+      - an
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+          example: 1
+    ImageResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                image_bytes:
+                  type: string
+                image_type:
+                  type: string
+                  example: image/jpg
+                commerce_letter:
+                  type: object
+                  properties:
+                    accession_number:
+                      type: string
+                    function_code:
+                      type: string
+                    publication_code:
+                      type: string
+                    response_id:
+                      type: string
+                    status_indicator:
+                      type: string
+            type:
+              type: string
+              example: images
+            links:
+              $ref: '#/components/schemas/Links'
+            id:
+              type: string
+              example: '12300'
+        meta:
+          $ref: '#/components/schemas/MetaCount'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

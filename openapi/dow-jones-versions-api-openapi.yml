@@ -1,0 +1,119 @@
+openapi: 3.2.0
+info:
+  title: Dow Jones Risk and Compliance Profile Version History Versions API
+  description: API Interface for Version History
+  version: 1.1.1
+servers:
+- url: https://api.dowjones.com
+- url: https://eu.api.dowjones.com
+tags:
+- name: Versions
+paths:
+  /profiles/{profile-id}/versions/:
+    get:
+      security:
+      - bearerAuth: []
+      tags:
+      - Versions
+      summary: Gets a profile's history of versions
+      description: Returns the list of versions (dates) given a profile id.
+      operationId: getVersionsFromProfile
+      parameters:
+      - $ref: '#/components/parameters/profile-id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileVersionsResponse'
+            application/vnd.dowjones.dna.versions.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/ProfileVersionsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+            application/vnd.dowjones.dna.versions.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+            application/vnd.dowjones.dna.versions.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+            application/vnd.dowjones.dna.versions.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+components:
+  schemas:
+    ProfileVersionsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/VersionObject'
+    VersionObject:
+      type: object
+      properties:
+        attributes:
+          type: object
+          properties:
+            version_date:
+              type: string
+              example: '2021-01-01'
+            revision_count:
+              type: integer
+              example: 1
+        id:
+          type: string
+          example: 12345-2021-01-01
+        type:
+          type: string
+          example: versions
+    ErrorObject:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
+    JsonError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+  parameters:
+    profile-id:
+      name: profile-id
+      required: true
+      in: path
+      description: Unique profile id that identifies a profile
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

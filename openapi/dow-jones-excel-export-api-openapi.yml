@@ -1,0 +1,633 @@
+openapi: 3.2.0
+info:
+  title: Advanced Screening and Monitoring Excel Export API
+  description: 'Dow Jones
+
+
+    ### Rate limits
+
+
+    Most endpoints are subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+    Some endpoints are also subject to a global concurrent request limit of 5 simultaneous requests per customer.'
+  version: '3'
+  license: {}
+  contact: {}
+servers:
+- url: API_INSTANCE
+security:
+- basicAuth: []
+- jwt: []
+- clientCert: []
+tags:
+- name: Excel Export
+  description: The Excel Export API allows clients to create Excel spreadsheets containing client screening results and evidence.
+paths:
+  /excel/export/create:
+    post:
+      operationId: createExcelExport
+      summary: Create an Excel Export
+      description: 'Creates a new Excel export job for client screening results using simplified parameters. Specify the export type, date range, and optional filters. Returns job ID which can be used to check the status and download the completed export. Maximum number of clients per export is 750,000.
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        *Generated from limited sample size.*
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 146 ms |
+
+        | 90th percentile | 573 ms |
+
+        | 95th percentile | 693 ms |
+
+        | 98th percentile | 778 ms |
+
+        | 99th percentile | 869 ms |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      tags:
+      - Excel Export
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-16T10:56:29.271Z).
+
+          '
+        latencyDistribution:
+          median: 146
+          p90: 573
+          p95: 692.75
+          p98: 777.3
+          p99: 868.65
+          sampleSize: 46
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Simplified request body for creating an Excel export
+              required:
+              - exportType
+              - dateRange
+              properties:
+                exportType:
+                  type: string
+                  description: The type of export to create, which determines which sheets are included
+                  enum:
+                  - ALERTS_CLIENTS_EVIDENCE_WITH_REASONS
+                  - CLIENTS_ONLY
+                  - CLIENTS_ALERTS
+                  - CLIENTS_ALERTS_EVIDENCE
+                  example: CLIENTS_ONLY
+                dateRange:
+                  type: string
+                  description: The time range for the data to include in the export
+                  enum:
+                  - LAST_24_HOURS
+                  - LAST_WEEK
+                  - LAST_MONTH
+                  - LAST_6_MONTHS
+                  - LAST_YEAR
+                  - LAST_2_YEARS
+                  example: LAST_24_HOURS
+                filters:
+                  type: object
+                  description: Optional filters to narrow down the export results
+                  properties:
+                    nameOrId:
+                      type: string
+                      description: Filter by client name or ID (supports partial matching)
+                      minLength: 1
+                      maxLength: 1000
+                      example: some-client-id-123
+                    segment:
+                      type: string
+                      description: Filter by client segment
+                      minLength: 1
+                      maxLength: 1000
+                      example: HIGH_RISK
+                    entityType:
+                      type: array
+                      description: Filter by entity types
+                      items:
+                        type: string
+                        enum:
+                        - PERSON
+                        - ORGANISATION
+                        - VESSEL
+                        - AIRCRAFT
+                        - UNKNOWN
+                      example:
+                      - PERSON
+                      - ORGANISATION
+                      uniqueItems: true
+      responses:
+        '200':
+          description: Excel export job created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Response containing only the job ID of the created Excel export job
+                required:
+                - id
+                properties:
+                  id:
+                    type: number
+                    description: Unique numeric identifier for the export job
+                    example: 110
+          links:
+            excelStatusCheck:
+              operationId: getExcelExportStatus
+              parameters:
+                jobId: $response.body#/id
+              description: 'The `id` value returned in the response can be used as the `jobId` parameter in `GET /excel/export/status/{jobId}`.
+
+                '
+            excelDownload:
+              operationId: downloadExcelExport
+              parameters:
+                jobId: $response.body#/id
+              description: 'The `id` value returned in the response can be used as the `jobId` parameter in `GET /excel/export/download/{jobId}`.
+
+                '
+        '400':
+          description: Bad Request - Invalid request parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized - Authentication required
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /excel/export/status/{jobId}:
+    get:
+      operationId: getExcelExportStatus
+      summary: Get Excel Export Status
+      description: 'Retrieves the current status of an Excel export job.
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        *Generated from limited sample size.*
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 22 ms |
+
+        | 90th percentile | 77 ms |
+
+        | 95th percentile | 77 ms |
+
+        | 98th percentile | 78 ms |
+
+        | 99th percentile | 79 ms |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      tags:
+      - Excel Export
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-16T10:56:29.271Z).
+
+          '
+        latencyDistribution:
+          median: 22
+          p90: 77
+          p95: 77
+          p98: 78
+          p99: 78.99
+          sampleSize: 102
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: The unique identifier of the export job
+        schema:
+          type: number
+          example: 110
+      responses:
+        '200':
+          description: Export status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Response containing the essential status information of an Excel export job
+                required:
+                - id
+                - state
+                properties:
+                  id:
+                    type: number
+                    description: Unique numeric identifier for the export job
+                    example: 110
+                  state:
+                    type: string
+                    description: Current state of the export job
+                    enum:
+                    - queued
+                    - running
+                    - completed
+                    - errored
+                    example: completed
+          links:
+            excelDownload:
+              operationId: downloadExcelExport
+              parameters:
+                jobId: $response.body#/id
+              description: 'The `id` value returned in the response can be used as the `jobId` parameter in `GET /excel/export/download/{jobId}`.
+
+                '
+        '400':
+          description: Bad Request - Invalid export ID
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized - Authentication required
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '404':
+          description: Not Found - Export job not found
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /excel/export/download/{jobId}:
+    get:
+      operationId: downloadExcelExport
+      summary: Download Excel Export
+      description: 'Downloads the completed Excel export file as a ZIP file. Each compressed file will be an Excel workbook - each containing worksheet(s) of up to 500,000 rows each.
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        *Generated from limited sample size.*
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 30 ms |
+
+        | 90th percentile | 152 ms |
+
+        | 95th percentile | 300 ms |
+
+        | 98th percentile | 1.3 s |
+
+        | 99th percentile | 1.7 s |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      tags:
+      - Excel Export
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-16T10:56:29.271Z).
+
+          '
+        latencyDistribution:
+          median: 29.5
+          p90: 151.3
+          p95: 299.95
+          p98: 1348.18
+          p99: 1697.59
+          sampleSize: 20
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: The unique identifier of the export job
+        schema:
+          type: number
+          example: 110
+      responses:
+        '200':
+          description: Excel export file downloaded successfully
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+                description: Excel export file in the appropriate format
+        '400':
+          description: Bad Request - Invalid export ID
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized - Authentication required
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '404':
+          description: Not Found - Export job not found or not completed
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+components:
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT authentication is the preferred authentication method, and should be used for new integrations.  Contact support to request a service account.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication is supported for existing users, but is deprecated.  Existing users are encouraged to contact support for a dedicated service account and switch to JWT authentication.

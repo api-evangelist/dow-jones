@@ -1,0 +1,626 @@
+openapi: 3.2.0
+info:
+  title: Dow Jones Third Party API
+  version: '1.0'
+  description: 'Operations tagged ThirdParty across 2 of this provider''s published API definitions: dow-jones-riskcenter-third-party-api-0-1-openapi.json, dow-jones-riskcenter-third-party-api-0-2-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api-thirdparty.riskcenter.dowjones.com/
+tags:
+- name: ThirdParty
+paths:
+  /third-parties:
+    post:
+      tags:
+      - ThirdParty
+      summary: Creates a new third party
+      operationId: PostThirdParty
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RequestThirdParty'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestThirdParty'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RequestThirdParty'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RequestThirdParty'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ResponseThirdParty'
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+      - oauth2: []
+    get:
+      tags:
+      - ThirdParty
+      summary: Retrieves all third-parties (optional filter)
+      operationId: GetThirdParties
+      parameters:
+      - name: filter[name]
+        in: query
+        description: Case insensitive name filter.
+        schema:
+          type:
+          - string
+          - 'null'
+          description: Case insensitive name filter.
+      - name: filter[business_unit]
+        in: query
+        description: Business unit id filter
+        schema:
+          type:
+          - string
+          - 'null'
+          description: Business unit id filter
+      - name: filter[is_active]
+        in: query
+        description: Active status filter
+        schema:
+          type:
+          - boolean
+          - 'null'
+          description: Active status filter
+      - name: filter[tags]
+        in: query
+        description: Case sensitive tag filter.
+        schema:
+          type:
+          - string
+          - 'null'
+          description: Case sensitive tag filter.
+      - name: filter[risk_level]
+        in: query
+        description: Case sensitive risk level filter.
+        schema:
+          type:
+          - string
+          - 'null'
+          description: Case sensitive risk level filter.
+      - name: filter[risk_status]
+        in: query
+        description: Case sensitive risk status filter
+        schema:
+          type:
+          - string
+          - 'null'
+          description: Case sensitive risk status filter
+      - name: filter[internal_reference]
+        in: query
+        description: Case insensitive internal reference filter.
+        schema:
+          type:
+          - string
+          - 'null'
+          description: Case insensitive internal reference filter.
+      - name: page[limit]
+        in: query
+        description: ''
+        schema:
+          type:
+          - integer
+          - 'null'
+          description: ''
+          format: int32
+      - name: page[context]
+        in: query
+        description: ''
+        schema:
+          type:
+          - string
+          - 'null'
+          description: ''
+      responses:
+        '200':
+          description: Success
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ResponseThirdParties'
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+      - oauth2: []
+    servers:
+    - url: https://api-thirdparty.riskcenter.dowjones.com/
+  /third-parties/{id}:
+    patch:
+      tags:
+      - ThirdParty
+      summary: Updates an existing third party
+      operationId: PatchThirdParty
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RequestThirdPartyPatch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestThirdPartyPatch'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RequestThirdPartyPatch'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RequestThirdPartyPatch'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ResponseThirdParty'
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+      - oauth2: []
+    delete:
+      tags:
+      - ThirdParty
+      summary: Deletes a third party
+      operationId: DeleteThirdParty
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+      - oauth2: []
+    get:
+      tags:
+      - ThirdParty
+      summary: Retrieves a third party by id
+      operationId: GetThirdParty
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ResponseThirdParty'
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+      - oauth2: []
+    servers:
+    - url: https://api-thirdparty.riskcenter.dowjones.com/
+components:
+  schemas:
+    ResponseThirdParty:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataThirdParty'
+      additionalProperties: false
+      description: ''
+    RequestDataThirdParty:
+      required:
+      - attributes
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ThirdParty'
+        type:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    ThirdParty:
+      type: object
+      properties:
+        process_id:
+          type: string
+          description: ''
+        name:
+          type: string
+          description: ''
+        business_unit_id:
+          type: string
+          description: ''
+        owner_group_id:
+          type:
+          - string
+          - 'null'
+          description: ''
+        owner_employee_email:
+          type:
+          - string
+          - 'null'
+          description: ''
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: ''
+        is_active:
+          type: boolean
+          description: ''
+        internal_reference:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdParties:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdParty'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorModel:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        status:
+          type:
+          - string
+          - 'null'
+          description: ''
+        code:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModel:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModel'
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseThirdParties:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataThirdParties'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: false
+      description: ''
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        extensions:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: object
+            additionalProperties: false
+          readOnly: true
+      additionalProperties: false
+    ThirdPartyPatch:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: ''
+        business_unit_id:
+          type:
+          - string
+          - 'null'
+          description: ''
+        owner_group_id:
+          type:
+          - string
+          - 'null'
+          description: ''
+        owner_employee_email:
+          type:
+          - string
+          - 'null'
+          description: ''
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: ''
+        is_active:
+          type: boolean
+          description: ''
+        internal_reference:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    PagingMeta:
+      type: object
+      properties:
+        context:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdParty:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdParty'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    RequestDataThirdPartyPatch:
+      required:
+      - attributes
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyPatch'
+        type:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    RequestThirdParty:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataThirdParty'
+      additionalProperties: false
+      description: ''
+    ResponseLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    RequestThirdPartyPatch:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataThirdPartyPatch'
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+    RequestDataThirdPartyPatch_2:
+      required:
+      - attributes
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyPatch'
+        type:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    RequestThirdPartyPatch_2:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataThirdPartyPatch_2'
+      additionalProperties: false
+      description: ''
+  securitySchemes:
+    oauth2:
+      type: apiKey
+      description: 'Standard Authorization header using the Bearer scheme. Example: "bearer {token}"'
+      name: Authorization
+      in: header
+x-refined-from:
+- dow-jones-riskcenter-third-party-api-0-1-openapi.json
+- dow-jones-riskcenter-third-party-api-0-2-openapi.json

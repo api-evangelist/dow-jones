@@ -1,0 +1,181 @@
+openapi: 3.2.0
+info:
+  title: Screening and Monitoring Private Lists Transaction API
+  contact:
+    name: Dow Jones
+  license:
+    name: Dow Jones Screening and Monitoring Private Lists API
+  version: v1
+  description: Operations related to the transactions
+servers:
+- url: https://api.dowjones.com
+- url: https://eu.api.dowjones.com
+tags:
+- name: Transaction
+  description: Operations related to the transactions
+paths:
+  /risk-profiles-custom-sources/transactions/{id}:
+    get:
+      tags:
+      - Transaction
+      summary: Retrieves the status of a transaction
+      operationId: retrieveTransactionsUsingGET
+      parameters:
+      - $ref: '#/components/parameters/Accept-Encoding'
+      - name: id
+        in: path
+        description: Id of the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.dowjones.dna.transactions.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/ResponseDataPrivateListStatusTransaction'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.transactions.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '403':
+          description: Forbidden
+          content:
+            application/vnd.dowjones.dna.transactions.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.transactions.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+      security:
+      - bearerAuth: []
+components:
+  parameters:
+    Accept-Encoding:
+      name: Accept-Encoding
+      description: Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to "gzip" and the payload exceeds the threshold of 8MB
+      in: header
+      required: false
+      schema:
+        type: string
+  schemas:
+    ResponseStatusTransaction:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PrivateListStatusTransaction'
+        type:
+          type: string
+          example: transactions
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000
+        id:
+          type: string
+    ResponseDataPrivateListStatusTransaction:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseStatusTransaction'
+    PrivateListStatusTransaction:
+      type: object
+      properties:
+        operation:
+          type: string
+          example: INSERTION
+        status:
+          type: string
+          enum:
+          - PENDING
+          - COMPLETED
+        source_id:
+          type: string
+        valid_profiles:
+          type: integer
+          example: 1
+        invalid_profiles:
+          type: integer
+          example: 1
+        pending_profiles:
+          type: integer
+          example: 1
+        processing_profiles:
+          type: integer
+          example: 1
+        valid_profile_details:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                example: 31f90e11-a0b2-459d-9f22-765c6b62cac0
+              external_id:
+                type: string
+                example: external_id
+              request_index:
+                type: integer
+                example: 0
+        invalid_profile_details:
+          type: array
+          items:
+            type: object
+            properties:
+              external_id:
+                type: string
+                example: external_id
+              request_index:
+                type: integer
+                example: 1
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      example: There was an error in the request, please recheck and try again
+                    status:
+                      type: integer
+                      example: 400
+                    code:
+                      type: integer
+                      example: 1100001
+                    detail:
+                      type: string
+                      example: names[0] {The profile name contains invalid characters}
+    ErrorObject:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
+    JsonError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,270 @@
+openapi: 3.2.0
+info:
+  title: Dow Jones List API
+  version: '1.0'
+  description: 'Operations tagged List across 2 of this provider''s published API definitions: dow-jones-riskcenter-third-party-api-0-1-openapi.json, dow-jones-riskcenter-third-party-api-0-2-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api-thirdparty.riskcenter.dowjones.com/
+tags:
+- name: List
+paths:
+  /lists:
+    get:
+      tags:
+      - List
+      summary: Retrieves all lists
+      operationId: GetLists
+      responses:
+        '200':
+          description: Success
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ResponseLists'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+      - oauth2: []
+    servers:
+    - url: https://api-thirdparty.riskcenter.dowjones.com/
+  /lists/{id}:
+    get:
+      tags:
+      - List
+      summary: Retrieves a list by id
+      operationId: GetList
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: language
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+          default: en-us
+      responses:
+        '200':
+          description: Success
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ResponseList'
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+      - oauth2: []
+    servers:
+    - url: https://api-thirdparty.riskcenter.dowjones.com/
+components:
+  schemas:
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    ResponseList:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataList'
+      additionalProperties: false
+      description: ''
+    ResponseDataLists:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ListName'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    List:
+      type: object
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListRow'
+          description: ''
+        columns:
+          type: array
+          items:
+            type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        extensions:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: object
+            additionalProperties: false
+          readOnly: true
+      additionalProperties: false
+    ResponseDataList:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/List'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    PagingMeta:
+      type: object
+      properties:
+        context:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseLists:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataLists'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: false
+      description: ''
+    ResponseLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ListRow:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        data:
+          type: array
+          items: {}
+          description: ''
+      additionalProperties: false
+      description: ''
+    ListName:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+  securitySchemes:
+    oauth2:
+      type: apiKey
+      description: 'Standard Authorization header using the Bearer scheme. Example: "bearer {token}"'
+      name: Authorization
+      in: header
+x-refined-from:
+- dow-jones-riskcenter-third-party-api-0-1-openapi.json
+- dow-jones-riskcenter-third-party-api-0-2-openapi.json

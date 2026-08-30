@@ -1,0 +1,4380 @@
+openapi: 3.2.0
+info:
+  title: Advanced Screening and Monitoring Alert API
+  description: 'Dow Jones
+
+
+    ### Rate limits
+
+
+    Most endpoints are subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+    Some endpoints are also subject to a global concurrent request limit of 5 simultaneous requests per customer.'
+  version: '3'
+  license: {}
+  contact: {}
+servers:
+- url: API_INSTANCE
+security:
+- basicAuth: []
+- jwt: []
+- clientCert: []
+tags:
+- name: Alert
+  description: The Alert API allows clients to interact with alerts that have been raised through continuous monitoring.
+paths:
+  /alert/{alert_id}/close:
+    post:
+      summary: Close an alert
+      description: 'Close an alert with the specified reasons, actions and consequences.
+
+        NOTE: Alerts can only be closed if they are eligible for closure according to the workflow configuration.
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        *Generated from limited sample size.*
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 552 ms |
+
+        | 90th percentile | 1.4 s |
+
+        | 95th percentile | 2.4 s |
+
+        | 98th percentile | 3.0 s |
+
+        | 99th percentile | 3.2 s |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      operationId: alertClose
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        description: The ID of the alert to close
+        schema:
+          type: number
+      tags:
+      - Alert
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-11T10:43:09.536Z).
+
+          '
+        latencyDistribution:
+          median: 551.06
+          p90: 1382.98
+          p95: 2437.39
+          p98: 3040.02
+          p99: 3235.88
+          sampleSize: 26
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+              - type: object
+                required:
+                - status
+                - reason
+                properties:
+                  comment:
+                    type: string
+                    description: a comment providing details of the closure decision.
+                  status:
+                    type: number
+                    description: A 3 digit number made up of internal alert state (1 digit) and the alert status as configured by your system administrator (2 digits).
+                    example: 300
+                  reason:
+                    type: number
+                    description: The ID of the closure reason. Reasons are configured by your system administrator.
+              - type: object
+                description: The reasons, actions and consequence associated with the alert closure. Note that different attributes are required depending on the closure status selected.
+                required:
+                - consequence
+                properties:
+                  consequence:
+                    type: number
+                    description: The ID of the consequence to apply to the closure. Consequences are configured by your system administrator.
+            example:
+              comment: Comment providing details of closure
+              status: 201
+              reason: 4
+              consequence: 0
+      responses:
+        '200':
+          description: The updated alert
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Alert object
+                properties:
+                  id:
+                    type: integer
+                    description: The id of the alert
+                    example: 10001
+                  namespace:
+                    type: string
+                    description: Internal field
+                  target:
+                    type: string
+                    description: The target object (client) that encapsulates the activity
+                    example: eoi:10001
+                  description:
+                    type: string
+                    description: A brief description of the alert
+                    example: torch
+                  clientKey:
+                    type: string
+                    description: Internal field
+                  state:
+                    type: string
+                    description: Current state of the alert
+                    example: OPENED
+                    enum:
+                    - MONITORING
+                    - OPENED
+                    - CLOSED
+                    - REOPENED
+                    - OPENED_FIXED_PERIOD
+                  mode:
+                    type: string
+                    description: alert mode
+                    example: sum
+                  threshold:
+                    type: integer
+                    description: The value of the threshold to breach an alert when this alert breached
+                    example: 100
+                  score:
+                    type: integer
+                    description: Score of the alert, based on the evidence accrued
+                    example: 100
+                  sortKey:
+                    type: integer
+                    description: Internal field
+                  currentStatus:
+                    type: object
+                    description: records details of the alerts status (versus state)
+                    properties:
+                      status:
+                        type: integer
+                        description: the current status value
+                        example: 101
+                      timestamp:
+                        type: integer
+                        description: timestamp of the last status change
+                        example: 1590989346512
+                  assignedUsers:
+                    type: array
+                    description: list of user ids the alert has been assigned to.
+                    items:
+                      type: number
+                      example: 990
+                  assignedGroups:
+                    type: array
+                    description: list of group ids the alert has been assigned to, where appropriate.
+                    items:
+                      type: number
+                      example: 10
+                  time:
+                    type: object
+                    description: set of relevant timestamps for the alert
+                    properties:
+                      created:
+                        type: integer
+                        description: when the alert was created
+                        example: 1600427478761
+                      lastUpdated:
+                        type: integer
+                        description: when the alert last received updated information
+                        example: 1600427478761
+                      breached:
+                        type: integer
+                        description: when the alert transitioned from monitoring to opened
+                        example: 1600427478860
+                      lastEvidence:
+                        type: integer
+                        description: when the last piece of evidence was added to the alert
+                        example: 1600427478860
+                  security:
+                    type: object
+                    description: The alert\'s security object
+                    example: {}
+                  tags:
+                    type: array
+                    description: list of tags that relevant to the alert.
+                    items:
+                      type: string
+                      example: policy-20037
+                  client:
+                    type: object
+                    description: details of the alert's associated client
+              example:
+                id: 187504
+                namespace: torch
+                target: eoi:cba_entity_55
+                description: alert for Pedro Castillo
+                clientKey: sandbox
+                state: CLOSED
+                mode: sum
+                threshold: 100
+                score: 100
+                sortKey: 400
+                docCount: 1
+                currentStatus:
+                  status: 201
+                  consequence: 0
+                  reason: 4
+                  timestamp: 1706707504238
+                  comment:
+                    value: Comment providing details of closure
+                    user:
+                      id: 10024
+                      email: sandbox1677001704151@ripjar.com
+                      externalId: sandbox1677001704151@ripjar.com
+                      cn: sandbox1677001704151@ripjar.com
+                assignedUsers:
+                - 10024
+                assignedGroups: []
+                time:
+                  created: 1705550372510
+                  lastUpdated: 1706707504238
+                  breached: 1705550373303
+                  lastEvidence: 1705550373303
+                  lastAssigned: 1706705385116
+                  closed: 1706707504238
+                security: {}
+                tags:
+                - context-alerting
+                - dj:sanctions
+                - policy-10119
+                client:
+                  id: eoi:cba_entity_55
+                  _start_rev: 20287
+                  _revision: 20287
+                  clientId: cba_entity_55
+                  status: ACTIVE
+                  lastReviewed: 1420070400000
+                  entityType: PERSON
+                  name: Pedro Castillo
+                  clientKey: sandbox
+                  alertsDisabled: false
+                  monitorStartDate: 1420070400000
+                  displayname: Pedro Castillo
+                  _type: person
+                  relationships: []
+                  relationshipGrouping: []
+                  observedEntityIds: []
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '403':
+          description: Forbidden (e.g. the user does not have the CloseAlert permission or the alert evidence has not been assessed and the alert type has mandatoryAssessment set to true)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '404':
+          description: Not Found (e.g. the alert could not be found or the alert status and close reason were not found in configuration)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '409':
+          description: Conflict (e.g. the alert is already closed)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '422':
+          description: Unprocessable Entity (e.g. the alert is in monitoring state)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+  /alert/{alert_id}/assign:
+    post:
+      summary: Assign alert to user
+      description: 'Assign an alert to a user, optionally changing the status. NOTE: Alerts can only be assigned if they are eligible for assignment to the specified user in the specified status according to the workflow configuration. ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      operationId: alertAssign
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        description: The ID of the alert to assign
+        schema:
+          type: number
+      tags:
+      - Alert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Details of the users to be assigned / unassigned and the optional new status
+              required:
+              - users
+              properties:
+                users:
+                  type: object
+                  description: The users to be added / removed from the assignment. Note that one one user can be assigned to an alert at a time.
+                  oneOf:
+                  - required:
+                    - add
+                    - remove
+                  - required:
+                    - addExternalIds
+                    - remove
+                  - required:
+                    - add
+                    - removeExternalIds
+                  - required:
+                    - addExternalIds
+                    - removeExternalIds
+                  required:
+                  - add
+                  - remove
+                  - addExternalIds
+                  - removeExternalIds
+                  properties:
+                    add:
+                      type: array
+                      description: internal user id to add. Cannot be used in conjunction with addExternalIds.
+                      maxlength: 1
+                      items:
+                        type: number
+                        example: 10006
+                    addExternalIds:
+                      type: array
+                      description: external user id to add. Cannot be used in conjunction with add.
+                      maxlength: 1
+                      items:
+                        type: string
+                        example: john.smith@ripjar.com
+                    remove:
+                      type: array
+                      description: internal user id to remove. Cannot be used in conjunction with removeExternalIds.
+                      maxlength: 1
+                      items:
+                        type: number
+                        example: 10005
+                    removeExternalIds:
+                      type: array
+                      description: external user id to remove. Cannot be used in conjunction with remove.
+                      maxlength: 1
+                      items:
+                        type: string
+                        example: john.smith@ripjar.com
+                newStatus:
+                  type: object
+                  description: New status
+                  properties:
+                    status:
+                      type: integer
+                      description: New status code
+      responses:
+        '200':
+          description: The updated alert
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The details of the alert following the requested changes being applied.
+                properties:
+                  alert:
+                    type: object
+                    properties:
+                      assignedUsers:
+                        description: Details of the user currently assigned to the alert
+                        type: array
+                        example:
+                        - username: John Smith
+                          email: john.smith@ripjar.com
+                          externalId: john.smith@ripjar.com
+                          mobile: 01234567890
+                          roles:
+                          - ROLE_1
+                          cn: john.smith@ripjar.com
+                          clientKey: lowercasekey
+                          customerExcludedApps:
+                          - app
+                          security: {}
+                          lastLogin: 1596188918065
+                          username_lowercase: john smith
+                          lineNumber: 4
+                          lastModified: 1595437138430
+                          id: 10003
+                          dateCreated: 1595437138459
+                        oneOf:
+                        - type: array
+                          description: IDs of users assigned to the result, returned when results enrichment is disabled
+                          items:
+                            type: number
+                          example:
+                          - 1
+                        - type: array
+                          description: Objects representing users assigned to the result, returned when results enrichment is enabled
+                          items:
+                            type: object
+                            properties:
+                              username:
+                                type: string
+                                example: John Smith
+                              email:
+                                type: string
+                                example: john.smith@ripjar.com
+                              externalId:
+                                type: string
+                                example: john.smith@ripjar.com
+                              mobile:
+                                type: string
+                                example: 01234567890
+                              roles:
+                                type: array
+                                items:
+                                  type: string
+                                  example: ADMINISTRATOR
+                              cn:
+                                type: string
+                                example: john.smith@ripjar.com
+                              clientKey:
+                                type: string
+                                example: lowercasekey
+                              customerExcludedApps:
+                                type: array
+                                nullable: true
+                                items:
+                                  type: string
+                                  example: app
+                              security:
+                                type: object
+                              lastLogin:
+                                type: number
+                                example: 1596188918065
+                              username_lowercase:
+                                type: string
+                                example: john smith
+                              lineNumber:
+                                type: number
+                                example: 4
+                              lastModified:
+                                type: number
+                                example: 1595437138430
+                              id:
+                                type: number
+                                example: 1
+                              dateCreated:
+                                type: number
+                                example: 1595437138459
+                          components:
+                            schemas:
+                              AssignedUserEnriched:
+                                type: object
+                                properties:
+                                  username:
+                                    type: string
+                                    example: John Smith
+                                  email:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  externalId:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  mobile:
+                                    type: string
+                                    example: 01234567890
+                                  roles:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: ADMINISTRATOR
+                                  cn:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  clientKey:
+                                    type: string
+                                    example: lowercasekey
+                                  customerExcludedApps:
+                                    type: array
+                                    nullable: true
+                                    items:
+                                      type: string
+                                      example: app
+                                  security:
+                                    type: object
+                                  lastLogin:
+                                    type: number
+                                    example: 1596188918065
+                                  username_lowercase:
+                                    type: string
+                                    example: john smith
+                                  lineNumber:
+                                    type: number
+                                    example: 4
+                                  lastModified:
+                                    type: number
+                                    example: 1595437138430
+                                  id:
+                                    type: number
+                                    example: 1
+                                  dateCreated:
+                                    type: number
+                                    example: 1595437138459
+                      assignedGroups:
+                        type: array
+                        description: assignment to groups is not currently supported.
+                        items:
+                          type: number
+                      tags:
+                        type: array
+                        description: list of tags that relevant to the alert.
+                        items:
+                          type: string
+                          example: policy-20037
+                      state:
+                        type: integer
+                        description: 'A number representing the overall state of the alert.
+
+                          0 = Monitoring
+
+                          1 = Open
+
+                          2 = Closed
+
+                          3 = Reopened
+
+                          '
+                        enum:
+                        - 0
+                        - 1
+                        - 2
+                        - 3
+                      score:
+                        type: integer
+                        description: The total alert score, calculated from the evidence within the alert
+                      sortKey:
+                        type: number
+                      currentStatus:
+                        type: object
+                      time:
+                        type: object
+                        description: set of relevant timestamps for the alert
+                        example:
+                          created: 1664330051195
+                          lastUpdated: 1664468061574
+                          breached: 1664330051277
+                          lastEvidence: 1664340367378
+                          lastAssigned: 1664468061574
+                        properties:
+                          created:
+                            type: integer
+                            description: when the alert was created
+                            example: 1600427478761
+                          lastUpdated:
+                            type: integer
+                            description: when the alert last received updated information
+                            example: 1600427478761
+                          breached:
+                            type: integer
+                            description: when the alert transitioned from monitoring to opened
+                            example: 1600427478860
+                          lastEvidence:
+                            type: integer
+                            description: when the last piece of evidence was added to the alert
+                            example: 1600427478860
+                          lastAssigned:
+                            type: integer
+                            description: when the alert was last assigned
+                            example: 1600427478860
+                      namespace:
+                        type: string
+                      type:
+                        type: number
+                      target:
+                        type: string
+                      security:
+                        type: object
+                        description: The alert\'s security object
+                      description:
+                        type: string
+                        example: alert for some company
+                      name:
+                        type: string
+                        example: alert
+                      clientKey:
+                        type: string
+                        example: lowercasekey
+                      mode:
+                        type: string
+                        example: sum
+                      id:
+                        type: number
+                        example: 12345
+                      threshold:
+                        type: number
+                        example: 0
+                      sortKey2:
+                        type: number
+                        example: 1.1959140198
+                      history:
+                        type: array
+                        description: The assignment history of the alert
+                        items:
+                          type: object
+                          properties:
+                            assignedUsers:
+                              type: array
+                              description: The user objects for the assigned users.
+                              items:
+                                type: object
+                                description: An object representing a user in the system.
+                                required:
+                                - username
+                                - email
+                                - cn
+                                properties:
+                                  excludedApps:
+                                    type: array
+                                    items:
+                                      type: string
+                                    description: A list of the applications that this user is excluded from accessing. Not used in Screening.
+                                  username:
+                                    type: string
+                                    description: The name of the user. This is the value displayed when the user is referenced in the UI.
+                                  email:
+                                    type: string
+                                    description: The email address of the user. Can be used as part of basic authentication.
+                                  mobile:
+                                    type: string
+                                    description: The mobile/cell phone number of the user.
+                                  roles:
+                                    type: array
+                                    items:
+                                      type: string
+                                    description: 'A list of the user roles that this user has.
+
+                                      Labyrinth Screening makes use of defined user roles to control the actions a user may perform and to tailor the interface to the needs of particular users.
+
+                                      Each role is made up of a set of permissions which provide fine grained control over the actions a user can perform. Roles can be configured to match the business roles required by the users of the Screening system.
+
+                                      These permissions used by the Screening system are described in the Ripjar Security Implementation document.
+
+                                      When users are loaded into the system, each user account should include the list of roles they are allowed to perform.
+
+                                      '
+                                  password:
+                                    type: string
+                                    description: 'The user''s password, used for basic authentication or to retrieve a bearer auth (JWT) token. Not available in API responses. Required when creating or updating users.
+
+                                      '
+                                  cn:
+                                    type: string
+                                    description: The user's canonical name. Used to lookup user accounts when performing certificate-based authentication.
+                                  externalId:
+                                    type: string
+                                    description: The user's ID external to the system. Typically maps to a username or ID in an external user entitlement system.
+                                  security:
+                                    type: object
+                                    description: 'The security attributes for this user.
+
+                                      A user''s security attributes govern the data items in the system (such as clients, alerts and assessments) that the user has visibility of. These are distinct from the user''s roles, which govern the operations a user can carry out in the system.
+
+                                      The security schema contains a set of generic attributes that the user can be assigned. The meaning of these attributes varies depending on the security policy installed on the system.
+
+                                      By default, the security policy will compare the list of strings (also known as tags) in dataRolesN fields of the user to the list of strings in the orTagsN field in the security attributes of the data item. If the user has any of the tags that appear on the data item, they can view that item.
+
+                                      If the data item has multiple orTags fields, for example orTags1 and orTags2, the user must has at least one of the tags in each of the corresponding dataRoles fields, i.e. there is an AND logic between each attribute.
+
+                                      '
+                                    properties:
+                                      dataRoles1:
+                                        type: array
+                                        items:
+                                          type: string
+                                      dataRoles2:
+                                        type: array
+                                        items:
+                                          type: string
+                                      dataRoles3:
+                                        type: array
+                                        items:
+                                          type: string
+                                      compositeDataRoles1:
+                                        type: array
+                                        items:
+                                          type: object
+                            timestamp:
+                              type: integer
+                              description: The timestamp for when the alert was assigned
+                            state:
+                              type: integer
+                              description: The state code
+                            status:
+                              type: integer
+                              description: The status code
+                      lastActivity:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                            example: 121212
+                            description: activity id
+                          createdAt:
+                            type: number
+                            example: 1664468061625
+                            description: Activity timestamp
+                          type:
+                            type: string
+                            example: alertAssigned
+                          description:
+                            type: string
+                            example: Alert assignment was changed
+                            description: Activity description
+                          data:
+                            type: object
+                            properties:
+                              users:
+                                type: object
+                                properties:
+                                  add:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        id:
+                                          type: number
+                                          description: user ID
+                                          example: 10006
+                                        username:
+                                          type: string
+                                          example: KYC - Admin
+                                  remove:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        id:
+                                          type: number
+                                          description: user ID
+                                          example: 10006
+                                        username:
+                                          type: string
+                                          example: KYC - Admin
+                              groups:
+                                type: object
+                              newStatus:
+                                type: object
+                                properties:
+                                  status:
+                                    type: number
+                                    example: 103
+                          security:
+                            type: object
+                            description: The alert\'s security object
+                            example: {}
+                          target:
+                            type: string
+                            example: alert-10351
+                          tags:
+                            type: array
+                            items:
+                              type: string
+                              example: context-alerting
+                          namespace:
+                            type: string
+                            example: torch
+                          createdBy:
+                            type: object
+                            properties:
+                              username:
+                                type: string
+                                example: John Smith
+                              email:
+                                type: string
+                                example: john.smith@ripjar.com
+                              externalId:
+                                type: string
+                                example: john.smith@ripjar.com
+                              mobile:
+                                type: string
+                                example: 01234567890
+                              roles:
+                                type: array
+                                items:
+                                  type: string
+                                  example: ADMINISTRATOR
+                              cn:
+                                type: string
+                                example: john.smith@ripjar.com
+                              clientKey:
+                                type: string
+                                example: lowercasekey
+                              customerExcludedApps:
+                                type: array
+                                nullable: true
+                                items:
+                                  type: string
+                                  example: app
+                              security:
+                                type: object
+                              lastLogin:
+                                type: number
+                                example: 1596188918065
+                              username_lowercase:
+                                type: string
+                                example: john smith
+                              lineNumber:
+                                type: number
+                                example: 4
+                              lastModified:
+                                type: number
+                                example: 1595437138430
+                              id:
+                                type: number
+                                example: 1
+                              dateCreated:
+                                type: number
+                                example: 1595437138459
+                          clientKey:
+                            type: string
+                            example: lowercasekey
+                      bookmarks:
+                        type: object
+                        properties:
+                          annotations:
+                            type: array
+                            items:
+                              type: string
+                          sort:
+                            type: string
+                          total:
+                            type: number
+                      eoi:
+                        type: object
+                      transitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                              example: 101
+                              description: ID of transition
+                            constraints:
+                              type: array
+                              items:
+                                type: object
+                                description: Different type of constrains
+                                required:
+                                - key
+                                properties:
+                                  value:
+                                    oneOf:
+                                    - type: number
+                                      example: 101
+                                    - type: array
+                                      example:
+                                      - 101
+                                      - 102
+                                      items:
+                                        type: number
+                                  key:
+                                    type: string
+                                    example: status
+                                  isSet:
+                                    type: boolean
+                                  isSameAs:
+                                    type: string
+                                    example: currentUser
+                  activity:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 121212
+                        description: activity id
+                      createdAt:
+                        type: number
+                        example: 1664468061625
+                        description: Activity timestamp
+                      type:
+                        type: string
+                        example: alertAssigned
+                      description:
+                        type: string
+                        example: Alert assignment was changed
+                        description: Activity description
+                      data:
+                        type: object
+                        properties:
+                          users:
+                            type: object
+                            properties:
+                              add:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: number
+                                      description: user ID
+                                      example: 10006
+                                    username:
+                                      type: string
+                                      example: KYC - Admin
+                              remove:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: number
+                                      description: user ID
+                                      example: 10006
+                                    username:
+                                      type: string
+                                      example: KYC - Admin
+                          groups:
+                            type: object
+                          newStatus:
+                            type: object
+                            properties:
+                              status:
+                                type: number
+                                example: 103
+                      security:
+                        type: object
+                        description: The alert\'s security object
+                        example: {}
+                      target:
+                        type: string
+                        example: alert-10351
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          example: context-alerting
+                      namespace:
+                        type: string
+                        example: torch
+                      createdBy:
+                        type: object
+                        properties:
+                          username:
+                            type: string
+                            example: John Smith
+                          email:
+                            type: string
+                            example: john.smith@ripjar.com
+                          externalId:
+                            type: string
+                            example: john.smith@ripjar.com
+                          mobile:
+                            type: string
+                            example: 01234567890
+                          roles:
+                            type: array
+                            items:
+                              type: string
+                              example: ADMINISTRATOR
+                          cn:
+                            type: string
+                            example: john.smith@ripjar.com
+                          clientKey:
+                            type: string
+                            example: lowercasekey
+                          customerExcludedApps:
+                            type: array
+                            nullable: true
+                            items:
+                              type: string
+                              example: app
+                          security:
+                            type: object
+                          lastLogin:
+                            type: number
+                            example: 1596188918065
+                          username_lowercase:
+                            type: string
+                            example: john smith
+                          lineNumber:
+                            type: number
+                            example: 4
+                          lastModified:
+                            type: number
+                            example: 1595437138430
+                          id:
+                            type: number
+                            example: 1
+                          dateCreated:
+                            type: number
+                            example: 1595437138459
+                      clientKey:
+                        type: string
+                        example: lowercasekey
+              example:
+                alert:
+                  assignedUsers:
+                  - username: sandbox
+                    email: sandbox1677001704151@ripjar.com
+                    cn: sandbox1677001704151@ripjar.com
+                    clientKey: sandbox
+                    roles:
+                    - ADMINISTRATOR
+                    security:
+                      enabled: true
+                      dataRoles1:
+                      - X
+                      dataRoles2:
+                      - B
+                    id: 10024
+                    externalId: sandbox1677001704151@ripjar.com
+                    mobile: ''
+                    customerExcludedApps: null
+                    username_lowercase: sandbox
+                    accountLocked: false
+                    failed_login_attempts: 0
+                    failed_login_timestamp: -1
+                    lastLogin: 1706705113674
+                    vosId: 6
+                  assignedGroups: []
+                  tags:
+                  - context-alerting
+                  - dj:sanctions
+                  - policy-10119
+                  listEntityIds:
+                  - listEntity:list_entity-urn:ripjar:sot-fuv-xoy-vof
+                  state: 1
+                  score: 100
+                  sortKey: 400
+                  docCount: 1
+                  currentStatus:
+                    status: 101
+                    timestamp: 1706709612389
+                  time:
+                    created: 1705547024213
+                    lastUpdated: 1706709612389
+                    breached: 1705547024445
+                    lastEvidence: 1705547024445
+                    lastAssigned: 1706709612389
+                  namespace: torch
+                  clientKey: sandbox
+                  type: 10119
+                  target: eoi:cba_person_23
+                  name: Gulnara Karimova
+                  description: alert for Gulnara Karimova
+                  security: {}
+                  mode: sum
+                  id: 187497
+                  riskTags:
+                  - PEP-inactive
+                  - OOL-active
+                  - SAN-active
+                  - SIP-active
+                  - NEWS-active
+                  threshold: 100
+                  history:
+                  - assignedUsers: []
+                    state: 1
+                    status: 100
+                    timestamp: 1706709612376
+                  lastActivity:
+                    id: 1909371
+                    createdAt: 1706709612435
+                    type: alertAssigned
+                    description: Alert assignment was changed
+                    data:
+                      users:
+                        add:
+                        - _id: 63f503e85454811117036567
+                          username: sandbox
+                          id: 10024
+                        remove: []
+                      newStatus:
+                        status: 101
+                      groups:
+                        add: []
+                        remove: []
+                    security: {}
+                    target: alert-187497
+                    tags:
+                    - context-alerting
+                    namespace: torch
+                    createdBy:
+                      username: sandbox
+                      email: sandbox1677001704151@ripjar.com
+                      cn: sandbox1677001704151@ripjar.com
+                      clientKey: sandbox
+                      roles:
+                      - ADMINISTRATOR
+                      security:
+                        enabled: true
+                        dataRoles1:
+                        - X
+                        dataRoles2:
+                        - B
+                      id: 10024
+                      externalId: sandbox1677001704151@ripjar.com
+                      mobile: ''
+                      customerExcludedApps: null
+                      username_lowercase: sandbox
+                      accountLocked: false
+                      failed_login_attempts: 0
+                      failed_login_timestamp: -1
+                      lastLogin: 1706705113674
+                      vosId: 6
+                    clientKey: sandbox
+                  bookmarks:
+                    annotations: []
+                    sort: time.created:-1
+                    total: 0
+                  eoi:
+                    id: eoi:cba_person_23
+                    _start_rev: 20284
+                    _revision: 20284
+                    clientId: cba_person_23
+                    status: ACTIVE
+                    lastReviewed: 1420070400000
+                    entityType: PERSON
+                    name: Gulnara Karimova
+                    nationalityCodes:
+                    - UZ
+                    dateOfBirth: '1972-08-08'
+                    clientKey: sandbox
+                    alertsDisabled: false
+                    nationalities:
+                    - Uzbekistan
+                    monitorStartDate: 1420070400000
+                    displayname: Gulnara Karimova
+                    _type: person
+                    relationships: []
+                    relationshipGrouping: []
+                    observedEntityIds: []
+                  transitions:
+                  - id: 101
+                    constraints:
+                    - key: state
+                      value:
+                      - 0
+                      - 1
+                      - 3
+                    - key: status
+                      value: 101
+                    - key: assignedTo
+                      isSet: true
+                  - id: 102
+                    constraints:
+                    - key: state
+                      value:
+                      - 0
+                      - 1
+                      - 3
+                    - key: status
+                      value: 102
+                    - key: assignedTo
+                      isSet: true
+                  - id: 103
+                    constraints:
+                    - key: state
+                      value:
+                      - 0
+                      - 1
+                      - 3
+                    - key: status
+                      value: 103
+                    - key: assignedTo
+                      isSet: true
+                  - id: 104
+                    constraints:
+                    - key: state
+                      value:
+                      - 0
+                      - 1
+                      - 3
+                    - key: status
+                      value: 104
+                    - key: assignedTo
+                      isSet: true
+                  - id: 200
+                    constraints:
+                    - key: state
+                      value: 2
+                    - key: status
+                      value: 200
+                    - key: assignedTo
+                      isSet: true
+                      isSameAs: currentUser
+                  - id: 201
+                    constraints:
+                    - key: state
+                      value: 2
+                    - key: status
+                      value: 201
+                    - key: assignedTo
+                      isSet: true
+                      isSameAs: currentUser
+                activity:
+                  id: 1909371
+                  createdAt: 1706709612435
+                  type: alertAssigned
+                  description: Alert assignment was changed
+                  data:
+                    users:
+                      add:
+                      - _id: 63f503e85454811117036567
+                        username: sandbox
+                        id: 10024
+                      remove: []
+                    newStatus:
+                      status: 101
+                    groups:
+                      add: []
+                      remove: []
+                  security: {}
+                  target: alert-187497
+                  tags:
+                  - context-alerting
+                  namespace: torch
+                  createdBy:
+                    username: sandbox
+                    email: sandbox1677001704151@ripjar.com
+                    cn: sandbox1677001704151@ripjar.com
+                    clientKey: sandbox
+                    roles:
+                    - ADMINISTRATOR
+                    security:
+                      enabled: true
+                      dataRoles1:
+                      - X
+                      dataRoles2:
+                      - B
+                    id: 10024
+                    externalId: sandbox1677001704151@ripjar.com
+                    mobile: ''
+                    customerExcludedApps: null
+                    username_lowercase: sandbox
+                    accountLocked: false
+                    failed_login_attempts: 0
+                    failed_login_timestamp: -1
+                    lastLogin: 1706705113674
+                    vosId: 6
+                  clientKey: sandbox
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '404':
+          description: Not Found (e.g. the alert could not be found or the alert status and close reason were not found in configuration)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - status
+                - message
+                properties:
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error
+                    example: 500
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                    example: Internal server error
+                  details:
+                    type: object
+                    description: A JSON object containing additional details relating to the error
+  /alert/{alert_id}/assign/previous:
+    post:
+      summary: Assign alert to the previous assignee
+      description: 'Assign the alert to the previous assignee in the previous status. NOTE: The alert must have been assigned to a previous user in a different status. NOTE: Alerts can only be assigned if they are eligible for assignment to the specified user in the specified status according to the workflow configuration. ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      operationId: alertAssignPrevious
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        schema:
+          type: number
+      tags:
+      - Alert
+      responses:
+        '200':
+          description: The updated alert details
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The details of the alert following the requested changes being applied.
+                properties:
+                  alert:
+                    type: object
+                    properties:
+                      assignedUsers:
+                        description: Details of the user currently assigned to the alert
+                        type: array
+                        example:
+                        - username: John Smith
+                          email: john.smith@ripjar.com
+                          externalId: john.smith@ripjar.com
+                          mobile: 01234567890
+                          roles:
+                          - ROLE_1
+                          cn: john.smith@ripjar.com
+                          clientKey: lowercasekey
+                          customerExcludedApps:
+                          - app
+                          security: {}
+                          lastLogin: 1596188918065
+                          username_lowercase: john smith
+                          lineNumber: 4
+                          lastModified: 1595437138430
+                          id: 10003
+                          dateCreated: 1595437138459
+                        oneOf:
+                        - type: array
+                          description: IDs of users assigned to the result, returned when results enrichment is disabled
+                          items:
+                            type: number
+                          example:
+                          - 1
+                        - type: array
+                          description: Objects representing users assigned to the result, returned when results enrichment is enabled
+                          items:
+                            type: object
+                            properties:
+                              username:
+                                type: string
+                                example: John Smith
+                              email:
+                                type: string
+                                example: john.smith@ripjar.com
+                              externalId:
+                                type: string
+                                example: john.smith@ripjar.com
+                              mobile:
+                                type: string
+                                example: 01234567890
+                              roles:
+                                type: array
+                                items:
+                                  type: string
+                                  example: ADMINISTRATOR
+                              cn:
+                                type: string
+                                example: john.smith@ripjar.com
+                              clientKey:
+                                type: string
+                                example: lowercasekey
+                              customerExcludedApps:
+                                type: array
+                                nullable: true
+                                items:
+                                  type: string
+                                  example: app
+                              security:
+                                type: object
+                              lastLogin:
+                                type: number
+                                example: 1596188918065
+                              username_lowercase:
+                                type: string
+                                example: john smith
+                              lineNumber:
+                                type: number
+                                example: 4
+                              lastModified:
+                                type: number
+                                example: 1595437138430
+                              id:
+                                type: number
+                                example: 1
+                              dateCreated:
+                                type: number
+                                example: 1595437138459
+                          components:
+                            schemas:
+                              AssignedUserEnriched:
+                                type: object
+                                properties:
+                                  username:
+                                    type: string
+                                    example: John Smith
+                                  email:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  externalId:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  mobile:
+                                    type: string
+                                    example: 01234567890
+                                  roles:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: ADMINISTRATOR
+                                  cn:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  clientKey:
+                                    type: string
+                                    example: lowercasekey
+                                  customerExcludedApps:
+                                    type: array
+                                    nullable: true
+                                    items:
+                                      type: string
+                                      example: app
+                                  security:
+                                    type: object
+                                  lastLogin:
+                                    type: number
+                                    example: 1596188918065
+                                  username_lowercase:
+                                    type: string
+                                    example: john smith
+                                  lineNumber:
+                                    type: number
+                                    example: 4
+                                  lastModified:
+                                    type: number
+                                    example: 1595437138430
+                                  id:
+                                    type: number
+                                    example: 1
+                                  dateCreated:
+                                    type: number
+                                    example: 1595437138459
+                      assignedGroups:
+                        type: array
+                        description: assignment to groups is not currently supported.
+                        items:
+                          type: number
+                      tags:
+                        type: array
+                        description: list of tags that relevant to the alert.
+                        items:
+                          type: string
+                          example: policy-20037
+                      state:
+                        type: integer
+                        description: 'A number representing the overall state of the alert.
+
+                          0 = Monitoring
+
+                          1 = Open
+
+                          2 = Closed
+
+                          3 = Reopened
+
+                          '
+                        enum:
+                        - 0
+                        - 1
+                        - 2
+                        - 3
+                      score:
+                        type: integer
+                        description: The total alert score, calculated from the evidence within the alert
+                      sortKey:
+                        type: number
+                      currentStatus:
+                        type: object
+                      time:
+                        type: object
+                        description: set of relevant timestamps for the alert
+                        example:
+                          created: 1664330051195
+                          lastUpdated: 1664468061574
+                          breached: 1664330051277
+                          lastEvidence: 1664340367378
+                          lastAssigned: 1664468061574
+                        properties:
+                          created:
+                            type: integer
+                            description: when the alert was created
+                            example: 1600427478761
+                          lastUpdated:
+                            type: integer
+                            description: when the alert last received updated information
+                            example: 1600427478761
+                          breached:
+                            type: integer
+                            description: when the alert transitioned from monitoring to opened
+                            example: 1600427478860
+                          lastEvidence:
+                            type: integer
+                            description: when the last piece of evidence was added to the alert
+                            example: 1600427478860
+                          lastAssigned:
+                            type: integer
+                            description: when the alert was last assigned
+                            example: 1600427478860
+                      namespace:
+                        type: string
+                      type:
+                        type: number
+                      target:
+                        type: string
+                      security:
+                        type: object
+                        description: The alert\'s security object
+                      description:
+                        type: string
+                        example: alert for some company
+                      name:
+                        type: string
+                        example: alert
+                      clientKey:
+                        type: string
+                        example: lowercasekey
+                      mode:
+                        type: string
+                        example: sum
+                      id:
+                        type: number
+                        example: 12345
+                      threshold:
+                        type: number
+                        example: 0
+                      sortKey2:
+                        type: number
+                        example: 1.1959140198
+                      history:
+                        type: array
+                        description: The assignment history of the alert
+                        items:
+                          type: object
+                          properties:
+                            assignedUsers:
+                              type: array
+                              description: The user objects for the assigned users.
+                              items:
+                                type: object
+                                description: An object representing a user in the system.
+                                required:
+                                - username
+                                - email
+                                - cn
+                                properties:
+                                  excludedApps:
+                                    type: array
+                                    items:
+                                      type: string
+                                    description: A list of the applications that this user is excluded from accessing. Not used in Labyrinth Screening.
+                                  username:
+                                    type: string
+                                    description: The name of the user. This is the value displayed when the user is referenced in the UI.
+                                  email:
+                                    type: string
+                                    description: The email address of the user. Can be used as part of basic authentication.
+                                  mobile:
+                                    type: string
+                                    description: The mobile/cell phone number of the user.
+                                  roles:
+                                    type: array
+                                    items:
+                                      type: string
+                                    description: 'A list of the user roles that this user has.
+
+                                      Labyrinth Screening makes use of defined user roles to control the actions a user may perform and to tailor the interface to the needs of particular users.
+
+                                      Each role is made up of a set of permissions which provide fine grained control over the actions a user can perform. Roles can be configured to match the business roles required by the users of the Screening system.
+
+                                      These permissions used by the Screening system are described in the Ripjar Security Implementation document.
+
+                                      When users are loaded into the system, each user account should include the list of roles they are allowed to perform.
+
+                                      '
+                                  password:
+                                    type: string
+                                    description: 'The user''s password, used for basic authentication or to retrieve a bearer auth (JWT) token. Not available in API responses. Required when creating or updating users.
+
+                                      '
+                                  cn:
+                                    type: string
+                                    description: The user's canonical name. Used to lookup user accounts when performing certificate-based authentication.
+                                  externalId:
+                                    type: string
+                                    description: The user's ID external to the system. Typically maps to a username or ID in an external user entitlement system.
+                                  security:
+                                    type: object
+                                    description: 'The security attributes for this user.
+
+                                      A user''s security attributes govern the data items in the system (such as clients, alerts and assessments) that the user has visibility of. These are distinct from the user''s roles, which govern the operations a user can carry out in the system.
+
+                                      The security schema contains a set of generic attributes that the user can be assigned. The meaning of these attributes varies depending on the security policy installed on the system.
+
+                                      By default, the security policy will compare the list of strings (also known as tags) in dataRolesN fields of the user to the list of strings in the orTagsN field in the security attributes of the data item. If the user has any of the tags that appear on the data item, they can view that item.
+
+                                      If the data item has multiple orTags fields, for example orTags1 and orTags2, the user must has at least one of the tags in each of the corresponding dataRoles fields, i.e. there is an AND logic between each attribute.
+
+                                      '
+                                    properties:
+                                      dataRoles1:
+                                        type: array
+                                        items:
+                                          type: string
+                                      dataRoles2:
+                                        type: array
+                                        items:
+                                          type: string
+                                      dataRoles3:
+                                        type: array
+                                        items:
+                                          type: string
+                                      compositeDataRoles1:
+                                        type: array
+                                        items:
+                                          type: object
+                            timestamp:
+                              type: integer
+                              description: The timestamp for when the alert was assigned
+                            state:
+                              type: integer
+                              description: The state code
+                            status:
+                              type: integer
+                              description: The status code
+                      lastActivity:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                            example: 121212
+                            description: activity id
+                          createdAt:
+                            type: number
+                            example: 1664468061625
+                            description: Activity timestamp
+                          type:
+                            type: string
+                            example: alertAssigned
+                          description:
+                            type: string
+                            example: Alert assignment was changed
+                            description: Activity description
+                          data:
+                            type: object
+                            properties:
+                              users:
+                                type: object
+                                properties:
+                                  add:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        id:
+                                          type: number
+                                          description: user ID
+                                          example: 10006
+                                        username:
+                                          type: string
+                                          example: KYC - Admin
+                                  remove:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        id:
+                                          type: number
+                                          description: user ID
+                                          example: 10006
+                                        username:
+                                          type: string
+                                          example: KYC - Admin
+                              groups:
+                                type: object
+                              newStatus:
+                                type: object
+                                properties:
+                                  status:
+                                    type: number
+                                    example: 103
+                          security:
+                            type: object
+                            description: The alert\'s security object
+                            example: {}
+                          target:
+                            type: string
+                            example: alert-10351
+                          tags:
+                            type: array
+                            items:
+                              type: string
+                              example: context-alerting
+                          namespace:
+                            type: string
+                            example: torch
+                          createdBy:
+                            type: object
+                            properties:
+                              username:
+                                type: string
+                                example: John Smith
+                              email:
+                                type: string
+                                example: john.smith@ripjar.com
+                              externalId:
+                                type: string
+                                example: john.smith@ripjar.com
+                              mobile:
+                                type: string
+                                example: 01234567890
+                              roles:
+                                type: array
+                                items:
+                                  type: string
+                                  example: ADMINISTRATOR
+                              cn:
+                                type: string
+                                example: john.smith@ripjar.com
+                              clientKey:
+                                type: string
+                                example: lowercasekey
+                              customerExcludedApps:
+                                type: array
+                                nullable: true
+                                items:
+                                  type: string
+                                  example: app
+                              security:
+                                type: object
+                              lastLogin:
+                                type: number
+                                example: 1596188918065
+                              username_lowercase:
+                                type: string
+                                example: john smith
+                              lineNumber:
+                                type: number
+                                example: 4
+                              lastModified:
+                                type: number
+                                example: 1595437138430
+                              id:
+                                type: number
+                                example: 1
+                              dateCreated:
+                                type: number
+                                example: 1595437138459
+                          clientKey:
+                            type: string
+                            example: lowercasekey
+                      bookmarks:
+                        type: object
+                        properties:
+                          annotations:
+                            type: array
+                            items:
+                              type: string
+                          sort:
+                            type: string
+                          total:
+                            type: number
+                      eoi:
+                        type: object
+                      transitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                              example: 101
+                              description: ID of transition
+                            constraints:
+                              type: array
+                              items:
+                                type: object
+                                description: Different type of constrains
+                                required:
+                                - key
+                                properties:
+                                  value:
+                                    oneOf:
+                                    - type: number
+                                      example: 101
+                                    - type: array
+                                      example:
+                                      - 101
+                                      - 102
+                                      items:
+                                        type: number
+                                  key:
+                                    type: string
+                                    example: status
+                                  isSet:
+                                    type: boolean
+                                  isSameAs:
+                                    type: string
+                                    example: currentUser
+                  activity:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 121212
+                        description: activity id
+                      createdAt:
+                        type: number
+                        example: 1664468061625
+                        description: Activity timestamp
+                      type:
+                        type: string
+                        example: alertAssigned
+                      description:
+                        type: string
+                        example: Alert assignment was changed
+                        description: Activity description
+                      data:
+                        type: object
+                        properties:
+                          users:
+                            type: object
+                            properties:
+                              add:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: number
+                                      description: user ID
+                                      example: 10006
+                                    username:
+                                      type: string
+                                      example: KYC - Admin
+                              remove:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: number
+                                      description: user ID
+                                      example: 10006
+                                    username:
+                                      type: string
+                                      example: KYC - Admin
+                          groups:
+                            type: object
+                          newStatus:
+                            type: object
+                            properties:
+                              status:
+                                type: number
+                                example: 103
+                      security:
+                        type: object
+                        description: The alert\'s security object
+                        example: {}
+                      target:
+                        type: string
+                        example: alert-10351
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          example: context-alerting
+                      namespace:
+                        type: string
+                        example: torch
+                      createdBy:
+                        type: object
+                        properties:
+                          username:
+                            type: string
+                            example: John Smith
+                          email:
+                            type: string
+                            example: john.smith@ripjar.com
+                          externalId:
+                            type: string
+                            example: john.smith@ripjar.com
+                          mobile:
+                            type: string
+                            example: 01234567890
+                          roles:
+                            type: array
+                            items:
+                              type: string
+                              example: ADMINISTRATOR
+                          cn:
+                            type: string
+                            example: john.smith@ripjar.com
+                          clientKey:
+                            type: string
+                            example: lowercasekey
+                          customerExcludedApps:
+                            type: array
+                            nullable: true
+                            items:
+                              type: string
+                              example: app
+                          security:
+                            type: object
+                          lastLogin:
+                            type: number
+                            example: 1596188918065
+                          username_lowercase:
+                            type: string
+                            example: john smith
+                          lineNumber:
+                            type: number
+                            example: 4
+                          lastModified:
+                            type: number
+                            example: 1595437138430
+                          id:
+                            type: number
+                            example: 1
+                          dateCreated:
+                            type: number
+                            example: 1595437138459
+                      clientKey:
+                        type: string
+                        example: lowercasekey
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '404':
+          description: Not Found (e.g. the alert could not be found or the alert status and close reason were not found in configuration)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /alert/{alert_id}/reopen:
+    post:
+      summary: Reopen an alert
+      description: 'Reopen a closed alert.  NOTE: Alerts can only be reopened if they are eligible for reopening and can transition to the specified status according to the workflow configuration. ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      operationId: alertReopen
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        schema:
+          type: number
+      tags:
+      - Alert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - status
+              - reason
+              properties:
+                comment:
+                  type: string
+                  description: a comment providing details of the closure decision.
+                status:
+                  type: number
+                  description: A 3 digit number made up of internal alert state (1 digit) and the alert status as configured by your system administrator (2 digits).
+                  example: 300
+                reason:
+                  type: number
+                  description: The ID of the closure reason. Reasons are configured by your system administrator.
+      responses:
+        '200':
+          description: The updated alert
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Alert object
+                properties:
+                  id:
+                    type: integer
+                    description: The id of the alert
+                    example: 10001
+                  namespace:
+                    type: string
+                    description: Internal field
+                  target:
+                    type: string
+                    description: The target object (client) that encapsulates the activity
+                    example: eoi:10001
+                  description:
+                    type: string
+                    description: A brief description of the alert
+                    example: torch
+                  clientKey:
+                    type: string
+                    description: Internal field
+                  state:
+                    type: string
+                    description: Current state of the alert
+                    example: OPENED
+                    enum:
+                    - MONITORING
+                    - OPENED
+                    - CLOSED
+                    - REOPENED
+                    - OPENED_FIXED_PERIOD
+                  mode:
+                    type: string
+                    description: alert mode
+                    example: sum
+                  threshold:
+                    type: integer
+                    description: The value of the threshold to breach an alert when this alert breached
+                    example: 100
+                  score:
+                    type: integer
+                    description: Score of the alert, based on the evidence accrued
+                    example: 100
+                  sortKey:
+                    type: integer
+                    description: Internal field
+                  currentStatus:
+                    type: object
+                    description: records details of the alerts status (versus state)
+                    properties:
+                      status:
+                        type: integer
+                        description: the current status value
+                        example: 101
+                      timestamp:
+                        type: integer
+                        description: timestamp of the last status change
+                        example: 1590989346512
+                  assignedUsers:
+                    type: array
+                    description: list of user ids the alert has been assigned to.
+                    items:
+                      type: number
+                      example: 990
+                  assignedGroups:
+                    type: array
+                    description: list of group ids the alert has been assigned to, where appropriate.
+                    items:
+                      type: number
+                      example: 10
+                  time:
+                    type: object
+                    description: set of relevant timestamps for the alert
+                    properties:
+                      created:
+                        type: integer
+                        description: when the alert was created
+                        example: 1600427478761
+                      lastUpdated:
+                        type: integer
+                        description: when the alert last received updated information
+                        example: 1600427478761
+                      breached:
+                        type: integer
+                        description: when the alert transitioned from monitoring to opened
+                        example: 1600427478860
+                      lastEvidence:
+                        type: integer
+                        description: when the last piece of evidence was added to the alert
+                        example: 1600427478860
+                  security:
+                    type: object
+                    description: The alert\'s security object
+                    example: {}
+                  tags:
+                    type: array
+                    description: list of tags that relevant to the alert.
+                    items:
+                      type: string
+                      example: policy-20037
+                  client:
+                    type: object
+                    description: details of the alert's associated client
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden (e.g. the user does not have the ReopenAlert permission)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '404':
+          description: Not Found (e.g. the alert could not be found or the alert status and close reason were not found in configuration)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '422':
+          description: Unprocessable Entity (e.g. the alert is in monitoring state)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /alert/{alert_id}/status:
+    post:
+      summary: Update status/assignment of an alert
+      description: 'Update status and optionally the assigned user of an alert. NOTE: Alerts can only be assigned or change status if they are eligible for assignment to the specified user in the specified status according to the workflow configuration. ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      operationId: alertStatus
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        schema:
+          type: number
+      tags:
+      - Alert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - newStatus
+              properties:
+                users:
+                  type: object
+                  description: Add and remove user.
+                  oneOf:
+                  - required:
+                    - add
+                    - remove
+                  - required:
+                    - addExternalIds
+                    - remove
+                  - required:
+                    - add
+                    - removeExternalIds
+                  - required:
+                    - addExternalIds
+                    - removeExternalIds
+                  required:
+                  - add
+                  - remove
+                  - addExternalIds
+                  - removeExternalIds
+                  properties:
+                    add:
+                      type: array
+                      description: internal user id to add. Cannot be used in conjunction with addExternalIds.
+                      maxlength: 1
+                      items:
+                        type: number
+                        example: 10006
+                    addExternalIds:
+                      type: array
+                      description: external user id to add. Cannot be used in conjunction with add.
+                      maxlength: 1
+                      items:
+                        type: string
+                        example: john.smith@ripjar.com
+                    remove:
+                      type: array
+                      description: internal user id to remove. Cannot be used in conjunction with removeExternalIds.
+                      maxlength: 1
+                      items:
+                        type: number
+                        example: 10005
+                    removeExternalIds:
+                      type: array
+                      description: external user id to remove. Cannot be used in conjunction with remove.
+                      maxlength: 1
+                      items:
+                        type: string
+                        example: john.smith@ripjar.com
+                newStatus:
+                  type: object
+                  description: New status to transition to.
+                  properties:
+                    status:
+                      type: integer
+                      description: New status code
+      responses:
+        '200':
+          description: The updated alert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alert:
+                    type: object
+                    properties:
+                      assignedUsers:
+                        description: Details of the user currently assigned to the alert
+                        type: array
+                        example:
+                        - username: John Smith
+                          email: john.smith@ripjar.com
+                          externalId: john.smith@ripjar.com
+                          mobile: 01234567890
+                          roles:
+                          - ROLE_1
+                          cn: john.smith@ripjar.com
+                          clientKey: lowercasekey
+                          customerExcludedApps:
+                          - app
+                          security: {}
+                          lastLogin: 1596188918065
+                          username_lowercase: john smith
+                          lineNumber: 4
+                          lastModified: 1595437138430
+                          id: 10003
+                          dateCreated: 1595437138459
+                        oneOf:
+                        - type: array
+                          description: IDs of users assigned to the result, returned when results enrichment is disabled
+                          items:
+                            type: number
+                          example:
+                          - 1
+                        - type: array
+                          description: Objects representing users assigned to the result, returned when results enrichment is enabled
+                          items:
+                            type: object
+                            properties:
+                              username:
+                                type: string
+                                example: John Smith
+                              email:
+                                type: string
+                                example: john.smith@ripjar.com
+                              externalId:
+                                type: string
+                                example: john.smith@ripjar.com
+                              mobile:
+                                type: string
+                                example: 01234567890
+                              roles:
+                                type: array
+                                items:
+                                  type: string
+                                  example: ADMINISTRATOR
+                              cn:
+                                type: string
+                                example: john.smith@ripjar.com
+                              clientKey:
+                                type: string
+                                example: lowercasekey
+                              customerExcludedApps:
+                                type: array
+                                nullable: true
+                                items:
+                                  type: string
+                                  example: app
+                              security:
+                                type: object
+                              lastLogin:
+                                type: number
+                                example: 1596188918065
+                              username_lowercase:
+                                type: string
+                                example: john smith
+                              lineNumber:
+                                type: number
+                                example: 4
+                              lastModified:
+                                type: number
+                                example: 1595437138430
+                              id:
+                                type: number
+                                example: 1
+                              dateCreated:
+                                type: number
+                                example: 1595437138459
+                          components:
+                            schemas:
+                              AssignedUserEnriched:
+                                type: object
+                                properties:
+                                  username:
+                                    type: string
+                                    example: John Smith
+                                  email:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  externalId:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  mobile:
+                                    type: string
+                                    example: 01234567890
+                                  roles:
+                                    type: array
+                                    items:
+                                      type: string
+                                      example: ADMINISTRATOR
+                                  cn:
+                                    type: string
+                                    example: john.smith@ripjar.com
+                                  clientKey:
+                                    type: string
+                                    example: lowercasekey
+                                  customerExcludedApps:
+                                    type: array
+                                    nullable: true
+                                    items:
+                                      type: string
+                                      example: app
+                                  security:
+                                    type: object
+                                  lastLogin:
+                                    type: number
+                                    example: 1596188918065
+                                  username_lowercase:
+                                    type: string
+                                    example: john smith
+                                  lineNumber:
+                                    type: number
+                                    example: 4
+                                  lastModified:
+                                    type: number
+                                    example: 1595437138430
+                                  id:
+                                    type: number
+                                    example: 1
+                                  dateCreated:
+                                    type: number
+                                    example: 1595437138459
+                      assignedGroups:
+                        type: array
+                        description: assignment to groups is not currently supported.
+                        items:
+                          type: number
+                      tags:
+                        type: array
+                        description: list of tags that relevant to the alert.
+                        items:
+                          type: string
+                          example: policy-20037
+                      state:
+                        type: integer
+                        description: 'A number representing the overall state of the alert.
+
+                          0 = Monitoring
+
+                          1 = Open
+
+                          2 = Closed
+
+                          3 = Reopened
+
+                          '
+                        enum:
+                        - 0
+                        - 1
+                        - 2
+                        - 3
+                      score:
+                        type: integer
+                        description: The total alert score, calculated from the evidence within the alert
+                      sortKey:
+                        type: number
+                      currentStatus:
+                        type: object
+                      time:
+                        type: object
+                        description: set of relevant timestamps for the alert
+                        example:
+                          created: 1664330051195
+                          lastUpdated: 1664468061574
+                          breached: 1664330051277
+                          lastEvidence: 1664340367378
+                          lastAssigned: 1664468061574
+                        properties:
+                          created:
+                            type: integer
+                            description: when the alert was created
+                            example: 1600427478761
+                          lastUpdated:
+                            type: integer
+                            description: when the alert last received updated information
+                            example: 1600427478761
+                          breached:
+                            type: integer
+                            description: when the alert transitioned from monitoring to opened
+                            example: 1600427478860
+                          lastEvidence:
+                            type: integer
+                            description: when the last piece of evidence was added to the alert
+                            example: 1600427478860
+                          lastAssigned:
+                            type: integer
+                            description: when the alert was last assigned
+                            example: 1600427478860
+                      namespace:
+                        type: string
+                      type:
+                        type: number
+                      target:
+                        type: string
+                      security:
+                        type: object
+                        description: The alert\'s security object
+                      description:
+                        type: string
+                        example: alert for some company
+                      name:
+                        type: string
+                        example: alert
+                      clientKey:
+                        type: string
+                        example: lowercasekey
+                      mode:
+                        type: string
+                        example: sum
+                      id:
+                        type: number
+                        example: 12345
+                      threshold:
+                        type: number
+                        example: 0
+                      sortKey2:
+                        type: number
+                        example: 1.1959140198
+                      history:
+                        type: array
+                        description: The assignment history of the alert
+                        items:
+                          type: object
+                          properties:
+                            assignedUsers:
+                              type: array
+                              description: The user objects for the assigned users.
+                              items:
+                                type: object
+                                description: An object representing a user in the system.
+                                required:
+                                - username
+                                - email
+                                - cn
+                                properties:
+                                  excludedApps:
+                                    type: array
+                                    items:
+                                      type: string
+                                    description: A list of the applications that this user is excluded from accessing. Not used in Labyrinth Screening.
+                                  username:
+                                    type: string
+                                    description: The name of the user. This is the value displayed when the user is referenced in the UI.
+                                  email:
+                                    type: string
+                                    description: The email address of the user. Can be used as part of basic authentication.
+                                  mobile:
+                                    type: string
+                                    description: The mobile/cell phone number of the user.
+                                  roles:
+                                    type: array
+                                    items:
+                                      type: string
+                                    description: 'A list of the user roles that this user has.
+
+                                      Labyrinth Screening makes use of defined user roles to control the actions a user may perform and to tailor the interface to the needs of particular users.
+
+                                      Each role is made up of a set of permissions which provide fine grained control over the actions a user can perform. Roles can be configured to match the business roles required by the users of the Screening system.
+
+                                      These permissions used by the Screening system are described in the Ripjar Security Implementation document.
+
+                                      When users are loaded into the system, each user account should include the list of roles they are allowed to perform.
+
+                                      '
+                                  password:
+                                    type: string
+                                    description: 'The user''s password, used for basic authentication or to retrieve a bearer auth (JWT) token. Not available in API responses. Required when creating or updating users.
+
+                                      '
+                                  cn:
+                                    type: string
+                                    description: The user's canonical name. Used to lookup user accounts when performing certificate-based authentication.
+                                  externalId:
+                                    type: string
+                                    description: The user's ID external to the system. Typically maps to a username or ID in an external user entitlement system.
+                                  security:
+                                    type: object
+                                    description: 'The security attributes for this user.
+
+                                      A user''s security attributes govern the data items in the system (such as clients, alerts and assessments) that the user has visibility of. These are distinct from the user''s roles, which govern the operations a user can carry out in the system.
+
+                                      The security schema contains a set of generic attributes that the user can be assigned. The meaning of these attributes varies depending on the security policy installed on the system.
+
+                                      By default, the security policy will compare the list of strings (also known as tags) in dataRolesN fields of the user to the list of strings in the orTagsN field in the security attributes of the data item. If the user has any of the tags that appear on the data item, they can view that item.
+
+                                      If the data item has multiple orTags fields, for example orTags1 and orTags2, the user must has at least one of the tags in each of the corresponding dataRoles fields, i.e. there is an AND logic between each attribute.
+
+                                      '
+                                    properties:
+                                      dataRoles1:
+                                        type: array
+                                        items:
+                                          type: string
+                                      dataRoles2:
+                                        type: array
+                                        items:
+                                          type: string
+                                      dataRoles3:
+                                        type: array
+                                        items:
+                                          type: string
+                                      compositeDataRoles1:
+                                        type: array
+                                        items:
+                                          type: object
+                            timestamp:
+                              type: integer
+                              description: The timestamp for when the alert was assigned
+                            state:
+                              type: integer
+                              description: The state code
+                            status:
+                              type: integer
+                              description: The status code
+                      lastActivity:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                            example: 121212
+                            description: activity id
+                          createdAt:
+                            type: number
+                            example: 1664468061625
+                            description: Activity timestamp
+                          type:
+                            type: string
+                            example: alertAssigned
+                          description:
+                            type: string
+                            example: Alert assignment was changed
+                            description: Activity description
+                          data:
+                            type: object
+                            properties:
+                              users:
+                                type: object
+                                properties:
+                                  add:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        id:
+                                          type: number
+                                          description: user ID
+                                          example: 10006
+                                        username:
+                                          type: string
+                                          example: KYC - Admin
+                                  remove:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        id:
+                                          type: number
+                                          description: user ID
+                                          example: 10006
+                                        username:
+                                          type: string
+                                          example: KYC - Admin
+                              groups:
+                                type: object
+                              newStatus:
+                                type: object
+                                properties:
+                                  status:
+                                    type: number
+                                    example: 103
+                          security:
+                            type: object
+                            description: The alert\'s security object
+                            example: {}
+                          target:
+                            type: string
+                            example: alert-10351
+                          tags:
+                            type: array
+                            items:
+                              type: string
+                              example: context-alerting
+                          namespace:
+                            type: string
+                            example: torch
+                          createdBy:
+                            type: object
+                            properties:
+                              username:
+                                type: string
+                                example: John Smith
+                              email:
+                                type: string
+                                example: john.smith@ripjar.com
+                              externalId:
+                                type: string
+                                example: john.smith@ripjar.com
+                              mobile:
+                                type: string
+                                example: 01234567890
+                              roles:
+                                type: array
+                                items:
+                                  type: string
+                                  example: ADMINISTRATOR
+                              cn:
+                                type: string
+                                example: john.smith@ripjar.com
+                              clientKey:
+                                type: string
+                                example: lowercasekey
+                              customerExcludedApps:
+                                type: array
+                                nullable: true
+                                items:
+                                  type: string
+                                  example: app
+                              security:
+                                type: object
+                              lastLogin:
+                                type: number
+                                example: 1596188918065
+                              username_lowercase:
+                                type: string
+                                example: john smith
+                              lineNumber:
+                                type: number
+                                example: 4
+                              lastModified:
+                                type: number
+                                example: 1595437138430
+                              id:
+                                type: number
+                                example: 1
+                              dateCreated:
+                                type: number
+                                example: 1595437138459
+                          clientKey:
+                            type: string
+                            example: lowercasekey
+                      bookmarks:
+                        type: object
+                        properties:
+                          annotations:
+                            type: array
+                            items:
+                              type: string
+                          sort:
+                            type: string
+                          total:
+                            type: number
+                      eoi:
+                        type: object
+                      transitions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                              example: 101
+                              description: ID of transition
+                            constraints:
+                              type: array
+                              items:
+                                type: object
+                                description: Different type of constrains
+                                required:
+                                - key
+                                properties:
+                                  value:
+                                    oneOf:
+                                    - type: number
+                                      example: 101
+                                    - type: array
+                                      example:
+                                      - 101
+                                      - 102
+                                      items:
+                                        type: number
+                                  key:
+                                    type: string
+                                    example: status
+                                  isSet:
+                                    type: boolean
+                                  isSameAs:
+                                    type: string
+                                    example: currentUser
+                  activity:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 121212
+                        description: activity id
+                      createdAt:
+                        type: number
+                        example: 1664468061625
+                        description: Activity timestamp
+                      type:
+                        type: string
+                        example: alertAssigned
+                      description:
+                        type: string
+                        example: Alert assignment was changed
+                        description: Activity description
+                      data:
+                        type: object
+                        properties:
+                          users:
+                            type: object
+                            properties:
+                              add:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: number
+                                      description: user ID
+                                      example: 10006
+                                    username:
+                                      type: string
+                                      example: KYC - Admin
+                              remove:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: number
+                                      description: user ID
+                                      example: 10006
+                                    username:
+                                      type: string
+                                      example: KYC - Admin
+                          groups:
+                            type: object
+                          newStatus:
+                            type: object
+                            properties:
+                              status:
+                                type: number
+                                example: 103
+                      security:
+                        type: object
+                        description: The alert\'s security object
+                        example: {}
+                      target:
+                        type: string
+                        example: alert-10351
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          example: context-alerting
+                      namespace:
+                        type: string
+                        example: torch
+                      createdBy:
+                        type: object
+                        properties:
+                          username:
+                            type: string
+                            example: John Smith
+                          email:
+                            type: string
+                            example: john.smith@ripjar.com
+                          externalId:
+                            type: string
+                            example: john.smith@ripjar.com
+                          mobile:
+                            type: string
+                            example: 01234567890
+                          roles:
+                            type: array
+                            items:
+                              type: string
+                              example: ADMINISTRATOR
+                          cn:
+                            type: string
+                            example: john.smith@ripjar.com
+                          clientKey:
+                            type: string
+                            example: lowercasekey
+                          customerExcludedApps:
+                            type: array
+                            nullable: true
+                            items:
+                              type: string
+                              example: app
+                          security:
+                            type: object
+                          lastLogin:
+                            type: number
+                            example: 1596188918065
+                          username_lowercase:
+                            type: string
+                            example: john smith
+                          lineNumber:
+                            type: number
+                            example: 4
+                          lastModified:
+                            type: number
+                            example: 1595437138430
+                          id:
+                            type: number
+                            example: 1
+                          dateCreated:
+                            type: number
+                            example: 1595437138459
+                      clientKey:
+                        type: string
+                        example: lowercasekey
+                  externalNotification:
+                    type: object
+                    properties:
+                      notifications:
+                        type: array
+                        items:
+                          type: object
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden (e.g. the user does not have the UpdateAlert permission or the alert evidence has not been assessed and the alert type has mandatoryAssessment set to true)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '404':
+          description: Not Found (e.g. the alert could not be found or the alert status and close reason were not found in configuration)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /alert/assign:
+    post:
+      summary: Bulk assign alerts
+      description: 'Bulk assign alerts to the specified user, optionally changing the status of the alerts to the specified status.
+
+        NOTE: Alerts can only be assigned if they are eligible for assignment to the specified user in the specified status according to the workflow configuration.
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 99 ms |
+
+        | 90th percentile | 230 ms |
+
+        | 95th percentile | 397 ms |
+
+        | 98th percentile | 967 ms |
+
+        | 99th percentile | 1.7 s |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      operationId: alertBulkAssign
+      tags:
+      - Alert
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-16T10:56:29.271Z).
+
+          '
+        latencyDistribution:
+          median: 98.43
+          p90: 229.51
+          p95: 396.14
+          p98: 966.32
+          p99: 1665.62
+          sampleSize: 1930
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+              - type: object
+                description: Details of the users to be assigned / unassigned and the optional new status
+                required:
+                - users
+                properties:
+                  users:
+                    type: object
+                    description: The users to be added / removed from the assignment. Note that one one user can be assigned to an alert at a time.
+                    oneOf:
+                    - required:
+                      - add
+                      - remove
+                    - required:
+                      - addExternalIds
+                      - remove
+                    - required:
+                      - add
+                      - removeExternalIds
+                    - required:
+                      - addExternalIds
+                      - removeExternalIds
+                    required:
+                    - add
+                    - remove
+                    - addExternalIds
+                    - removeExternalIds
+                    properties:
+                      add:
+                        type: array
+                        description: internal user id to add. Cannot be used in conjunction with addExternalIds.
+                        maxlength: 1
+                        items:
+                          type: number
+                          example: 10006
+                      addExternalIds:
+                        type: array
+                        description: external user id to add. Cannot be used in conjunction with add.
+                        maxlength: 1
+                        items:
+                          type: string
+                          example: john.smith@ripjar.com
+                      remove:
+                        type: array
+                        description: internal user id to remove. Cannot be used in conjunction with removeExternalIds.
+                        maxlength: 1
+                        items:
+                          type: number
+                          example: 10005
+                      removeExternalIds:
+                        type: array
+                        description: external user id to remove. Cannot be used in conjunction with remove.
+                        maxlength: 1
+                        items:
+                          type: string
+                          example: john.smith@ripjar.com
+                  newStatus:
+                    type: object
+                    description: New status
+                    properties:
+                      status:
+                        type: integer
+                        description: New status code
+              - type: object
+                required:
+                - ids
+                properties:
+                  ids:
+                    type: array
+                    items:
+                      type: number
+                      example: 11001
+      responses:
+        '200':
+          description: The bulk assign alert result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alert:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        assignedUsers:
+                          description: Details of the user currently assigned to the alert
+                          type: array
+                          example:
+                          - username: John Smith
+                            email: john.smith@ripjar.com
+                            externalId: john.smith@ripjar.com
+                            mobile: 01234567890
+                            roles:
+                            - ROLE_1
+                            cn: john.smith@ripjar.com
+                            clientKey: lowercasekey
+                            customerExcludedApps:
+                            - app
+                            security: {}
+                            lastLogin: 1596188918065
+                            username_lowercase: john smith
+                            lineNumber: 4
+                            lastModified: 1595437138430
+                            id: 10003
+                            dateCreated: 1595437138459
+                          oneOf:
+                          - type: array
+                            description: IDs of users assigned to the result, returned when results enrichment is disabled
+                            items:
+                              type: number
+                            example:
+                            - 1
+                          - type: array
+                            description: Objects representing users assigned to the result, returned when results enrichment is enabled
+                            items:
+                              type: object
+                              properties:
+                                username:
+                                  type: string
+                                  example: John Smith
+                                email:
+                                  type: string
+                                  example: john.smith@ripjar.com
+                                externalId:
+                                  type: string
+                                  example: john.smith@ripjar.com
+                                mobile:
+                                  type: string
+                                  example: 01234567890
+                                roles:
+                                  type: array
+                                  items:
+                                    type: string
+                                    example: ADMINISTRATOR
+                                cn:
+                                  type: string
+                                  example: john.smith@ripjar.com
+                                clientKey:
+                                  type: string
+                                  example: lowercasekey
+                                customerExcludedApps:
+                                  type: array
+                                  nullable: true
+                                  items:
+                                    type: string
+                                    example: app
+                                security:
+                                  type: object
+                                lastLogin:
+                                  type: number
+                                  example: 1596188918065
+                                username_lowercase:
+                                  type: string
+                                  example: john smith
+                                lineNumber:
+                                  type: number
+                                  example: 4
+                                lastModified:
+                                  type: number
+                                  example: 1595437138430
+                                id:
+                                  type: number
+                                  example: 1
+                                dateCreated:
+                                  type: number
+                                  example: 1595437138459
+                            components:
+                              schemas:
+                                AssignedUserEnriched:
+                                  type: object
+                                  properties:
+                                    username:
+                                      type: string
+                                      example: John Smith
+                                    email:
+                                      type: string
+                                      example: john.smith@ripjar.com
+                                    externalId:
+                                      type: string
+                                      example: john.smith@ripjar.com
+                                    mobile:
+                                      type: string
+                                      example: 01234567890
+                                    roles:
+                                      type: array
+                                      items:
+                                        type: string
+                                        example: ADMINISTRATOR
+                                    cn:
+                                      type: string
+                                      example: john.smith@ripjar.com
+                                    clientKey:
+                                      type: string
+                                      example: lowercasekey
+                                    customerExcludedApps:
+                                      type: array
+                                      nullable: true
+                                      items:
+                                        type: string
+                                        example: app
+                                    security:
+                                      type: object
+                                    lastLogin:
+                                      type: number
+                                      example: 1596188918065
+                                    username_lowercase:
+                                      type: string
+                                      example: john smith
+                                    lineNumber:
+                                      type: number
+                                      example: 4
+                                    lastModified:
+                                      type: number
+                                      example: 1595437138430
+                                    id:
+                                      type: number
+                                      example: 1
+                                    dateCreated:
+                                      type: number
+                                      example: 1595437138459
+                        assignedGroups:
+                          type: array
+                          description: assignment to groups is not currently supported.
+                          items:
+                            type: number
+                        tags:
+                          type: array
+                          description: list of tags that relevant to the alert.
+                          items:
+                            type: string
+                            example: policy-20037
+                        state:
+                          type: integer
+                          description: 'A number representing the overall state of the alert.
+
+                            0 = Monitoring
+
+                            1 = Open
+
+                            2 = Closed
+
+                            3 = Reopened
+
+                            '
+                          enum:
+                          - 0
+                          - 1
+                          - 2
+                          - 3
+                        score:
+                          type: integer
+                          description: The total alert score, calculated from the evidence within the alert
+                        sortKey:
+                          type: number
+                        currentStatus:
+                          type: object
+                        time:
+                          type: object
+                          description: set of relevant timestamps for the alert
+                          example:
+                            created: 1664330051195
+                            lastUpdated: 1664468061574
+                            breached: 1664330051277
+                            lastEvidence: 1664340367378
+                            lastAssigned: 1664468061574
+                          properties:
+                            created:
+                              type: integer
+                              description: when the alert was created
+                              example: 1600427478761
+                            lastUpdated:
+                              type: integer
+                              description: when the alert last received updated information
+                              example: 1600427478761
+                            breached:
+                              type: integer
+                              description: when the alert transitioned from monitoring to opened
+                              example: 1600427478860
+                            lastEvidence:
+                              type: integer
+                              description: when the last piece of evidence was added to the alert
+                              example: 1600427478860
+                            lastAssigned:
+                              type: integer
+                              description: when the alert was last assigned
+                              example: 1600427478860
+                        namespace:
+                          type: string
+                        type:
+                          type: number
+                        target:
+                          type: string
+                        security:
+                          type: object
+                          description: The alert\'s security object
+                        description:
+                          type: string
+                          example: alert for some company
+                        name:
+                          type: string
+                          example: alert
+                        clientKey:
+                          type: string
+                          example: lowercasekey
+                        mode:
+                          type: string
+                          example: sum
+                        id:
+                          type: number
+                          example: 12345
+                        threshold:
+                          type: number
+                          example: 0
+                        sortKey2:
+                          type: number
+                          example: 1.1959140198
+                        history:
+                          type: array
+                          description: The assignment history of the alert
+                          items:
+                            type: object
+                            properties:
+                              assignedUsers:
+                                type: array
+                                description: The user objects for the assigned users.
+                                items:
+                                  type: object
+                                  description: An object representing a user in the system.
+                                  required:
+                                  - username
+                                  - email
+                                  - cn
+                                  properties:
+                                    excludedApps:
+                                      type: array
+                                      items:
+                                        type: string
+                                      description: A list of the applications that this user is excluded from accessing. Not used in Labyrinth Screening.
+                                    username:
+                                      type: string
+                                      description: The name of the user. This is the value displayed when the user is referenced in the UI.
+                                    email:
+                                      type: string
+                                      description: The email address of the user. Can be used as part of basic authentication.
+                                    mobile:
+                                      type: string
+                                      description: The mobile/cell phone number of the user.
+                                    roles:
+                                      type: array
+                                      items:
+                                        type: string
+                                      description: 'A list of the user roles that this user has.
+
+                                        Labyrinth Screening makes use of defined user roles to control the actions a user may perform and to tailor the interface to the needs of particular users.
+
+                                        Each role is made up of a set of permissions which provide fine grained control over the actions a user can perform. Roles can be configured to match the business roles required by the users of the Screening system.
+
+                                        These permissions used by the Screening system are described in the Ripjar Security Implementation document.
+
+                                        When users are loaded into the system, each user account should include the list of roles they are allowed to perform.
+
+                                        '
+                                    password:
+                                      type: string
+                                      description: 'The user''s password, used for basic authentication or to retrieve a bearer auth (JWT) token. Not available in API responses. Required when creating or updating users.
+
+                                        '
+                                    cn:
+                                      type: string
+                                      description: The user's canonical name. Used to lookup user accounts when performing certificate-based authentication.
+                                    externalId:
+                                      type: string
+                                      description: The user's ID external to the system. Typically maps to a username or ID in an external user entitlement system.
+                                    security:
+                                      type: object
+                                      description: 'The security attributes for this user.
+
+                                        A user''s security attributes govern the data items in the system (such as clients, alerts and assessments) that the user has visibility of. These are distinct from the user''s roles, which govern the operations a user can carry out in the system.
+
+                                        The security schema contains a set of generic attributes that the user can be assigned. The meaning of these attributes varies depending on the security policy installed on the system.
+
+                                        By default, the security policy will compare the list of strings (also known as tags) in dataRolesN fields of the user to the list of strings in the orTagsN field in the security attributes of the data item. If the user has any of the tags that appear on the data item, they can view that item.
+
+                                        If the data item has multiple orTags fields, for example orTags1 and orTags2, the user must has at least one of the tags in each of the corresponding dataRoles fields, i.e. there is an AND logic between each attribute.
+
+                                        '
+                                      properties:
+                                        dataRoles1:
+                                          type: array
+                                          items:
+                                            type: string
+                                        dataRoles2:
+                                          type: array
+                                          items:
+                                            type: string
+                                        dataRoles3:
+                                          type: array
+                                          items:
+                                            type: string
+                                        compositeDataRoles1:
+                                          type: array
+                                          items:
+                                            type: object
+                              timestamp:
+                                type: integer
+                                description: The timestamp for when the alert was assigned
+                              state:
+                                type: integer
+                                description: The state code
+                              status:
+                                type: integer
+                                description: The status code
+                        lastActivity:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                              example: 121212
+                              description: activity id
+                            createdAt:
+                              type: number
+                              example: 1664468061625
+                              description: Activity timestamp
+                            type:
+                              type: string
+                              example: alertAssigned
+                            description:
+                              type: string
+                              example: Alert assignment was changed
+                              description: Activity description
+                            data:
+                              type: object
+                              properties:
+                                users:
+                                  type: object
+                                  properties:
+                                    add:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                            description: user ID
+                                            example: 10006
+                                          username:
+                                            type: string
+                                            example: KYC - Admin
+                                    remove:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: number
+                                            description: user ID
+                                            example: 10006
+                                          username:
+                                            type: string
+                                            example: KYC - Admin
+                                groups:
+                                  type: object
+                                newStatus:
+                                  type: object
+                                  properties:
+                                    status:
+                                      type: number
+                                      example: 103
+                            security:
+                              type: object
+                              description: The alert\'s security object
+                              example: {}
+                            target:
+                              type: string
+                              example: alert-10351
+                            tags:
+                              type: array
+                              items:
+                                type: string
+                                example: context-alerting
+                            namespace:
+                              type: string
+                              example: torch
+                            createdBy:
+                              type: object
+                              properties:
+                                username:
+                                  type: string
+                                  example: John Smith
+                                email:
+                                  type: string
+                                  example: john.smith@ripjar.com
+                                externalId:
+                                  type: string
+                                  example: john.smith@ripjar.com
+                                mobile:
+                                  type: string
+                                  example: 01234567890
+                                roles:
+                                  type: array
+                                  items:
+                                    type: string
+                                    example: ADMINISTRATOR
+                                cn:
+                                  type: string
+                                  example: john.smith@ripjar.com
+                                clientKey:
+                                  type: string
+                                  example: lowercasekey
+                                customerExcludedApps:
+                                  type: array
+                                  nullable: true
+                                  items:
+                                    type: string
+                                    example: app
+                                security:
+                                  type: object
+                                lastLogin:
+                                  type: number
+                                  example: 1596188918065
+                                username_lowercase:
+                                  type: string
+                                  example: john smith
+                                lineNumber:
+                                  type: number
+                                  example: 4
+                                lastModified:
+                                  type: number
+                                  example: 1595437138430
+                                id:
+                                  type: number
+                                  example: 1
+                                dateCreated:
+                                  type: number
+                                  example: 1595437138459
+                            clientKey:
+                              type: string
+                              example: lowercasekey
+                        bookmarks:
+                          type: object
+                          properties:
+                            annotations:
+                              type: array
+                              items:
+                                type: string
+                            sort:
+                              type: string
+                            total:
+                              type: number
+                        eoi:
+                          type: object
+                        transitions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: number
+                                example: 101
+                                description: ID of transition
+                              constraints:
+                                type: array
+                                items:
+                                  type: object
+                                  description: Different type of constrains
+                                  required:
+                                  - key
+                                  properties:
+                                    value:
+                                      oneOf:
+                                      - type: number
+                                        example: 101
+                                      - type: array
+                                        example:
+                                        - 101
+                                        - 102
+                                        items:
+                                          type: number
+                                    key:
+                                      type: string
+                                      example: status
+                                    isSet:
+                                      type: boolean
+                                    isSameAs:
+                                      type: string
+                                      example: currentUser
+                  activity:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                          example: 121212
+                          description: activity id
+                        createdAt:
+                          type: number
+                          example: 1664468061625
+                          description: Activity timestamp
+                        type:
+                          type: string
+                          example: alertAssigned
+                        description:
+                          type: string
+                          example: Alert assignment was changed
+                          description: Activity description
+                        data:
+                          type: object
+                          properties:
+                            users:
+                              type: object
+                              properties:
+                                add:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: number
+                                        description: user ID
+                                        example: 10006
+                                      username:
+                                        type: string
+                                        example: KYC - Admin
+                                remove:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: number
+                                        description: user ID
+                                        example: 10006
+                                      username:
+                                        type: string
+                                        example: KYC - Admin
+                            groups:
+                              type: object
+                            newStatus:
+                              type: object
+                              properties:
+                                status:
+                                  type: number
+                                  example: 103
+                        security:
+                          type: object
+                          description: The alert\'s security object
+                          example: {}
+                        target:
+                          type: string
+                          example: alert-10351
+                        tags:
+                          type: array
+                          items:
+                            type: string
+                            example: context-alerting
+                        namespace:
+                          type: string
+                          example: torch
+                        createdBy:
+                          type: object
+                          properties:
+                            username:
+                              type: string
+                              example: John Smith
+                            email:
+                              type: string
+                              example: john.smith@ripjar.com
+                            externalId:
+                              type: string
+                              example: john.smith@ripjar.com
+                            mobile:
+                              type: string
+                              example: 01234567890
+                            roles:
+                              type: array
+                              items:
+                                type: string
+                                example: ADMINISTRATOR
+                            cn:
+                              type: string
+                              example: john.smith@ripjar.com
+                            clientKey:
+                              type: string
+                              example: lowercasekey
+                            customerExcludedApps:
+                              type: array
+                              nullable: true
+                              items:
+                                type: string
+                                example: app
+                            security:
+                              type: object
+                            lastLogin:
+                              type: number
+                              example: 1596188918065
+                            username_lowercase:
+                              type: string
+                              example: john smith
+                            lineNumber:
+                              type: number
+                              example: 4
+                            lastModified:
+                              type: number
+                              example: 1595437138430
+                            id:
+                              type: number
+                              example: 1
+                            dateCreated:
+                              type: number
+                              example: 1595437138459
+                        clientKey:
+                          type: string
+                          example: lowercasekey
+                  externalNotification:
+                    type: object
+                    properties:
+                      notifications:
+                        type: array
+                        items:
+                          type: object
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+        '404':
+          description: Not Found (e.g. the alert could not be found or the alert status and close reason were not found in configuration)
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /alert/{alert_id}/evidence/{evidence_id}/assess:
+    post:
+      summary: Assess an item of evidence on an alert
+      description: 'Marks an evidence item as Relevant/Not Relevant based on the assessment code passed in. Returns the assessed evidence item.
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        *Generated from limited sample size.*
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 511 ms |
+
+        | 90th percentile | 1.9 s |
+
+        | 95th percentile | 3.0 s |
+
+        | 98th percentile | 3.8 s |
+
+        | 99th percentile | 4.3 s |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      operationId: alertEvidenceAssess
+      tags:
+      - Alert
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-11T10:43:09.536Z).
+
+          '
+        latencyDistribution:
+          median: 510.93
+          p90: 1862.71
+          p95: 2974.34
+          p98: 3801.81
+          p99: 4275.14
+          sampleSize: 37
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: evidence_id
+        in: path
+        required: true
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - assessmentCodes
+              properties:
+                assessmentCodes:
+                  type: array
+                  items:
+                    type: number
+                  example:
+                  - 10001
+                comment:
+                  type: string
+            example:
+              assessmentCodes:
+              - 10001
+              comment: string
+      responses:
+        '200':
+          description: 'Returns the assessed evidence item and activity entry
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                - type: object
+                  properties:
+                    id:
+                      type: number
+                      description: evidence ID
+                      example: 161325
+                    matchScore:
+                      type: number
+                      description: the confidence that the match between the assessed entity and the one found in the evidence piece is correct
+                      example: 0.7002781604436024
+                    totalRisk:
+                      type: number
+                      description: the sum of all risk for the evidence. each match reason contributes to the total risk.
+                      example: 100
+                    matchDate:
+                      type: number
+                      description: the unix timestamp when the evidence was created
+                      example: 1603295488656
+                    isGroupMaster:
+                      type: boolean
+                      description: indicates whether the evidence item is the master version
+                      example: true
+                    tags:
+                      type: array
+                      description: 'Tags associated with the entity for export and integration. Includes policy identifiers, standard risk labels, and—when custom categories apply—entries of the form `userTag-{pillLabel}-active` or `userTag-{pillLabel}-inactive` derived from `cc*` stamps on `riskTags`. Existing tag entries are preserved in their original order; matching `userTag-*` entries are appended on export when custom categories are enabled. There is no separate `customCategories` response property.
+
+                        '
+                      items:
+                        type: string
+                      example:
+                      - policy-20037
+                      - risk-Financial Crime
+                      - userTag-Fin Crime-active
+                    riskTags:
+                      type: array
+                      description: 'Risk tags stamped on the entity. Standard watchlist tags use configured prefixes and optional `-active` or `-inactive` suffixes (e.g. `PEP-active`). Custom categories are stamped with the `cc` prefix followed by the category id, optionally suffixed with `-active` or `-inactive` (e.g. `cc42`, `cc42-active`). Custom category values remain on `riskTags`; JSONL and CSV exports also add human-readable `userTag-{pillLabel}-active|inactive` entries on `tags` (see ExportTags).
+
+                        '
+                      items:
+                        type: string
+                      example:
+                      - PEP-active
+                      - cc42-active
+                properties:
+                  type:
+                    type: string
+                    description: the type of evidence
+                    enum:
+                    - risk
+                    - list
+                    example: risk
+              example:
+                id: 562306
+                type: list
+                title: null
+                publisher: null
+                name: John Doe
+                lists:
+                - name: Lower Threshold
+                  active: true
+                  id: dj:minor:81
+                  listActive: true
+                  hierarchy:
+                  - name: Special Interest Person (SIP)
+                    id: dj:major:SIP
+                  - parent: dj:major:SIP
+                    name: Organised Crime
+                    id: dj:mid:7
+                  - parent: dj:mid:7
+                    name: Lower Threshold
+                    id: dj:minor:81
+                  tags:
+                  - category
+                publicationDate: 1680048000000
+                matchScore: 0.9048489263065257
+                totalRisk: 100
+                matchDate: 1713948492066
+                assessment:
+                  codes:
+                  - 10001
+                  timestamp: 1713952064427
+                  truePositive: true
+                  user:
+                    id: 10040
+                isGroupMaster: true
+                tags:
+                - dj:major:SIP
+                - policy-10054
+                riskTags:
+                - SIP-active
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (e.g. the user does not have the EvidenceAssess permission)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+components:
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT authentication is the preferred authentication method, and should be used for new integrations.  Contact support to request a service account.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication is supported for existing users, but is deprecated.  Existing users are encouraged to contact support for a dedicated service account and switch to JWT authentication.

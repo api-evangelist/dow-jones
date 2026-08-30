@@ -1,0 +1,1353 @@
+openapi: 3.2.0
+info:
+  title: Advanced Screening and Monitoring PDF Export API
+  description: 'Dow Jones
+
+
+    ### Rate limits
+
+
+    Most endpoints are subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+    Some endpoints are also subject to a global concurrent request limit of 5 simultaneous requests per customer.'
+  version: '3'
+  license: {}
+  contact: {}
+servers:
+- url: API_INSTANCE
+security:
+- basicAuth: []
+- jwt: []
+- clientCert: []
+tags:
+- name: PDF Export
+  description: The PDF Export API allows clients to create PDF documents of Alerts, Assessments and Searches.
+paths:
+  /pdf/export/create/alert:
+    post:
+      operationId: createAlertPDFExport
+      summary: Create a PDF Export
+      description: 'Returns a Job ID which can be used to check the status of the export. Once complete the ID can be used to request the full PDF document from the download endpoint
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 189 ms |
+
+        | 90th percentile | 230 ms |
+
+        | 95th percentile | 242 ms |
+
+        | 98th percentile | 267 ms |
+
+        | 99th percentile | 325 ms |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      tags:
+      - PDF Export
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-16T10:56:29.271Z).
+
+          '
+        latencyDistribution:
+          median: 188.13
+          p90: 229.51
+          p95: 241.19
+          p98: 266.37
+          p99: 324.86
+          sampleSize: 4568
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Request body to create an Alert PDF export
+              required:
+              - alertId
+              - evidenceSortOrder
+              properties:
+                options:
+                  type: array
+                  description: 'Features to include in the PDF output.
+
+                    "coverPage" - Cover page
+
+                    "toc" - Table of contents page
+
+                    "markup" - Markup within documents
+
+                    "fullProfiles" - Include full profiles
+
+                    "alertComments" - Alert comments
+
+                    "closureSummary" - Include closure summary for closed alerts
+
+                    "groupEvidence" - Group evidence
+
+                    "groupMastersOnly" - Only show first article in storyline
+
+                    '
+                  items:
+                    type: string
+                    enum:
+                    - coverPage
+                    - toc
+                    - markup
+                    - fullProfiles
+                    - alertComments
+                    - closureSummary
+                    - groupEvidence
+                    - groupMastersOnly
+                comment:
+                  type: string
+                  description: A comment to add to the PDF
+                evidenceIds:
+                  type: array
+                  items:
+                    type: number
+                    description: An array of individual evidence ID's to include. When used PDF will only contain these pieces of evidence
+                evidenceSortOrder:
+                  type: string
+                  description: Dot notation a property on the evidence model followed by the direction of sort
+                  example: reasons.matchScore:-1
+                configurableBuckets:
+                  description: The name of the current bucket to export
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - Relevant
+                alertId:
+                  type: number
+                location:
+                  type: string
+                  description: String printed in the footer of each page of the created PDF.
+                locale:
+                  type: string
+                  description: 2 letter locale code
+                  example: en
+                  enum:
+                  - en
+                  - fr
+                  - de
+                  - it
+                contentFilters:
+                  type: object
+                  description: For filtering the data within AME tables, will be applied to the generated PDF
+                filter:
+                  type: object
+                  properties:
+                    tags:
+                      type: array
+                      items:
+                        type: string
+                        example: list-PEP
+                    range:
+                      type: object
+                      properties:
+                        createdTimestamp:
+                          type: object
+                          properties:
+                            gte:
+                              type: number
+                              format: unix timestamp seconds
+                            lte:
+                              type: number
+                              format: unix timestamp seconds
+                    type:
+                      type: array
+                      items:
+                        type: string
+                        example: list
+                    assessmentOrFilter:
+                      type: object
+                      properties:
+                        unassessed:
+                          type: boolean
+                        assessed:
+                          type: boolean
+                        bookmarked:
+                          type: boolean
+                        codes:
+                          type: array
+                          items:
+                            type: integer
+                    includeCommentCounts:
+                      type: boolean
+                    realerting:
+                      type: string
+                    sort:
+                      type: string
+                      description: dot notation of the key followed by colon and direction of sort integer
+                      example: reasons.matchScore:-1
+                    unassessed:
+                      type: boolean
+      responses:
+        '200':
+          description: An ID of the PDF export
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      state:
+                        type: string
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                          username:
+                            type: string
+                      time:
+                        type: object
+                        description: Dictionary containing state transitions with the EPOCH they occurred at
+                        additionalProperties:
+                          type: number
+                        example:
+                          start: 1234455678
+                          in progress: 1234455678
+                          done: 1234455678
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          example: PDF
+                      namespace:
+                        type: string
+                      clientKey:
+                        type: string
+                      transitions:
+                        description: Array of state transition history for the PDF generation job
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            from:
+                              type: number
+                            to:
+                              type: number
+                            description:
+                              type: string
+                              example: job complete
+                            fromValue:
+                              type: string
+                              example: in progress
+                            toValue:
+                              type: string
+                              example: done
+                      metadata:
+                        type: object
+                        additionalProperties: true
+                        description: Arguments passed to the PDF generation process includes defaults
+          links:
+            pdfStatusCheck:
+              operationId: statusPDFExport
+              parameters:
+                job_id: $response.body#/job/id
+              description: 'The `id` value returned in the response can be used as the `job_id` parameter in `GET /pdf/export/status/{job_id}`.
+
+                '
+            pdfDownload:
+              operationId: pdfDownload
+              parameters:
+                job_id: $response.body#/job/id
+              description: 'The `id` value returned in the response can be used as the `job_id` parameter in `GET /pdf/export/download/{job_id}`.
+
+                '
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /pdf/export/create/assessment:
+    post:
+      summary: Create a PDF Export
+      description: 'Returns a Job ID which can be used to check the status of the export. Once complete the ID can be used to request the full PDF document from the download endpoint
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 94 ms |
+
+        | 90th percentile | 104 ms |
+
+        | 95th percentile | 109 ms |
+
+        | 98th percentile | 121 ms |
+
+        | 99th percentile | 140 ms |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      operationId: createAssessmentPDFExport
+      tags:
+      - PDF Export
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-16T10:56:29.271Z).
+
+          '
+        latencyDistribution:
+          median: 93.64
+          p90: 103.48
+          p95: 108.77
+          p98: 120.19
+          p99: 139.57
+          sampleSize: 77950
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Request body to create a PDF export
+              required:
+              - assessmentId
+              - evidenceSortOrder
+              properties:
+                options:
+                  type: array
+                  description: 'Features to include in the PDF output.
+
+                    "coverPage" - Cover page
+
+                    "toc" - Table of contents page
+
+                    "markup" - Markup within documents
+
+                    "assessmentSummary" - Summary of the assessment
+
+                    "closureSummary" - Include closure summary for closed assessments
+
+                    "groupEvidence" - Group evidence
+
+                    "groupMastersOnly" - Only show first article in storyline
+
+                    '
+                  items:
+                    type: string
+                    enum:
+                    - coverPage
+                    - toc
+                    - markup
+                    - assessmentSummary
+                    - closureSummary
+                    - fullProfiles
+                    - groupEvidence
+                    - groupMastersOnly
+                comment:
+                  type: string
+                  description: A comment to add to the PDF
+                evidenceSortOrder:
+                  type: string
+                  description: Dot notation a property on the evidence model followed by the direction of sort
+                  example: reasons.matchScore:-1
+                configurableBuckets:
+                  description: The name of the current bucket to export
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - Relevant
+                assessmentId:
+                  type: string
+                evidenceIds:
+                  type: array
+                  items:
+                    type: number
+                    description: An array of individual evidence ID's to include. When used PDF will only contain these pieces of evidence
+                location:
+                  type: string
+                  description: String printed in the footer of each page of the created PDF.
+                locale:
+                  type: string
+                  description: 2 letter locale code
+                  example: en
+                  enum:
+                  - en
+                  - fr
+                  - de
+                  - it
+                contentFilters:
+                  type: object
+                  description: For filtering the data within AME tables, will be applied to the generated PDF
+                filter:
+                  type: object
+                  properties:
+                    riskTags:
+                      type: array
+                      items:
+                        type: string
+                    tags:
+                      type: array
+                      items:
+                        type: string
+                        example: list-PEP
+                    range:
+                      type: object
+                      properties:
+                        createdTimestamp:
+                          type: object
+                          properties:
+                            gte:
+                              type: number
+                              format: unix timestamp seconds
+                            lte:
+                              type: number
+                              format: unix timestamp seconds
+                    includeCommentCounts:
+                      type: boolean
+                    realerting:
+                      type: string
+                    sort:
+                      type: string
+                      description: Dot notation a property on the evidence model followed by the direction of sort
+                      example: reasons.matchScore:-1
+      responses:
+        '200':
+          description: An ID of the PDF export
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      state:
+                        type: string
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                          username:
+                            type: string
+                      time:
+                        type: object
+                        description: Dictionary containing state transitions with the EPOCH they occurred at
+                        additionalProperties:
+                          type: number
+                        example:
+                          start: 1234455678
+                          in progress: 1234455678
+                          done: 1234455678
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          example: PDF
+                      namespace:
+                        type: string
+                      clientKey:
+                        type: string
+                      transitions:
+                        description: Array of state transition history for the PDF generation job
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            from:
+                              type: number
+                            to:
+                              type: number
+                            description:
+                              type: string
+                              example: job complete
+                            fromValue:
+                              type: string
+                              example: in progress
+                            toValue:
+                              type: string
+                              example: done
+                      metadata:
+                        type: object
+                        additionalProperties: true
+                        description: Arguments passed to the PDF generation process includes defaults
+          links:
+            pdfStatusCheck:
+              operationId: statusPDFExport
+              parameters:
+                job_id: $response.body#/job/id
+              description: 'The `id` value returned in the response can be used as the `job_id` parameter in `GET /pdf/export/status/{job_id}`.
+
+                '
+            pdfDownload:
+              operationId: pdfDownload
+              parameters:
+                job_id: $response.body#/job/id
+              description: 'The `id` value returned in the response can be used as the `job_id` parameter in `GET /pdf/export/download/{job_id}`.
+
+                '
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /pdf/export/create/search:
+    post:
+      operationId: createSearchPDFExport
+      summary: Create a PDF Export
+      description: 'Returns a Job ID which can be used to check the status of the export. Once complete the ID can be used to request the full PDF document from the download endpoint
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Operational data for this endpoint has not yet been collected.
+
+        <!-- operational-characteristics:end -->
+
+        '
+      tags:
+      - PDF Export
+      x-operational-characteristics:
+        description: 'Operational characteristics not yet collected from production logs.
+
+          '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Request body to create a PDF export
+              required:
+              - searchString
+              - locale
+              properties:
+                contentFilters:
+                  type: object
+                  description: For filtering the data within AME tables, will be applied to the generated PDF
+                options:
+                  type: array
+                  description: 'Features to include in the PDF output.
+
+                    "coverPage" - Cover page
+
+                    "toc" - Table of contents page
+
+                    "markup" - Markup within documents
+
+                    "profiles" - Include profiles
+
+                    "alerts" - Include alerts
+
+                    "fullProfiles" - Include full profiles
+
+                    '
+                  items:
+                    type: string
+                    enum:
+                    - coverPage
+                    - toc
+                    - markup
+                    - profiles
+                    - alerts
+                    - fullProfiles
+                comment:
+                  type: string
+                  description: A comment to add to the PDF
+                isKeywordSeach:
+                  type: boolean
+                searchString:
+                  type: string
+                locale:
+                  type: string
+                  description: 2 letter locale code
+                  example: en
+                  enum:
+                  - en
+                  - fr
+                  - de
+                  - it
+                searchFilters:
+                  oneOf:
+                  - description: Entity Search filter
+                    type: object
+                    required:
+                    - entity
+                    - keyword
+                    properties:
+                      entity:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: The target entity type to perform search on
+                            enum:
+                            - person
+                            - organisation
+                            - vessel
+                            - aircraft
+                            - unknown
+                        description: Key / array value pairings, where the key matches a key on the underlying entity schema and the array contains the search values e.g 'name:["putin"]' or 'identityNumbers:[1234, 12234]'
+                        additionalProperties:
+                          oneOf:
+                          - type: string
+                          - type: number
+                          - type: array
+                            items:
+                              oneOf:
+                              - type: string
+                              - type: number
+                      fuzziness:
+                        type: string
+                      relationships:
+                        type: boolean
+                  - description: Entity Search filter
+                    type: object
+                    required:
+                    - keyword
+                    properties:
+                      keyword:
+                        type: object
+                        properties:
+                          models:
+                            type: array
+                            items:
+                              type: string
+                              example: Source of Wealth
+                          providers:
+                            type: array
+                            items:
+                              type: string
+                              example: lexisnexus
+                          sources:
+                            type: array
+                            items:
+                              type: string
+                          date:
+                            type: object
+                            additionalProperties: true
+                  - description: Entity Search filter
+                    type: object
+                    required:
+                    - entity
+                    properties:
+                      entity:
+                        type: object
+                        properties:
+                          profileId:
+                            type: string
+                      fuzziness:
+                        type: string
+                      relationships:
+                        type: boolean
+      responses:
+        '200':
+          description: An ID of the PDF export
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      state:
+                        type: string
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                          username:
+                            type: string
+                      time:
+                        type: object
+                        description: Dictionary containing state transitions with the EPOCH they occurred at
+                        additionalProperties:
+                          type: number
+                        example:
+                          start: 1234455678
+                          in progress: 1234455678
+                          done: 1234455678
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                          example: PDF
+                      namespace:
+                        type: string
+                      clientKey:
+                        type: string
+                      transitions:
+                        description: Array of state transition history for the PDF generation job
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            from:
+                              type: number
+                            to:
+                              type: number
+                            description:
+                              type: string
+                              example: job complete
+                            fromValue:
+                              type: string
+                              example: in progress
+                            toValue:
+                              type: string
+                              example: done
+                      metadata:
+                        type: object
+                        additionalProperties: true
+                        description: Arguments passed to the PDF generation process includes defaults
+          links:
+            pdfStatusCheck:
+              operationId: statusPDFExport
+              parameters:
+                job_id: $response.body#/job/id
+              description: 'The `id` value returned in the response can be used as the `job_id` parameter in `GET /pdf/export/status/{job_id}`.
+
+                '
+            pdfDownload:
+              operationId: pdfDownload
+              parameters:
+                job_id: $response.body#/job/id
+              description: 'The `id` value returned in the response can be used as the `job_id` parameter in `GET /pdf/export/download/{job_id}`.
+
+                '
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /pdf/export/list:
+    get:
+      operationId: listPDFExport
+      summary: List PDF exports
+      description: 'Returns a list of previously requested PDF export jobs.
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      tags:
+      - PDF Export
+      responses:
+        '200':
+          description: List of PDF export jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - id
+                  - state
+                  - time
+                  - filename
+                  properties:
+                    id:
+                      type: number
+                    state:
+                      type: string
+                    time:
+                      type: object
+                      description: Dictionary containing state transitions with the EPOCH they occurred at
+                      additionalProperties:
+                        type: number
+                      example:
+                        start: 1234455678
+                        in progress: 1234455678
+                        done: 1234455678
+                    filename:
+                      type: string
+                      example: alert-1234.pdf
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /pdf/export/status/{job_id}:
+    get:
+      operationId: statusPDFExport
+      summary: Check the status of a PDF export job
+      description: 'Returns the status of a given job id
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        *Generated from limited sample size.*
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 8 ms |
+
+        | 90th percentile | 125 ms |
+
+        | 95th percentile | 468 ms |
+
+        | 98th percentile | 927 ms |
+
+        | 99th percentile | 1.1 s |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      tags:
+      - PDF Export
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-16T10:56:29.271Z).
+
+          '
+        latencyDistribution:
+          median: 8
+          p90: 124.3
+          p95: 467.85
+          p98: 926.6
+          p99: 1096.8
+          sampleSize: 38
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          description: An ID of the PDF export
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pdfId:
+                    type: string
+                    format: uuid
+                  state:
+                    description: Once the state has reached done the download endpoint can be used to retried the PDF
+                    type: string
+                    enum:
+                    - done
+                    - in progress
+              example:
+                id: 1234
+                state: in progress
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+        '404':
+          description: PDF Export Job cannot be found usually indicates the job_id parameter is incorrect
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+  /pdf/export/download/{job_id}:
+    get:
+      operationId: downloadPDFExport
+      summary: Download PDF export
+      description: 'Given a job ID, returns the generated PDF (If the job status is ''done''). It is recommended to save a copy of the response as the generated document will be pruned from the system after 24 hours
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+        <!-- operational-characteristics:start -->
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        *Generated from limited sample size.*
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 6 ms |
+
+        | 90th percentile | 191 ms |
+
+        | 95th percentile | 377 ms |
+
+        | 98th percentile | 544 ms |
+
+        | 99th percentile | 567 ms |
+
+        <!-- operational-characteristics:end -->
+
+        '
+      tags:
+      - PDF Export
+      x-operational-characteristics:
+        description: 'Operational characteristics from production log analysis (generatedAt: 2026-06-16T10:56:29.271Z).
+
+          '
+        latencyDistribution:
+          median: 6
+          p90: 191
+          p95: 376.25
+          p98: 543.5
+          p99: 566.25
+          sampleSize: 36
+      parameters:
+      - name: job_id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Generated PDF
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden (e.g. the user does not have the correct permission)
+        '404':
+          description: PDF Export Job cannot be found usually indicates the job_id parameter is incorrect
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+components:
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT authentication is the preferred authentication method, and should be used for new integrations.  Contact support to request a service account.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication is supported for existing users, but is deprecated.  Existing users are encouraged to contact support for a dedicated service account and switch to JWT authentication.

@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  title: Advanced Screening and Monitoring Attachment API
+  description: 'Dow Jones
+
+
+    ### Rate limits
+
+
+    Most endpoints are subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+    Some endpoints are also subject to a global concurrent request limit of 5 simultaneous requests per customer.'
+  version: '3'
+  license: {}
+  contact: {}
+servers:
+- url: API_INSTANCE
+security:
+- basicAuth: []
+- jwt: []
+- clientCert: []
+tags:
+- name: Attachment
+  description: The Attachment API allows clients to upload attachment files to alerts
+paths:
+  /attachment/alert/{alertId}:
+    post:
+      summary: Upload an attachment
+      description: 'This endpoint allows to upload attachments to alerts
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      operationId: attachmentPost
+      tags:
+      - Attachment
+      parameters:
+      - name: alertId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                attachment:
+                  type: string
+                  format: binary
+            encoding:
+              attachment:
+                contentType: application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, text/plain, image/jpeg, image/png, application/vnd.ms-outlook, text/csv
+      responses:
+        '201':
+          description: Attachment uploaded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  datumId:
+                    type: string
+                    example: 24d3lea2-o0e6-4825-8339-eafe3eed5e48
+                    description: Date of attachment creation
+                  filename:
+                    type: string
+                    example: attachment.pdf
+                    description: Name of the attached file
+                  target:
+                    type: string
+                    example: alert-1002
+                    description: Field with target type and target id
+                  createdBy:
+                    type: string
+                    example: '10173'
+                    description: Internal IDs of users who performed the activity. Cannot be used in conjunction with createdByExternalIds.
+                  clientKey:
+                    type: string
+                    example: joyce123
+                    description: The client key the activity is owned by
+                  created:
+                    type: number
+                    example: 1764946009344
+                    description: Activity timestamp
+                  downloadCount:
+                    type: number
+                    example: 0
+                    description: How many times the attachment has been downloaded
+                  MIMEType:
+                    type: string
+                    example: application/pdf
+                    description: Identifier that indicates the format of a file or data
+                  namespace:
+                    type: string
+                    example: torch
+                    description: The namespace the attachment belongs to
+                  uploadSuccessful:
+                    type: boolean
+                    example: true
+                    description: if attachment file has been uploaded successfully
+                  id:
+                    type: number
+                    example: 13
+                    description: Id of upload creation
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthenticated request
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+        '413':
+          description: File upload unsuccessful as the file was too large
+        '500':
+          description: An unexpected error occurred uploading the attachment
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code that can be used when contacting support or looking up information
+                  message:
+                    type: string
+                    description: Human-readable description of the error, which will usually indicate possible next steps if applicable
+                  status:
+                    type: number
+                    description: HTTP Error code
+              examples:
+                unexpectedError:
+                  summary: Unexpected Error
+                  value:
+                    code: ERROR_UPLOADING_ATTACHMENT
+                    message: An error occurred uploading attachment
+components:
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT authentication is the preferred authentication method, and should be used for new integrations.  Contact support to request a service account.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication is supported for existing users, but is deprecated.  Existing users are encouraged to contact support for a dedicated service account and switch to JWT authentication.

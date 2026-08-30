@@ -1,0 +1,187 @@
+openapi: 3.2.0
+info:
+  title: Dow Jones Group API
+  version: '1.0'
+  description: 'Operations tagged Group across 2 of this provider''s published API definitions: dow-jones-riskcenter-third-party-api-0-1-openapi.json, dow-jones-riskcenter-third-party-api-0-2-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api-thirdparty.riskcenter.dowjones.com/
+tags:
+- name: Group
+paths:
+  /groups:
+    get:
+      tags:
+      - Group
+      summary: Retrieves all groups (optional paging)
+      operationId: GetGroups
+      parameters:
+      - name: page[limit]
+        in: query
+        schema:
+          type:
+          - integer
+          - 'null'
+          format: int32
+      - name: page[context]
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroup'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      security:
+      - oauth2: []
+    servers:
+    - url: https://api-thirdparty.riskcenter.dowjones.com/
+components:
+  schemas:
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        extensions:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: object
+            additionalProperties: false
+          readOnly: true
+      additionalProperties: false
+    PagingMeta:
+      type: object
+      properties:
+        context:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseGroup:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataGroup'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: false
+      description: ''
+    ResponseDataGroup:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/Group'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+  securitySchemes:
+    oauth2:
+      type: apiKey
+      description: 'Standard Authorization header using the Bearer scheme. Example: "bearer {token}"'
+      name: Authorization
+      in: header
+x-refined-from:
+- dow-jones-riskcenter-third-party-api-0-1-openapi.json
+- dow-jones-riskcenter-third-party-api-0-2-openapi.json

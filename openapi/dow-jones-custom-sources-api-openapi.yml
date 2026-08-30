@@ -1,0 +1,410 @@
+openapi: 3.2.0
+info:
+  title: Screening and Monitoring Private Lists Custom Sources API
+  contact:
+    name: Dow Jones
+  license:
+    name: Dow Jones Screening and Monitoring Private Lists API
+  version: v1
+  description: Operations related to the custom sources
+servers:
+- url: https://api.dowjones.com
+- url: https://eu.api.dowjones.com
+tags:
+- name: Custom Sources
+  description: Operations related to the custom sources
+paths:
+  /risk-profiles-custom-sources:
+    get:
+      tags:
+      - Custom Sources
+      summary: Retrieves the information of the Profiles Custom Sources from the given account
+      operationId: getProfileSourcesUsingGET
+      parameters:
+      - $ref: '#/components/parameters/Accept-Encoding'
+      - name: page[offset]
+        in: query
+        description: page offset
+        schema:
+          type: integer
+          format: int32
+      - name: page[limit]
+        in: query
+        description: page limit
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/ResponseDataProfileSources'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '403':
+          description: Forbidden
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - Custom Sources
+      summary: Creates a new Profiles Custom Source
+      operationId: createProfileSourceUsingPOST
+      parameters:
+      - $ref: '#/components/parameters/Accept-Encoding'
+      - $ref: '#/components/parameters/Content-Encoding'
+      requestBody:
+        content:
+          application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+            schema:
+              $ref: '#/components/schemas/RequestDataProfileSourceName'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestDataProfileSourceName'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/ResponseProfileSourceName'
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '403':
+          description: Forbidden
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+      security:
+      - bearerAuth: []
+  /risk-profiles-custom-sources/{id}:
+    get:
+      tags:
+      - Custom Sources
+      summary: Retrieves the attributes of the Profiles Custom Source
+      operationId: retrieveGroupInfoUsingGET
+      parameters:
+      - $ref: '#/components/parameters/Accept-Encoding'
+      - name: id
+        in: path
+        description: Id of the source.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/ResponseDataListProfileSourcesInformation'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '403':
+          description: Forbidden
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - Custom Sources
+      summary: Deletes a Profiles Custom Source
+      operationId: deleteProfileSourceUsingDELETE
+      parameters:
+      - name: id
+        in: path
+        description: Id of the source.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '403':
+          description: Forbidden
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+      security:
+      - bearerAuth: []
+    patch:
+      tags:
+      - Custom Sources
+      summary: Modifies a Profiles Custom Source Name
+      operationId: updateSourceNameUsingPATCH
+      parameters:
+      - $ref: '#/components/parameters/Accept-Encoding'
+      - $ref: '#/components/parameters/Content-Encoding'
+      - name: id
+        in: path
+        description: Id of the source.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: request
+        content:
+          application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+            schema:
+              $ref: '#/components/schemas/RequestDataProfileSourceName'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestDataProfileSourceName'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/ResponseProfileSourceName'
+        '400':
+          description: Bad Request
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '401':
+          description: Unauthorized
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '403':
+          description: Forbidden
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-profiles-custom-sources.v_1.0+json:
+              schema:
+                $ref: '#/components/schemas/JsonError'
+      security:
+      - bearerAuth: []
+components:
+  schemas:
+    ResponseListProfileSourceName:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProfileSourceInformation'
+        type:
+          type: string
+          example: risk-profiles-custom-sources
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000
+        id:
+          type: string
+    ResponseListProfileSourcesInformation:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProfileSourceInformation'
+        type:
+          type: string
+          example: risk-profiles-custom-sources
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000
+        id:
+          type: string
+    ResponseDataListProfileSourcesInformation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseListProfileSourcesInformation'
+    ResponseProfileSourceName:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseListProfileSourceName'
+    ResponseDataProfileSources:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseListProfileSourceName'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ProfileSourceInformation:
+      type: object
+      properties:
+        source_name:
+          type: string
+        profile_count:
+          type: integer
+          example: 4
+        created_at:
+          type: string
+          example: '2021-01-01T12:00:00Z'
+    ErrorObject:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
+    RequestDataProfileSourceName:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestProfileSourceName'
+    Meta:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 0
+        paging:
+          type: object
+          properties:
+            offset:
+              type: object
+              properties:
+                first:
+                  type: integer
+                  example: 0
+                last:
+                  type: integer
+                  example: 0
+        total_count:
+          type: integer
+          example: 0
+    ResponseLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20
+        next:
+          type: string
+          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=40&page[limit]=20
+        prev:
+          type: string
+          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20
+        last:
+          type: string
+          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=210
+    ProfileSourceName:
+      type: object
+      properties:
+        source_name:
+          type: string
+    JsonError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+    RequestProfileSourceName:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProfileSourceName'
+        type:
+          type: string
+          example: risk-profiles-custom-sources
+  parameters:
+    Content-Encoding:
+      name: Content-Encoding
+      description: Which encoding the request body is being sent. The API supports gzip encoding for request body.
+      in: header
+      required: false
+      schema:
+        type: string
+    Accept-Encoding:
+      name: Accept-Encoding
+      description: Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to "gzip" and the payload exceeds the threshold of 8MB
+      in: header
+      required: false
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

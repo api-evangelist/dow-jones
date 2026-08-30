@@ -1,0 +1,1006 @@
+openapi: 3.2.0
+info:
+  title: Advanced Screening and Monitoring Disposition API
+  description: 'Dow Jones
+
+
+    ### Rate limits
+
+
+    Most endpoints are subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+
+    Some endpoints are also subject to a global concurrent request limit of 5 simultaneous requests per customer.'
+  version: '3'
+  license: {}
+  contact: {}
+servers:
+- url: API_INSTANCE
+security:
+- basicAuth: []
+- jwt: []
+- clientCert: []
+tags:
+- name: Disposition
+  description: The Disposition API allows clients to create, retrieve, update and delete historical dispositions representing prior adjudication decisions.
+paths:
+  /disposition:
+    post:
+      operationId: dispositionCreate
+      tags:
+      - Disposition
+      summary: Create a historical disposition
+      description: 'Request to create a historical disposition in the system ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - matchedProfiles
+              - sourceSystemId
+              properties:
+                clientId:
+                  type: string
+                  description: Optional client identifier (can be added later)
+                sourceSystemId:
+                  type: string
+                  description: External identifier linking decisions to client record (e.g., assessment ID, onboarding case ID)
+                mediaFlag:
+                  type: integer
+                  minimum: 1
+                  description: 'Optional assessment code ID to apply to media-only evidences.
+
+                    Must be a valid assessment code from configuration.
+
+                    If provided with a relevant code (relevant: true), media processing is skipped.
+
+                    Only non-relevant codes are applied to media-only evidences.
+
+                    Available codes:
+
+                    - 10001: Relevant - high confidence evidence references a client correctly associated with risk (relevant: true)
+
+                    - 10002: Not relevant - document is not about the client or a related entity (relevant: false)
+
+                    - 10003: Not relevant - document is not about risk (relevant: false)
+
+                    - 10004: Not relevant - risk in document does not relate to the client (relevant: false)
+
+                    - 10005: Not relevant - this type of document is not useful (relevant: false)
+
+                    - 10006: Not relevant - the matched record could never be the client (relevant: false, breakEntityLink: true)
+
+                    - 10007: Not relevant - the matched record does not contain any risk (relevant: false)
+
+                    - 10008: Not relevant - the matched record is unlikely to be the client (relevant: false)
+
+                    '
+                  example: 10002
+                matchedProfiles:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                    - profileSource
+                    - profileId
+                    - outcome
+                    - adjudicationDate
+                    - adjudicatedBy
+                    properties:
+                      profileSource:
+                        type: string
+                        enum:
+                        - DJID
+                        - RPID
+                        - HRNID
+                        - INTID
+                        - LXID
+                        - KHID
+                        - RZLTID
+                        - WCHID
+                        description: Identifier domain (e.g., DJID, RPID, HRNID, INTID, LXID, KHID, RZLTID, WCHID)
+                        example: DJID
+                      profileId:
+                        type: string
+                        description: Profile identifier within the source domain
+                        example: DJ-12345
+                      outcome:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          type: integer
+                          minimum: 1
+                        description: "Array of unique assessment code IDs from configuration. \nCode 10001 (Relevant) cannot be combined with any other code in the same array.\nValidated against active configuration at runtime.\nAvailable codes:\n- 10001: Relevant - high confidence evidence references a client correctly associated with risk (relevant: true)\n- 10002: Not relevant - document is not about the client or a related entity (relevant: false)\n- 10003: Not relevant - document is not about risk (relevant: false)\n- 10004: Not relevant - risk in document does not relate to the client (relevant: false)\n- 10005: Not relevant - this type of document is not useful (relevant: false)\n- 10006: Not relevant - the matched record could never be the client (relevant: false, breakEntityLink: true)\n- 10007: Not relevant - the matched record does not contain any risk (relevant: false)\n- 10008: Not relevant - the matched record is unlikely to be the client (relevant: false)\n"
+                        example:
+                        - 10002
+                      adjudicationDate:
+                        type: string
+                        pattern: ^\d{4}-\d{2}-\d{2}$
+                        description: Date when adjudication was made (YYYY-MM-DD format, converted to timestamp on storage)
+                        example: '2024-01-15'
+                      adjudicatedBy:
+                        type: string
+                        description: Identity of the individual who made the decision
+                        example: analyst@company.com
+                      ttl:
+                        type: integer
+                        minimum: 1
+                        description: Days until this match expires for auto-disposition purposes
+                        example: 365
+                      comment:
+                        type: string
+                        maxLength: 1000
+                        description: Free-text comment or notes about the adjudication decision
+                        example: Verified against official government records
+                  description: Array of matched profiles with adjudication outcomes
+            example:
+              clientId: client-id-42
+              sourceSystemId: ASSESSMENT-12345
+              mediaFlag: 10002
+              matchedProfiles:
+              - profileSource: DJID
+                profileId: DJ-001
+                outcome:
+                - 10002
+                adjudicationDate: '2024-01-15'
+                adjudicatedBy: analyst@company.com
+                comment: Name similarity only, different DOB confirmed
+              - profileSource: RPID
+                profileId: RP-002
+                outcome:
+                - 10001
+                adjudicationDate: '2024-01-15'
+                adjudicatedBy: compliance.team@company.com
+                ttl: 365
+      responses:
+        '201':
+          description: Historical disposition created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: Unique internal identifier
+                    example: 1
+                  clientId:
+                    type: string
+                    description: Optional client identifier
+                    example: CLIENT-001
+                  sourceSystemId:
+                    type: string
+                    description: External source system identifier
+                    example: ASSESSMENT-12345
+                  mediaFlag:
+                    type: integer
+                    description: Assessment code ID applied to media-only evidences
+                    example: 10002
+                  matchedProfiles:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - profileSource
+                      - profileId
+                      - outcome
+                      - adjudicationDate
+                      - adjudicatedBy
+                      properties:
+                        profileSource:
+                          type: string
+                          enum:
+                          - DJID
+                          - RPID
+                          - HRNID
+                          - INTID
+                          - LXID
+                          - KHID
+                          - RZLTID
+                          - WCHID
+                          description: Identifier domain (e.g., DJID, RPID, HRNID, INTID, LXID, KHID, RZLTID, WCHID)
+                          example: DJID
+                        profileId:
+                          type: string
+                          description: Profile identifier within the source domain
+                          example: DJ-12345
+                        outcome:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            type: integer
+                            minimum: 1
+                          description: Array of unique assessment code IDs applied to evidence
+                          example:
+                          - 10002
+                        adjudicationDate:
+                          type: string
+                          pattern: ^\d{4}-\d{2}-\d{2}$
+                          description: Date when adjudication was made (YYYY-MM-DD format, converted to timestamp on storage)
+                          example: '2024-01-15'
+                        adjudicatedBy:
+                          type: string
+                          description: Identity of the individual who made the decision
+                          example: analyst@company.com
+                        ttl:
+                          type: integer
+                          minimum: 1
+                          description: Days until this match expires for auto-disposition purposes
+                          example: 365
+                        comment:
+                          type: string
+                          maxLength: 1000
+                          description: Free-text comment or notes about the adjudication decision
+                          example: Verified against official government records
+                    description: Resolved matched profiles (duplicates removed)
+                  createdAt:
+                    type: integer
+                    description: Timestamp when record was created (epoch ms)
+                    example: 1705276800000
+                  updatedAt:
+                    type: integer
+                    description: Timestamp when record was last updated (epoch ms)
+                    example: 1705363200000
+        '400':
+          description: Bad request - validation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+        '401':
+          description: Not authorized to use this endpoint
+        '403':
+          description: Forbidden - insufficient permissions
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+    get:
+      operationId: dispositionList
+      tags:
+      - Disposition
+      summary: Get historical dispositions
+      description: 'Request to get historical dispositions by filters ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      security:
+      - basicAuth: []
+      parameters:
+      - in: query
+        name: clientId
+        schema:
+          type: string
+        required: false
+        description: Client identifier used to scope historical dispositions
+      - in: query
+        name: sourceSystemId
+        schema:
+          type: string
+        required: false
+        description: Source system identifier associated with historical dispositions
+      - in: query
+        name: profileId
+        schema:
+          type: string
+        required: false
+        description: Profile identifier to filter historical dispositions
+      - in: query
+        name: skip
+        schema:
+          type: integer
+          default: 0
+        required: false
+        description: Number of items to skip from the beginning
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 30
+        required: false
+        description: Maximum number of items to return
+      responses:
+        '200':
+          description: Historical dispositions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List response with pagination metadata
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of elements available for the given filter
+                    example: 42
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: Unique internal identifier
+                          example: 1
+                        clientId:
+                          type: string
+                          description: Optional client identifier
+                          example: CLIENT-001
+                        sourceSystemId:
+                          type: string
+                          description: External source system identifier
+                          example: ASSESSMENT-12345
+                        mediaFlag:
+                          type: integer
+                          description: Assessment code ID applied to media-only evidences
+                          example: 10002
+                        matchedProfiles:
+                          type: array
+                          items:
+                            type: object
+                            required:
+                            - profileSource
+                            - profileId
+                            - outcome
+                            - adjudicationDate
+                            - adjudicatedBy
+                            properties:
+                              profileSource:
+                                type: string
+                                enum:
+                                - DJID
+                                - RPID
+                                - HRNID
+                                - INTID
+                                - LXID
+                                - KHID
+                                - RZLTID
+                                - WCHID
+                                description: Identifier domain (e.g., DJID, RPID, HRNID, INTID, LXID, KHID, RZLTID, WCHID)
+                                example: DJID
+                              profileId:
+                                type: string
+                                description: Profile identifier within the source domain
+                                example: DJ-12345
+                              outcome:
+                                type: array
+                                uniqueItems: true
+                                minItems: 1
+                                items:
+                                  type: integer
+                                  minimum: 1
+                                description: Array of unique assessment code IDs applied to evidence
+                                example:
+                                - 10002
+                              adjudicationDate:
+                                type: string
+                                pattern: ^\d{4}-\d{2}-\d{2}$
+                                description: Date when adjudication was made (YYYY-MM-DD format, converted to timestamp on storage)
+                                example: '2024-01-15'
+                              adjudicatedBy:
+                                type: string
+                                description: Identity of the individual who made the decision
+                                example: analyst@company.com
+                              ttl:
+                                type: integer
+                                minimum: 1
+                                description: Days until this match expires for auto-disposition purposes
+                                example: 365
+                              comment:
+                                type: string
+                                maxLength: 1000
+                                description: Free-text comment or notes about the adjudication decision
+                                example: Verified against official government records
+                          description: Resolved matched profiles (duplicates removed)
+                        createdAt:
+                          type: integer
+                          description: Timestamp when record was created (epoch ms)
+                          example: 1705276800000
+                        updatedAt:
+                          type: integer
+                          description: Timestamp when record was last updated (epoch ms)
+                          example: 1705363200000
+        '400':
+          description: Bad request - validation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+        '401':
+          description: Not authorized to use this endpoint
+        '403':
+          description: Forbidden - insufficient permissions
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+  /disposition/{disposition_id}:
+    get:
+      operationId: dispositionGetById
+      tags:
+      - Disposition
+      summary: Get a historical disposition
+      description: 'Request to get a historical disposition identified by id ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      security:
+      - basicAuth: []
+      parameters:
+      - name: disposition_id
+        in: path
+        description: Identifier of the historical disposition
+        required: true
+        schema:
+          type: integer
+        example: 42
+      responses:
+        '200':
+          description: Historical disposition retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: Unique internal identifier
+                    example: 1
+                  clientId:
+                    type: string
+                    description: Optional client identifier
+                    example: CLIENT-001
+                  sourceSystemId:
+                    type: string
+                    description: External source system identifier
+                    example: ASSESSMENT-12345
+                  mediaFlag:
+                    type: integer
+                    description: Assessment code ID applied to media-only evidences
+                    example: 10002
+                  matchedProfiles:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - profileSource
+                      - profileId
+                      - outcome
+                      - adjudicationDate
+                      - adjudicatedBy
+                      properties:
+                        profileSource:
+                          type: string
+                          enum:
+                          - DJID
+                          - RPID
+                          - HRNID
+                          - INTID
+                          - LXID
+                          - KHID
+                          - RZLTID
+                          - WCHID
+                          description: Identifier domain (e.g., DJID, RPID, HRNID, INTID, LXID, KHID, RZLTID, WCHID)
+                          example: DJID
+                        profileId:
+                          type: string
+                          description: Profile identifier within the source domain
+                          example: DJ-12345
+                        outcome:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            type: integer
+                            minimum: 1
+                          description: Array of unique assessment code IDs applied to evidence
+                          example:
+                          - 10002
+                        adjudicationDate:
+                          type: string
+                          pattern: ^\d{4}-\d{2}-\d{2}$
+                          description: Date when adjudication was made (YYYY-MM-DD format, converted to timestamp on storage)
+                          example: '2024-01-15'
+                        adjudicatedBy:
+                          type: string
+                          description: Identity of the individual who made the decision
+                          example: analyst@company.com
+                        ttl:
+                          type: integer
+                          minimum: 1
+                          description: Days until this match expires for auto-disposition purposes
+                          example: 365
+                        comment:
+                          type: string
+                          maxLength: 1000
+                          description: Free-text comment or notes about the adjudication decision
+                          example: Verified against official government records
+                    description: Resolved matched profiles (duplicates removed)
+                  createdAt:
+                    type: integer
+                    description: Timestamp when record was created (epoch ms)
+                    example: 1705276800000
+                  updatedAt:
+                    type: integer
+                    description: Timestamp when record was last updated (epoch ms)
+                    example: 1705363200000
+        '400':
+          description: Bad request - validation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+        '401':
+          description: Not authorized to use this endpoint
+        '403':
+          description: Forbidden - insufficient permissions
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+    patch:
+      operationId: dispositionUpdate
+      tags:
+      - Disposition
+      summary: Update a historical disposition
+      description: 'Request to update a historical disposition in the system ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      security:
+      - basicAuth: []
+      parameters:
+      - name: disposition_id
+        in: path
+        description: Identifier of the historical disposition
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+        example: 42
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Partial update payload for an existing historical disposition
+              additionalProperties: false
+              properties:
+                clientId:
+                  type: string
+                  description: Client identifier associated with the historical disposition
+                  example: CLIENT-42
+                mediaFlag:
+                  type: integer
+                  nullable: true
+                  minimum: 1
+                  description: 'Assessment code ID applied to media-only evidences (null to clear).
+
+                    Available codes:
+
+                    - 10001: Relevant - high confidence evidence references a client correctly associated with risk (relevant: true)
+
+                    - 10002: Not relevant - document is not about the client or a related entity (relevant: false)
+
+                    - 10003: Not relevant - document is not about risk (relevant: false)
+
+                    - 10004: Not relevant - risk in document does not relate to the client (relevant: false)
+
+                    - 10005: Not relevant - this type of document is not useful (relevant: false)
+
+                    - 10006: Not relevant - the matched record could never be the client (relevant: false, breakEntityLink: true)
+
+                    - 10007: Not relevant - the matched record does not contain any risk (relevant: false)
+
+                    - 10008: Not relevant - the matched record is unlikely to be the client (relevant: false)
+
+                    '
+                  example: 10002
+                sourceSystemId:
+                  type: string
+                  description: External identifier linking decisions to client record (e.g., assessment ID)
+                  example: ASSESSMENT-42
+            example:
+              sourceSystemId: source-system-id-42
+              clientId: client-id-42
+              mediaFlag: 10002
+      responses:
+        '200':
+          description: Historical disposition updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: Unique internal identifier
+                    example: 1
+                  clientId:
+                    type: string
+                    description: Optional client identifier
+                    example: CLIENT-001
+                  sourceSystemId:
+                    type: string
+                    description: External source system identifier
+                    example: ASSESSMENT-12345
+                  mediaFlag:
+                    type: integer
+                    description: Assessment code ID applied to media-only evidences
+                    example: 10002
+                  matchedProfiles:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - profileSource
+                      - profileId
+                      - outcome
+                      - adjudicationDate
+                      - adjudicatedBy
+                      properties:
+                        profileSource:
+                          type: string
+                          enum:
+                          - DJID
+                          - RPID
+                          - HRNID
+                          - INTID
+                          - LXID
+                          - KHID
+                          - RZLTID
+                          - WCHID
+                          description: Identifier domain (e.g., DJID, RPID, HRNID, INTID, LXID, KHID, RZLTID, WCHID)
+                          example: DJID
+                        profileId:
+                          type: string
+                          description: Profile identifier within the source domain
+                          example: DJ-12345
+                        outcome:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            type: integer
+                            minimum: 1
+                          description: Array of unique assessment code IDs applied to evidence
+                          example:
+                          - 10002
+                        adjudicationDate:
+                          type: string
+                          pattern: ^\d{4}-\d{2}-\d{2}$
+                          description: Date when adjudication was made (YYYY-MM-DD format, converted to timestamp on storage)
+                          example: '2024-01-15'
+                        adjudicatedBy:
+                          type: string
+                          description: Identity of the individual who made the decision
+                          example: analyst@company.com
+                        ttl:
+                          type: integer
+                          minimum: 1
+                          description: Days until this match expires for auto-disposition purposes
+                          example: 365
+                        comment:
+                          type: string
+                          maxLength: 1000
+                          description: Free-text comment or notes about the adjudication decision
+                          example: Verified against official government records
+                    description: Resolved matched profiles (duplicates removed)
+                  createdAt:
+                    type: integer
+                    description: Timestamp when record was created (epoch ms)
+                    example: 1705276800000
+                  updatedAt:
+                    type: integer
+                    description: Timestamp when record was last updated (epoch ms)
+                    example: 1705363200000
+        '400':
+          description: Bad request - validation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+        '401':
+          description: Not authorized to use this endpoint
+        '403':
+          description: Forbidden - insufficient permissions
+        '404':
+          description: Historical disposition not found for the given disposition_id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+    delete:
+      operationId: dispositionDelete
+      tags:
+      - Disposition
+      summary: Delete a historical disposition
+      description: 'Deletes an existing historical disposition identified by id ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      security:
+      - basicAuth: []
+      parameters:
+      - name: disposition_id
+        in: path
+        description: Identifier of the historical disposition
+        required: true
+        schema:
+          type: integer
+        example: 42
+      responses:
+        '204':
+          description: Historical disposition deleted successfully
+        '400':
+          description: Bad request - validation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+        '401':
+          description: Not authorized to use this endpoint
+        '403':
+          description: Forbidden - insufficient permissions
+        '404':
+          description: Historical disposition not found for the given disposition_id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+  /disposition/bulk:
+    post:
+      operationId: dispositionBulkDelete
+      tags:
+      - Disposition
+      summary: Bulk delete historical dispositions
+      description: 'Bulk delete historical dispositions by list of disposition IDs ### Rate Limits
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
+
+        '
+      security:
+      - basicAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - items
+              properties:
+                items:
+                  type: array
+                  minItems: 1
+                  maxItems: 1000
+                  items:
+                    type: integer
+                    minimum: 1
+                  description: Array of disposition IDs to delete
+                  example:
+                  - 41
+                  - 42
+            example:
+              items:
+              - 41
+              - 42
+      responses:
+        '200':
+          description: Bulk delete completed (may include partial failures)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: integer
+                    description: Number of successful delete operations
+                    example: 1
+                  failed:
+                    type: integer
+                    description: Number of failed delete operations
+                    example: 1
+                  results:
+                    type: array
+                    items:
+                      oneOf:
+                      - type: object
+                        required:
+                        - dispositionId
+                        - success
+                        properties:
+                          dispositionId:
+                            type: integer
+                            description: Unique disposition identifier
+                            example: 41
+                          success:
+                            const: true
+                            description: Always true when the delete succeeded for this item
+                            example: true
+                      - type: object
+                        required:
+                        - dispositionId
+                        - success
+                        - error
+                        properties:
+                          dispositionId:
+                            type: integer
+                            description: Unique disposition identifier
+                            example: 42
+                          success:
+                            const: false
+                            description: Always false when the delete failed for this item
+                            example: false
+                          error:
+                            type: string
+                            description: Error message for this failed delete
+                            example: Disposition with id 42 not found
+                    description: Detailed results for each item in the request
+                example:
+                  success: 1
+                  failed: 1
+                  results:
+                  - dispositionId: 41
+                    success: true
+                  - dispositionId: 42
+                    success: false
+                    error: Disposition with id 42 not found
+        '400':
+          description: Bad request - validation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+        '401':
+          description: Not authorized to use this endpoint
+        '403':
+          description: Forbidden - insufficient permissions
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message
+                  statusCode:
+                    type: integer
+                    description: HTTP status code
+components:
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT authentication is the preferred authentication method, and should be used for new integrations.  Contact support to request a service account.
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication is supported for existing users, but is deprecated.  Existing users are encouraged to contact support for a dedicated service account and switch to JWT authentication.
