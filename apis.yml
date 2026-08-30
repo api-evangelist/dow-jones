@@ -456,6 +456,8 @@ apis:
     https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
   baseURL: https://api.dowjones.com
   tags:
+  - Business Unit
+  tags_raw:
   - BusinessUnit
   properties:
   - type: OpenAPI
@@ -938,6 +940,8 @@ apis:
     https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
   baseURL: https://api.dowjones.com
   tags:
+  - Content Collections
+  tags_raw:
   - ContentCollections
   properties:
   - type: OpenAPI
@@ -1057,7 +1061,8 @@ apis:
   humanURL: >-
     https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
   baseURL: https://api.dowjones.com
-  tags:
+  tags: []
+  tags_raw:
   - Default
   properties:
   - type: OpenAPI
@@ -1544,6 +1549,8 @@ apis:
     https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
   baseURL: https://api.dowjones.com
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -1966,6 +1973,8 @@ apis:
     https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
   baseURL: https://api.dowjones.com
   tags:
+  - Processes
+  tags_raw:
   - Process
   properties:
   - type: OpenAPI
@@ -2451,6 +2460,8 @@ apis:
     https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
   baseURL: https://api.dowjones.com
   tags:
+  - Third-Party
+  tags_raw:
   - ThirdParty
   properties:
   - type: OpenAPI
