@@ -2460,7 +2460,7 @@ apis:
     https://developer.dowjones.com/documents/site-docs-risk_and_compliance_apis-screening_and_monitoring_api-batch_screening_api
   baseURL: https://api.dowjones.com
   tags:
-  - Third-Party
+  - Third Party
   tags_raw:
   - ThirdParty
   properties:
