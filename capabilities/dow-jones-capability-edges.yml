@@ -11,8 +11,20 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 4
+edge_count: 7
 edges:
+- tag: Profiles
+  spec_file: dow-jones-profiles-api-openapi.yml
+  capability_id: BC-1400
+  capability_id_l1: BC-1400
+  capability_name: Financial Crime Management
+  confidence: 0.8
+  evidence: 'schemas: AdverseMediaAttributes, ListReferenceAttributes, WatchlistMonetaryValueDetail, StateOwnershipDetail;
+    POST /risk-profiles-custom-sources/{id}/profiles insertProfileUsingPOST Inserts one or more profiles'
+  reason: Operations manage risk profiles carrying watchlist, adverse media and state-ownership attributes
+    — the entity data used for financial-crime screening and due diligence. The specific sub-capability
+    (sanctions screening vs KYC/CDD) is not resolvable, so only the L1 is asserted.
+  recovered_from: vertical-banking-capital-markets-edges.json
 - tag: Risk and Compliance Screening and Monitoring
   spec_file: dow-jones-risk-and-compliance-screening-and-monitoring-api-openapi.yml
   capability_id: BC-130
@@ -25,6 +37,20 @@ edges:
     & Compliance data — this is compliance screening and ongoing monitoring of third parties. L1 Compliance
     Management is clear; the L2 split between regulatory (sanctions/AML) compliance and anti-bribery third-party
     due diligence is not determinable from the surface.
+- tag: Assessment
+  spec_file: dow-jones-assessment-api-openapi.yml
+  capability_id: BC-1400
+  capability_id_l1: BC-1400
+  capability_name: Financial Crime Management
+  confidence: 0.75
+  evidence: '''Create an assessment'', ''Close an assessment'', ''Assign and change the status of the
+    assessment'', ''Bulk assess a number of pieces of evidence'' in the Advanced Screening and Monitoring
+    Assessment API'
+  reason: Assessments in Dow Jones' screening and monitoring product are the adjudication of risk-data
+    matches on screened entities, with evidence assessment, statuses and assignment — a financial-crime
+    screening/investigation workflow. Whether this is sanctions/PEP hit handling or broader case management
+    is unclear from the summaries, so only the L1 is asserted.
+  recovered_from: vertical-banking-capital-markets-edges.json
 - tag: Risk and Compliance search
   spec_file: dow-jones-risk-and-compliance-search-api-openapi.yml
   capability_id: BC-130
@@ -49,6 +75,19 @@ edges:
     from Dow Jones Risk & Compliance entity screening — an alert-adjudication process supporting regulatory
     (sanctions/PEP/AML) compliance. Mapped to Regulatory Compliance Management; the frame offers no dedicated
     financial-crime capability, so confidence is tempered.
+- tag: Disposition
+  spec_file: dow-jones-disposition-api-openapi.yml
+  capability_id: BC-130.10
+  capability_id_l1: BC-130
+  capability_name: Regulatory Compliance Management
+  confidence: 0.7
+  evidence: POST /disposition  dispositionCreate  Create a historical disposition (Advanced Screening
+    and Monitoring)
+  reason: Dispositions are the recorded adjudication decisions on screening matches/alerts in the Advanced
+    Screening and Monitoring service, the audit-trail core of AML/sanctions alert handling, which realises
+    regulatory compliance management. Some residual ambiguity as the surface is generic CRUD over disposition
+    records.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: ThirdPartyScreening
   spec_file: dow-jones-thirdpartyscreening-api-openapi.yml
   capability_id: BC-130.40
