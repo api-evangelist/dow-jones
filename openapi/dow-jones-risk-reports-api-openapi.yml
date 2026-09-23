@@ -128,7 +128,6 @@ paths:
   /reportrequests/{reportRequestId}/documents:
     get:
       summary: Get all documents by report request id
-      description: Get all documents by report request id
       operationId: getReportRequestDocuments
       security:
       - OrderTool: []
@@ -197,6 +196,8 @@ paths:
                 $ref: '#/components/schemas/document'
         '404':
           description: A report request was not found with the given ID
+      operationId: postReportrequestsByReportRequestIdDocuments
+      x-operation-id-source: derived
   /reportrequests/{reportRequestId}/documents/{documentId}:
     get:
       summary: Get document by report request and document id
@@ -356,6 +357,8 @@ paths:
           description: A report request with the ID provided was not found
         '500':
           description: Internal Server Error
+      operationId: getReportrequestsByReportRequestIdProposals
+      x-operation-id-source: derived
   /reportrequests/{reportRequestId}/proposals/{proposalId}:
     get:
       summary: Get a proposal by report request and proposal id
@@ -388,6 +391,8 @@ paths:
           description: A report request or proposal with the ID was not found.
         '500':
           description: Internal Server Error
+      operationId: getReportrequestsByReportRequestIdProposalsByProposalId
+      x-operation-id-source: derived
   /reportrequests/{reportRequestId}/proposals/{proposalType}/{additionalPriceProposalId}:
     patch:
       summary: Approve proposal by report request id and proposal type
@@ -796,6 +801,1219 @@ paths:
           description: not found
 components:
   schemas:
+    document_delete_callback:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            event:
+              type: string
+              example: document_delete
+            subscription_id:
+              type: string
+              description: the id auto-generated or provided by client
+              example: 423a791f44ed4a22bfafe0a28288c437
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: documents
+            id:
+              type: string
+              example: 0d131001d2034be89f85c0530d5424c9
+            attributes:
+              type: object
+              properties:
+                created_at:
+                  type: string
+                  format: date-time
+                  example: '2020-03-31T13:18:41.639Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  example: '2020-04-14T09:18:12.516'
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9
+    proposal_approval_callback:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            event:
+              type: string
+              example: proposal_approval
+            subscription_id:
+              type: string
+              description: the id auto-generated or provided by client
+              example: 423a791f44ed4a22bfafe0a28288c437
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: proposals
+            id:
+              type: string
+              example: 423a791f44ed4a22bfafe0a28288c437
+            attributes:
+              type: object
+              properties:
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
+                proposal:
+                  type: string
+                  enum:
+                  - rush
+                  - additional_price
+                  - update_report_request
+                status:
+                  type: string
+                  default: approved
+                approval_date:
+                  type: string
+                  format: date-time
+                  example: '2020-03-31T13:18:41.639Z'
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437
+    report_request:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Dow Jones Report
+        workflow_state:
+          type: string
+          enum:
+          - draft
+          - submitted
+        report_type:
+          type: string
+        delivery_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        subject_type:
+          type: string
+          enum:
+          - entity
+          - individual
+        subject:
+          oneOf:
+          - $ref: '#/components/schemas/report_request_individual'
+          - $ref: '#/components/schemas/report_request_entity'
+        order_detail:
+          type: object
+          properties:
+            base_report:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Dow Jones Report
+                unit_price:
+                  type: number
+                  example: 600
+            additional_entities:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 300
+            additional_individuals:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 300
+            additional_requests:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 150
+            additional_prices:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Additional Research
+                  unit_price:
+                    type: number
+                    example: 150
+            sub_total:
+              type: number
+              example: 600
+            rush_charge:
+              type: number
+              example: 0
+            additional_total:
+              type: number
+              example: 0
+            total:
+              type: number
+              example: 600
+        additional_entities:
+          $ref: '#/components/schemas/report_request_additional_entities'
+        additional_individuals:
+          $ref: '#/components/schemas/report_request_additional_individuals'
+    bad_request_links:
+      type: object
+      properties:
+        about:
+          description: a link that leads to further details about this particular occurrence of the problem
+          example: https://wiki.dowjones.net/display/DSE/Error+Codes
+          type: string
+      required:
+      - key
+    billing_account:
+      type: object
+      properties:
+        currency_code:
+          type: string
+          enum:
+          - AUD
+          - BRL
+          - USD
+          - EUR
+          - GBP
+          - INR
+          - JPY
+          - CAD
+          - CNY
+          - CHF
+          - SGD
+          - ZAR
+        report_types:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Red Flag
+              value:
+                type: string
+                example: redflag
+        owner:
+          type: object
+          properties:
+            company_name:
+              type: string
+              example: Hooli XYZ
+        created_at:
+          type: string
+          format: date-time
+          example: '2018-09-26T00:00:00.000Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2018-09-26T00:00:00.000Z'
+    document:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 8e1f7433184a4b59b8a3dd22bbe51537
+        file_name:
+          type: string
+          example: doc.txt
+        mimetype:
+          type: string
+          example: '"text/plain'
+        created_at:
+          type: string
+          format: date-time
+          example: '2018-09-26T00:00:00.000Z'
+        size:
+          type: number
+          example: 2048
+    report_request_additional_entities:
+      type: array
+      items:
+        $ref: '#/components/schemas/report_request_entity'
+      additionalProperties: false
+    report_request_params_rush:
+      type: object
+      properties:
+        delivery_date:
+          type: string
+          format: date-time
+    report_request_data_item_individual:
+      type: object
+      properties:
+        type:
+          type: string
+          example: reportrequests
+        id:
+          type: string
+          example: d5ee7ceb98a848a49420d7cce2601934
+        attributes:
+          type: object
+          $ref: '#/components/schemas/report_request_subject_individual'
+        relationships:
+          type: object
+          properties:
+            created_by_user:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: users
+                    id:
+                      type: string
+                      example: E6OO2HVCQHVPE5X54D7W7XO5NI
+            subscription:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: subscriptions
+                    id:
+                      type: string
+                      example: c2be7b6ca73747faadd4420123db424a
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
+            proposals:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals
+            comments:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments
+            documents:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents
+      required:
+      - attributes
+    report_request_params_price:
+      type: object
+      properties:
+        concept:
+          type: string
+          enum:
+          - Additional Research
+          - Record Retrieval
+          - Red Flag Checks
+          - Miscellaneous
+          - Deduction
+        unit_price:
+          type: number
+          example: 150
+    bad_request_error_response:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/bad_request_error'
+      required:
+      - errors
+    subscribe_attributes:
+      type: object
+      properties:
+        id:
+          type: string
+          example: b5948eb9f7474aa8a0148b7be9b66e60
+        created_at:
+          type: string
+          format: date-time
+    report_request_entity:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Dow Jones
+        alternate_name:
+          type: string
+          example: Dow Jones
+        industry_sector_type:
+          type: string
+          enum:
+          - Unknown
+          - Agriculture
+          - Automotive
+          - Basic Materials/Resources
+          - Business/Consumer Services
+          - Consumer Goods
+          - Energy
+          - Financial Services
+          - Health Care/Life Sciences
+          - Industrial Goods
+          - Leisure/Arts/Hospitality
+          - Media/Entertainment
+          - Other
+          - Real Estate/Construction
+          - Retail/Wholesale
+          - Technology
+          - Telecommunication Services
+          - Transportation/Logistics
+          - Utilities
+          example: Basic Materials/Resources
+        industry_sector_type_value:
+          type: string
+          maxLength: 128
+        identification_types:
+          $ref: '#/components/schemas/report_request_entity_identification_types'
+        jurisdictions:
+          $ref: '#/components/schemas/report_request_entity_jurisdictions'
+        address:
+          $ref: '#/components/schemas/report_request_entity_address'
+        other_information:
+          $ref: '#/components/schemas/report_request_other_information'
+      required:
+      - name
+      - address
+      - jurisdictions
+      additionalProperties: false
+    subscription_data_item:
+      type: object
+      properties:
+        type:
+          type: string
+          example: subscriptions
+        id:
+          type: string
+          example: c2be7b6ca73747faadd4420123db424a
+        attributes:
+          type: object
+          $ref: '#/components/schemas/subscribe_attributes'
+        links:
+          type: object
+          properties:
+            subscribe:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/subscribe
+            unsubscribe:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/unsubscribe
+    report_request_subject_entity:
+      type: object
+      properties:
+        proposals:
+          type: array
+          items:
+            anyOf:
+            - type: object
+              $ref: '#/components/schemas/report_request_rush_proposal_attributes'
+            - type: object
+              $ref: '#/components/schemas/report_request_price_proposal_attributes'
+            - type: object
+              $ref: '#/components/schemas/report_request_update_proposal_attributes'
+        name:
+          type: string
+          example: Dow Jones Report
+        workflow_state:
+          type: string
+          enum:
+          - draft
+          - submitted
+        report_type:
+          type: string
+          example: redflag
+        delivery_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+          format: uuid
+        updated_at:
+          type: string
+          format: date-time
+        subject_type:
+          type: string
+          enum:
+          - entity
+          - individual
+        subject:
+          $ref: '#/components/schemas/report_request_entity'
+        order_detail:
+          type: object
+          properties:
+            base_report:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Dow Jones Report
+                unit_price:
+                  type: number
+                  example: 600
+            additional_entities:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 300
+            additional_individuals:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 300
+            additional_requests:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 150
+            additional_prices:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Additional Research
+                  unit_price:
+                    type: number
+                    example: 150
+            sub_total:
+              type: number
+              example: 600
+            rush_charge:
+              type: number
+              example: 0
+            additional_total:
+              type: number
+              example: 0
+            total:
+              type: number
+              example: 600
+            currency_code:
+              type: string
+              enum:
+              - AUD
+              - BRL
+              - USD
+              - EUR
+              - GBP
+              - INR
+              - JPY
+              - CAD
+              - CNY
+              - CHF
+              - SGD
+              - ZAR
+        total:
+          type: number
+          example: 600
+        is_rush:
+          type: boolean
+          example: false
+        billing_account_id:
+          type: string
+          example: 9PRO000200
+        additional_entities:
+          $ref: '#/components/schemas/report_request_additional_entities'
+        additional_individuals:
+          $ref: '#/components/schemas/report_request_additional_individuals'
+    subscribe_data_item:
+      type: object
+      properties:
+        type:
+          type: string
+          example: subscriptions
+        id:
+          type: string
+          example: b5948eb9f7474aa8a0148b7be9b66e60
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/subscriptions/b5948eb9f7474aa8a0148b7be9b66e60
+        attributes:
+          type: object
+          $ref: '#/components/schemas/subscribe_attributes'
+      required:
+      - attributes
+    report_request_other_information:
+      type: object
+      properties:
+        report_notes:
+          type: string
+          example: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        billing_notes:
+          type: string
+          example: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      additionalProperties: false
+    proposal_dataitem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: proposals
+        id:
+          type: string
+          example: 88e6e35adcb346e2b10dc14447419bc9
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: http://api.dowjones.com/risk-reports/reportrequests/09bb9570e3254f96b2e89bb3ef56655b/proposals/88e6e35adcb346e2b10dc14447419bc9
+        attributes:
+          type: object
+          oneOf:
+          - type: object
+            $ref: '#/components/schemas/report_request_update_proposal_attributes'
+          - type: object
+            $ref: '#/components/schemas/report_request_price_proposal_attributes'
+          - type: object
+            $ref: '#/components/schemas/report_request_rush_proposal_attributes'
+    report_request_create_data_item_entity:
+      type: object
+      properties:
+        type:
+          type: string
+          example: reportrequests
+        attributes:
+          type: object
+          $ref: '#/components/schemas/report_request_create_attributes_entity'
+      required:
+      - attributes
+      additionalProperties: false
+    report_request_rush_proposal_attributes:
+      type: object
+      properties:
+        proposal:
+          type: string
+          description: Rush Report
+          default: rush
+        id:
+          type: string
+          format: uuid
+          example: fsdds5a4264227477ad23fsas222d2223
+        params:
+          $ref: '#/components/schemas/report_request_params_rush'
+        status:
+          type: string
+          enum:
+          - pending
+          - approved
+          - rejected
+          default: pending
+        initiated_date:
+          type: string
+          format: date-time
+    report_request_individual_national_id_number:
+      type: object
+      properties:
+        option:
+          type: string
+          example: Driving Licence No.
+          enum:
+          - Driving Licence No.
+          - EU Consolidated Electronic List ID
+          - EU Sanctions Programme Indicator
+          - Federal Bureau of Prisons Register Number
+          - HM Treasury Group ID
+          - National Criminal Identification Code (USA)
+          - National ID
+          - National Provider Identifier (NPI)
+          - National Tax No.
+          - OFAC Program ID
+          - OFAC Unique ID
+          - Others
+          - Passport No.
+          - Social Security No.
+          - UN Permanent Reference No.
+        value:
+          type: string
+          example: '15000'
+      required:
+      - option
+      - value
+      additionalProperties: false
+    metadata_patch_request:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                callback_url:
+                  type: string
+                  example: https://myserver.com/send/callback/here
+                  format: hostname
+    comment_update_callback:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            event:
+              type: string
+              example: comment_update
+            subscription_id:
+              type: string
+              description: the id auto-generated or provided by client
+              example: 423a791f44ed4a22bfafe0a28288c437
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: comments
+            id:
+              type: string
+              example: ae85ce3af5fd43938f67893c77978540
+            attributes:
+              type: object
+              properties:
+                parent_id:
+                  type: string
+                  example: 6ebab821443848428ab02a028ac0bb3e
+                is_urgent:
+                  type: boolean
+                created_at:
+                  type: string
+                  format: date-time
+                  example: '2020-03-31T13:18:41.639Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  example: '2020-04-14T09:18:12.516'
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/ae85ce3af5fd43938f67893c77978540
+    report_request_create_data_item_individual:
+      type: object
+      properties:
+        type:
+          type: string
+          example: reportrequests
+        attributes:
+          type: object
+          $ref: '#/components/schemas/report_request_create_attributes_individual'
+      required:
+      - attributes
+      additionalProperties: false
+    report_request_update_proposal_attributes:
+      type: object
+      properties:
+        proposal:
+          type: string
+          description: Additions or Changes in Entities, Jurisdictions or Subjects
+          default: update_report_request
+        id:
+          type: string
+          format: uuid
+          example: sdbgfxcs27477ad23fsas222d2223
+        params:
+          $ref: '#/components/schemas/report_request_params_update_rr'
+        status:
+          type: string
+          enum:
+          - pending
+          - approved
+          - rejected
+          default: pending
+        initiated_date:
+          type: string
+          format: date-time
+    report_requests_response:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/report_request_data_item'
+        included:
+          type: array
+          items:
+            oneOf:
+            - type: object
+              $ref: '#/components/schemas/user_data_item'
+            - type: object
+              $ref: '#/components/schemas/subscription_data_item'
+            - type: array
+              $ref: '#/components/schemas/document_dataitem'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
+            proposals:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals
+            comments:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments
+            documents:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents
+    report_request_estimate_request:
+      type: object
+      properties:
+        data:
+          type: object
+          $ref: '#/components/schemas/report_request_estimate_data_item'
+      required:
+      - data
+      additionalProperties: false
+    proposal_reject_callback:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            event:
+              type: string
+              example: proposal_reject
+            subscription_id:
+              type: string
+              description: the id auto-generated or provided by client
+              example: 423a791f44ed4a22bfafe0a28288c437
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: proposals
+            id:
+              type: string
+              example: 423a791f44ed4a22bfafe0a28288c437
+            attributes:
+              type: object
+              properties:
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
+                proposal:
+                  type: string
+                  enum:
+                  - rush
+                  - additional_price
+                  - update_report_request
+                status:
+                  type: string
+                  default: rejected
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437
+    report_request_data_item_entity:
+      type: object
+      properties:
+        type:
+          type: string
+          example: reportrequests
+        id:
+          type: string
+          example: d5ee7ceb98a848a49420d7cce2601934
+        attributes:
+          type: object
+          $ref: '#/components/schemas/report_request_subject_entity'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
+            proposals:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals
+            comments:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments
+            documents:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents
+      required:
+      - attributes
+    reportrequest_update_callback:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            event:
+              type: string
+              example: reportrequest_update
+            subscription_id:
+              type: string
+              description: the id auto-generated or provided by client
+              example: 423a791f44ed4a22bfafe0a28288c437
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: reportRequests
+            id:
+              type: string
+              example: de7b2bbd20b546fb93f8dd990a8f1562
+            attributes:
+              type: object
+              properties:
+                subject_type:
+                  type: string
+                  enum:
+                  - entity
+                  - individual
+                created_at:
+                  type: string
+                  format: date-time
+                  example: '2020-03-31T13:18:41.639Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  example: '2020-04-14T09:18:12.516'
+                delivery_date:
+                  type: string
+                  format: date-time
+                  example: '2020-04-20T21:00:00.000Z'
+                workflow_state:
+                  type: string
+                  enum:
+                  - new
+                  - draft
+                  - submitted
+                  - pending_customer_approval
+                  - awaiting_information
+                  - on_hold
+                  - in_progress
+                  - items_pending
+                  - completed
+                  - delivered
+                  - cancelled
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562
+    comment:
+      type: object
+      properties:
+        content:
+          type: string
+          example: Hello world!
+        is_urgent:
+          type: boolean
+          example: false
+        created_at:
+          type: string
+          format: date-time
+          example: '2018-09-26T00:00:00.000Z'
+    comment_create:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Hello world!
+                is_urgent:
+                  type: boolean
+                  example: false
+              required:
+              - content
+              - is_urgent
+          required:
+          - attributes
+      required:
+      - data
+      additionalProperties: false
+    estimates_response:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: estimates
+            attributes:
+              type: object
+              properties:
+                currency_code:
+                  type: string
+                  example: USD
+                delivery_date:
+                  type: string
+                  format: date-time
+                order_detail:
+                  type: object
+                  properties:
+                    report_type:
+                      type: string
+                      example: level1
+                    billing_account_id:
+                      type: string
+                      example: 9PRO000200
+                    base_report:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: DowJones report
+                        unit_price:
+                          type: number
+                          example: 1160
+                    additional_entities:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: Additional entity
+                          unit_price:
+                            type: number
+                            example: 750
+                    additional_individuals:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: Ivan Ivanov
+                          unit_price:
+                            type: number
+                            example: 750
+                    additional_jurisdictions:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: Additional entity
+                          unit_price:
+                            type: number
+                            example: 600
+                    rush_charge:
+                      type: number
+                      example: 1630
+                    total:
+                      type: number
+                      example: 4890
+                    formatted:
+                      type: object
+                      properties:
+                        report_type:
+                          type: string
+                          example: level1
+                        billing_account_id:
+                          type: string
+                          example: 9PRO000200
+                        base_report:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: DowJones report
+                            unit_price:
+                              type: string
+                              example: $1,160.00
+                        additional_entities:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Additional entity
+                              unit_price:
+                                type: string
+                                example: $750.00
+                        additional_individuals:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Ivan Ivanov
+                              unit_price:
+                                type: string
+                                example: $750.00
+                        additional_jurisdictions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: Additional entity
+                              unit_price:
+                                type: number
+                                example: $600.00
+                        rush_charge:
+                          type: number
+                          example: $1,630.00
+                        total:
+                          type: number
+                          example: $4,890.00
+                total:
+                  type: number
+                  example: 4890
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/estimate
+                metadata:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/metadata
+                reportRequests:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests
+    report_request_response_individual:
+      type: object
+      properties:
+        data:
+          type: object
+          $ref: '#/components/schemas/report_request_data_item_individual'
+        included:
+          type: array
+          items:
+            oneOf:
+            - type: object
+              $ref: '#/components/schemas/user_data_item'
+            - type: object
+              $ref: '#/components/schemas/subscription_data_item'
+            - type: array
+              $ref: '#/components/schemas/document_dataitem'
+    comment_dataitem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: comments
+        id:
+          type: string
+          example: d3a9c83656cd4a30814b1466e9689fbb
+        links:
+          type: object
+          properties:
+            reportRequest:
+              type: string
+              example: http://api.dowjones.com/risk-reports/reportrequests/ba6e0ef7eda8481ca9b8db7112fb03bf
+        attributes:
+          type: object
+          $ref: '#/components/schemas/comment'
+        relationships:
+          type: object
+          properties:
+            user:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: users
+                    id:
+                      type: string
+                      example: E6OO2HVCQHVPE5X54D7W7XO5NI
     report_request_entity_address:
       type: object
       properties:
@@ -826,15 +2044,371 @@ components:
           format: hostname
       required:
       - country
-    report_request_estimate_request:
+    report_request_price_proposal_attributes:
+      type: object
+      properties:
+        proposal:
+          type: string
+          description: Additions or Changes in the price
+          default: additional_price
+        id:
+          type: string
+          format: uuid
+          example: ffc5a42642274771be036b927eaaf6af
+        params:
+          $ref: '#/components/schemas/report_request_params_price'
+        status:
+          type: string
+          enum:
+          - pending
+          - approved
+          - rejected
+          default: pending
+        initiated_date:
+          type: string
+          format: date-time
+    proposal_response:
       type: object
       properties:
         data:
           type: object
-          $ref: '#/components/schemas/report_request_estimate_data_item'
+          $ref: '#/components/schemas/proposal_dataitem'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/88e6e35adcb346e2b10dc14447419bc9/proposals
+    report_request_create_request_entity:
+      type: object
+      properties:
+        data:
+          type: object
+          $ref: '#/components/schemas/report_request_create_data_item_entity'
       required:
       - data
       additionalProperties: false
+    proposals_response:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            anyOf:
+            - type: object
+              $ref: '#/components/schemas/report_request_rush_proposal_attributes'
+            - type: object
+              $ref: '#/components/schemas/report_request_price_proposal_attributes'
+            - type: object
+              $ref: '#/components/schemas/report_request_update_proposal_attributes'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/88e6e35adcb346e2b10dc14447419bc9/proposals
+    report_request_entity_jurisdictions:
+      type: array
+      items:
+        $ref: '#/components/schemas/report_request_jurisdiction'
+      minItems: 1
+      additionalProperties: false
+    report_request_estimate_attributes:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+          example: Dow Jones Report
+        report_type:
+          type: string
+        is_rush:
+          type: boolean
+        subject_type:
+          type: string
+          enum:
+          - entity
+          - individual
+        subject:
+          oneOf:
+          - type: object
+            properties:
+              first_name:
+                type: string
+                example: John
+              middle_name:
+                type: string
+                example: Allan
+              last_name:
+                type: string
+                example: Doe
+              jurisdictions:
+                $ref: '#/components/schemas/report_request_individual_jurisdictions'
+          - type: object
+            properties:
+              name:
+                type: string
+                example: Dow Jones
+              jurisdictions:
+                $ref: '#/components/schemas/report_request_entity_jurisdictions'
+        additional_entities:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Dow Jones
+              jurisdictions:
+                $ref: '#/components/schemas/report_request_entity_jurisdictions'
+        additional_individuals:
+          type: array
+          items:
+            type: object
+            properties:
+              first_name:
+                type: string
+                example: John
+              middle_name:
+                type: string
+                example: Allan
+              last_name:
+                type: string
+                example: Doe
+              jurisdictions:
+                $ref: '#/components/schemas/report_request_individual_jurisdictions'
+    billingaccount_dataitem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: billing_accounts
+        id:
+          type: string
+          example: 9PRO000200
+        attributes:
+          type: object
+          $ref: '#/components/schemas/billing_account'
+    report_request_create_request_individual:
+      type: object
+      properties:
+        data:
+          type: object
+          $ref: '#/components/schemas/report_request_create_data_item_individual'
+      required:
+      - data
+      additionalProperties: false
+    subscribe_response:
+      type: object
+      properties:
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
+        data:
+          type: object
+          $ref: '#/components/schemas/subscribe_data_item'
+    document_update_callback:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            event:
+              type: string
+              example: document_update
+            subscription_id:
+              type: string
+              description: the id auto-generated or provided by client
+              example: 423a791f44ed4a22bfafe0a28288c437
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: documents
+            id:
+              type: string
+              example: 0d131001d2034be89f85c0530d5424c9
+            attributes:
+              type: object
+              properties:
+                created_at:
+                  type: string
+                  format: date-time
+                  example: '2020-03-31T13:18:41.639Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  example: '2020-04-14T09:18:12.516'
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9
+    subscribe_request:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                subscription_id:
+                  type: string
+              additionalProperties: false
+          additionalProperties: false
+      additionalProperties: false
+    metadata_response:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: metadata
+            attributes:
+              type: object
+              properties:
+                report_types:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Level 1
+                      value:
+                        type: string
+                        example: level1
+                      expected_delivery:
+                        type: number
+                        example: 15
+                industry_sectors:
+                  type: array
+                  items:
+                    type: string
+                    example: Automotive
+                national_id_types:
+                  type: array
+                  items:
+                    type: string
+                    example: EU Consolidated Electronic List ID
+                individual_jurisdiction_types:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Residence
+                      value:
+                        type: string
+                        example: country_residence
+                entity_jurisdiction_types:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Registration
+                      value:
+                        type: string
+                        example: country_registration
+                identification_types:
+                  type: array
+                  items:
+                    type: string
+                    example: Company Identification No.
+                subject_types:
+                  type: array
+                  items:
+                    type: string
+                    example: individual
+                proposal_types:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Additions or Changes in Entities, Jurisdictions or Subjects
+                      value:
+                        type: string
+                        example: update_report_request
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/metadata
+            reportRequests:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests
+    document_dataitem:
+      type: object
+      properties:
+        type:
+          type: string
+          example: documents
+        id:
+          type: string
+          example: 2009e814baef455fb7b062d0904d3a19
+        attributes:
+          type: object
+          $ref: '#/components/schemas/document'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents/4a68c4aaa8844043b8e2827b8d0f1948
+            reportRequest:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
+    get_billingaccounts_response:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/billingaccount_dataitem'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/billing-accounts
+    user_data_item:
+      type: object
+      properties:
+        type:
+          type: string
+          example: users
+        id:
+          type: string
+          example: E6OO2HVCQHVPEDPYTIYWMTJFZE
+        attributes:
+          type: object
+          $ref: '#/components/schemas/user_data'
     report_request_individual_address:
       type: object
       properties:
@@ -856,92 +2430,6 @@ components:
       required:
       - country
       additionalProperties: false
-    report_request_rush_proposal_attributes:
-      type: object
-      properties:
-        proposal:
-          type: string
-          description: Rush Report
-          default: rush
-        id:
-          type: string
-          format: uuid
-          example: fsdds5a4264227477ad23fsas222d2223
-        params:
-          $ref: '#/components/schemas/report_request_params_rush'
-        status:
-          type: string
-          enum:
-          - pending
-          - approved
-          - rejected
-          default: pending
-        initiated_date:
-          type: string
-          format: date-time
-    subscription_data_item:
-      type: object
-      properties:
-        type:
-          type: string
-          example: subscriptions
-        id:
-          type: string
-          example: c2be7b6ca73747faadd4420123db424a
-        attributes:
-          type: object
-          $ref: '#/components/schemas/subscribe_attributes'
-        links:
-          type: object
-          properties:
-            subscribe:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/subscribe
-            unsubscribe:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/unsubscribe
-    subscribe_data_item:
-      type: object
-      properties:
-        type:
-          type: string
-          example: subscriptions
-        id:
-          type: string
-          example: b5948eb9f7474aa8a0148b7be9b66e60
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/subscriptions/b5948eb9f7474aa8a0148b7be9b66e60
-        attributes:
-          type: object
-          $ref: '#/components/schemas/subscribe_attributes'
-      required:
-      - attributes
-    document:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 8e1f7433184a4b59b8a3dd22bbe51537
-        file_name:
-          type: string
-          example: doc.txt
-        mimetype:
-          type: string
-          example: '"text/plain'
-        created_at:
-          type: string
-          format: date-time
-          example: '2018-09-26T00:00:00.000Z'
-        size:
-          type: number
-          example: 2048
     report_request_create_attributes_individual:
       type: object
       properties:
@@ -980,18 +2468,185 @@ components:
       - subject
       - workflow_state
       additionalProperties: false
-    billingaccount_dataitem:
+    comment_response:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/comment_dataitem'
+        links:
+          type: object
+          properties:
+            reportRequest:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
+        included:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/user_data_item'
+    documents_response:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/document_dataitem'
+    report_request_estimate_data_item:
+      type: object
+      properties:
+        attributes:
+          type: object
+          $ref: '#/components/schemas/report_request_estimate_attributes'
+      required:
+      - attributes
+      additionalProperties: false
+    report_request_data_item:
       type: object
       properties:
         type:
           type: string
-          example: billing_accounts
+          example: reportrequests
         id:
           type: string
-          example: 9PRO000200
+          example: d5ee7ceb98a848a49420d7cce2601934
         attributes:
           type: object
-          $ref: '#/components/schemas/billing_account'
+          $ref: '#/components/schemas/report_request'
+        relationships:
+          type: object
+          properties:
+            created_by_user:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: users
+                    id:
+                      type: string
+                      example: E6OO2HVCQHVPE5X54D7W7XO5NI
+            subscription:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: subscriptions
+                    id:
+                      type: string
+                      example: c2be7b6ca73747faadd4420123db424a
+      required:
+      - attributes
+    proposal_new_callback:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            event:
+              type: string
+              example: proposal_new
+            subscription_id:
+              type: string
+              description: the id auto-generated or provided by client
+              example: 423a791f44ed4a22bfafe0a28288c437
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: proposals
+            id:
+              type: string
+              example: 423a791f44ed4a22bfafe0a28288c437
+            attributes:
+              type: object
+              properties:
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
+                proposal:
+                  type: string
+                  enum:
+                  - rush
+                  - additional_price
+                  - update_report_request
+                status:
+                  type: string
+                  default: pending
+                initiated_date:
+                  type: string
+                  format: date-time
+                  example: '2020-03-31T13:18:41.639Z'
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437
+    create_comment_response:
+      type: object
+      properties:
+        data:
+          type: object
+          $ref: '#/components/schemas/comment_dataitem'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: hostname
+              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments
+        included:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/user_data_item'
+    report_request_entity_identification_type:
+      type: object
+      properties:
+        option:
+          type: string
+          example: Aircraft Construction, Line, Fleet or Serial Number
+          enum:
+          - Aircraft Construction, Line, Fleet or Serial Number
+          - Aircraft Manufacturer's Serial Number (MSN)
+          - Bank Identifier Code (BIC)
+          - Company Identification No.
+          - DUNS Number
+          - EU Consolidated Electronic List ID
+          - EU Sanctions Programme Indicator
+          - HM Treasury Group ID
+          - International Maritime Organization (IMO) Ship No.
+          - International Securities Identification Number (ISIN)
+          - Legal Entity Identifier (LEI)
+          - NACE (European Union Economic Activity Classification System)
+          - National Tax No.
+          - North American Industry Classification System (NAICS)
+          - OFAC Program ID
+          - OFAC Unique ID
+          - Others
+          - Related EU Consolidated Electronic List ID
+          - Related EU Sanctions Programme Indicator
+          - Related OFAC Program ID
+          - Related OFAC Unique ID
+          - Standard Industrial Classification (SIC)
+          - UN Permanent Reference No.
+        value:
+          type: string
+          example: '557557557'
+      required:
+      - option
+      - value
+      additionalProperties: false
     report_request_individual_jurisdiction:
       type: object
       properties:
@@ -1258,7 +2913,12 @@ components:
       - option
       - value
       additionalProperties: false
-    proposal_approval_callback:
+    report_request_individual_national_id_numbers:
+      type: array
+      items:
+        $ref: '#/components/schemas/report_request_individual_national_id_number'
+      additionalProperties: false
+    document_new_callback:
       type: object
       properties:
         meta:
@@ -1266,7 +2926,7 @@ components:
           properties:
             event:
               type: string
-              example: proposal_approval
+              example: document_new
             subscription_id:
               type: string
               description: the id auto-generated or provided by client
@@ -1276,187 +2936,88 @@ components:
           properties:
             type:
               type: string
-              example: proposals
+              example: documents
             id:
               type: string
-              example: 423a791f44ed4a22bfafe0a28288c437
+              example: 0d131001d2034be89f85c0530d5424c9
             attributes:
               type: object
               properties:
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-                proposal:
-                  type: string
-                  enum:
-                  - rush
-                  - additional_price
-                  - update_report_request
-                status:
-                  type: string
-                  default: approved
-                approval_date:
+                created_at:
                   type: string
                   format: date-time
                   example: '2020-03-31T13:18:41.639Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  example: '2020-04-14T09:18:12.516'
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
             links:
               type: object
               properties:
                 self:
                   type: string
                   format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437
-    report_request_create_data_item_entity:
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9
+    user_data:
       type: object
       properties:
-        type:
+        first_name:
           type: string
-          example: reportrequests
-        attributes:
-          type: object
-          $ref: '#/components/schemas/report_request_create_attributes_entity'
-      required:
-      - attributes
-      additionalProperties: false
-    report_request_subject_individual:
+          example: Dart
+        last_name:
+          type: string
+          example: Revan
+    comment_delete_callback:
       type: object
       properties:
-        proposals:
-          type: array
-          items:
-            anyOf:
-            - type: object
-              $ref: '#/components/schemas/report_request_rush_proposal_attributes'
-            - type: object
-              $ref: '#/components/schemas/report_request_price_proposal_attributes'
-            - type: object
-              $ref: '#/components/schemas/report_request_update_proposal_attributes'
-        name:
-          type: string
-          example: Dow Jones Report
-        workflow_state:
-          type: string
-          enum:
-          - draft
-          - submitted
-        report_type:
-          type: string
-          example: redflag
-        delivery_date:
-          type: string
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        user_id:
-          type: string
-          format: uuid
-        updated_at:
-          type: string
-          format: date-time
-        subject_type:
-          type: string
-          enum:
-          - entity
-          - individual
-        subject:
-          $ref: '#/components/schemas/report_request_individual'
-        order_detail:
+        meta:
           type: object
           properties:
-            base_report:
+            event:
+              type: string
+              example: comment_delete
+            subscription_id:
+              type: string
+              description: the id auto-generated or provided by client
+              example: 423a791f44ed4a22bfafe0a28288c437
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              example: comments
+            id:
+              type: string
+              example: ae85ce3af5fd43938f67893c77978540
+            attributes:
               type: object
               properties:
-                name:
+                parent_id:
                   type: string
-                  example: Dow Jones Report
-                unit_price:
-                  type: number
-                  example: 600
-            additional_entities:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 300
-            additional_individuals:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 300
-            additional_requests:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 150
-            additional_prices:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Additional Research
-                  unit_price:
-                    type: number
-                    example: 150
-            sub_total:
-              type: number
-              example: 600
-            currency_code:
-              type: string
-              enum:
-              - AUD
-              - BRL
-              - USD
-              - EUR
-              - GBP
-              - INR
-              - JPY
-              - CAD
-              - CNY
-              - CHF
-              - SGD
-              - ZAR
-            rush_charge:
-              type: number
-              example: 0
-            additional_total:
-              type: number
-              example: 0
-            total:
-              type: number
-              example: 600
-        total:
-          type: number
-          example: 600
-        is_rush:
-          type: boolean
-          example: false
-        billing_account_id:
-          type: string
-          example: 9PRO000200
-        additional_entities:
-          $ref: '#/components/schemas/report_request_additional_entities'
-        additional_individuals:
-          $ref: '#/components/schemas/report_request_additional_individuals'
+                  example: 6ebab821443848428ab02a028ac0bb3e
+                is_urgent:
+                  type: boolean
+                created_at:
+                  type: string
+                  format: date-time
+                  example: '2020-03-31T13:18:41.639Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  example: '2020-04-14T09:18:12.516'
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/ae85ce3af5fd43938f67893c77978540
     report_request_individual:
       type: object
       properties:
@@ -1515,17 +3076,7 @@ components:
       - address
       - jurisdictions
       additionalProperties: false
-    report_request_other_information:
-      type: object
-      properties:
-        report_notes:
-          type: string
-          example: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        billing_notes:
-          type: string
-          example: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      additionalProperties: false
-    reportrequest_transition_callback:
+    proposal_update_callback:
       type: object
       properties:
         meta:
@@ -1533,7 +3084,7 @@ components:
           properties:
             event:
               type: string
-              example: reportrequest_transition
+              example: proposal_update
             subscription_id:
               type: string
               description: the id auto-generated or provided by client
@@ -1543,64 +3094,41 @@ components:
           properties:
             type:
               type: string
-              example: reportRequests
+              example: proposals
             id:
               type: string
-              example: de7b2bbd20b546fb93f8dd990a8f1562
+              example: 423a791f44ed4a22bfafe0a28288c437
             attributes:
               type: object
               properties:
-                subject_type:
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
+                proposal:
                   type: string
                   enum:
-                  - entity
-                  - individual
-                created_at:
+                  - rush
+                  - additional_price
+                  - update_report_request
+                status:
+                  type: string
+                  default: pending
+                initiated_date:
                   type: string
                   format: date-time
                   example: '2020-03-31T13:18:41.639Z'
-                updated_at:
-                  type: string
-                  format: date-time
-                  example: '2020-04-14T09:18:12.516'
-                delivery_date:
-                  type: string
-                  format: date-time
-                  example: '2020-04-20T21:00:00.000Z'
-                workflow_state:
-                  type: string
-                  enum:
-                  - new
-                  - draft
-                  - submitted
-                  - pending_customer_approval
-                  - awaiting_information
-                  - on_hold
-                  - in_progress
-                  - items_pending
-                  - completed
-                  - delivered
-                  - cancelled
             links:
               type: object
               properties:
                 self:
                   type: string
                   format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562
-    metadata_patch_request:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            attributes:
-              type: object
-              properties:
-                callback_url:
-                  type: string
-                  example: https://myserver.com/send/callback/here
-                  format: hostname
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437
+    report_request_entity_identification_types:
+      type: array
+      items:
+        $ref: '#/components/schemas/report_request_entity_identification_type'
+      additionalProperties: false
     report_request_create_attributes_entity:
       type: object
       properties:
@@ -1639,284 +3167,48 @@ components:
       - subject
       - workflow_state
       additionalProperties: false
-    get_billingaccounts_response:
+    bad_request_error:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/billingaccount_dataitem'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/billing-accounts
-    proposal_response:
-      type: object
-      properties:
-        data:
-          type: object
-          $ref: '#/components/schemas/proposal_dataitem'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/88e6e35adcb346e2b10dc14447419bc9/proposals
-    estimates_response:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: estimates
-            attributes:
-              type: object
-              properties:
-                currency_code:
-                  type: string
-                  example: USD
-                delivery_date:
-                  type: string
-                  format: date-time
-                order_detail:
-                  type: object
-                  properties:
-                    report_type:
-                      type: string
-                      example: level1
-                    billing_account_id:
-                      type: string
-                      example: 9PRO000200
-                    base_report:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          example: DowJones report
-                        unit_price:
-                          type: number
-                          example: 1160
-                    additional_entities:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                            example: Additional entity
-                          unit_price:
-                            type: number
-                            example: 750
-                    additional_individuals:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                            example: Ivan Ivanov
-                          unit_price:
-                            type: number
-                            example: 750
-                    additional_jurisdictions:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                            example: Additional entity
-                          unit_price:
-                            type: number
-                            example: 600
-                    rush_charge:
-                      type: number
-                      example: 1630
-                    total:
-                      type: number
-                      example: 4890
-                    formatted:
-                      type: object
-                      properties:
-                        report_type:
-                          type: string
-                          example: level1
-                        billing_account_id:
-                          type: string
-                          example: 9PRO000200
-                        base_report:
-                          type: object
-                          properties:
-                            name:
-                              type: string
-                              example: DowJones report
-                            unit_price:
-                              type: string
-                              example: $1,160.00
-                        additional_entities:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              name:
-                                type: string
-                                example: Additional entity
-                              unit_price:
-                                type: string
-                                example: $750.00
-                        additional_individuals:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              name:
-                                type: string
-                                example: Ivan Ivanov
-                              unit_price:
-                                type: string
-                                example: $750.00
-                        additional_jurisdictions:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              name:
-                                type: string
-                                example: Additional entity
-                              unit_price:
-                                type: number
-                                example: $600.00
-                        rush_charge:
-                          type: number
-                          example: $1,630.00
-                        total:
-                          type: number
-                          example: $4,890.00
-                total:
-                  type: number
-                  example: 4890
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/estimate
-                metadata:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/metadata
-                reportRequests:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests
-    comment_dataitem:
-      type: object
-      properties:
-        type:
-          type: string
-          example: comments
         id:
+          description: a unique identifier for this particular occurrence of the problem.
+          example: d5ee7ceb98a848a49420d7cce2601934
           type: string
-          example: d3a9c83656cd4a30814b1466e9689fbb
+        status:
+          description: the HTTP status code applicable to this problem, expressed as a string value.
+          example: '400'
+          type: string
+        code:
+          description: an application-specific error code, expressed as a string value.
+          example: '302'
+          type: string
+        source:
+          type: object
+          $ref: '#/components/schemas/bad_request_error_detail'
         links:
           type: object
-          properties:
-            reportRequest:
-              type: string
-              example: http://api.dowjones.com/risk-reports/reportrequests/ba6e0ef7eda8481ca9b8db7112fb03bf
-        attributes:
-          type: object
-          $ref: '#/components/schemas/comment'
-        relationships:
-          type: object
-          properties:
-            user:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      example: users
-                    id:
-                      type: string
-                      example: E6OO2HVCQHVPE5X54D7W7XO5NI
-    report_request_entity:
-      type: object
-      properties:
-        name:
+          $ref: '#/components/schemas/bad_request_links'
+        meta:
+          description: a meta object containing non-standard meta-information about the error
           type: string
-          example: Dow Jones
-        alternate_name:
+        title:
+          description: a short, human-readable summary of the problem
+          example: 'Missing required property: name'
           type: string
-          example: Dow Jones
-        industry_sector_type:
+        detail:
+          description: a human-readable explanation specific to this occurrence of the problem
+          example: '/data/attributes Missing required property: name'
           type: string
-          enum:
-          - Unknown
-          - Agriculture
-          - Automotive
-          - Basic Materials/Resources
-          - Business/Consumer Services
-          - Consumer Goods
-          - Energy
-          - Financial Services
-          - Health Care/Life Sciences
-          - Industrial Goods
-          - Leisure/Arts/Hospitality
-          - Media/Entertainment
-          - Other
-          - Real Estate/Construction
-          - Retail/Wholesale
-          - Technology
-          - Telecommunication Services
-          - Transportation/Logistics
-          - Utilities
-          example: Basic Materials/Resources
-        industry_sector_type_value:
-          type: string
-          maxLength: 128
-        identification_types:
-          $ref: '#/components/schemas/report_request_entity_identification_types'
-        jurisdictions:
-          $ref: '#/components/schemas/report_request_entity_jurisdictions'
-        address:
-          $ref: '#/components/schemas/report_request_entity_address'
-        other_information:
-          $ref: '#/components/schemas/report_request_other_information'
       required:
-      - name
-      - address
-      - jurisdictions
-      additionalProperties: false
-    subscribe_request:
+      - title
+      - detail
+      - source
+    report_request_response_entity:
       type: object
       properties:
         data:
           type: object
-          properties:
-            attributes:
-              type: object
-              properties:
-                subscription_id:
-                  type: string
-              additionalProperties: false
-          additionalProperties: false
-      additionalProperties: false
-    report_request_response_individual:
-      type: object
-      properties:
-        data:
-          type: object
-          $ref: '#/components/schemas/report_request_data_item_individual'
+          $ref: '#/components/schemas/report_request_data_item_entity'
         included:
           type: array
           items:
@@ -1927,199 +3219,6 @@ components:
               $ref: '#/components/schemas/subscription_data_item'
             - type: array
               $ref: '#/components/schemas/document_dataitem'
-    comment_reply_callback:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            event:
-              type: string
-              example: comment_reply
-            subscription_id:
-              type: string
-              description: the id auto-generated or provided by client
-              example: 423a791f44ed4a22bfafe0a28288c437
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: comments
-            id:
-              type: string
-              example: ae85ce3af5fd43938f67893c77978540
-            attributes:
-              type: object
-              properties:
-                parent_id:
-                  type: string
-                  example: 6ebab821443848428ab02a028ac0bb3e
-                is_urgent:
-                  type: boolean
-                created_at:
-                  type: string
-                  format: date-time
-                  example: '2020-03-31T13:18:41.639Z'
-                updated_at:
-                  type: string
-                  format: date-time
-                  example: '2020-04-14T09:18:12.516'
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/ae85ce3af5fd43938f67893c77978540
-    bad_request_links:
-      type: object
-      properties:
-        about:
-          description: a link that leads to further details about this particular occurrence of the problem
-          example: https://wiki.dowjones.net/display/DSE/Error+Codes
-          type: string
-      required:
-      - key
-    user_data:
-      type: object
-      properties:
-        first_name:
-          type: string
-          example: Dart
-        last_name:
-          type: string
-          example: Revan
-    metadata_response:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: metadata
-            attributes:
-              type: object
-              properties:
-                report_types:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        example: Level 1
-                      value:
-                        type: string
-                        example: level1
-                      expected_delivery:
-                        type: number
-                        example: 15
-                industry_sectors:
-                  type: array
-                  items:
-                    type: string
-                    example: Automotive
-                national_id_types:
-                  type: array
-                  items:
-                    type: string
-                    example: EU Consolidated Electronic List ID
-                individual_jurisdiction_types:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        example: Residence
-                      value:
-                        type: string
-                        example: country_residence
-                entity_jurisdiction_types:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        example: Registration
-                      value:
-                        type: string
-                        example: country_registration
-                identification_types:
-                  type: array
-                  items:
-                    type: string
-                    example: Company Identification No.
-                subject_types:
-                  type: array
-                  items:
-                    type: string
-                    example: individual
-                proposal_types:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        example: Additions or Changes in Entities, Jurisdictions or Subjects
-                      value:
-                        type: string
-                        example: update_report_request
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/metadata
-            reportRequests:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests
-    report_request_entity_identification_type:
-      type: object
-      properties:
-        option:
-          type: string
-          example: Aircraft Construction, Line, Fleet or Serial Number
-          enum:
-          - Aircraft Construction, Line, Fleet or Serial Number
-          - Aircraft Manufacturer's Serial Number (MSN)
-          - Bank Identifier Code (BIC)
-          - Company Identification No.
-          - DUNS Number
-          - EU Consolidated Electronic List ID
-          - EU Sanctions Programme Indicator
-          - HM Treasury Group ID
-          - International Maritime Organization (IMO) Ship No.
-          - International Securities Identification Number (ISIN)
-          - Legal Entity Identifier (LEI)
-          - NACE (European Union Economic Activity Classification System)
-          - National Tax No.
-          - North American Industry Classification System (NAICS)
-          - OFAC Program ID
-          - OFAC Unique ID
-          - Others
-          - Related EU Consolidated Electronic List ID
-          - Related EU Sanctions Programme Indicator
-          - Related OFAC Program ID
-          - Related OFAC Unique ID
-          - Standard Industrial Classification (SIC)
-          - UN Permanent Reference No.
-        value:
-          type: string
-          example: '557557557'
-      required:
-      - option
-      - value
-      additionalProperties: false
     report_request_jurisdiction:
       type: object
       properties:
@@ -2386,67 +3485,7 @@ components:
       - option
       - value
       additionalProperties: false
-    report_request_data_item_individual:
-      type: object
-      properties:
-        type:
-          type: string
-          example: reportrequests
-        id:
-          type: string
-          example: d5ee7ceb98a848a49420d7cce2601934
-        attributes:
-          type: object
-          $ref: '#/components/schemas/report_request_subject_individual'
-        relationships:
-          type: object
-          properties:
-            created_by_user:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      example: users
-                    id:
-                      type: string
-                      example: E6OO2HVCQHVPE5X54D7W7XO5NI
-            subscription:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      example: subscriptions
-                    id:
-                      type: string
-                      example: c2be7b6ca73747faadd4420123db424a
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
-            proposals:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals
-            comments:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments
-            documents:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents
-      required:
-      - attributes
-    proposal_new_callback:
+    comment_new_callback:
       type: object
       properties:
         meta:
@@ -2454,7 +3493,7 @@ components:
           properties:
             event:
               type: string
-              example: proposal_new
+              example: comment_new
             subscription_id:
               type: string
               description: the id auto-generated or provided by client
@@ -2464,50 +3503,37 @@ components:
           properties:
             type:
               type: string
-              example: proposals
+              example: comments
             id:
               type: string
-              example: 423a791f44ed4a22bfafe0a28288c437
+              example: 6ebab821443848428ab02a028ac0bb3e
             attributes:
               type: object
               properties:
-                report_request_id:
+                parent_id:
                   type: string
                   example: de7b2bbd20b546fb93f8dd990a8f1562
-                proposal:
-                  type: string
-                  enum:
-                  - rush
-                  - additional_price
-                  - update_report_request
-                status:
-                  type: string
-                  default: pending
-                initiated_date:
+                is_urgent:
+                  type: boolean
+                created_at:
                   type: string
                   format: date-time
                   example: '2020-03-31T13:18:41.639Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  example: '2020-04-14T09:18:12.516'
+                report_request_id:
+                  type: string
+                  example: de7b2bbd20b546fb93f8dd990a8f1562
             links:
               type: object
               properties:
                 self:
                   type: string
                   format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437
-    comment:
-      type: object
-      properties:
-        content:
-          type: string
-          example: Hello world!
-        is_urgent:
-          type: boolean
-          example: false
-        created_at:
-          type: string
-          format: date-time
-          example: '2018-09-26T00:00:00.000Z'
-    proposal_update_callback:
+                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/6ebab821443848428ab02a028ac0bb3e
+    comment_reply_callback:
       type: object
       properties:
         meta:
@@ -2515,114 +3541,7 @@ components:
           properties:
             event:
               type: string
-              example: proposal_update
-            subscription_id:
-              type: string
-              description: the id auto-generated or provided by client
-              example: 423a791f44ed4a22bfafe0a28288c437
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: proposals
-            id:
-              type: string
-              example: 423a791f44ed4a22bfafe0a28288c437
-            attributes:
-              type: object
-              properties:
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-                proposal:
-                  type: string
-                  enum:
-                  - rush
-                  - additional_price
-                  - update_report_request
-                status:
-                  type: string
-                  default: pending
-                initiated_date:
-                  type: string
-                  format: date-time
-                  example: '2020-03-31T13:18:41.639Z'
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437
-    report_request_response_entity:
-      type: object
-      properties:
-        data:
-          type: object
-          $ref: '#/components/schemas/report_request_data_item_entity'
-        included:
-          type: array
-          items:
-            oneOf:
-            - type: object
-              $ref: '#/components/schemas/user_data_item'
-            - type: object
-              $ref: '#/components/schemas/subscription_data_item'
-            - type: array
-              $ref: '#/components/schemas/document_dataitem'
-    proposal_dataitem:
-      type: object
-      properties:
-        type:
-          type: string
-          example: proposals
-        id:
-          type: string
-          example: 88e6e35adcb346e2b10dc14447419bc9
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              example: http://api.dowjones.com/risk-reports/reportrequests/09bb9570e3254f96b2e89bb3ef56655b/proposals/88e6e35adcb346e2b10dc14447419bc9
-        attributes:
-          type: object
-          oneOf:
-          - type: object
-            $ref: '#/components/schemas/report_request_update_proposal_attributes'
-          - type: object
-            $ref: '#/components/schemas/report_request_price_proposal_attributes'
-          - type: object
-            $ref: '#/components/schemas/report_request_rush_proposal_attributes'
-    comment_response:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/comment_dataitem'
-        links:
-          type: object
-          properties:
-            reportRequest:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
-        included:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/user_data_item'
-    comment_update_callback:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            event:
-              type: string
-              example: comment_update
+              example: comment_reply
             subscription_id:
               type: string
               description: the id auto-generated or provided by client
@@ -2662,115 +3581,166 @@ components:
                   type: string
                   format: hostname
                   example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/ae85ce3af5fd43938f67893c77978540
-    report_request_data_item:
+    report_request_individual_jurisdictions:
+      type: array
+      items:
+        $ref: '#/components/schemas/report_request_individual_jurisdiction'
+      minItems: 1
+      additionalProperties: false
+    report_request_subject_individual:
       type: object
       properties:
-        type:
+        proposals:
+          type: array
+          items:
+            anyOf:
+            - type: object
+              $ref: '#/components/schemas/report_request_rush_proposal_attributes'
+            - type: object
+              $ref: '#/components/schemas/report_request_price_proposal_attributes'
+            - type: object
+              $ref: '#/components/schemas/report_request_update_proposal_attributes'
+        name:
           type: string
-          example: reportrequests
-        id:
+          example: Dow Jones Report
+        workflow_state:
           type: string
-          example: d5ee7ceb98a848a49420d7cce2601934
-        attributes:
-          type: object
-          $ref: '#/components/schemas/report_request'
-        relationships:
+          enum:
+          - draft
+          - submitted
+        report_type:
+          type: string
+          example: redflag
+        delivery_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+          format: uuid
+        updated_at:
+          type: string
+          format: date-time
+        subject_type:
+          type: string
+          enum:
+          - entity
+          - individual
+        subject:
+          $ref: '#/components/schemas/report_request_individual'
+        order_detail:
           type: object
           properties:
-            created_by_user:
+            base_report:
               type: object
               properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      example: users
-                    id:
-                      type: string
-                      example: E6OO2HVCQHVPE5X54D7W7XO5NI
-            subscription:
-              type: object
-              properties:
-                data:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      example: subscriptions
-                    id:
-                      type: string
-                      example: c2be7b6ca73747faadd4420123db424a
+                name:
+                  type: string
+                  example: Dow Jones Report
+                unit_price:
+                  type: number
+                  example: 600
+            additional_entities:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 300
+            additional_individuals:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 300
+            additional_requests:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Dow Jones Report
+                  unit_price:
+                    type: number
+                    example: 150
+            additional_prices:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Additional Research
+                  unit_price:
+                    type: number
+                    example: 150
+            sub_total:
+              type: number
+              example: 600
+            currency_code:
+              type: string
+              enum:
+              - AUD
+              - BRL
+              - USD
+              - EUR
+              - GBP
+              - INR
+              - JPY
+              - CAD
+              - CNY
+              - CHF
+              - SGD
+              - ZAR
+            rush_charge:
+              type: number
+              example: 0
+            additional_total:
+              type: number
+              example: 0
+            total:
+              type: number
+              example: 600
+        total:
+          type: number
+          example: 600
+        is_rush:
+          type: boolean
+          example: false
+        billing_account_id:
+          type: string
+          example: 9PRO000200
+        additional_entities:
+          $ref: '#/components/schemas/report_request_additional_entities'
+        additional_individuals:
+          $ref: '#/components/schemas/report_request_additional_individuals'
+    bad_request_error_detail:
+      type: object
+      properties:
+        pointer:
+          description: a JSON Pointer [RFC6901] to the associated entity in the request document [e.g. "/data" for a primary data object, or "/data/attributes/title" for a specific attribute]
+          example: /data/attributes
+          type: string
       required:
-      - attributes
-    report_request_update_proposal_attributes:
-      type: object
-      properties:
-        proposal:
-          type: string
-          description: Additions or Changes in Entities, Jurisdictions or Subjects
-          default: update_report_request
-        id:
-          type: string
-          format: uuid
-          example: sdbgfxcs27477ad23fsas222d2223
-        params:
-          $ref: '#/components/schemas/report_request_params_update_rr'
-        status:
-          type: string
-          enum:
-          - pending
-          - approved
-          - rejected
-          default: pending
-        initiated_date:
-          type: string
-          format: date-time
-    report_request_price_proposal_attributes:
-      type: object
-      properties:
-        proposal:
-          type: string
-          description: Additions or Changes in the price
-          default: additional_price
-        id:
-          type: string
-          format: uuid
-          example: ffc5a42642274771be036b927eaaf6af
-        params:
-          $ref: '#/components/schemas/report_request_params_price'
-        status:
-          type: string
-          enum:
-          - pending
-          - approved
-          - rejected
-          default: pending
-        initiated_date:
-          type: string
-          format: date-time
-    report_request_create_request_individual:
-      type: object
-      properties:
-        data:
-          type: object
-          $ref: '#/components/schemas/report_request_create_data_item_individual'
-      required:
-      - data
+      - key
+    report_request_additional_individuals:
+      type: array
+      items:
+        $ref: '#/components/schemas/report_request_individual'
       additionalProperties: false
-    report_request_create_data_item_individual:
-      type: object
-      properties:
-        type:
-          type: string
-          example: reportrequests
-        attributes:
-          type: object
-          $ref: '#/components/schemas/report_request_create_attributes_individual'
-      required:
-      - attributes
-      additionalProperties: false
-    reportrequest_update_callback:
+    reportrequest_transition_callback:
       type: object
       properties:
         meta:
@@ -2778,7 +3748,7 @@ components:
           properties:
             event:
               type: string
-              example: reportrequest_update
+              example: reportrequest_transition
             subscription_id:
               type: string
               description: the id auto-generated or provided by client
@@ -2833,208 +3803,6 @@ components:
                   type: string
                   format: hostname
                   example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562
-    documents_response:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/document_dataitem'
-    bad_request_error:
-      type: object
-      properties:
-        id:
-          description: a unique identifier for this particular occurrence of the problem.
-          example: d5ee7ceb98a848a49420d7cce2601934
-          type: string
-        status:
-          description: the HTTP status code applicable to this problem, expressed as a string value.
-          example: '400'
-          type: string
-        code:
-          description: an application-specific error code, expressed as a string value.
-          example: '302'
-          type: string
-        source:
-          type: object
-          $ref: '#/components/schemas/bad_request_error_detail'
-        links:
-          type: object
-          $ref: '#/components/schemas/bad_request_links'
-        meta:
-          description: a meta object containing non-standard meta-information about the error
-          type: string
-        title:
-          description: a short, human-readable summary of the problem
-          example: 'Missing required property: name'
-          type: string
-        detail:
-          description: a human-readable explanation specific to this occurrence of the problem
-          example: '/data/attributes Missing required property: name'
-          type: string
-      required:
-      - title
-      - detail
-      - source
-    report_request_individual_national_id_number:
-      type: object
-      properties:
-        option:
-          type: string
-          example: Driving Licence No.
-          enum:
-          - Driving Licence No.
-          - EU Consolidated Electronic List ID
-          - EU Sanctions Programme Indicator
-          - Federal Bureau of Prisons Register Number
-          - HM Treasury Group ID
-          - National Criminal Identification Code (USA)
-          - National ID
-          - National Provider Identifier (NPI)
-          - National Tax No.
-          - OFAC Program ID
-          - OFAC Unique ID
-          - Others
-          - Passport No.
-          - Social Security No.
-          - UN Permanent Reference No.
-        value:
-          type: string
-          example: '15000'
-      required:
-      - option
-      - value
-      additionalProperties: false
-    subscribe_attributes:
-      type: object
-      properties:
-        id:
-          type: string
-          example: b5948eb9f7474aa8a0148b7be9b66e60
-        created_at:
-          type: string
-          format: date-time
-    report_request_data_item_entity:
-      type: object
-      properties:
-        type:
-          type: string
-          example: reportrequests
-        id:
-          type: string
-          example: d5ee7ceb98a848a49420d7cce2601934
-        attributes:
-          type: object
-          $ref: '#/components/schemas/report_request_subject_entity'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
-            proposals:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals
-            comments:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments
-            documents:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents
-      required:
-      - attributes
-    report_request_params_rush:
-      type: object
-      properties:
-        delivery_date:
-          type: string
-          format: date-time
-    user_data_item:
-      type: object
-      properties:
-        type:
-          type: string
-          example: users
-        id:
-          type: string
-          example: E6OO2HVCQHVPEDPYTIYWMTJFZE
-        attributes:
-          type: object
-          $ref: '#/components/schemas/user_data'
-    create_comment_response:
-      type: object
-      properties:
-        data:
-          type: object
-          $ref: '#/components/schemas/comment_dataitem'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments
-        included:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/user_data_item'
-    document_delete_callback:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            event:
-              type: string
-              example: document_delete
-            subscription_id:
-              type: string
-              description: the id auto-generated or provided by client
-              example: 423a791f44ed4a22bfafe0a28288c437
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: documents
-            id:
-              type: string
-              example: 0d131001d2034be89f85c0530d5424c9
-            attributes:
-              type: object
-              properties:
-                created_at:
-                  type: string
-                  format: date-time
-                  example: '2020-03-31T13:18:41.639Z'
-                updated_at:
-                  type: string
-                  format: date-time
-                  example: '2020-04-14T09:18:12.516'
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9
-    bad_request_error_response:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/bad_request_error'
-      required:
-      - errors
     report_request_params_update_rr:
       type: object
       properties:
@@ -3070,769 +3838,6 @@ components:
           type: array
           items:
             type: string
-    document_dataitem:
-      type: object
-      properties:
-        type:
-          type: string
-          example: documents
-        id:
-          type: string
-          example: 2009e814baef455fb7b062d0904d3a19
-        attributes:
-          type: object
-          $ref: '#/components/schemas/document'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents/4a68c4aaa8844043b8e2827b8d0f1948
-            reportRequest:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
-    report_request_params_price:
-      type: object
-      properties:
-        concept:
-          type: string
-          enum:
-          - Additional Research
-          - Record Retrieval
-          - Red Flag Checks
-          - Miscellaneous
-          - Deduction
-        unit_price:
-          type: number
-          example: 150
-    report_request_estimate_attributes:
-      type: object
-      properties:
-        name:
-          type: string
-          maxLength: 255
-          example: Dow Jones Report
-        report_type:
-          type: string
-        is_rush:
-          type: boolean
-        subject_type:
-          type: string
-          enum:
-          - entity
-          - individual
-        subject:
-          oneOf:
-          - type: object
-            properties:
-              first_name:
-                type: string
-                example: John
-              middle_name:
-                type: string
-                example: Allan
-              last_name:
-                type: string
-                example: Doe
-              jurisdictions:
-                $ref: '#/components/schemas/report_request_individual_jurisdictions'
-          - type: object
-            properties:
-              name:
-                type: string
-                example: Dow Jones
-              jurisdictions:
-                $ref: '#/components/schemas/report_request_entity_jurisdictions'
-        additional_entities:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                example: Dow Jones
-              jurisdictions:
-                $ref: '#/components/schemas/report_request_entity_jurisdictions'
-        additional_individuals:
-          type: array
-          items:
-            type: object
-            properties:
-              first_name:
-                type: string
-                example: John
-              middle_name:
-                type: string
-                example: Allan
-              last_name:
-                type: string
-                example: Doe
-              jurisdictions:
-                $ref: '#/components/schemas/report_request_individual_jurisdictions'
-    report_request_additional_entities:
-      type: array
-      items:
-        $ref: '#/components/schemas/report_request_entity'
-      additionalProperties: false
-    report_request_entity_identification_types:
-      type: array
-      items:
-        $ref: '#/components/schemas/report_request_entity_identification_type'
-      additionalProperties: false
-    report_request_estimate_data_item:
-      type: object
-      properties:
-        attributes:
-          type: object
-          $ref: '#/components/schemas/report_request_estimate_attributes'
-      required:
-      - attributes
-      additionalProperties: false
-    comment_create:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            attributes:
-              type: object
-              properties:
-                content:
-                  type: string
-                  example: Hello world!
-                is_urgent:
-                  type: boolean
-                  example: false
-              required:
-              - content
-              - is_urgent
-          required:
-          - attributes
-      required:
-      - data
-      additionalProperties: false
-    report_requests_response:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/report_request_data_item'
-        included:
-          type: array
-          items:
-            oneOf:
-            - type: object
-              $ref: '#/components/schemas/user_data_item'
-            - type: object
-              $ref: '#/components/schemas/subscription_data_item'
-            - type: array
-              $ref: '#/components/schemas/document_dataitem'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
-            proposals:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/proposals
-            comments:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/comments
-            documents:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934/documents
-    comment_delete_callback:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            event:
-              type: string
-              example: comment_delete
-            subscription_id:
-              type: string
-              description: the id auto-generated or provided by client
-              example: 423a791f44ed4a22bfafe0a28288c437
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: comments
-            id:
-              type: string
-              example: ae85ce3af5fd43938f67893c77978540
-            attributes:
-              type: object
-              properties:
-                parent_id:
-                  type: string
-                  example: 6ebab821443848428ab02a028ac0bb3e
-                is_urgent:
-                  type: boolean
-                created_at:
-                  type: string
-                  format: date-time
-                  example: '2020-03-31T13:18:41.639Z'
-                updated_at:
-                  type: string
-                  format: date-time
-                  example: '2020-04-14T09:18:12.516'
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/ae85ce3af5fd43938f67893c77978540
-    report_request_subject_entity:
-      type: object
-      properties:
-        proposals:
-          type: array
-          items:
-            anyOf:
-            - type: object
-              $ref: '#/components/schemas/report_request_rush_proposal_attributes'
-            - type: object
-              $ref: '#/components/schemas/report_request_price_proposal_attributes'
-            - type: object
-              $ref: '#/components/schemas/report_request_update_proposal_attributes'
-        name:
-          type: string
-          example: Dow Jones Report
-        workflow_state:
-          type: string
-          enum:
-          - draft
-          - submitted
-        report_type:
-          type: string
-          example: redflag
-        delivery_date:
-          type: string
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        user_id:
-          type: string
-          format: uuid
-        updated_at:
-          type: string
-          format: date-time
-        subject_type:
-          type: string
-          enum:
-          - entity
-          - individual
-        subject:
-          $ref: '#/components/schemas/report_request_entity'
-        order_detail:
-          type: object
-          properties:
-            base_report:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Dow Jones Report
-                unit_price:
-                  type: number
-                  example: 600
-            additional_entities:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 300
-            additional_individuals:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 300
-            additional_requests:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 150
-            additional_prices:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Additional Research
-                  unit_price:
-                    type: number
-                    example: 150
-            sub_total:
-              type: number
-              example: 600
-            rush_charge:
-              type: number
-              example: 0
-            additional_total:
-              type: number
-              example: 0
-            total:
-              type: number
-              example: 600
-            currency_code:
-              type: string
-              enum:
-              - AUD
-              - BRL
-              - USD
-              - EUR
-              - GBP
-              - INR
-              - JPY
-              - CAD
-              - CNY
-              - CHF
-              - SGD
-              - ZAR
-        total:
-          type: number
-          example: 600
-        is_rush:
-          type: boolean
-          example: false
-        billing_account_id:
-          type: string
-          example: 9PRO000200
-        additional_entities:
-          $ref: '#/components/schemas/report_request_additional_entities'
-        additional_individuals:
-          $ref: '#/components/schemas/report_request_additional_individuals'
-    report_request:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Dow Jones Report
-        workflow_state:
-          type: string
-          enum:
-          - draft
-          - submitted
-        report_type:
-          type: string
-        delivery_date:
-          type: string
-          format: date-time
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        subject_type:
-          type: string
-          enum:
-          - entity
-          - individual
-        subject:
-          oneOf:
-          - $ref: '#/components/schemas/report_request_individual'
-          - $ref: '#/components/schemas/report_request_entity'
-        order_detail:
-          type: object
-          properties:
-            base_report:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: Dow Jones Report
-                unit_price:
-                  type: number
-                  example: 600
-            additional_entities:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 300
-            additional_individuals:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 300
-            additional_requests:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Dow Jones Report
-                  unit_price:
-                    type: number
-                    example: 150
-            additional_prices:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    example: Additional Research
-                  unit_price:
-                    type: number
-                    example: 150
-            sub_total:
-              type: number
-              example: 600
-            rush_charge:
-              type: number
-              example: 0
-            additional_total:
-              type: number
-              example: 0
-            total:
-              type: number
-              example: 600
-        additional_entities:
-          $ref: '#/components/schemas/report_request_additional_entities'
-        additional_individuals:
-          $ref: '#/components/schemas/report_request_additional_individuals'
-    bad_request_error_detail:
-      type: object
-      properties:
-        pointer:
-          description: a JSON Pointer [RFC6901] to the associated entity in the request document [e.g. "/data" for a primary data object, or "/data/attributes/title" for a specific attribute]
-          example: /data/attributes
-          type: string
-      required:
-      - key
-    report_request_additional_individuals:
-      type: array
-      items:
-        $ref: '#/components/schemas/report_request_individual'
-      additionalProperties: false
-    report_request_individual_national_id_numbers:
-      type: array
-      items:
-        $ref: '#/components/schemas/report_request_individual_national_id_number'
-      additionalProperties: false
-    comment_new_callback:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            event:
-              type: string
-              example: comment_new
-            subscription_id:
-              type: string
-              description: the id auto-generated or provided by client
-              example: 423a791f44ed4a22bfafe0a28288c437
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: comments
-            id:
-              type: string
-              example: 6ebab821443848428ab02a028ac0bb3e
-            attributes:
-              type: object
-              properties:
-                parent_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-                is_urgent:
-                  type: boolean
-                created_at:
-                  type: string
-                  format: date-time
-                  example: '2020-03-31T13:18:41.639Z'
-                updated_at:
-                  type: string
-                  format: date-time
-                  example: '2020-04-14T09:18:12.516'
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/comments/6ebab821443848428ab02a028ac0bb3e
-    document_update_callback:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            event:
-              type: string
-              example: document_update
-            subscription_id:
-              type: string
-              description: the id auto-generated or provided by client
-              example: 423a791f44ed4a22bfafe0a28288c437
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: documents
-            id:
-              type: string
-              example: 0d131001d2034be89f85c0530d5424c9
-            attributes:
-              type: object
-              properties:
-                created_at:
-                  type: string
-                  format: date-time
-                  example: '2020-03-31T13:18:41.639Z'
-                updated_at:
-                  type: string
-                  format: date-time
-                  example: '2020-04-14T09:18:12.516'
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9
-    proposals_response:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            anyOf:
-            - type: object
-              $ref: '#/components/schemas/report_request_rush_proposal_attributes'
-            - type: object
-              $ref: '#/components/schemas/report_request_price_proposal_attributes'
-            - type: object
-              $ref: '#/components/schemas/report_request_update_proposal_attributes'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/88e6e35adcb346e2b10dc14447419bc9/proposals
-    document_new_callback:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            event:
-              type: string
-              example: document_new
-            subscription_id:
-              type: string
-              description: the id auto-generated or provided by client
-              example: 423a791f44ed4a22bfafe0a28288c437
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: documents
-            id:
-              type: string
-              example: 0d131001d2034be89f85c0530d5424c9
-            attributes:
-              type: object
-              properties:
-                created_at:
-                  type: string
-                  format: date-time
-                  example: '2020-03-31T13:18:41.639Z'
-                updated_at:
-                  type: string
-                  format: date-time
-                  example: '2020-04-14T09:18:12.516'
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/documents/0d131001d2034be89f85c0530d5424c9
-    billing_account:
-      type: object
-      properties:
-        currency_code:
-          type: string
-          enum:
-          - AUD
-          - BRL
-          - USD
-          - EUR
-          - GBP
-          - INR
-          - JPY
-          - CAD
-          - CNY
-          - CHF
-          - SGD
-          - ZAR
-        report_types:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                example: Red Flag
-              value:
-                type: string
-                example: redflag
-        owner:
-          type: object
-          properties:
-            company_name:
-              type: string
-              example: Hooli XYZ
-        created_at:
-          type: string
-          format: date-time
-          example: '2018-09-26T00:00:00.000Z'
-        updated_at:
-          type: string
-          format: date-time
-          example: '2018-09-26T00:00:00.000Z'
-    report_request_individual_jurisdictions:
-      type: array
-      items:
-        $ref: '#/components/schemas/report_request_individual_jurisdiction'
-      minItems: 1
-      additionalProperties: false
-    proposal_reject_callback:
-      type: object
-      properties:
-        meta:
-          type: object
-          properties:
-            event:
-              type: string
-              example: proposal_reject
-            subscription_id:
-              type: string
-              description: the id auto-generated or provided by client
-              example: 423a791f44ed4a22bfafe0a28288c437
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: proposals
-            id:
-              type: string
-              example: 423a791f44ed4a22bfafe0a28288c437
-            attributes:
-              type: object
-              properties:
-                report_request_id:
-                  type: string
-                  example: de7b2bbd20b546fb93f8dd990a8f1562
-                proposal:
-                  type: string
-                  enum:
-                  - rush
-                  - additional_price
-                  - update_report_request
-                status:
-                  type: string
-                  default: rejected
-            links:
-              type: object
-              properties:
-                self:
-                  type: string
-                  format: hostname
-                  example: https://api.dowjones.com/risk-reports/reportrequests/de7b2bbd20b546fb93f8dd990a8f1562/proposals/423a791f44ed4a22bfafe0a28288c437
-    subscribe_response:
-      type: object
-      properties:
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: hostname
-              example: https://api.dowjones.com/risk-reports/reportrequests/d5ee7ceb98a848a49420d7cce2601934
-        data:
-          type: object
-          $ref: '#/components/schemas/subscribe_data_item'
-    report_request_entity_jurisdictions:
-      type: array
-      items:
-        $ref: '#/components/schemas/report_request_jurisdiction'
-      minItems: 1
-      additionalProperties: false
-    report_request_create_request_entity:
-      type: object
-      properties:
-        data:
-          type: object
-          $ref: '#/components/schemas/report_request_create_data_item_entity'
-      required:
-      - data
-      additionalProperties: false
   securitySchemes:
     OrderTool:
       type: apiKey

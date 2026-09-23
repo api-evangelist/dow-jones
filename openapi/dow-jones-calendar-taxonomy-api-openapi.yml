@@ -12,7 +12,7 @@ paths:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Retrieves the list of available country codes.
+      summary: Retrieves the list of available country codes
       responses:
         '200':
           description: Successful response
@@ -52,11 +52,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsCountries
+      x-operation-id-source: derived
   /taxonomy/calendar-events/countries/{code}:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Searches for the data of an individual country by its ISO code.
+      summary: Searches for the data of an individual country by its ISO code
       parameters:
       - name: code
         in: path
@@ -103,11 +105,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsCountriesByCode
+      x-operation-id-source: derived
   /taxonomy/calendar-events/regions:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Retrieves the list of available region codes and the countries each clusters.
+      summary: Retrieves the list of available region codes and the countries each clusters
       responses:
         '200':
           description: Successful response
@@ -147,11 +151,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsRegions
+      x-operation-id-source: derived
   /taxonomy/calendar-events/regions/{code}:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Searches for the data of an individual region by its code.
+      summary: Searches for the data of an individual region by its code
       parameters:
       - name: code
         in: path
@@ -198,11 +204,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsRegionsByCode
+      x-operation-id-source: derived
   /taxonomy/calendar-events/languages:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Retrieves the list of available language codes.
+      summary: Retrieves the list of available language codes
       responses:
         '200':
           description: Successful response
@@ -242,11 +250,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsLanguages
+      x-operation-id-source: derived
   /taxonomy/calendar-events/languages/{code}:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Searches for the data of an individual language by its code.
+      summary: Searches for the data of an individual language by its code
       parameters:
       - name: code
         in: path
@@ -293,11 +303,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsLanguagesByCode
+      x-operation-id-source: derived
   /taxonomy/calendar-events/eventcodes:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Retrieves the list of available event type codes.
+      summary: Retrieves the list of available event type codes
       responses:
         '200':
           description: Successful response
@@ -337,11 +349,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsEventcodes
+      x-operation-id-source: derived
   /taxonomy/calendar-events/eventcodes/{code}:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Searches for the data of an individual event type by its code.
+      summary: Searches for the data of an individual event type by its code
       parameters:
       - name: code
         in: path
@@ -388,11 +402,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsEventcodesByCode
+      x-operation-id-source: derived
   /taxonomy/calendar-events/seriescodes:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Retrieves the list of available event series codes.
+      summary: Retrieves the list of available event series codes
       parameters:
       - name: filter[event_code]
         in: query
@@ -456,11 +472,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsSeriescodes
+      x-operation-id-source: derived
   /taxonomy/calendar-events/seriescodes/{code}:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Searches for the data of an individual event series by its code.
+      summary: Searches for the data of an individual event series by its code
       parameters:
       - name: code
         in: path
@@ -507,11 +525,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsSeriescodesByCode
+      x-operation-id-source: derived
   /taxonomy/calendar-events/eventclass:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Retrieves the list of available event class codes (subclassification of events).
+      summary: Retrieves the list of available event class codes (subclassification of events)
       responses:
         '200':
           description: Successful response
@@ -551,11 +571,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsEventclass
+      x-operation-id-source: derived
   /taxonomy/calendar-events/eventclass/{code}:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Searches for the data of an individual event class by its code.
+      summary: Searches for the data of an individual event class by its code
       parameters:
       - name: code
         in: path
@@ -602,11 +624,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsEventclassByCode
+      x-operation-id-source: derived
   /taxonomy/calendar-events/eventclass/eventcode/{eventcode}:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Searches for the list of event classes by event type code.
+      summary: Searches for the list of event classes by event type code
       parameters:
       - name: eventcode
         in: path
@@ -653,11 +677,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsEventclassEventcodeByEventcode
+      x-operation-id-source: derived
   /taxonomy/calendar-events/currency:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Retrieves the list of available currency codes.
+      summary: Retrieves the list of available currency codes
       responses:
         '200':
           description: Successful response
@@ -697,11 +723,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsCurrency
+      x-operation-id-source: derived
   /taxonomy/calendar-events/currency/{code}:
     get:
       tags:
       - Calendar Taxonomy
-      summary: Searches for the data of an individual currency by its code.
+      summary: Searches for the data of an individual currency by its code
       parameters:
       - name: code
         in: path
@@ -748,68 +776,10 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarEventsCurrencyByCode
+      x-operation-id-source: derived
 components:
   schemas:
-    eventFilterDataModel:
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/eventFilterDataFilterItemModel'
-    ecoinfo:
-      type: object
-      properties:
-        frequency:
-          type: string
-        meaning:
-          type: string
-        definition:
-          type: string
-    eventFilterCountryDataFilterItemModel:
-      required:
-      - description
-      type: object
-      properties:
-        dj_code:
-          type: string
-          description: only included in country item
-        iso_code:
-          type: string
-        titan_code:
-          type: string
-        description:
-          type: string
-          description: only included in country item
-    eventFilterModel:
-      type: object
-      properties:
-        meta:
-          required:
-          - count
-          type: object
-          properties:
-            count:
-              type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/eventFilterDataModel'
-        links:
-          required:
-          - self
-          type: object
-          properties:
-            self:
-              type: string
-        error:
-          $ref: '#/components/schemas/error'
     eventFilterRegionDataFilterItemModel:
       required:
       - description
@@ -825,19 +795,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
-    eventFilterCountryDataModel:
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
     eventFilterCountryModel:
       type: object
       properties:
@@ -883,17 +840,7 @@ components:
           description: ''
         ecoinfo:
           $ref: '#/components/schemas/ecoinfo'
-    error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        fields:
-          type: string
-    eventFilterRegionDataModel:
+    eventFilterDataModel:
       required:
       - attributes
       - id
@@ -905,7 +852,7 @@ components:
         id:
           type: string
         attributes:
-          $ref: '#/components/schemas/eventFilterRegionDataFilterItemModel'
+          $ref: '#/components/schemas/eventFilterDataFilterItemModel'
     eventFilterRegionModel:
       type: object
       properties:
@@ -920,6 +867,89 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/eventFilterRegionDataModel'
+        links:
+          required:
+          - self
+          type: object
+          properties:
+            self:
+              type: string
+        error:
+          $ref: '#/components/schemas/error'
+    ecoinfo:
+      type: object
+      properties:
+        frequency:
+          type: string
+        meaning:
+          type: string
+        definition:
+          type: string
+    eventFilterCountryDataModel:
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
+    eventFilterCountryDataFilterItemModel:
+      required:
+      - description
+      type: object
+      properties:
+        dj_code:
+          type: string
+          description: only included in country item
+        iso_code:
+          type: string
+        titan_code:
+          type: string
+        description:
+          type: string
+          description: only included in country item
+    eventFilterRegionDataModel:
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/eventFilterRegionDataFilterItemModel'
+    error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
+    eventFilterModel:
+      type: object
+      properties:
+        meta:
+          required:
+          - count
+          type: object
+          properties:
+            count:
+              type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/eventFilterDataModel'
         links:
           required:
           - self

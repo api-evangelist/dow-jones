@@ -1,11 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Dow Jones Content Search API
   version: 2.0.0
-  description: 'Operations tagged Content Search across 2 of this provider''s published API definitions: dow-jones-company-news-radar-api-openapi.json, dow-jones-newswires-real-time-api-openapi.json. Each path carries the servers of the definition it was published in.'
+  title: Search realtime Content resource Content Search API
+  description: You can use this API to perform a search of the realtime Search system, using a Rest Request that provides the same functionality as the PerformContentSearch of the Search SOAP service.
 servers:
 - url: https://api.dowjones.com/search-realtime
-- url: https://api.dowjones.com/
 tags:
 - name: Content Search
 paths:
@@ -15,7 +14,7 @@ paths:
     post:
       tags:
       - Content Search
-      summary: Performs a full search of the PIB search system.
+      summary: Performs a full search of the PIB search system
       requestBody:
         required: true
         content:
@@ -53,555 +52,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-    servers:
-    - url: https://api.dowjones.com/search-realtime
+      operationId: postContentRealtimeSearch
+      x-operation-id-source: derived
 components:
   schemas:
-    performContentSearchDateDaysRange:
-      type: object
-      properties:
-        days_range:
-          description: Date range
-          type: string
-          enum:
-          - LastDay
-          - LastWeek
-          - LastMonth
-          - Last3Months
-          - Last6Months
-          - LastYear
-          - Last2Years
-          - Last5Years
-          - AllDates
-      additionalProperties: false
-    linkItem:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/contentItem'
-      - properties:
-          type:
-            type: string
-            enum:
-            - Link
-          external:
-            type: boolean
-          icon:
-            type: string
-            enum:
-            - Audio
-            - Blog
-            - Document
-            - File
-            - Interactives
-            - None
-            - Pdf
-            - Self
-            - Slideshow
-            - Video
-            - Vote
-          link_type:
-            type: string
-            enum:
-            - Article
-            - Blog
-            - Email
-            - File
-            - Image
-            - Webpage
-          ref:
-            type: string
-          uri:
-            type: string
-    resourceMeta:
-      type: object
-      properties:
-        alternate_document_id:
-          type: string
-        alternate_document_ref:
-          type: string
-        bill_data:
-          type: string
-        clipping_date:
-          type: string
-          format: date
-        clipping_time:
-          type: string
-          format: date-time
-        code_sets:
-          type: array
-          items:
-            $ref: '#/components/schemas/codeSet'
-        document_vector:
-          type: string
-        edition:
-          type: object
-          properties:
-            name:
-              type: string
-            print:
-              $ref: '#/components/schemas/printEdition'
-        emphasis:
-          type: object
-          properties:
-            hot:
-              type: boolean
-            dominant:
-              type: boolean
-            analysis:
-              type: boolean
-        geo_relevance:
-          type: array
-          items:
-            type: object
-            properties:
-              latitude:
-                type: number
-              longitude:
-                type: number
-        is_translation_allowed:
-          type: boolean
-        keywords:
-          type: array
-          items:
-            type: string
-        language:
-          type: object
-          properties:
-            code:
-              type: string
-            descriptor:
-              type: string
-        metrics:
-          type: object
-          properties:
-            character_count:
-              type: integer
-            word_count:
-              type: integer
-            image_count:
-              type: integer
-            chart_count:
-              type: integer
-        original_doc_id:
-          type: string
-        rank:
-          type: integer
-        source:
-          type: object
-          properties:
-            code:
-              type: string
-            name:
-              type: string
-            logo:
-              $ref: '#/components/schemas/imageItem'
-        truncation_rules:
-          type: array
-          items:
-            type: object
-            properties:
-              rule:
-                type: string
-                enum:
-                - ExtraSmall
-                - Small
-                - Medium
-                - Large
-              length:
-                type: integer
-    blockquoteItem:
-      allOf:
-      - $ref: '#/components/schemas/contentItem'
-      - properties:
-          type:
-            type: string
-            enum:
-            - Blockquote
-    contentAttributes:
-      type: object
-      properties:
-        art:
-          $ref: '#/components/schemas/contentItem'
-        associations:
-          $ref: '#/components/schemas/associations'
-        authors:
-          type: array
-          items:
-            $ref: '#/components/schemas/author'
-        best_date:
-          type: string
-          format: date
-        best_time:
-          type: string
-          format: date-time
-        body:
-          type: array
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/paragraphItem'
-            - $ref: '#/components/schemas/tableItem'
-            - $ref: '#/components/schemas/headingItem'
-            - $ref: '#/components/schemas/imageItem'
-            - $ref: '#/components/schemas/datelineItem'
-            - $ref: '#/components/schemas/taglineItem'
-            - $ref: '#/components/schemas/insetItem'
-            - $ref: '#/components/schemas/listItem'
-            - $ref: '#/components/schemas/blockquoteItem'
-            - $ref: '#/components/schemas/binaryItem'
-        byline:
-          $ref: '#/components/schemas/contentItem'
-        column_name:
-          type: string
-        contact:
-          $ref: '#/components/schemas/contentItem'
-        content_collection:
-          type: string
-        content_status:
-          type: string
-        content_type:
-          $ref: '#/components/schemas/contentType'
-        copyright:
-          $ref: '#/components/schemas/contentItem'
-        corrections:
-          type: array
-          items:
-            $ref: '#/components/schemas/paragraphItem'
-        credit:
-          $ref: '#/components/schemas/contentItem'
-        content_resources:
-          type: array
-          description: Complex objects that are referenced inline in the content are referred to here
-          items:
-            description: ' removed untill fixed #/AssociatedResources'
-        dist_publish_date:
-          type: string
-          format: date
-        dist_publish_time:
-          type: string
-          format: date-time
-        headline:
-          $ref: '#/components/schemas/headline'
-        live_date:
-          type: string
-          format: date
-        live_time:
-          type: string
-          format: date-time
-        load_date:
-          type: string
-          format: date
-        load_time:
-          type: string
-          format: date-time
-        modification_date:
-          type: string
-          format: date
-        modification_time:
-          type: string
-          format: date-time
-        notes:
-          $ref: '#/components/schemas/contentItem'
-        page:
-          type: string
-        publication_date:
-          type: string
-          format: date
-        publication_time:
-          type: string
-          format: date-time
-        publisher:
-          type: object
-          properties:
-            code:
-              type: string
-            name:
-              type: string
-            group_code:
-              type: string
-            group_name:
-              type: string
-        section_name:
-          $ref: '#/components/schemas/contentItem'
-        seo_id:
-          type: string
-        snippet:
-          $ref: '#/components/schemas/contentItem'
-        summary:
-          type: object
-          properties:
-            body:
-              type: array
-              items:
-                anyOf:
-                - $ref: '#/components/schemas/paragraphItem'
-                - $ref: '#/components/schemas/headingItem'
-                - $ref: '#/components/schemas/imageItem'
-                - $ref: '#/components/schemas/datelineItem'
-                - $ref: '#/components/schemas/taglineItem'
-                - $ref: '#/components/schemas/insetItem'
-                - $ref: '#/components/schemas/listItem'
-                - $ref: '#/components/schemas/blockquoteItem'
-            byline:
-              $ref: '#/components/schemas/contentItem'
-            destination_type:
-              type: string
-            headline:
-              $ref: '#/components/schemas/headline'
-            pages:
-              type: array
-              items:
-                type: string
-            related_links:
-              type: array
-              items:
-                $ref: '#/components/schemas/linkItem'
-            variant:
-              type: string
-        upstream_origin:
-          type: string
-        upstream_origin_id:
-          type: string
-        volume:
-          type: string
-    relatedResources:
-      type: object
-      properties:
-        included_content:
-          type: object
-          properties:
-            data:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    $ref: '#/components/schemas/mediaTypes'
-                  id:
-                    type: string
-        duplicate_content:
-          type: object
-          properties:
-            data:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - content
-                  id:
-                    type: string
-    codeSet:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - Author
-          - Organization
-          - Industry
-          - NewsSubject
-          - People
-          - Region
-          - InformationProviderCodes
-          - InformationProviderDescriptors
-          - MarketSector
-          - Products
-          - Government
-        id:
-          type: string
-          enum:
-          - au
-          - co
-          - in
-          - ns
-          - pe
-          - re
-          - ipc
-          - ipd
-          - ms
-          - pr
-          - gv
-        codes:
-          type: array
-          items:
-            type: object
-            properties:
-              chartingsymbol:
-                type: string
-              code:
-                type: string
-              code_scheme:
-                type: string
-                enum:
-                - DJID
-                - Ticker
-                - DUNS
-                - ISIN
-                - DJN
-              descriptor:
-                type: string
-              symbol:
-                type: string
-              significance:
-                type: string
-                enum:
-                - About
-                - Significant
-                - Mention
-                - Lineage
-                - Relevance
-                - Association
-    mediaTypes:
-      type: string
-      enum:
-      - Audio
-      - Chart
-      - Combo
-      - Flash
-      - Hedcut
-      - Illustration
-      - Logo
-      - Photo
-      - Portrait
-      - Promobox
-      - Video
-    author:
-      type: object
-      properties:
-        full_name:
-          type: string
-        topic_id:
-          type: string
-    performContentSearchDateCustom:
-      type: object
-      properties:
-        custom:
-          type: object
-          properties:
-            from:
-              type: string
-              format: date
-              description: Custom from date
-              example: '2021-04-15'
-            to:
-              type: string
-              format: date
-              description: Custom to date
-              example: '2021-04-15'
-          required:
-          - from
-          - to
-      additionalProperties: false
-    includedResource:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/mediaTypes'
-        id:
-          type: string
-        attributes:
-          type: object
-          properties:
-            bytes:
-              type: integer
-            external:
-              type: boolean
-            height:
-              type: integer
-            id_ref:
-              type: string
-            is_responsive:
-              type: boolean
-            mime_type:
-              type: string
-            size_code:
-              type: string
-              description: 'size codes, along the lines of "FingerNail", "ThumbNail",
-
-                "A", "OR", etc'
-            slug:
-              type: string
-              description: ??????
-            sub_type:
-              type: string
-            width:
-              type: integer
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-    associations:
-      type: object
-      properties:
-        root_id:
-          type: string
-        parent_id:
-          type: string
-        parent_id_ref:
-          type: string
-    taglineItem:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/contentItem'
-      - properties:
-          type:
-            enum:
-            - Tagline
-    videoItem:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/mediaBaseItem'
-      - properties:
-          type:
-            type: string
-            enum:
-            - Video
-          api:
-            type: string
-    tableRow:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - TableRow
-        colspan:
-          type: integer
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/tableCell'
-    tableCell:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - TableCell
-        content:
-          $ref: '#/components/schemas/contentItems'
-    includedResources:
-      type: array
-      items:
-        $ref: '#/components/schemas/includedResource'
-    headingItem:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/contentItem'
-      - properties:
-          type:
-            type: string
-            default: Heading
-          sub_type:
-            enum:
-            - Small
-            - Sub
-          fragment_id:
-            type: string
-            description: 'TODO: needs to be changed'
     mediaBaseItem:
       type: object
       properties:
@@ -642,37 +96,42 @@ components:
           type: string
         width:
           type: integer
-    contentData:
+    tableCell:
       type: object
       properties:
         type:
           type: string
           enum:
-          - content
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/resourceLinks'
-        meta:
-          $ref: '#/components/schemas/resourceMeta'
-        attributes:
-          anyOf:
-          - $ref: '#/components/schemas/contentAttributes'
-          - $ref: '#/components/schemas/errors'
-        relationships:
-          $ref: '#/components/schemas/relatedResources'
-    textItem:
+          - TableCell
+        content:
+          $ref: '#/components/schemas/contentItems'
+    listItem:
       type: object
-      properties:
-        text:
-          type: string
-    contentItem:
-      anyOf:
-      - $ref: '#/components/schemas/textItem'
-      - type: object
-        properties:
-          content:
-            $ref: '#/components/schemas/contentItems'
+      allOf:
+      - $ref: '#/components/schemas/contentItem'
+      - properties:
+          type:
+            type: string
+            enum:
+            - List
+          ordered:
+            type: boolean
+    includedResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/includedResource'
+    contentType:
+      type: string
+      enum:
+      - Article
+      - Audio
+      - Board
+      - Blog
+      - HTML
+      - PDF
+      - Picture
+      - Video
+      - Webpage
     paragraphItem:
       type: object
       allOf:
@@ -692,6 +151,36 @@ components:
             enum:
             - LeadParagraph
             - TailParagraph
+    videoItem:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/mediaBaseItem'
+      - properties:
+          type:
+            type: string
+            enum:
+            - Video
+          api:
+            type: string
+    emphasisItem:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/contentItem'
+      - properties:
+          type:
+            type: string
+            enum:
+            - Emphasis
+          emphasis_type:
+            type: string
+            enum:
+            - Bold
+            - Highlight
+            - Italic
+            - Strikethrough
+            - Superscript
+            - Subscript
+            - Underline
     topLevelMeta:
       type: object
       properties:
@@ -713,47 +202,50 @@ components:
               enum:
               - Monthly
               - Yearly
-    mediaItem:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/mediaBaseItem'
-      - properties:
-          type:
-            type: string
-            enum:
-            - Media
     topLevelLinks:
       type: object
       properties:
         self:
           type: string
-    listItem:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/contentItem'
-      - properties:
-          type:
-            type: string
-            enum:
-            - List
-          ordered:
-            type: boolean
-    errors:
+    binaryItem:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/error'
-    breakItem:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/contentItem'
-      - properties:
-          type:
-            type: string
-            enum:
-            - Break
+        type:
+          type: string
+          enum:
+          - Binary
+        ref:
+          type: string
+        content_encoding:
+          type: string
+        media_type:
+          type: string
+          enum:
+          - PDF
+          - HTML
+        value:
+          type: string
+    contentItem:
+      anyOf:
+      - $ref: '#/components/schemas/textItem'
+      - type: object
+        properties:
+          content:
+            $ref: '#/components/schemas/contentItems'
+    mediaTypes:
+      type: string
+      enum:
+      - Audio
+      - Chart
+      - Combo
+      - Flash
+      - Hedcut
+      - Illustration
+      - Logo
+      - Photo
+      - Portrait
+      - Promobox
+      - Video
     resourceLinks:
       type: object
       properties:
@@ -766,6 +258,65 @@ components:
         video_uri:
           type: string
         webpage_uri:
+          type: string
+    insetItem:
+      type: object
+      properties:
+        inset_type:
+          type: string
+          enum:
+          - BooksExhibitionsReviews
+          - BigTopHero
+          - Comments
+          - DeckSummary
+          - DeckSummaryMobile
+          - Deloitte
+          - Dynamic
+          - ExperientialAd
+          - FacebookPost
+          - GoogleReview
+          - Iframe
+          - Instagramphoto
+          - Instagram
+          - MdChart
+          - NewsletterInset
+          - Outset
+          - Pagebreak
+          - PronewsLetter
+          - PullQuote
+          - RelatedByArticleType
+          - RelatedLinks
+          - Richtext
+          - Slideshow
+          - slideshowembed
+          - StockScreener
+          - Tweet
+          - VideoByGuid
+          - Videostream
+          - Youtube
+          description: 'TODO: need to add all available oprions'
+        properties:
+          type: object
+        content:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/blockquoteItem'
+            - $ref: '#/components/schemas/headingItem'
+            - $ref: '#/components/schemas/imageItem'
+            - $ref: '#/components/schemas/listItem'
+            - $ref: '#/components/schemas/mediaItem'
+            - $ref: '#/components/schemas/paragraphItem'
+            - $ref: '#/components/schemas/taglineItem'
+            - $ref: '#/components/schemas/videoItem'
+        ref:
+          type: string
+    errorMeta:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
           type: string
     performContentSearchRequest:
       type: object
@@ -1110,6 +661,171 @@ components:
           - attributes
       required:
       - data
+    blockquoteItem:
+      allOf:
+      - $ref: '#/components/schemas/contentItem'
+      - properties:
+          type:
+            type: string
+            enum:
+            - Blockquote
+    datelineItem:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/contentItem'
+      - properties:
+          type:
+            type: string
+            enum:
+            - Dateline
+          format:
+            type: string
+    imageItem:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/mediaBaseItem'
+      - properties:
+          type:
+            type: string
+            enum:
+            - Image
+    includedResource:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/mediaTypes'
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            bytes:
+              type: integer
+            external:
+              type: boolean
+            height:
+              type: integer
+            id_ref:
+              type: string
+            is_responsive:
+              type: boolean
+            mime_type:
+              type: string
+            size_code:
+              type: string
+              description: 'size codes, along the lines of "FingerNail", "ThumbNail",
+
+                "A", "OR", etc'
+            slug:
+              type: string
+              description: ??????
+            sub_type:
+              type: string
+            width:
+              type: integer
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+    breakItem:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/contentItem'
+      - properties:
+          type:
+            type: string
+            enum:
+            - Break
+    error:
+      required:
+      - code
+      - status
+      - title
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        title:
+          type: string
+          description: error class summary message
+        status:
+          type: string
+          description: HTTP status code
+        detail:
+          type: string
+          description: error detail about this instance of error
+        meta:
+          $ref: '#/components/schemas/errorMeta'
+    codeSet:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - Author
+          - Organization
+          - Industry
+          - NewsSubject
+          - People
+          - Region
+          - InformationProviderCodes
+          - InformationProviderDescriptors
+          - MarketSector
+          - Products
+          - Government
+        id:
+          type: string
+          enum:
+          - au
+          - co
+          - in
+          - ns
+          - pe
+          - re
+          - ipc
+          - ipd
+          - ms
+          - pr
+          - gv
+        codes:
+          type: array
+          items:
+            type: object
+            properties:
+              chartingsymbol:
+                type: string
+              code:
+                type: string
+              code_scheme:
+                type: string
+                enum:
+                - DJID
+                - Ticker
+                - DUNS
+                - ISIN
+                - DJN
+              descriptor:
+                type: string
+              symbol:
+                type: string
+              significance:
+                type: string
+                enum:
+                - About
+                - Significant
+                - Mention
+                - Lineage
+                - Relevance
+                - Association
+    author:
+      type: object
+      properties:
+        full_name:
+          type: string
+        topic_id:
+          type: string
     entityItem:
       type: object
       allOf:
@@ -1140,7 +856,7 @@ components:
             type: string
           ticker:
             type: string
-    imageItem:
+    mediaItem:
       type: object
       allOf:
       - $ref: '#/components/schemas/mediaBaseItem'
@@ -1148,122 +864,260 @@ components:
           type:
             type: string
             enum:
-            - Image
-    contentItems:
-      type: array
-      items:
-        anyOf:
-        - $ref: '#/components/schemas/textItem'
-        - $ref: '#/components/schemas/linkItem'
-        - $ref: '#/components/schemas/entityItem'
-        - $ref: '#/components/schemas/emphasisItem'
-        - $ref: '#/components/schemas/tableItem'
-        - $ref: '#/components/schemas/breakItem'
-        - $ref: '#/components/schemas/imageItem'
-    insetItem:
+            - Media
+    relatedResources:
       type: object
       properties:
-        inset_type:
+        included_content:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    $ref: '#/components/schemas/mediaTypes'
+                  id:
+                    type: string
+        duplicate_content:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - content
+                  id:
+                    type: string
+    tableItem:
+      type: object
+      properties:
+        type:
           type: string
           enum:
-          - BooksExhibitionsReviews
-          - BigTopHero
-          - Comments
-          - DeckSummary
-          - DeckSummaryMobile
-          - Deloitte
-          - Dynamic
-          - ExperientialAd
-          - FacebookPost
-          - GoogleReview
-          - Iframe
-          - Instagramphoto
-          - Instagram
-          - MdChart
-          - NewsletterInset
-          - Outset
-          - Pagebreak
-          - PronewsLetter
-          - PullQuote
-          - RelatedByArticleType
-          - RelatedLinks
-          - Richtext
-          - Slideshow
-          - slideshowembed
-          - StockScreener
-          - Tweet
-          - VideoByGuid
-          - Videostream
-          - Youtube
-          description: 'TODO: need to add all available oprions'
-        properties:
-          type: object
+          - Table
         content:
           type: array
           items:
-            anyOf:
-            - $ref: '#/components/schemas/blockquoteItem'
-            - $ref: '#/components/schemas/headingItem'
-            - $ref: '#/components/schemas/imageItem'
-            - $ref: '#/components/schemas/listItem'
-            - $ref: '#/components/schemas/mediaItem'
-            - $ref: '#/components/schemas/paragraphItem'
-            - $ref: '#/components/schemas/taglineItem'
-            - $ref: '#/components/schemas/videoItem'
-        ref:
+            $ref: '#/components/schemas/tableRow'
+    errors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/error'
+    tableRow:
+      type: object
+      properties:
+        type:
           type: string
-    contentType:
-      type: string
-      enum:
-      - Article
-      - Audio
-      - Board
-      - Blog
-      - HTML
-      - PDF
-      - Picture
-      - Video
-      - Webpage
-    datelineItem:
+          enum:
+          - TableRow
+        colspan:
+          type: integer
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/tableCell'
+    headingItem:
       type: object
       allOf:
       - $ref: '#/components/schemas/contentItem'
       - properties:
           type:
             type: string
+            default: Heading
+          sub_type:
             enum:
-            - Dateline
-          format:
+            - Small
+            - Sub
+          fragment_id:
             type: string
-    errorMeta:
+            description: 'TODO: needs to be changed'
+    associations:
       type: object
       properties:
-        id:
+        root_id:
           type: string
+        parent_id:
+          type: string
+        parent_id_ref:
+          type: string
+    textItem:
+      type: object
+      properties:
+        text:
+          type: string
+    contentData:
+      type: object
+      properties:
         type:
           type: string
-    headline:
+          enum:
+          - content
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/resourceLinks'
+        meta:
+          $ref: '#/components/schemas/resourceMeta'
+        attributes:
+          anyOf:
+          - $ref: '#/components/schemas/contentAttributes'
+          - $ref: '#/components/schemas/errors'
+        relationships:
+          $ref: '#/components/schemas/relatedResources'
+    contentAttributes:
       type: object
       properties:
-        flashline:
+        art:
           $ref: '#/components/schemas/contentItem'
-        main:
-          $ref: '#/components/schemas/contentItem'
-        deck:
-          $ref: '#/components/schemas/contentItem'
-    printEdition:
-      type: object
-      properties:
-        date:
+        associations:
+          $ref: '#/components/schemas/associations'
+        authors:
+          type: array
+          items:
+            $ref: '#/components/schemas/author'
+        best_date:
           type: string
           format: date
-        headline:
+        best_time:
           type: string
+          format: date-time
+        body:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/paragraphItem'
+            - $ref: '#/components/schemas/tableItem'
+            - $ref: '#/components/schemas/headingItem'
+            - $ref: '#/components/schemas/imageItem'
+            - $ref: '#/components/schemas/datelineItem'
+            - $ref: '#/components/schemas/taglineItem'
+            - $ref: '#/components/schemas/insetItem'
+            - $ref: '#/components/schemas/listItem'
+            - $ref: '#/components/schemas/blockquoteItem'
+            - $ref: '#/components/schemas/binaryItem'
+        byline:
+          $ref: '#/components/schemas/contentItem'
+        column_name:
+          type: string
+        contact:
+          $ref: '#/components/schemas/contentItem'
+        content_collection:
+          type: string
+        content_status:
+          type: string
+        content_type:
+          $ref: '#/components/schemas/contentType'
+        copyright:
+          $ref: '#/components/schemas/contentItem'
+        corrections:
+          type: array
+          items:
+            $ref: '#/components/schemas/paragraphItem'
+        credit:
+          $ref: '#/components/schemas/contentItem'
+        content_resources:
+          type: array
+          description: Complex objects that are referenced inline in the content are referred to here
+          items:
+            description: ' removed untill fixed #/AssociatedResources'
+        dist_publish_date:
+          type: string
+          format: date
+        dist_publish_time:
+          type: string
+          format: date-time
+        headline:
+          $ref: '#/components/schemas/headline'
+        live_date:
+          type: string
+          format: date
+        live_time:
+          type: string
+          format: date-time
+        load_date:
+          type: string
+          format: date
+        load_time:
+          type: string
+          format: date-time
+        modification_date:
+          type: string
+          format: date
+        modification_time:
+          type: string
+          format: date-time
+        notes:
+          $ref: '#/components/schemas/contentItem'
         page:
           type: string
-        section:
+        publication_date:
           type: string
-        value:
+          format: date
+        publication_time:
+          type: string
+          format: date-time
+        publisher:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+            group_code:
+              type: string
+            group_name:
+              type: string
+        section_name:
+          $ref: '#/components/schemas/contentItem'
+        seo_id:
+          type: string
+        snippet:
+          $ref: '#/components/schemas/contentItem'
+        summary:
+          type: object
+          properties:
+            body:
+              type: array
+              items:
+                anyOf:
+                - $ref: '#/components/schemas/paragraphItem'
+                - $ref: '#/components/schemas/headingItem'
+                - $ref: '#/components/schemas/imageItem'
+                - $ref: '#/components/schemas/datelineItem'
+                - $ref: '#/components/schemas/taglineItem'
+                - $ref: '#/components/schemas/insetItem'
+                - $ref: '#/components/schemas/listItem'
+                - $ref: '#/components/schemas/blockquoteItem'
+            byline:
+              $ref: '#/components/schemas/contentItem'
+            destination_type:
+              type: string
+            headline:
+              $ref: '#/components/schemas/headline'
+            pages:
+              type: array
+              items:
+                type: string
+            related_links:
+              type: array
+              items:
+                $ref: '#/components/schemas/linkItem'
+            variant:
+              type: string
+        upstream_origin:
+          type: string
+        upstream_origin_id:
+          type: string
+        volume:
           type: string
     articlesResponse:
       type: object
@@ -1279,7 +1133,124 @@ components:
             $ref: '#/components/schemas/contentData'
         included:
           $ref: '#/components/schemas/includedResources'
-    emphasisItem:
+    contentItems:
+      type: array
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/textItem'
+        - $ref: '#/components/schemas/linkItem'
+        - $ref: '#/components/schemas/entityItem'
+        - $ref: '#/components/schemas/emphasisItem'
+        - $ref: '#/components/schemas/tableItem'
+        - $ref: '#/components/schemas/breakItem'
+        - $ref: '#/components/schemas/imageItem'
+    headline:
+      type: object
+      properties:
+        flashline:
+          $ref: '#/components/schemas/contentItem'
+        main:
+          $ref: '#/components/schemas/contentItem'
+        deck:
+          $ref: '#/components/schemas/contentItem'
+    resourceMeta:
+      type: object
+      properties:
+        alternate_document_id:
+          type: string
+        alternate_document_ref:
+          type: string
+        bill_data:
+          type: string
+        clipping_date:
+          type: string
+          format: date
+        clipping_time:
+          type: string
+          format: date-time
+        code_sets:
+          type: array
+          items:
+            $ref: '#/components/schemas/codeSet'
+        document_vector:
+          type: string
+        edition:
+          type: object
+          properties:
+            name:
+              type: string
+            print:
+              $ref: '#/components/schemas/printEdition'
+        emphasis:
+          type: object
+          properties:
+            hot:
+              type: boolean
+            dominant:
+              type: boolean
+            analysis:
+              type: boolean
+        geo_relevance:
+          type: array
+          items:
+            type: object
+            properties:
+              latitude:
+                type: number
+              longitude:
+                type: number
+        is_translation_allowed:
+          type: boolean
+        keywords:
+          type: array
+          items:
+            type: string
+        language:
+          type: object
+          properties:
+            code:
+              type: string
+            descriptor:
+              type: string
+        metrics:
+          type: object
+          properties:
+            character_count:
+              type: integer
+            word_count:
+              type: integer
+            image_count:
+              type: integer
+            chart_count:
+              type: integer
+        original_doc_id:
+          type: string
+        rank:
+          type: integer
+        source:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+            logo:
+              $ref: '#/components/schemas/imageItem'
+        truncation_rules:
+          type: array
+          items:
+            type: object
+            properties:
+              rule:
+                type: string
+                enum:
+                - ExtraSmall
+                - Small
+                - Medium
+                - Large
+              length:
+                type: integer
+    linkItem:
       type: object
       allOf:
       - $ref: '#/components/schemas/contentItem'
@@ -1287,95 +1258,97 @@ components:
           type:
             type: string
             enum:
-            - Emphasis
-          emphasis_type:
+            - Link
+          external:
+            type: boolean
+          icon:
             type: string
             enum:
-            - Bold
-            - Highlight
-            - Italic
-            - Strikethrough
-            - Superscript
-            - Subscript
-            - Underline
-    error:
-      required:
-      - code
-      - status
-      - title
+            - Audio
+            - Blog
+            - Document
+            - File
+            - Interactives
+            - None
+            - Pdf
+            - Self
+            - Slideshow
+            - Video
+            - Vote
+          link_type:
+            type: string
+            enum:
+            - Article
+            - Blog
+            - Email
+            - File
+            - Image
+            - Webpage
+          ref:
+            type: string
+          uri:
+            type: string
+    taglineItem:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/contentItem'
+      - properties:
+          type:
+            enum:
+            - Tagline
+    performContentSearchDateDaysRange:
       type: object
       properties:
-        code:
+        days_range:
+          description: Date range
           type: string
-          description: Error code
-        title:
-          type: string
-          description: error class summary message
-        status:
-          type: string
-          description: HTTP status code
-        detail:
-          type: string
-          description: error detail about this instance of error
-        meta:
-          $ref: '#/components/schemas/errorMeta'
-    tableItem:
+          enum:
+          - LastDay
+          - LastWeek
+          - LastMonth
+          - Last3Months
+          - Last6Months
+          - LastYear
+          - Last2Years
+          - Last5Years
+          - AllDates
+      additionalProperties: false
+    performContentSearchDateCustom:
       type: object
       properties:
-        type:
-          type: string
-          enum:
-          - Table
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/tableRow'
-    binaryItem:
+        custom:
+          type: object
+          properties:
+            from:
+              type: string
+              format: date
+              description: Custom from date
+              example: '2021-04-15'
+            to:
+              type: string
+              format: date
+              description: Custom to date
+              example: '2021-04-15'
+          required:
+          - from
+          - to
+      additionalProperties: false
+    printEdition:
       type: object
       properties:
-        type:
+        date:
           type: string
-          enum:
-          - Binary
-        ref:
+          format: date
+        headline:
           type: string
-        content_encoding:
+        page:
           type: string
-        media_type:
+        section:
           type: string
-          enum:
-          - PDF
-          - HTML
         value:
           type: string
-    mediaBaseItem_2:
-      type: object
-      properties:
-        alternate_text:
-          type: string
-        caption:
-          $ref: '#/components/schemas/contentItem'
-        credit:
-          type: string
-        height:
-          type: integer
-        media_type:
-          $ref: '#/components/schemas/mediaTypes'
-        name:
-          type: string
-        properties:
-          type: object
-        slug:
-          type: string
-        uri:
-          type: string
-        width:
-          type: integer
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-x-refined-from:
-- dow-jones-company-news-radar-api-openapi.json
-- dow-jones-newswires-real-time-api-openapi.json

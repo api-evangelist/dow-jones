@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Dow Jones Risk and Compliance Profile Version History Revisions API
+  title: Dow Jones Risk and Compliance Profile Version History…
   description: API Interface for Version History
   version: 1.1.1
 servers:
@@ -61,32 +61,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/JsonError'
 components:
-  parameters:
-    PageLimit:
-      name: page[limit]
-      in: query
-      description: Limit of resources per page
-      schema:
-        type: integer
-    PageOffset:
-      name: page[offset]
-      in: query
-      description: Page offset
-      schema:
-        type: integer
-    profile-id:
-      name: profile-id
-      required: true
-      in: path
-      description: Unique profile id that identifies a profile
-      schema:
-        type: string
-    RevisionFilter:
-      name: filter[revision_date]
-      in: query
-      description: Filters by the revision date
-      schema:
-        type: string
   schemas:
     NewValueItem:
       type: object
@@ -97,6 +71,17 @@ components:
         display_name:
           type: string
           example: Language
+    PaginationOffset:
+      type: object
+      properties:
+        first:
+          type: integer
+        last:
+          type: integer
+        next:
+          type: integer
+        prev:
+          type: integer
     ProfileRevisionsResponse:
       type: object
       properties:
@@ -175,24 +160,6 @@ components:
         type:
           type: string
           example: revisions
-    PaginationOffset:
-      type: object
-      properties:
-        first:
-          type: integer
-        last:
-          type: integer
-        next:
-          type: integer
-        prev:
-          type: integer
-    JsonError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
     PaginationLinks:
       type: object
       properties:
@@ -204,6 +171,39 @@ components:
           type: string
         prev:
           type: string
+    JsonError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+  parameters:
+    profile-id:
+      name: profile-id
+      required: true
+      in: path
+      description: Unique profile id that identifies a profile
+      schema:
+        type: string
+    PageLimit:
+      name: page[limit]
+      in: query
+      description: Limit of resources per page
+      schema:
+        type: integer
+    RevisionFilter:
+      name: filter[revision_date]
+      in: query
+      description: Filters by the revision date
+      schema:
+        type: string
+    PageOffset:
+      name: page[offset]
+      in: query
+      description: Page offset
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       type: http

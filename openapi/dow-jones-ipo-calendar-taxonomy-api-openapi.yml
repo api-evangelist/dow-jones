@@ -12,7 +12,7 @@ paths:
     get:
       tags:
       - IPO Calendar Taxonomy
-      summary: Retrieves the list of available country codes.
+      summary: Retrieves the list of available country codes
       responses:
         '200':
           description: Successful response
@@ -52,11 +52,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarIpoEventsCountries
+      x-operation-id-source: derived
   /taxonomy/calendar-ipo-events/countries/{code}:
     get:
       tags:
       - IPO Calendar Taxonomy
-      summary: Searches for the data of an individual country by its ISO code.
+      summary: Searches for the data of an individual country by its ISO code
       parameters:
       - name: code
         in: path
@@ -103,11 +105,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarIpoEventsCountriesByCode
+      x-operation-id-source: derived
   /taxonomy/calendar-ipo-events/exchanges:
     get:
       tags:
       - IPO Calendar Taxonomy
-      summary: Retrieves the list of available exchanges.
+      summary: Retrieves the list of available exchanges
       responses:
         '200':
           description: Successful response
@@ -147,11 +151,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarIpoEventsExchanges
+      x-operation-id-source: derived
   /taxonomy/calendar-ipo-events/exchanges/{code}:
     get:
       tags:
       - IPO Calendar Taxonomy
-      summary: Searches for the data of an exchange by its ISO code (MIC).
+      summary: Searches for the data of an exchange by its ISO code (MIC)
       parameters:
       - name: code
         in: path
@@ -198,8 +204,46 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getTaxonomyCalendarIpoEventsExchangesByCode
+      x-operation-id-source: derived
 components:
   schemas:
+    eventFilterCountryModel:
+      type: object
+      properties:
+        meta:
+          required:
+          - count
+          type: object
+          properties:
+            count:
+              type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/eventFilterCountryDataModel'
+        links:
+          required:
+          - self
+          type: object
+          properties:
+            self:
+              type: string
+        error:
+          $ref: '#/components/schemas/error'
+    eventFilterCountryDataModel:
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
     eventFilterCountryDataFilterItemModel:
       required:
       - description
@@ -215,19 +259,6 @@ components:
         description:
           type: string
           description: only included in country item
-    eventFilterCountryDataModel:
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
     eventFilterExchangeDataFilterItemModel:
       type: object
       properties:
@@ -239,7 +270,7 @@ components:
           type: string
         country_description:
           type: string
-    eventFilterCountryModel:
+    eventFilterExchangeModel:
       type: object
       properties:
         meta:
@@ -252,7 +283,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/eventFilterCountryDataModel'
+            $ref: '#/components/schemas/eventFilterExchangeDataModel'
         links:
           required:
           - self
@@ -282,29 +313,6 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/eventFilterExchangeDataFilterItemModel'
-    eventFilterExchangeModel:
-      type: object
-      properties:
-        meta:
-          required:
-          - count
-          type: object
-          properties:
-            count:
-              type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/eventFilterExchangeDataModel'
-        links:
-          required:
-          - self
-          type: object
-          properties:
-            self:
-              type: string
-        error:
-          $ref: '#/components/schemas/error'
   securitySchemes:
     bearerAuth:
       type: http

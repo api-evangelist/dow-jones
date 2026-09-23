@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - File
-      summary: Downloads a file.
+      summary: Downloads a file
       parameters:
       - name: fileId
         in: path
@@ -37,11 +37,13 @@ paths:
           description: Unauthorized
       security:
       - oauth2: []
+      operationId: getFilesByFileId
+      x-operation-id-source: derived
   /files:
     post:
       tags:
       - File
-      summary: Uploads a file.
+      summary: Uploads a file
       requestBody:
         content:
           multipart/form-data:
@@ -73,35 +75,10 @@ paths:
           description: Unauthorized
       security:
       - oauth2: []
+      operationId: postFiles
+      x-operation-id-source: derived
 components:
   schemas:
-    FileItem:
-      type: object
-      properties:
-        file_id:
-          type:
-          - string
-          - 'null'
-          description: ''
-        file_name:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
     ErrorModelV2:
       type: object
       properties:
@@ -125,13 +102,6 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error model
-    ResponseFile:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataFile'
-      additionalProperties: false
-      description: ''
     ResponseDataFile:
       type: object
       properties:
@@ -143,6 +113,40 @@ components:
         type:
           type: string
           description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    FileItem:
+      type: object
+      properties:
+        file_id:
+          type:
+          - string
+          - 'null'
+          description: ''
+        file_name:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseFile:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataFile'
       additionalProperties: false
       description: ''
   securitySchemes:

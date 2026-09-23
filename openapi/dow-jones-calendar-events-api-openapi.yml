@@ -12,7 +12,7 @@ paths:
     get:
       tags:
       - Calendar Events
-      summary: Searches for a single event by its unique identifier.
+      summary: Searches for a single event by its unique identifier
       parameters:
       - name: id
         in: path
@@ -72,11 +72,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getCalendarEventsById
+      x-operation-id-source: derived
   /calendar-events/search:
     get:
       tags:
       - Calendar Events
-      summary: Searches for specific events based on the given filter.
+      summary: Searches for specific events based on the given filter
       parameters:
       - name: filter[has_key_events_only]
         in: query
@@ -285,10 +287,12 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getCalendarEventsSearch
+      x-operation-id-source: derived
     post:
       tags:
       - Calendar Events
-      summary: Searches for specific events based on the given filters.
+      summary: Searches for specific events based on the given filters
       requestBody:
         description: Criteria
         content:
@@ -336,11 +340,13 @@ paths:
       security:
       - bearerAuth: []
       x-codegen-request-body-name: Criteria
+      operationId: postCalendarEventsSearch
+      x-operation-id-source: derived
   /calendar-events/:
     get:
       tags:
       - Calendar Events
-      summary: Searches for requested events with options for updated events.
+      summary: Searches for requested events with options for updated events
       parameters:
       - name: filter[id]
         in: query
@@ -415,136 +421,8 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
-    post:
-      tags:
-      - Calendar Events
-      summary: Searches for requested events with options for updated events.
-      requestBody:
-        description: Criteria
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/eventsPostParams'
-        required: false
-      responses:
-        '200':
-          description: Successful Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/eventsModel'
-        '400':
-          description: 'Bad Request: Incorrect Parameters.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '401':
-          description: Unauthorized Access.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '404':
-          description: 'Not Found: No resource found for the request.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '500':
-          description: 'Internal Server Error: Server encountered an unexpected condition.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '503':
-          description: 'Service Unavailable: Server is currently unable to handle the request.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-      security:
-      - bearerAuth: []
-      x-codegen-request-body-name: Criteria
-  /calendar-events:
-    get:
-      tags:
-      - Calendar Events
-      summary: Searches for requested events with options for updated events.
-      parameters:
-      - name: filter[id]
-        in: query
-        description: ORed list of event IDs. Separate each event ID with a comma when providing multiple events.
-        required: true
-        style: form
-        explode: false
-        schema:
-          type: array
-          items:
-            type: integer
-      - name: filter[last_updated_time]
-        in: query
-        description: Search only for events that have been updated since this date and time, (yyyy-MM-dd'T'HH:mm:ss'Z').
-        schema:
-          type: string
-          format: date-time
-      - name: filter[has_updates]
-        in: query
-        description: Search only for events that have been updated.
-        schema:
-          type: boolean
-      - name: filter[event_language]
-        in: query
-        description: Translate descriptions to this language if translation is available; otherwise, show English version.
-        schema:
-          type: string
-      - name: options[show_ecoinfo]
-        in: query
-        description: Include ecoinfo as part of the events results.
-        schema:
-          type: boolean
-          enum:
-          - true
-          - false
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/eventsModel'
-        '400':
-          description: 'Bad Request: Incorrect Parameters.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '401':
-          description: Unauthorized Access.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '404':
-          description: 'Not Found: No resource found for the request.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '500':
-          description: 'Internal Server Error: Server encountered an unexpected condition.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '503':
-          description: 'Service Unavailable: Server is currently unable to handle the request.'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-      security:
-      - bearerAuth: []
+      operationId: getCalendarEvents
+      x-operation-id-source: derived
     post:
       tags:
       - Calendar Events
@@ -596,56 +474,172 @@ paths:
       security:
       - bearerAuth: []
       x-codegen-request-body-name: Criteria
+      operationId: postCalendarEvents
+      x-operation-id-source: derived
+  /calendar-events:
+    get:
+      tags:
+      - Calendar Events
+      summary: Searches for requested events with options for updated events
+      parameters:
+      - name: filter[id]
+        in: query
+        description: ORed list of event IDs. Separate each event ID with a comma when providing multiple events.
+        required: true
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: filter[last_updated_time]
+        in: query
+        description: Search only for events that have been updated since this date and time, (yyyy-MM-dd'T'HH:mm:ss'Z').
+        schema:
+          type: string
+          format: date-time
+      - name: filter[has_updates]
+        in: query
+        description: Search only for events that have been updated.
+        schema:
+          type: boolean
+      - name: filter[event_language]
+        in: query
+        description: Translate descriptions to this language if translation is available; otherwise, show English version.
+        schema:
+          type: string
+      - name: options[show_ecoinfo]
+        in: query
+        description: Include ecoinfo as part of the events results.
+        schema:
+          type: boolean
+          enum:
+          - true
+          - false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventsModel'
+        '400':
+          description: 'Bad Request: Incorrect Parameters.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Unauthorized Access.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: 'Not Found: No resource found for the request.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: 'Internal Server Error: Server encountered an unexpected condition.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '503':
+          description: 'Service Unavailable: Server is currently unable to handle the request.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+      - bearerAuth: []
+      operationId: getCalendarEvents
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Calendar Events
+      summary: Searches for requested events with options for updated events
+      requestBody:
+        description: Criteria
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/eventsPostParams'
+        required: false
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventsModel'
+        '400':
+          description: 'Bad Request: Incorrect Parameters.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '401':
+          description: Unauthorized Access.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: 'Not Found: No resource found for the request.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: 'Internal Server Error: Server encountered an unexpected condition.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '503':
+          description: 'Service Unavailable: Server is currently unable to handle the request.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+      - bearerAuth: []
+      x-codegen-request-body-name: Criteria
+      operationId: postCalendarEvents
+      x-operation-id-source: derived
 components:
   schemas:
-    eventDetailModel:
+    options:
       type: object
       properties:
-        id:
-          type: string
-          description: Index count of the report.
-        description:
-          type: string
-          description: Describes the individual data element reported.
-        dj_combo_detail:
-          type: string
-          description: Optional. Concise combination of the name of an economic indicator event and a data element name. This combination is useful for single-line calendar display rather than nested elements below their event name.
-        importance:
-          type: string
-          description: 'Optional. Applied to Economic events by the Dow Jones news team. It represents their assessment of the marketplace importance of the specified data element. Valid values: High (H), Medium (M), and Low (L).'
-        expected:
-          $ref: '#/components/schemas/detailDataValueModel'
-        previous:
-          $ref: '#/components/schemas/detailDataValueModel'
-        actual:
-          $ref: '#/components/schemas/detailDataValueModel'
-        prior_revised:
-          $ref: '#/components/schemas/detailDataValueModel'
-        delta:
-          $ref: '#/components/schemas/detailDataValueModel'
-    postParams:
+        show_ecoinfo:
+          type: boolean
+          description: Include ecoinfo data as part of event results.
+          example: false
+    eventsModel:
       type: object
       properties:
         data:
+          $ref: '#/components/schemas/eventDataModel'
+        meta:
           type: object
           properties:
-            id:
-              type: string
-              description: Servive name
-              example: CalendarEvents
-            type:
-              type: string
-              description: Call name
-              example: Search
-            attributes:
+            count:
+              type: integer
+            total_count:
+              type: integer
+            offset:
               type: object
               properties:
-                filter:
-                  $ref: '#/components/schemas/searchCriteria'
-                options:
-                  $ref: '#/components/schemas/options'
-                page:
-                  $ref: '#/components/schemas/pagingCriteria'
+                prev:
+                  type: integer
+                next:
+                  type: integer
+            attribution:
+              type: string
     eventDataModel:
       type: object
       properties:
@@ -795,15 +789,54 @@ components:
           properties:
             self:
               type: string
-    ecoinfo:
+    eventsPostParams:
       type: object
       properties:
-        frequency:
-          type: string
-        meaning:
-          type: string
-        definition:
-          type: string
+        data:
+          required:
+          - attributes
+          - id
+          - type
+          type: object
+          properties:
+            id:
+              type: string
+              description: Servive name
+              example: CalendarEvents
+            type:
+              type: string
+              description: Call name
+              example: Events
+            attributes:
+              required:
+              - event_id
+              type: object
+              properties:
+                event_id:
+                  type: array
+                  description: Number that uniquely identifies an event.
+                  items:
+                    type: string
+                has_updates:
+                  type: boolean
+                  description: Search only for events that have been updated.
+                last_updated_time:
+                  type: string
+                  description: Search only for events that have been updated since this date and time, (yyyy-mm-dd'T'hh:mm:ss'Z').
+                  format: date-time
+                  example: '2018-01-01T00:00:00.000Z'
+                event_language:
+                  type: string
+                  description: Translate descriptions to this language if translation is available; otherwise, show English version.
+                  enum:
+                  - ''
+                  - zh
+                  - ar
+                  - it
+                  - de
+                  - jp
+            options:
+              $ref: '#/components/schemas/options'
     detailDataValueModel:
       type: object
       properties:
@@ -828,6 +861,15 @@ components:
         source:
           type: string
           description: 'Optional. Source of information. Valid values: Factset, Kantar, and Null (stands for Dow Jones).'
+    ecoinfo:
+      type: object
+      properties:
+        frequency:
+          type: string
+        meaning:
+          type: string
+        definition:
+          type: string
     searchCriteria:
       type: object
       properties:
@@ -925,34 +967,54 @@ components:
           - it
           - de
           - jp
-    options:
-      type: object
-      properties:
-        show_ecoinfo:
-          type: boolean
-          description: Include ecoinfo data as part of event results.
-          example: false
-    eventsModel:
+    postParams:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/eventDataModel'
-        meta:
           type: object
           properties:
-            count:
-              type: integer
-            total_count:
-              type: integer
-            offset:
+            id:
+              type: string
+              description: Servive name
+              example: CalendarEvents
+            type:
+              type: string
+              description: Call name
+              example: Search
+            attributes:
               type: object
               properties:
-                prev:
-                  type: integer
-                next:
-                  type: integer
-            attribution:
-              type: string
+                filter:
+                  $ref: '#/components/schemas/searchCriteria'
+                options:
+                  $ref: '#/components/schemas/options'
+                page:
+                  $ref: '#/components/schemas/pagingCriteria'
+    eventDetailModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Index count of the report.
+        description:
+          type: string
+          description: Describes the individual data element reported.
+        dj_combo_detail:
+          type: string
+          description: Optional. Concise combination of the name of an economic indicator event and a data element name. This combination is useful for single-line calendar display rather than nested elements below their event name.
+        importance:
+          type: string
+          description: 'Optional. Applied to Economic events by the Dow Jones news team. It represents their assessment of the marketplace importance of the specified data element. Valid values: High (H), Medium (M), and Low (L).'
+        expected:
+          $ref: '#/components/schemas/detailDataValueModel'
+        previous:
+          $ref: '#/components/schemas/detailDataValueModel'
+        actual:
+          $ref: '#/components/schemas/detailDataValueModel'
+        prior_revised:
+          $ref: '#/components/schemas/detailDataValueModel'
+        delta:
+          $ref: '#/components/schemas/detailDataValueModel'
     error:
       type: object
       properties:
@@ -963,54 +1025,6 @@ components:
           type: string
         fields:
           type: string
-    eventsPostParams:
-      type: object
-      properties:
-        data:
-          required:
-          - attributes
-          - id
-          - type
-          type: object
-          properties:
-            id:
-              type: string
-              description: Servive name
-              example: CalendarEvents
-            type:
-              type: string
-              description: Call name
-              example: Events
-            attributes:
-              required:
-              - event_id
-              type: object
-              properties:
-                event_id:
-                  type: array
-                  description: Number that uniquely identifies an event.
-                  items:
-                    type: string
-                has_updates:
-                  type: boolean
-                  description: Search only for events that have been updated.
-                last_updated_time:
-                  type: string
-                  description: Search only for events that have been updated since this date and time, (yyyy-mm-dd'T'hh:mm:ss'Z').
-                  format: date-time
-                  example: '2018-01-01T00:00:00.000Z'
-                event_language:
-                  type: string
-                  description: Translate descriptions to this language if translation is available; otherwise, show English version.
-                  enum:
-                  - ''
-                  - zh
-                  - ar
-                  - it
-                  - de
-                  - jp
-            options:
-              $ref: '#/components/schemas/options'
     pagingCriteria:
       type: object
       properties:

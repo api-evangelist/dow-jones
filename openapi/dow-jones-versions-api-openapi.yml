@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Dow Jones Risk and Compliance Profile Version History Versions API
+  title: Dow Jones Risk and Compliance Profile Version History…
   description: API Interface for Version History
   version: 1.1.1
 servers:
@@ -59,6 +59,19 @@ paths:
                 $ref: '#/components/schemas/JsonError'
 components:
   schemas:
+    ErrorObject:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
     ProfileVersionsResponse:
       type: object
       properties:
@@ -66,6 +79,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VersionObject'
+    JsonError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
     VersionObject:
       type: object
       properties:
@@ -84,26 +104,6 @@ components:
         type:
           type: string
           example: versions
-    ErrorObject:
-      type: object
-      properties:
-        code:
-          type: string
-        title:
-          type: string
-        status:
-          type: string
-        detail:
-          type: string
-        meta:
-          type: string
-    JsonError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
   parameters:
     profile-id:
       name: profile-id

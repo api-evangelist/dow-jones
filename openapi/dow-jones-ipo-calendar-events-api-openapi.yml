@@ -12,7 +12,7 @@ paths:
     get:
       tags:
       - IPO Calendar Events
-      summary: Searches for IPO events given a comma-separated list of unique identifiers.
+      summary: Searches for IPO events given a comma-separated list of unique identifiers
       parameters:
       - name: ids
         in: path
@@ -59,11 +59,13 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getCalendarIpoEventsByIds
+      x-operation-id-source: derived
   /calendar-ipo-events/search:
     get:
       tags:
       - IPO Calendar Events
-      summary: Searches for specific IPO events based on the given filter.
+      summary: Searches for specific IPO events based on the given filter
       parameters:
       - name: filter[date_type]
         in: query
@@ -171,10 +173,12 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
       - bearerAuth: []
+      operationId: getCalendarIpoEventsSearch
+      x-operation-id-source: derived
     post:
       tags:
       - IPO Calendar Events
-      summary: Searches for specific IPO events based on the given filters.
+      summary: Searches for specific IPO events based on the given filters
       requestBody:
         description: Criteria
         content:
@@ -222,8 +226,31 @@ paths:
       security:
       - bearerAuth: []
       x-codegen-request-body-name: Criteria
+      operationId: postCalendarIpoEventsSearch
+      x-operation-id-source: derived
 components:
   schemas:
+    ipoPostParams:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Service name
+              example: IPOCalendarEvents
+            type:
+              type: string
+              description: Call name
+              example: Search
+            attributes:
+              type: object
+              properties:
+                filter:
+                  $ref: '#/components/schemas/ipoSearchCriteria'
+                page:
+                  $ref: '#/components/schemas/pagingCriteria'
     ipoEventsModel:
       type: object
       properties:
@@ -245,6 +272,16 @@ components:
                   type: integer
             attribution:
               type: string
+    error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
     ipoEventDataModel:
       type: object
       properties:
@@ -378,48 +415,6 @@ components:
           properties:
             self:
               type: string
-    error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        fields:
-          type: string
-    ipoPostParams:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Service name
-              example: IPOCalendarEvents
-            type:
-              type: string
-              description: Call name
-              example: Search
-            attributes:
-              type: object
-              properties:
-                filter:
-                  $ref: '#/components/schemas/ipoSearchCriteria'
-                page:
-                  $ref: '#/components/schemas/pagingCriteria'
-    pagingCriteria:
-      type: object
-      properties:
-        limit:
-          type: integer
-          description: Maximum number of results for a single request, max size 1000.
-          example: 40
-        offset:
-          type: integer
-          description: The event ID used serves as a reference point to request additional events (beyond what was returned according to the limit value).  The responses do not include the reference ID.  To page backward to get older events, make the event number negative.
-          example: 0
     ipoSearchCriteria:
       type: object
       properties:
@@ -457,6 +452,17 @@ components:
           description: ORed list of Exchanges.
           items:
             type: string
+    pagingCriteria:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: Maximum number of results for a single request, max size 1000.
+          example: 40
+        offset:
+          type: integer
+          description: The event ID used serves as a reference point to request additional events (beyond what was returned according to the limit value).  The responses do not include the reference ID.  To page backward to get older events, make the event number negative.
+          example: 0
   securitySchemes:
     bearerAuth:
       type: http

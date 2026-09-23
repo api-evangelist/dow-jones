@@ -36,9 +36,6 @@ paths:
         This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
 
 
-        <!-- operational-characteristics:start -->
-
-
         ### Operational characteristics
 
 
@@ -66,11 +63,7 @@ paths:
 
         | 98th percentile | 778 ms |
 
-        | 99th percentile | 869 ms |
-
-        <!-- operational-characteristics:end -->
-
-        '
+        | 99th percentile | 869 ms |'
       tags:
       - Excel Export
       x-operational-characteristics:
@@ -264,9 +257,6 @@ paths:
         This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
 
 
-        <!-- operational-characteristics:start -->
-
-
         ### Operational characteristics
 
 
@@ -294,11 +284,7 @@ paths:
 
         | 98th percentile | 78 ms |
 
-        | 99th percentile | 79 ms |
-
-        <!-- operational-characteristics:end -->
-
-        '
+        | 99th percentile | 79 ms |'
       tags:
       - Excel Export
       x-operational-characteristics:
@@ -460,9 +446,6 @@ paths:
         This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes.
 
 
-        <!-- operational-characteristics:start -->
-
-
         ### Operational characteristics
 
 
@@ -490,11 +473,7 @@ paths:
 
         | 98th percentile | 1.3 s |
 
-        | 99th percentile | 1.7 s |
-
-        <!-- operational-characteristics:end -->
-
-        '
+        | 99th percentile | 1.7 s |'
       tags:
       - Excel Export
       x-operational-characteristics:

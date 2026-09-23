@@ -598,17 +598,7 @@ tools:
   source_operation: openapi/dow-jones-top-stories-api-openapi.json#GetCollectionIdList
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: unknown
   verified: derived
   tools: 195
-  checked: '2026-08-13'
-  source: catalog MCP census; re-searched 2026-08-13
-  note: >-
-    Dow Jones ships no MCP server of any kind — no hosted remote endpoint and no stdio package.
-    Re-checked 2026-08-13: no @dowjones or @factiva MCP package on npm or PyPI, no MCP mention on
-    developer.dowjones.com, and mcp.dowjones.com does not resolve (DNS failure), api.dowjones.com/mcp
-    returns 404. The tools[] list below is a candidate projection of the published OpenAPI
-    operations, not a surface an agent can call today.
+  checked: '2026-08-12'
+  source: catalog MCP census

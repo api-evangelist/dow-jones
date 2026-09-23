@@ -1,110 +1,108 @@
 openapi: 3.2.0
 info:
-  title: RiskCenter Third Party Platform API 0.2 Third Party…
+  title: RiskCenter Third Party Platform API 0.2 Business Unit API
   version: v0.2-beta
 servers:
 - url: https://api-thirdparty.riskcenter.dowjones.com/
 tags:
-- name: ThirdPartyScreeningTypes
+- name: Business Unit
 paths:
-  /third-parties/monitored-entities/id-types:
+  /business-units:
     get:
       tags:
-      - ThirdPartyScreeningTypes
-      summary: Retrieves all monitored entity id types
-      operationId: GetMonitoredEntitiesIdTypes
+      - Business Unit
+      summary: Retrieves all business units
+      operationId: GetBusinessUnits
       responses:
         '200':
           description: Success
           content:
             application/vnd.dowjones.dna.risk-third-parties.v_0.2-beta+json:
               schema:
-                $ref: '#/components/schemas/ResponseScreeningIdType'
+                $ref: '#/components/schemas/ResponseBusinessUnit'
         '401':
           description: Unauthorized
-      security:
-      - oauth2: []
-  /third-parties/monitored-entities/types:
-    get:
-      tags:
-      - ThirdPartyScreeningTypes
-      summary: Retrieves all monitored entity types
-      operationId: GetMonitoredEntitiesEntityTypes
-      responses:
-        '200':
-          description: Success
+        '400':
+          description: Bad Request
           content:
             application/vnd.dowjones.dna.risk-third-parties.v_0.2-beta+json:
               schema:
-                $ref: '#/components/schemas/ResponseScreeningType'
-        '401':
-          description: Unauthorized
+                $ref: '#/components/schemas/ErrorResponseModelV2'
       security:
       - oauth2: []
 components:
   schemas:
-    IdType:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseDataScreeningIdType:
+    ResponseDataBusinessUnit:
       type: object
       properties:
         id:
           type: string
           description: ''
         attributes:
-          $ref: '#/components/schemas/IdType'
+          $ref: '#/components/schemas/BusinessUnit'
         type:
           type: string
           description: ''
       additionalProperties: false
       description: ''
-    ResponseDataScreeningType:
+    ErrorModelV2:
       type: object
       properties:
-        id:
-          type: string
+        status:
+          type: integer
           description: ''
-        attributes:
-          $ref: '#/components/schemas/Type'
-        type:
-          type: string
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
           description: ''
       additionalProperties: false
-      description: ''
-    ResponseScreeningType:
+      description: Updated Error model
+    ResponseBusinessUnit:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ResponseDataScreeningType'
+            $ref: '#/components/schemas/ResponseDataBusinessUnit'
           description: ''
       additionalProperties: false
       description: ''
-    Type:
+    BusinessUnit:
       type: object
       properties:
         name:
           type: string
           description: ''
-      additionalProperties: false
-      description: ''
-    ResponseScreeningIdType:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataScreeningIdType'
+        parent_id:
+          type:
+          - string
+          - 'null'
           description: ''
       additionalProperties: false
       description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
   securitySchemes:
     oauth2:
       type: apiKey

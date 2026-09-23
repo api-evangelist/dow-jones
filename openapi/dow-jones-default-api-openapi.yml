@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   version: 2.0.0
   title: Search realtime Content resource Default API
-  description: You can use this API to perform a  search of the realtime Search system, using a Rest Request that provides  the same functionality as the PerformContentSearch of the Search SOAP service.
+  description: You can use this API to perform a search of the realtime Search system, using a Rest Request that provides the same functionality as the PerformContentSearch of the Search SOAP service.
 servers:
 - url: https://api.dowjones.com/search-realtime
 tags:
@@ -50,8 +50,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
+      operationId: getSwagger
+      x-operation-id-source: derived
 components:
   schemas:
+    errorMeta:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
     error:
       required:
       - code
@@ -73,13 +82,6 @@ components:
           description: error detail about this instance of error
         meta:
           $ref: '#/components/schemas/errorMeta'
-    errorMeta:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -17,7 +17,7 @@ paths:
       tags:
       - Images
       summary: Get Image by Image Reference
-      description: Get an image given an image reference id.  Can only retrieve one image at a time
+      description: Get an image given an image reference id. Can only retrieve one image at a time
       operationId: getOneImage
       parameters:
       - $ref: '#/components/parameters/Id'
@@ -41,14 +41,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ImageResponse'
 components:
-  parameters:
-    Id:
-      name: id
-      in: path
-      description: Unique id that identities the resource
-      required: true
-      schema:
-        type: string
   schemas:
     Links:
       type: object
@@ -56,15 +48,6 @@ components:
         self:
           type: string
           format: uri
-    MetaCount:
-      required:
-      - an
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-          example: 1
     ImageResponse:
       type: object
       properties:
@@ -102,6 +85,23 @@ components:
               example: '12300'
         meta:
           $ref: '#/components/schemas/MetaCount'
+    MetaCount:
+      required:
+      - an
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+          example: 1
+  parameters:
+    Id:
+      name: id
+      in: path
+      description: Unique id that identities the resource
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

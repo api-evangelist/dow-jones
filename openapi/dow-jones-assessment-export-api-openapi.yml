@@ -35,9 +35,6 @@ paths:
         This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.
 
 
-        <!-- operational-characteristics:start -->
-
-
         ### Operational characteristics
 
 
@@ -64,17 +61,13 @@ paths:
 
         | 99th percentile | 1.3 s |
 
-        <!-- operational-characteristics:end -->
-
 
         Each assessment includes `riskTags` and `tags` (including `userTag-{pillLabel}-active|inactive`
 
         for custom categories when enabled). Enriched `results` entries expose the same fields per linked alert.
 
 
-        Please note, at scale some queries to this endpoint may slowdown. Please test your particular access pattern at the scale you are running at.
-
-        '
+        Please note, at scale some queries to this endpoint may slowdown. Please test your particular access pattern at the scale you are running at.'
       operationId: assessmentExport
       tags:
       - Assessment Export
@@ -685,9 +678,6 @@ paths:
         This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.
 
 
-        <!-- operational-characteristics:start -->
-
-
         ### Operational characteristics
 
 
@@ -714,17 +704,13 @@ paths:
 
         | 99th percentile | 1:18 (min) |
 
-        <!-- operational-characteristics:end -->
-
 
         Each evidence row includes `riskTags` (`cc{id}` custom category stamps) and `tags` with matching
 
         `userTag-{pillLabel}-active|inactive` entries derived from that row''s `riskTags` only.
 
 
-        Please note, at scale some queries to this endpoint may slowdown. Please test your particular access pattern at the scale you are running at.
-
-        '
+        Please note, at scale some queries to this endpoint may slowdown. Please test your particular access pattern at the scale you are running at.'
       operationId: assessmentEvidenceExport
       tags:
       - Assessment Export
@@ -34424,9 +34410,6 @@ paths:
         This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.
 
 
-        <!-- operational-characteristics:start -->
-
-
         ### Operational characteristics
 
 
@@ -34451,11 +34434,7 @@ paths:
 
         | 98th percentile | 28 ms |
 
-        | 99th percentile | 30 ms |
-
-        <!-- operational-characteristics:end -->
-
-        '
+        | 99th percentile | 30 ms |'
       operationId: assessmentActivityExport
       tags:
       - Assessment Export

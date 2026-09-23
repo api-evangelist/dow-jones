@@ -1,8 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Dow Jones Third Party Screening API
-  version: '1.0'
-  description: 'Operations tagged ThirdPartyScreening across 2 of this provider''s published API definitions: dow-jones-riskcenter-third-party-api-0-1-openapi.json, dow-jones-riskcenter-third-party-api-0-2-openapi.json. Each path carries the servers of the definition it was published in.'
+  title: RiskCenter Third Party Platform API 0.2 Third Party…
+  version: v0.2-beta
 servers:
 - url: https://api-thirdparty.riskcenter.dowjones.com/
 tags:
@@ -19,35 +18,37 @@ paths:
         in: path
         required: true
         schema:
-          type:
-          - string
-          - 'null'
+          type: string
       - name: page[limit]
         in: query
         schema:
-          type:
-          - integer
-          - 'null'
+          type: integer
           format: int32
       - name: page[context]
         in: query
         schema:
-          type:
-          - string
-          - 'null'
+          type: string
       responses:
         '200':
           description: Success
           content:
-            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.2-beta+json:
               schema:
                 $ref: '#/components/schemas/ResponseThirdPartyScreeningEntities'
         '401':
           description: Unauthorized
+        '400':
+          description: Bad Request
           content:
-            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.2-beta+json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ErrorResponseModelV2'
+        '404':
+          description: Not Found
+          content:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.2-beta+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModelV2'
       security:
       - oauth2: []
     post:
@@ -60,9 +61,7 @@ paths:
         in: path
         required: true
         schema:
-          type:
-          - string
-          - 'null'
+          type: string
       requestBody:
         content:
           application/json-patch+json:
@@ -81,25 +80,19 @@ paths:
         '200':
           description: Success
           content:
-            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.2-beta+json:
               schema:
                 $ref: '#/components/schemas/ResponseThirdPartyScreeningEntity'
         '400':
           description: Bad Request
           content:
-            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.2-beta+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseModel'
+                $ref: '#/components/schemas/ErrorResponseModelV2'
         '401':
           description: Unauthorized
-          content:
-            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
-              schema:
-                $ref: '#/components/schemas/ProblemDetails'
       security:
       - oauth2: []
-    servers:
-    - url: https://api-thirdparty.riskcenter.dowjones.com/
   /third-parties/{thirdpartyid}/monitored-entities/{id}:
     delete:
       tags:
@@ -111,105 +104,104 @@ paths:
         in: path
         required: true
         schema:
-          type:
-          - string
-          - 'null'
+          type: string
       - name: id
         in: path
         required: true
         schema:
-          type:
-          - string
-          - 'null'
+          type: string
       responses:
         '200':
           description: Success
         '401':
           description: Unauthorized
+        '404':
+          description: Not Found
           content:
-            application/vnd.dowjones.dna.risk-third-parties.v_0.1-beta+json:
+            application/vnd.dowjones.dna.risk-third-parties.v_0.2-beta+json:
               schema:
-                $ref: '#/components/schemas/ProblemDetails'
+                $ref: '#/components/schemas/ErrorResponseModelV2'
       security:
       - oauth2: []
-    servers:
-    - url: https://api-thirdparty.riskcenter.dowjones.com/
 components:
   schemas:
-    ResponseMeta:
+    ScreeningIdentificationDetails:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
+        type:
+          type: integer
+          description: ''
+          format: int32
+        value:
+          type:
+          - string
+          - 'null'
+          description: ''
       additionalProperties: false
       description: ''
-    ProblemDetails:
+    PagingMeta:
       type: object
       properties:
+        context:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseThirdPartyScreeningEntities:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntities'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: false
+      description: ''
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+    RequestThirdPartyScreeningCreate:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataThirdPartyScreeningCreate'
+      additionalProperties: false
+      description: ''
+    RequestDataThirdPartyScreeningCreate:
+      required:
+      - attributes
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntityCreate'
         type:
           type:
           - string
           - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        extensions:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: object
-            additionalProperties: false
-          readOnly: true
-      additionalProperties: false
-    ErrorModel:
-      type: object
-      properties:
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        status:
-          type:
-          - string
-          - 'null'
-          description: ''
-        code:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    ErrorResponseModel:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModel'
           description: ''
       additionalProperties: false
       description: ''
@@ -218,6 +210,30 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntity'
+      additionalProperties: false
+      description: ''
+    ResponseLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdPartyScreeningEntities:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
+        type:
+          type: string
+          description: ''
       additionalProperties: false
       description: ''
     ThirdPartyScreeningEntityCreate:
@@ -247,6 +263,63 @@ components:
           format: int32
       additionalProperties: false
       description: ''
+    ScreeningMatchResults:
+      type: object
+      properties:
+        pending_review:
+          type: integer
+          description: ''
+          format: int32
+        confirmed_match:
+          type: integer
+          description: ''
+          format: int32
+        under_investigation:
+          type: integer
+          description: ''
+          format: int32
+        cleared_with_updates:
+          type: integer
+          description: ''
+          format: int32
+        cleared_without_updates:
+          type: integer
+          description: ''
+          format: int32
+      additionalProperties: false
+      description: ''
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdPartyScreeningEntity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
     ThirdPartyScreeningEntity:
       type: object
       properties:
@@ -289,166 +362,9 @@ components:
           format: int32
       additionalProperties: false
       description: ''
-    PagingMeta:
-      type: object
-      properties:
-        context:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseThirdPartyScreeningEntities:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntities'
-          description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      additionalProperties: false
-      description: ''
-    RequestDataThirdPartyScreeningCreate:
-      required:
-      - attributes
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntityCreate'
-        type:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseDataThirdPartyScreeningEntity:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseDataThirdPartyScreeningEntities:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ScreeningIdentificationDetails:
-      type: object
-      properties:
-        type:
-          type: integer
-          description: ''
-          format: int32
-        value:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          description: ''
-        self:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ScreeningMatchResults:
-      type: object
-      properties:
-        pending_review:
-          type: integer
-          description: ''
-          format: int32
-        confirmed_match:
-          type: integer
-          description: ''
-          format: int32
-        under_investigation:
-          type: integer
-          description: ''
-          format: int32
-        cleared_with_updates:
-          type: integer
-          description: ''
-          format: int32
-        cleared_without_updates:
-          type: integer
-          description: ''
-          format: int32
-      additionalProperties: false
-      description: ''
-    RequestThirdPartyScreeningCreate:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataThirdPartyScreeningCreate'
-      additionalProperties: false
-      description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
-    ErrorModelV2:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: Updated Error model
   securitySchemes:
     oauth2:
       type: apiKey
       description: 'Standard Authorization header using the Bearer scheme. Example: "bearer {token}"'
       name: Authorization
       in: header
-x-refined-from:
-- dow-jones-riskcenter-third-party-api-0-1-openapi.json
-- dow-jones-riskcenter-third-party-api-0-2-openapi.json

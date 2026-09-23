@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   description: Risk and Compliance Taxonomy API
   version: v1
-  title: Risk and Compliance Taxonomy Risk and Compliance - Taxonomy API
+  title: Risk and Compliance Taxonomy Risk and Compliance - Taxonomy…
   contact:
     name: Dow Jones
   license:
@@ -47,21 +47,20 @@ paths:
         '400':
           description: Bad request
 components:
+  parameters:
+    control_data:
+      name: control_data
+      in: header
+      required: false
+      schema:
+        type: string
+    accept-language:
+      name: accept-language
+      in: header
+      required: false
+      schema:
+        type: string
   schemas:
-    LeafListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        descriptor:
-          type: string
-    TaxonomyResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListItem'
     ListItemsContainer:
       type: object
       properties:
@@ -71,26 +70,6 @@ components:
             oneOf:
             - $ref: '#/components/schemas/LeafListItem'
             - $ref: '#/components/schemas/LeafCountryListItem'
-    ListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/ListItemsContainer'
-    LeafCountryListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        descriptor:
-          type: string
-        iso_alpha2:
-          type: string
-        iso_alpha3:
-          type: string
     ListIds:
       type: string
       enum:
@@ -114,19 +93,40 @@ components:
       - CountryTerritoryType
       - CountryTerritoryTypePerson
       - CountryTerritoryTypeEntity
-  parameters:
-    control_data:
-      name: control_data
-      in: header
-      required: false
-      schema:
-        type: string
-    accept-language:
-      name: accept-language
-      in: header
-      required: false
-      schema:
-        type: string
+    ListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ListItemsContainer'
+    LeafCountryListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
+        iso_alpha2:
+          type: string
+        iso_alpha3:
+          type: string
+    LeafListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
+    TaxonomyResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListItem'
   securitySchemes:
     bearerAuth:
       type: http

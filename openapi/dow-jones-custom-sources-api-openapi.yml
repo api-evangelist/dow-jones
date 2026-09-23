@@ -246,6 +246,82 @@ paths:
       - bearerAuth: []
 components:
   schemas:
+    ProfileSourceInformation:
+      type: object
+      properties:
+        source_name:
+          type: string
+        profile_count:
+          type: integer
+          example: 4
+        created_at:
+          type: string
+          example: '2021-01-01T12:00:00Z'
+    ResponseDataProfileSources:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseListProfileSourceName'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    Meta:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 0
+        paging:
+          type: object
+          properties:
+            offset:
+              type: object
+              properties:
+                first:
+                  type: integer
+                  example: 0
+                last:
+                  type: integer
+                  example: 0
+        total_count:
+          type: integer
+          example: 0
+    ProfileSourceName:
+      type: object
+      properties:
+        source_name:
+          type: string
+    ErrorObject:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
+    RequestProfileSourceName:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProfileSourceName'
+        type:
+          type: string
+          example: risk-profiles-custom-sources
+    ResponseProfileSourceName:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseListProfileSourceName'
     ResponseListProfileSourceName:
       type: object
       properties:
@@ -278,81 +354,6 @@ components:
               example: https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000
         id:
           type: string
-    ResponseDataListProfileSourcesInformation:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseListProfileSourcesInformation'
-    ResponseProfileSourceName:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseListProfileSourceName'
-    ResponseDataProfileSources:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseListProfileSourceName'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    ProfileSourceInformation:
-      type: object
-      properties:
-        source_name:
-          type: string
-        profile_count:
-          type: integer
-          example: 4
-        created_at:
-          type: string
-          example: '2021-01-01T12:00:00Z'
-    ErrorObject:
-      type: object
-      properties:
-        code:
-          type: string
-        title:
-          type: string
-        status:
-          type: string
-        detail:
-          type: string
-        meta:
-          type: string
-    RequestDataProfileSourceName:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestProfileSourceName'
-    Meta:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 0
-        paging:
-          type: object
-          properties:
-            offset:
-              type: object
-              properties:
-                first:
-                  type: integer
-                  example: 0
-                last:
-                  type: integer
-                  example: 0
-        total_count:
-          type: integer
-          example: 0
     ResponseLinks:
       type: object
       properties:
@@ -368,11 +369,6 @@ components:
         last:
           type: string
           example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=210
-    ProfileSourceName:
-      type: object
-      properties:
-        source_name:
-          type: string
     JsonError:
       type: object
       properties:
@@ -380,14 +376,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorObject'
-    RequestProfileSourceName:
+    ResponseDataListProfileSourcesInformation:
       type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/ProfileSourceName'
-        type:
-          type: string
-          example: risk-profiles-custom-sources
+        data:
+          $ref: '#/components/schemas/ResponseListProfileSourcesInformation'
+    RequestDataProfileSourceName:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestProfileSourceName'
   parameters:
     Content-Encoding:
       name: Content-Encoding

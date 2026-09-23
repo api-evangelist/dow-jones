@@ -27,7 +27,78 @@ paths:
   /list/import:
     post:
       summary: Create a new or update a current list entity
-      description: "The List entity API allows identities to be screened against entities that appear on lists, for example, watchlists including sanctioned entities or PEP's.\nThis API endpoint is used to add or change list entities.\n### Rate Limits\n\nThis endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.\n\n<!-- operational-characteristics:start -->\n\n### Operational characteristics\n\nValues below are measured from production traffic. Only collected values are shown.\n\n**Latency distribution**\n\nLatency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).\n\n| Metric | Value |\n| --- | --- |\n| Median | 2.4 s |\n| 90th percentile | 2.5 s |\n| 95th percentile | 2.6 s |\n| 98th percentile | 2.6 s |\n| 99th percentile | 2.6 s |\n<!-- operational-characteristics:end -->\n\n## Checking the list processing progress\n\nList entities are queued using Apache kafka. Checking the lag of the digest-torch-list group on the list-digest topic shows how many messages there are still to process. This can be done using the following command:\n`$ …/apps/torch_tools/bin/kafka/describeGroup.sh torch-list-digest``\n\nLists are only fully processed once the second stage of processing is also complete. The second stage of processing can be checked using a similar command:\n`$ …/apps/torch_tools/bin/kafka/describeGroup.sh torch-list-deltas``\n\nWhen the lag is zero for both topics, list processing is fully complete.\n\n## Checking log files\n\nA pm2 log file is produced for each of the two stages of processing.\n•\tpm2 logs digest_torch_lists\n•\tpm2 logs digest_torch_list_deltas\nFor more detailed information, you can check the sensitive log files:\n\n```\n$ tail -f digest_torch_lists-sensitive.log\n$ tail -f /data0/logs/node/digest_torch_list_deltas-sensitive.log\n```\n"
+      description: 'The List entity API allows identities to be screened against entities that appear on lists, for example, watchlists including sanctioned entities or PEP''s.
+
+        This API endpoint is used to add or change list entities.
+
+        ### Rate Limits
+
+
+        This endpoint is subject to a general rate limit of 10,000 requests per user per 15 minutes, and a global concurrent request limit of 5 simultaneous requests per customer.
+
+
+        ### Operational characteristics
+
+
+        Values below are measured from production traffic. Only collected values are shown.
+
+
+        **Latency distribution**
+
+
+        Latency values are shown as milliseconds below 1 s, seconds with one decimal place below 1 min, otherwise as M:SS (min).
+
+
+        | Metric | Value |
+
+        | --- | --- |
+
+        | Median | 2.4 s |
+
+        | 90th percentile | 2.5 s |
+
+        | 95th percentile | 2.6 s |
+
+        | 98th percentile | 2.6 s |
+
+        | 99th percentile | 2.6 s |
+
+
+        ## Checking the list processing progress
+
+
+        List entities are queued using Apache kafka. Checking the lag of the digest-torch-list group on the list-digest topic shows how many messages there are still to process. This can be done using the following command:
+
+        `$ …/apps/torch_tools/bin/kafka/describeGroup.sh torch-list-digest``
+
+
+        Lists are only fully processed once the second stage of processing is also complete. The second stage of processing can be checked using a similar command:
+
+        `$ …/apps/torch_tools/bin/kafka/describeGroup.sh torch-list-deltas``
+
+
+        When the lag is zero for both topics, list processing is fully complete.
+
+
+        ## Checking log files
+
+
+        A pm2 log file is produced for each of the two stages of processing.
+
+        • pm2 logs digest_torch_lists
+
+        • pm2 logs digest_torch_list_deltas
+
+        For more detailed information, you can check the sensitive log files:
+
+
+        ```
+
+        $ tail -f digest_torch_lists-sensitive.log
+
+        $ tail -f /data0/logs/node/digest_torch_list_deltas-sensitive.log
+
+        ```'
       operationId: listImport
       tags:
       - List Import
