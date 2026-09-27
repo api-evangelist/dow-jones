@@ -61,16 +61,46 @@ paths:
               schema:
                 $ref: '#/components/schemas/JsonError'
 components:
+  parameters:
+    profile-id:
+      name: profile-id
+      required: true
+      in: path
+      description: Unique profile id that identifies a profile
+      schema:
+        type: string
+    PageOffset:
+      name: page[offset]
+      in: query
+      description: Page offset
+      schema:
+        type: integer
+    RevisionFilter:
+      name: filter[revision_date]
+      in: query
+      description: Filters by the revision date
+      schema:
+        type: string
+    PageLimit:
+      name: page[limit]
+      in: query
+      description: Limit of resources per page
+      schema:
+        type: integer
   schemas:
-    NewValueItem:
+    ErrorObject:
       type: object
       properties:
-        value:
+        code:
           type: string
-          example: Arabic
-        display_name:
+        title:
           type: string
-          example: Language
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
     PaginationOffset:
       type: object
       properties:
@@ -105,18 +135,25 @@ components:
             total_count:
               type: integer
               example: 1
-    ErrorObject:
+    NewValueItem:
       type: object
       properties:
-        code:
+        value:
           type: string
-        title:
+          example: Arabic
+        display_name:
           type: string
-        status:
+          example: Language
+    PaginationLinks:
+      type: object
+      properties:
+        first:
           type: string
-        detail:
+        last:
           type: string
-        meta:
+        next:
+          type: string
+        prev:
           type: string
     ProfileRevision:
       type: object
@@ -160,17 +197,6 @@ components:
         type:
           type: string
           example: revisions
-    PaginationLinks:
-      type: object
-      properties:
-        first:
-          type: string
-        last:
-          type: string
-        next:
-          type: string
-        prev:
-          type: string
     JsonError:
       type: object
       properties:
@@ -178,32 +204,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorObject'
-  parameters:
-    profile-id:
-      name: profile-id
-      required: true
-      in: path
-      description: Unique profile id that identifies a profile
-      schema:
-        type: string
-    PageLimit:
-      name: page[limit]
-      in: query
-      description: Limit of resources per page
-      schema:
-        type: integer
-    RevisionFilter:
-      name: filter[revision_date]
-      in: query
-      description: Filters by the revision date
-      schema:
-        type: string
-    PageOffset:
-      name: page[offset]
-      in: query
-      description: Page offset
-      schema:
-        type: integer
   securitySchemes:
     bearerAuth:
       type: http

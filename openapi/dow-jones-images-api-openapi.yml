@@ -42,6 +42,15 @@ paths:
                 $ref: '#/components/schemas/ImageResponse'
 components:
   schemas:
+    MetaCount:
+      required:
+      - an
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+          example: 1
     Links:
       type: object
       properties:
@@ -85,15 +94,6 @@ components:
               example: '12300'
         meta:
           $ref: '#/components/schemas/MetaCount'
-    MetaCount:
-      required:
-      - an
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int64
-          example: 1
   parameters:
     Id:
       name: id

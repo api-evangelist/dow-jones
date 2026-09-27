@@ -42,10 +42,13 @@ paths:
       - oauth2: []
 components:
   schemas:
-    Group:
+    ResponseLinks:
       type: object
       properties:
-        name:
+        next:
+          type: string
+          description: ''
+        self:
           type: string
           description: ''
       additionalProperties: false
@@ -58,29 +61,6 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ErrorModelV2:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: Updated Error model
     ResponseDataGroup:
       type: object
       properties:
@@ -94,13 +74,22 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ResponseLinks:
+    ErrorResponseModelV2:
       type: object
       properties:
-        next:
-          type: string
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
           description: ''
-        self:
+      additionalProperties: false
+      description: Updated Error Response Model
+    Group:
+      type: object
+      properties:
+        name:
           type: string
           description: ''
       additionalProperties: false
@@ -126,18 +115,29 @@ components:
           $ref: '#/components/schemas/PagingMeta'
       additionalProperties: false
       description: ''
-    ErrorResponseModelV2:
+    ErrorModelV2:
       type: object
       properties:
-        errors:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
           description: ''
       additionalProperties: false
-      description: Updated Error Response Model
+      description: Updated Error model
   securitySchemes:
     oauth2:
       type: apiKey

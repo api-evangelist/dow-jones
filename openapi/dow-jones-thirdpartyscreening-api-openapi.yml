@@ -125,201 +125,6 @@ paths:
       - oauth2: []
 components:
   schemas:
-    ScreeningIdentificationDetails:
-      type: object
-      properties:
-        type:
-          type: integer
-          description: ''
-          format: int32
-        value:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    PagingMeta:
-      type: object
-      properties:
-        context:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseThirdPartyScreeningEntities:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntities'
-          description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      additionalProperties: false
-      description: ''
-    ErrorModelV2:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: Updated Error model
-    RequestThirdPartyScreeningCreate:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataThirdPartyScreeningCreate'
-      additionalProperties: false
-      description: ''
-    RequestDataThirdPartyScreeningCreate:
-      required:
-      - attributes
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntityCreate'
-        type:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseThirdPartyScreeningEntity:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntity'
-      additionalProperties: false
-      description: ''
-    ResponseLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          description: ''
-        self:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseDataThirdPartyScreeningEntities:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ThirdPartyScreeningEntityCreate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-        country:
-          type:
-          - string
-          - 'null'
-          description: ''
-        record_type:
-          type: string
-          description: ''
-        monitored_entity_type_id:
-          type: string
-          description: ''
-        identification_details:
-          $ref: '#/components/schemas/ScreeningIdentificationDetails'
-        year_of_birth:
-          type:
-          - integer
-          - 'null'
-          description: ''
-          format: int32
-      additionalProperties: false
-      description: ''
-    ScreeningMatchResults:
-      type: object
-      properties:
-        pending_review:
-          type: integer
-          description: ''
-          format: int32
-        confirmed_match:
-          type: integer
-          description: ''
-          format: int32
-        under_investigation:
-          type: integer
-          description: ''
-          format: int32
-        cleared_with_updates:
-          type: integer
-          description: ''
-          format: int32
-        cleared_without_updates:
-          type: integer
-          description: ''
-          format: int32
-      additionalProperties: false
-      description: ''
-    ResponseMeta:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
-      additionalProperties: false
-      description: ''
-    ResponseDataThirdPartyScreeningEntity:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
     ThirdPartyScreeningEntity:
       type: object
       properties:
@@ -360,6 +165,201 @@ components:
           - 'null'
           description: ''
           format: int32
+      additionalProperties: false
+      description: ''
+    ResponseLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ScreeningIdentificationDetails:
+      type: object
+      properties:
+        type:
+          type: integer
+          description: ''
+          format: int32
+        value:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    RequestDataThirdPartyScreeningCreate:
+      required:
+      - attributes
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntityCreate'
+        type:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdPartyScreeningEntity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    PagingMeta:
+      type: object
+      properties:
+        context:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ThirdPartyScreeningEntityCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+        country:
+          type:
+          - string
+          - 'null'
+          description: ''
+        record_type:
+          type: string
+          description: ''
+        monitored_entity_type_id:
+          type: string
+          description: ''
+        identification_details:
+          $ref: '#/components/schemas/ScreeningIdentificationDetails'
+        year_of_birth:
+          type:
+          - integer
+          - 'null'
+          description: ''
+          format: int32
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ScreeningMatchResults:
+      type: object
+      properties:
+        pending_review:
+          type: integer
+          description: ''
+          format: int32
+        confirmed_match:
+          type: integer
+          description: ''
+          format: int32
+        under_investigation:
+          type: integer
+          description: ''
+          format: int32
+        cleared_with_updates:
+          type: integer
+          description: ''
+          format: int32
+        cleared_without_updates:
+          type: integer
+          description: ''
+          format: int32
+      additionalProperties: false
+      description: ''
+    ResponseThirdPartyScreeningEntities:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntities'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdPartyScreeningEntities:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    RequestThirdPartyScreeningCreate:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataThirdPartyScreeningCreate'
+      additionalProperties: false
+      description: ''
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    ResponseThirdPartyScreeningEntity:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntity'
       additionalProperties: false
       description: ''
   securitySchemes:

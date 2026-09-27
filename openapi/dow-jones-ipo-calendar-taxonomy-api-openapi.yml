@@ -208,29 +208,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    eventFilterCountryModel:
-      type: object
-      properties:
-        meta:
-          required:
-          - count
-          type: object
-          properties:
-            count:
-              type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/eventFilterCountryDataModel'
-        links:
-          required:
-          - self
-          type: object
-          properties:
-            self:
-              type: string
-        error:
-          $ref: '#/components/schemas/error'
     eventFilterCountryDataModel:
       required:
       - attributes
@@ -259,17 +236,6 @@ components:
         description:
           type: string
           description: only included in country item
-    eventFilterExchangeDataFilterItemModel:
-      type: object
-      properties:
-        mic:
-          type: string
-        name:
-          type: string
-        country_code:
-          type: string
-        country_description:
-          type: string
     eventFilterExchangeModel:
       type: object
       properties:
@@ -313,6 +279,40 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/eventFilterExchangeDataFilterItemModel'
+    eventFilterExchangeDataFilterItemModel:
+      type: object
+      properties:
+        mic:
+          type: string
+        name:
+          type: string
+        country_code:
+          type: string
+        country_description:
+          type: string
+    eventFilterCountryModel:
+      type: object
+      properties:
+        meta:
+          required:
+          - count
+          type: object
+          properties:
+            count:
+              type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/eventFilterCountryDataModel'
+        links:
+          required:
+          - self
+          type: object
+          properties:
+            self:
+              type: string
+        error:
+          $ref: '#/components/schemas/error'
   securitySchemes:
     bearerAuth:
       type: http

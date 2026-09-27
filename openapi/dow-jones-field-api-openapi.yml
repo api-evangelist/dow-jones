@@ -81,27 +81,6 @@ paths:
       - oauth2: []
 components:
   schemas:
-    ReponseRelationship:
-      type: object
-      properties:
-        links:
-          $ref: '#/components/schemas/RelationshipLinks'
-        data:
-          $ref: '#/components/schemas/RelationshipData'
-      additionalProperties: false
-      description: ''
-    ListRow:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        data:
-          type: array
-          items: {}
-          description: ''
-      additionalProperties: false
-      description: ''
     Field:
       type: object
       properties:
@@ -147,73 +126,15 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    List:
+    ResponseLinks:
       type: object
       properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListRow'
+        next:
+          type: string
           description: ''
-        columns:
-          type: array
-          items:
-            type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    RelationshipLinks:
-      type: object
-      properties:
         self:
           type: string
           description: ''
-        related:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ErrorModelV2:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: Updated Error model
-    ResponseDataList:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/List'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResonseDataFieldRelationships:
-      type: object
-      properties:
-        list:
-          $ref: '#/components/schemas/ReponseRelationship'
       additionalProperties: false
       description: ''
     TableDefinition:
@@ -228,20 +149,60 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ResponseList:
+    FieldList:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataList'
+        id:
+          type:
+          - string
+          - 'null'
+          description: ''
+        value_column:
+          type:
+          - integer
+          - 'null'
+          description: ''
+          format: int32
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FieldListItem'
+          description: Adhoc list items.
       additionalProperties: false
       description: ''
-    ResponseLinks:
+    ResponseDataList:
       type: object
       properties:
-        next:
+        id:
           type: string
           description: ''
-        self:
+        attributes:
+          $ref: '#/components/schemas/List'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ListRow:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        data:
+          type: array
+          items: {}
+          description: ''
+      additionalProperties: false
+      description: ''
+    FieldListItem:
+      type: object
+      properties:
+        value:
+          description: ''
+        text:
           type: string
           description: ''
       additionalProperties: false
@@ -294,6 +255,28 @@ components:
           description: ''
       additionalProperties: false
       description: ''
+    ResponseList:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataList'
+      additionalProperties: false
+      description: ''
+    List:
+      type: object
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListRow'
+          description: ''
+        columns:
+          type: array
+          items:
+            type: string
+          description: ''
+      additionalProperties: false
+      description: ''
     ErrorResponseModelV2:
       type: object
       properties:
@@ -306,6 +289,13 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error Response Model
+    ResonseDataFieldRelationships:
+      type: object
+      properties:
+        list:
+          $ref: '#/components/schemas/ReponseRelationship'
+      additionalProperties: false
+      description: ''
     RelationshipData:
       type: object
       properties:
@@ -317,37 +307,47 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    FieldListItem:
+    ErrorModelV2:
       type: object
       properties:
-        value:
+        status:
+          type: integer
           description: ''
-        text:
-          type: string
+          format: int32
+        code:
+          type: integer
           description: ''
-      additionalProperties: false
-      description: ''
-    FieldList:
-      type: object
-      properties:
-        id:
+          format: int32
+        title:
           type:
           - string
           - 'null'
           description: ''
-        value_column:
+        detail:
           type:
-          - integer
+          - string
           - 'null'
           description: ''
-          format: int32
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/FieldListItem'
-          description: Adhoc list items.
+      additionalProperties: false
+      description: Updated Error model
+    RelationshipLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          description: ''
+        related:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ReponseRelationship:
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/RelationshipLinks'
+        data:
+          $ref: '#/components/schemas/RelationshipData'
       additionalProperties: false
       description: ''
     ResponseField:

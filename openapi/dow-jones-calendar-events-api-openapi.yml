@@ -612,34 +612,66 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    options:
+    eventDetailModel:
       type: object
       properties:
-        show_ecoinfo:
+        id:
+          type: string
+          description: Index count of the report.
+        description:
+          type: string
+          description: Describes the individual data element reported.
+        dj_combo_detail:
+          type: string
+          description: Optional. Concise combination of the name of an economic indicator event and a data element name. This combination is useful for single-line calendar display rather than nested elements below their event name.
+        importance:
+          type: string
+          description: 'Optional. Applied to Economic events by the Dow Jones news team. It represents their assessment of the marketplace importance of the specified data element. Valid values: High (H), Medium (M), and Low (L).'
+        expected:
+          $ref: '#/components/schemas/detailDataValueModel'
+        previous:
+          $ref: '#/components/schemas/detailDataValueModel'
+        actual:
+          $ref: '#/components/schemas/detailDataValueModel'
+        prior_revised:
+          $ref: '#/components/schemas/detailDataValueModel'
+        delta:
+          $ref: '#/components/schemas/detailDataValueModel'
+    detailDataValueModel:
+      type: object
+      properties:
+        value:
+          type: string
+          description: Value reported
+        last_modified_date_time:
+          type: string
+          description: Date and time when the value was provided.
+        unit:
+          type: string
+          description: 'Optional. Multiplier for the units of the reported value. If the unit attribute is not present, the data value has a scale of one. Valid values: K–Thousands, M–Millions, B–Billions, T–Trillions.'
+        is_pct:
           type: boolean
-          description: Include ecoinfo data as part of event results.
-          example: false
-    eventsModel:
+          description: Optional. Whether the reported value is a percentage. This information is useful to appropriately format the value displayed.
+        is_chg:
+          type: boolean
+          description: 'Optional. Whether the reported value represents a net change. This information is useful to appropriately format the net change displayed. Unlike regular positive values, users may wish to prepend a “+” sign to positive net changes. Valid values indicate: true–The value represents a net change and is not simply a positive value. false–The value simply represents a positive value and is not a net change.'
+        currency:
+          type: string
+          description: Optional. Where applicable, monetary unit of the reported value. Valid currency codes can be found using the taxonomy currency endpoint.
+        source:
+          type: string
+          description: 'Optional. Source of information. Valid values: Factset, Kantar, and Null (stands for Dow Jones).'
+    pagingCriteria:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/eventDataModel'
-        meta:
-          type: object
-          properties:
-            count:
-              type: integer
-            total_count:
-              type: integer
-            offset:
-              type: object
-              properties:
-                prev:
-                  type: integer
-                next:
-                  type: integer
-            attribution:
-              type: string
+        limit:
+          type: integer
+          description: Maximum number of results for a single request, max size 1000.
+          example: 40
+        offset:
+          type: integer
+          description: The event ID used serves as a reference point to request additional events (beyond what was returned according to the limit value).  The responses do not include the reference ID.  To page backward to get older events, make the event number negative.
+          example: 0
     eventDataModel:
       type: object
       properties:
@@ -789,14 +821,10 @@ components:
           properties:
             self:
               type: string
-    eventsPostParams:
+    postParams:
       type: object
       properties:
         data:
-          required:
-          - attributes
-          - id
-          - type
           type: object
           properties:
             id:
@@ -806,61 +834,16 @@ components:
             type:
               type: string
               description: Call name
-              example: Events
+              example: Search
             attributes:
-              required:
-              - event_id
               type: object
               properties:
-                event_id:
-                  type: array
-                  description: Number that uniquely identifies an event.
-                  items:
-                    type: string
-                has_updates:
-                  type: boolean
-                  description: Search only for events that have been updated.
-                last_updated_time:
-                  type: string
-                  description: Search only for events that have been updated since this date and time, (yyyy-mm-dd'T'hh:mm:ss'Z').
-                  format: date-time
-                  example: '2018-01-01T00:00:00.000Z'
-                event_language:
-                  type: string
-                  description: Translate descriptions to this language if translation is available; otherwise, show English version.
-                  enum:
-                  - ''
-                  - zh
-                  - ar
-                  - it
-                  - de
-                  - jp
-            options:
-              $ref: '#/components/schemas/options'
-    detailDataValueModel:
-      type: object
-      properties:
-        value:
-          type: string
-          description: Value reported
-        last_modified_date_time:
-          type: string
-          description: Date and time when the value was provided.
-        unit:
-          type: string
-          description: 'Optional. Multiplier for the units of the reported value. If the unit attribute is not present, the data value has a scale of one. Valid values: K–Thousands, M–Millions, B–Billions, T–Trillions.'
-        is_pct:
-          type: boolean
-          description: Optional. Whether the reported value is a percentage. This information is useful to appropriately format the value displayed.
-        is_chg:
-          type: boolean
-          description: 'Optional. Whether the reported value represents a net change. This information is useful to appropriately format the net change displayed. Unlike regular positive values, users may wish to prepend a “+” sign to positive net changes. Valid values indicate: true–The value represents a net change and is not simply a positive value. false–The value simply represents a positive value and is not a net change.'
-        currency:
-          type: string
-          description: Optional. Where applicable, monetary unit of the reported value. Valid currency codes can be found using the taxonomy currency endpoint.
-        source:
-          type: string
-          description: 'Optional. Source of information. Valid values: Factset, Kantar, and Null (stands for Dow Jones).'
+                filter:
+                  $ref: '#/components/schemas/searchCriteria'
+                options:
+                  $ref: '#/components/schemas/options'
+                page:
+                  $ref: '#/components/schemas/pagingCriteria'
     ecoinfo:
       type: object
       properties:
@@ -870,6 +853,34 @@ components:
           type: string
         definition:
           type: string
+    options:
+      type: object
+      properties:
+        show_ecoinfo:
+          type: boolean
+          description: Include ecoinfo data as part of event results.
+          example: false
+    eventsModel:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/eventDataModel'
+        meta:
+          type: object
+          properties:
+            count:
+              type: integer
+            total_count:
+              type: integer
+            offset:
+              type: object
+              properties:
+                prev:
+                  type: integer
+                next:
+                  type: integer
+            attribution:
+              type: string
     searchCriteria:
       type: object
       properties:
@@ -967,54 +978,6 @@ components:
           - it
           - de
           - jp
-    postParams:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Servive name
-              example: CalendarEvents
-            type:
-              type: string
-              description: Call name
-              example: Search
-            attributes:
-              type: object
-              properties:
-                filter:
-                  $ref: '#/components/schemas/searchCriteria'
-                options:
-                  $ref: '#/components/schemas/options'
-                page:
-                  $ref: '#/components/schemas/pagingCriteria'
-    eventDetailModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Index count of the report.
-        description:
-          type: string
-          description: Describes the individual data element reported.
-        dj_combo_detail:
-          type: string
-          description: Optional. Concise combination of the name of an economic indicator event and a data element name. This combination is useful for single-line calendar display rather than nested elements below their event name.
-        importance:
-          type: string
-          description: 'Optional. Applied to Economic events by the Dow Jones news team. It represents their assessment of the marketplace importance of the specified data element. Valid values: High (H), Medium (M), and Low (L).'
-        expected:
-          $ref: '#/components/schemas/detailDataValueModel'
-        previous:
-          $ref: '#/components/schemas/detailDataValueModel'
-        actual:
-          $ref: '#/components/schemas/detailDataValueModel'
-        prior_revised:
-          $ref: '#/components/schemas/detailDataValueModel'
-        delta:
-          $ref: '#/components/schemas/detailDataValueModel'
     error:
       type: object
       properties:
@@ -1025,17 +988,54 @@ components:
           type: string
         fields:
           type: string
-    pagingCriteria:
+    eventsPostParams:
       type: object
       properties:
-        limit:
-          type: integer
-          description: Maximum number of results for a single request, max size 1000.
-          example: 40
-        offset:
-          type: integer
-          description: The event ID used serves as a reference point to request additional events (beyond what was returned according to the limit value).  The responses do not include the reference ID.  To page backward to get older events, make the event number negative.
-          example: 0
+        data:
+          required:
+          - attributes
+          - id
+          - type
+          type: object
+          properties:
+            id:
+              type: string
+              description: Servive name
+              example: CalendarEvents
+            type:
+              type: string
+              description: Call name
+              example: Events
+            attributes:
+              required:
+              - event_id
+              type: object
+              properties:
+                event_id:
+                  type: array
+                  description: Number that uniquely identifies an event.
+                  items:
+                    type: string
+                has_updates:
+                  type: boolean
+                  description: Search only for events that have been updated.
+                last_updated_time:
+                  type: string
+                  description: Search only for events that have been updated since this date and time, (yyyy-mm-dd'T'hh:mm:ss'Z').
+                  format: date-time
+                  example: '2018-01-01T00:00:00.000Z'
+                event_language:
+                  type: string
+                  description: Translate descriptions to this language if translation is available; otherwise, show English version.
+                  enum:
+                  - ''
+                  - zh
+                  - ar
+                  - it
+                  - de
+                  - jp
+            options:
+              $ref: '#/components/schemas/options'
   securitySchemes:
     bearerAuth:
       type: http

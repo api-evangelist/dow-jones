@@ -56,12 +56,15 @@ paths:
       security:
       - bearerAuth: []
 components:
+  parameters:
+    Accept-Encoding:
+      name: Accept-Encoding
+      description: Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to "gzip" and the payload exceeds the threshold of 8MB
+      in: header
+      required: false
+      schema:
+        type: string
   schemas:
-    ResponseDataPrivateListStatusTransaction:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseStatusTransaction'
     PrivateListStatusTransaction:
       type: object
       properties:
@@ -166,14 +169,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorObject'
-  parameters:
-    Accept-Encoding:
-      name: Accept-Encoding
-      description: Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to "gzip" and the payload exceeds the threshold of 8MB
-      in: header
-      required: false
-      schema:
-        type: string
+    ResponseDataPrivateListStatusTransaction:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseStatusTransaction'
   securitySchemes:
     bearerAuth:
       type: http

@@ -32,6 +32,15 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dow-jones.png
 tags:
+  - Finance
+  - Market Data
+  - News
+  - Publishing
+  - Risk and Compliance
+  - Screening
+  - Due Diligence
+  - Media Monitoring
+tags_raw:
   - Financial
   - Market Data
   - News
@@ -2694,6 +2703,38 @@ apis:
   - type: Documentation
     url: >-
       https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_rest-factiva_news_search-news_radar_api-news_radar
+- aid: dow-jones:factiva-developer-kit
+  name: Factiva Developer Kit (SOAP)
+  humanURL: >-
+    https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_soap
+  baseURL: https://developer.factiva.com/3.16
+  tags:
+  - News
+  - Business Data
+  - SOAP
+  - Search
+  description: >-
+    The original Factiva integration surface, in production since 2000 and still published: an XML/SOAP
+    1.1 web-service suite exposing Search, Retrieval, Taxonomy, Membership, Registration, Newsstand, Track,
+    CompanyProfile and MarketData. Dow Jones serves the WSDL 1.1 contract publicly at developer.factiva.com/3.16/wsdl/,
+    covering 208 operations across nine SOAP ports. Version 3.x is current; SOAP v1.x and v2.x were sunset
+    in July 2022 and parts of 3.x have been retired in two deprecation phases.
+  properties:
+  - type: WSDL
+    url: wsdl/dow-jones-developer-platform-factiva-fdk-3-16-objects.wsdl
+  - type: WSDL
+    url: wsdl/dow-jones-developer-platform-factiva-fdk-3-16-objects-bindings.wsdl
+  - type: WSDL
+    url: wsdl/dow-jones-developer-platform-factiva-fdk-3-16-parsers.wsdl
+  - type: WSDL
+    url: wsdl/dow-jones-developer-platform-factiva-fdk-3-16-parsers-bindings.wsdl
+  - type: Documentation
+    url: >-
+      https://developer.dowjones.com/documents/site-docs-factiva_apis-factiva_workflow_apis_soap
+  - type: Sandbox
+    url: sandbox/dow-jones-developer-platform-sandbox.yml
+  image: >-
+    https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dow-jones-developer-platform.png
 - aid: dow-jones:dow-jones-business-unit-api
   name: Dow Jones Business Unit API
   description: The Business Unit API from Dow Jones — 1 operation(s) for business unit.

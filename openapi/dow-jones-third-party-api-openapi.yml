@@ -228,62 +228,30 @@ paths:
       - oauth2: []
 components:
   schemas:
-    ResponseThirdParty:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataThirdParty'
-      additionalProperties: false
-      description: ''
-    RequestDataThirdPartyPatch:
-      required:
-      - attributes
-      - id
+    ResponseDataThirdParties:
       type: object
       properties:
         id:
           type: string
           description: ''
         attributes:
-          $ref: '#/components/schemas/ThirdPartyPatch'
+          $ref: '#/components/schemas/ThirdParty'
         type:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    PagingMeta:
-      type: object
-      properties:
-        context:
           type: string
           description: ''
       additionalProperties: false
       description: ''
-    ErrorModelV2:
+    ResponseLinks:
       type: object
       properties:
-        status:
-          type: integer
+        next:
+          type: string
           description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
+        self:
+          type: string
           description: ''
       additionalProperties: false
-      description: Updated Error model
+      description: ''
     ThirdPartyPatch:
       type: object
       properties:
@@ -324,83 +292,28 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    RequestDataThirdParty:
-      required:
-      - attributes
+    PagingMeta:
       type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/ThirdParty'
-        type:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseDataThirdParties:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdParty'
-        type:
+        context:
           type: string
           description: ''
       additionalProperties: false
       description: ''
-    ResponseLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          description: ''
-        self:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    RequestThirdParty:
+    ResponseThirdParties:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/RequestDataThirdParty'
-      additionalProperties: false
-      description: ''
-    ResponseDataThirdParty:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdParty'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseMeta:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
-      additionalProperties: false
-      description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
+          type: array
           items:
-            $ref: '#/components/schemas/ErrorModelV2'
+            $ref: '#/components/schemas/ResponseDataThirdParties'
           description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
       additionalProperties: false
-      description: Updated Error Response Model
+      description: ''
     ThirdParty:
       type: object
       properties:
@@ -440,18 +353,92 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ResponseThirdParties:
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    ResponseThirdParty:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataThirdParties'
+          $ref: '#/components/schemas/ResponseDataThirdParty'
+      additionalProperties: false
+      description: ''
+    RequestThirdParty:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataThirdParty'
+      additionalProperties: false
+      description: ''
+    RequestDataThirdPartyPatch:
+      required:
+      - attributes
+      - id
+      type: object
+      properties:
+        id:
+          type: string
           description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyPatch'
+        type:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+    RequestDataThirdParty:
+      required:
+      - attributes
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ThirdParty'
+        type:
+          type:
+          - string
+          - 'null'
+          description: ''
       additionalProperties: false
       description: ''
     RequestThirdPartyPatch:
@@ -461,6 +448,19 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/RequestDataThirdPartyPatch'
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdParty:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdParty'
+        type:
+          type: string
+          description: ''
       additionalProperties: false
       description: ''
   securitySchemes:

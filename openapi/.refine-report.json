@@ -115,7 +115,7 @@
     "tag 'Content' spans 3 source specs (dow-jones-content-api-swagger.json, dow-jones-newswires-content-api-openapi.json, dow-jones-top-stories-api-openapi.json): per-path servers applied",
     "tag 'Profiles' spans 2 source specs (dow-jones-risk-profiles-api-openapi.json, dow-jones-screening-and-monitoring-private-lists-api-openapi.json): per-path servers applied",
     "superseded outputs removed: dow-jones-business-unit-api-openapi.yml, dow-jones-content-collections-api-openapi.yml, dow-jones-third-party-api-openapi.yml",
-    "apis.yml register: written (+3 apis, 48 total)"
+    "apis.yml register: written (+3 apis, 49 total)"
   ],
   "skipped": [
     "_original/dow-jones-riskcenter-third-party-api-0-1-openapi.json: archived document superseded by a larger archived document",

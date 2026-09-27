@@ -42,12 +42,77 @@ paths:
       - oauth2: []
 components:
   schemas:
+    ResponseLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseProcess:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataProcess'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: false
+      description: ''
+    Process:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
     PagingMeta:
       type: object
       properties:
         context:
           type: string
           description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ResponseDataProcess:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/Process'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
       additionalProperties: false
       description: ''
     ErrorModelV2:
@@ -73,71 +138,6 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error model
-    ResponseDataProcess:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/Process'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          description: ''
-        self:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    Process:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseMeta:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
-      additionalProperties: false
-      description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
-    ResponseProcess:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataProcess'
-          description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      additionalProperties: false
-      description: ''
   securitySchemes:
     oauth2:
       type: apiKey
