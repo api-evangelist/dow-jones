@@ -230,6 +230,53 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ipoSearchCriteria:
+      type: object
+      properties:
+        date_type:
+          type: array
+          description: Date.
+          items:
+            type: string
+            enum:
+            - CREATED_DATE
+            - UPDATED_DATE
+            - PUBLISH_DATE
+        start_date:
+          type: string
+          description: Earliest date and time of interest (yyyy-MM-dd'T'HH:mm:ss'Z').
+          format: date-time
+          example: '2017-01-01T00:00:00.000Z'
+        end_date:
+          type: string
+          description: Latest date and time of interest (yyyy-MM-dd'T'HH:mm:ss'Z').
+          format: date-time
+          example: '2017-02-01T00:00:00.000Z'
+        issuer_country:
+          type: array
+          description: ORed list of Issuer Countries.
+          items:
+            type: string
+        exchange_country:
+          type: array
+          description: ORed list of Exchange Countries.
+          items:
+            type: string
+        exchange:
+          type: array
+          description: ORed list of Exchanges.
+          items:
+            type: string
+    error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
     pagingCriteria:
       type: object
       properties:
@@ -374,74 +421,6 @@ components:
           properties:
             self:
               type: string
-    error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        fields:
-          type: string
-    ipoPostParams:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Service name
-              example: IPOCalendarEvents
-            type:
-              type: string
-              description: Call name
-              example: Search
-            attributes:
-              type: object
-              properties:
-                filter:
-                  $ref: '#/components/schemas/ipoSearchCriteria'
-                page:
-                  $ref: '#/components/schemas/pagingCriteria'
-    ipoSearchCriteria:
-      type: object
-      properties:
-        date_type:
-          type: array
-          description: Date.
-          items:
-            type: string
-            enum:
-            - CREATED_DATE
-            - UPDATED_DATE
-            - PUBLISH_DATE
-        start_date:
-          type: string
-          description: Earliest date and time of interest (yyyy-MM-dd'T'HH:mm:ss'Z').
-          format: date-time
-          example: '2017-01-01T00:00:00.000Z'
-        end_date:
-          type: string
-          description: Latest date and time of interest (yyyy-MM-dd'T'HH:mm:ss'Z').
-          format: date-time
-          example: '2017-02-01T00:00:00.000Z'
-        issuer_country:
-          type: array
-          description: ORed list of Issuer Countries.
-          items:
-            type: string
-        exchange_country:
-          type: array
-          description: ORed list of Exchange Countries.
-          items:
-            type: string
-        exchange:
-          type: array
-          description: ORed list of Exchanges.
-          items:
-            type: string
     ipoEventsModel:
       type: object
       properties:
@@ -463,6 +442,27 @@ components:
                   type: integer
             attribution:
               type: string
+    ipoPostParams:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Service name
+              example: IPOCalendarEvents
+            type:
+              type: string
+              description: Call name
+              example: Search
+            attributes:
+              type: object
+              properties:
+                filter:
+                  $ref: '#/components/schemas/ipoSearchCriteria'
+                page:
+                  $ref: '#/components/schemas/pagingCriteria'
   securitySchemes:
     bearerAuth:
       type: http

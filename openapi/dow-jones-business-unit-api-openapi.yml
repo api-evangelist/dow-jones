@@ -45,29 +45,6 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ResponseBusinessUnit:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataBusinessUnit'
-          description: ''
-      additionalProperties: false
-      description: ''
-    BusinessUnit:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-        parent_id:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
     ErrorResponseModelV2:
       type: object
       properties:
@@ -103,6 +80,29 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error model
+    ResponseBusinessUnit:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataBusinessUnit'
+          description: ''
+      additionalProperties: false
+      description: ''
+    BusinessUnit:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+        parent_id:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
   securitySchemes:
     oauth2:
       type: apiKey

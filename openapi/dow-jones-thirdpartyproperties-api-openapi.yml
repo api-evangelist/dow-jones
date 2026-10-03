@@ -151,6 +151,33 @@ paths:
       - oauth2: []
 components:
   schemas:
+    ThirdPartyPropertyUpdate:
+      type: object
+      properties:
+        field_id:
+          type: string
+          description: ''
+        field_name:
+          type:
+          - string
+          - 'null'
+          description: ''
+        value:
+          description: ''
+      additionalProperties: false
+      description: ''
+    RequestPropertyBatchUpdate:
+      type: object
+      properties:
+        data:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RequestDataPropertyBatchUpdate'
+          description: ''
+      additionalProperties: false
+      description: ''
     RequestDataPropertyBatchUpdate:
       required:
       - attributes
@@ -166,18 +193,6 @@ components:
           type:
           - string
           - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    RequestPropertyBatchUpdate:
-      type: object
-      properties:
-        data:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RequestDataPropertyBatchUpdate'
           description: ''
       additionalProperties: false
       description: ''
@@ -206,6 +221,51 @@ components:
           $ref: '#/components/schemas/ThirdPartyProperty'
         type:
           type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+    ResponseProperties:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataProperties'
           description: ''
       additionalProperties: false
       description: ''
@@ -240,13 +300,6 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ResponseProperty:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataProperty'
-      additionalProperties: false
-      description: ''
     RequestPropertyUpdate:
       type: object
       properties:
@@ -254,64 +307,11 @@ components:
           $ref: '#/components/schemas/RequestDataPropertyUpdate'
       additionalProperties: false
       description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
-    ThirdPartyPropertyUpdate:
-      type: object
-      properties:
-        field_id:
-          type: string
-          description: ''
-        field_name:
-          type:
-          - string
-          - 'null'
-          description: ''
-        value:
-          description: ''
-      additionalProperties: false
-      description: ''
-    ErrorModelV2:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: Updated Error model
-    ResponseProperties:
+    ResponseProperty:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataProperties'
-          description: ''
+          $ref: '#/components/schemas/ResponseDataProperty'
       additionalProperties: false
       description: ''
   securitySchemes:

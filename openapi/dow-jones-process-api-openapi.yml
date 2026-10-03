@@ -42,13 +42,10 @@ paths:
       - oauth2: []
 components:
   schemas:
-    ResponseLinks:
+    Process:
       type: object
       properties:
-        next:
-          type: string
-          description: ''
-        self:
+        name:
           type: string
           description: ''
       additionalProperties: false
@@ -67,18 +64,13 @@ components:
           $ref: '#/components/schemas/ResponseMeta'
       additionalProperties: false
       description: ''
-    Process:
+    ResponseLinks:
       type: object
       properties:
-        name:
+        next:
           type: string
           description: ''
-      additionalProperties: false
-      description: ''
-    PagingMeta:
-      type: object
-      properties:
-        context:
+        self:
           type: string
           description: ''
       additionalProperties: false
@@ -95,26 +87,6 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error Response Model
-    ResponseDataProcess:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/Process'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseMeta:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
-      additionalProperties: false
-      description: ''
     ErrorModelV2:
       type: object
       properties:
@@ -138,6 +110,34 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error model
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    PagingMeta:
+      type: object
+      properties:
+        context:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseDataProcess:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/Process'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
   securitySchemes:
     oauth2:
       type: apiKey

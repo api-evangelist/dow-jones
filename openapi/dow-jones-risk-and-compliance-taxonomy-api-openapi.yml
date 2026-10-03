@@ -48,13 +48,6 @@ paths:
           description: Bad request
 components:
   schemas:
-    TaxonomyResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListItem'
     ListIds:
       type: string
       enum:
@@ -78,6 +71,29 @@ components:
       - CountryTerritoryType
       - CountryTerritoryTypePerson
       - CountryTerritoryTypeEntity
+    TaxonomyResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListItem'
+    ListItemsContainer:
+      type: object
+      properties:
+        list_items:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/LeafListItem'
+            - $ref: '#/components/schemas/LeafCountryListItem'
+    LeafListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
     ListItem:
       type: object
       properties:
@@ -87,13 +103,6 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/ListItemsContainer'
-    LeafListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        descriptor:
-          type: string
     LeafCountryListItem:
       type: object
       properties:
@@ -105,15 +114,6 @@ components:
           type: string
         iso_alpha3:
           type: string
-    ListItemsContainer:
-      type: object
-      properties:
-        list_items:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/LeafListItem'
-            - $ref: '#/components/schemas/LeafCountryListItem'
   parameters:
     control_data:
       name: control_data

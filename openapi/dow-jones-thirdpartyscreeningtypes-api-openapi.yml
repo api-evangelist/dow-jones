@@ -43,6 +43,35 @@ paths:
       - oauth2: []
 components:
   schemas:
+    IdType:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseDataScreeningIdType:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/IdType'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    Type:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
     ResponseScreeningType:
       type: object
       properties:
@@ -66,27 +95,6 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    Type:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseDataScreeningIdType:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/IdType'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
     ResponseScreeningIdType:
       type: object
       properties:
@@ -94,14 +102,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResponseDataScreeningIdType'
-          description: ''
-      additionalProperties: false
-      description: ''
-    IdType:
-      type: object
-      properties:
-        name:
-          type: string
           description: ''
       additionalProperties: false
       description: ''

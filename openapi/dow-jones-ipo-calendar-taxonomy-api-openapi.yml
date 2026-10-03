@@ -208,6 +208,50 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    eventFilterCountryModel:
+      type: object
+      properties:
+        meta:
+          required:
+          - count
+          type: object
+          properties:
+            count:
+              type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/eventFilterCountryDataModel'
+        links:
+          required:
+          - self
+          type: object
+          properties:
+            self:
+              type: string
+        error:
+          $ref: '#/components/schemas/error'
+    eventFilterExchangeDataFilterItemModel:
+      type: object
+      properties:
+        mic:
+          type: string
+        name:
+          type: string
+        country_code:
+          type: string
+        country_description:
+          type: string
+    error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
     eventFilterCountryDataModel:
       required:
       - attributes
@@ -236,6 +280,16 @@ components:
         description:
           type: string
           description: only included in country item
+    eventFilterExchangeDataModel:
+      required:
+      - attributes
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/eventFilterExchangeDataFilterItemModel'
     eventFilterExchangeModel:
       type: object
       properties:
@@ -250,60 +304,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/eventFilterExchangeDataModel'
-        links:
-          required:
-          - self
-          type: object
-          properties:
-            self:
-              type: string
-        error:
-          $ref: '#/components/schemas/error'
-    error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        fields:
-          type: string
-    eventFilterExchangeDataModel:
-      required:
-      - attributes
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/eventFilterExchangeDataFilterItemModel'
-    eventFilterExchangeDataFilterItemModel:
-      type: object
-      properties:
-        mic:
-          type: string
-        name:
-          type: string
-        country_code:
-          type: string
-        country_description:
-          type: string
-    eventFilterCountryModel:
-      type: object
-      properties:
-        meta:
-          required:
-          - count
-          type: object
-          properties:
-            count:
-              type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/eventFilterCountryDataModel'
         links:
           required:
           - self

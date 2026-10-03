@@ -51,12 +51,6 @@ components:
           type: integer
           format: int64
           example: 1
-    Links:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
     ImageResponse:
       type: object
       properties:
@@ -94,6 +88,12 @@ components:
               example: '12300'
         meta:
           $ref: '#/components/schemas/MetaCount'
+    Links:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
   parameters:
     Id:
       name: id

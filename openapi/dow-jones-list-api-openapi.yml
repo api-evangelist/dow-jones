@@ -82,16 +82,15 @@ paths:
       - oauth2: []
 components:
   schemas:
-    ResponseDataList:
+    ListRow:
       type: object
       properties:
         id:
           type: string
           description: ''
-        attributes:
-          $ref: '#/components/schemas/List'
-        type:
-          type: string
+        data:
+          type: array
+          items: {}
           description: ''
       additionalProperties: false
       description: ''
@@ -106,17 +105,59 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ResponseDataLists:
+    ResponseDataList:
       type: object
       properties:
         id:
           type: string
           description: ''
         attributes:
-          $ref: '#/components/schemas/ListName'
+          $ref: '#/components/schemas/List'
         type:
           type: string
           description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
       additionalProperties: false
       description: ''
     PagingMeta:
@@ -125,20 +166,6 @@ components:
         context:
           type: string
           description: ''
-      additionalProperties: false
-      description: ''
-    ResponseLists:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataLists'
-          description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
       additionalProperties: false
       description: ''
     List:
@@ -163,18 +190,6 @@ components:
           $ref: '#/components/schemas/ResponseDataList'
       additionalProperties: false
       description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
     ListName:
       type: object
       properties:
@@ -183,46 +198,31 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ErrorModelV2:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: Updated Error model
-    ListRow:
+    ResponseDataLists:
       type: object
       properties:
         id:
           type: string
           description: ''
-        data:
-          type: array
-          items: {}
+        attributes:
+          $ref: '#/components/schemas/ListName'
+        type:
+          type: string
           description: ''
       additionalProperties: false
       description: ''
-    ResponseMeta:
+    ResponseLists:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataLists'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
       additionalProperties: false
       description: ''
   securitySchemes:

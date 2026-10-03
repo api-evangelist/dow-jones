@@ -612,66 +612,126 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    eventDetailModel:
+    postParams:
       type: object
       properties:
-        id:
-          type: string
-          description: Index count of the report.
-        description:
-          type: string
-          description: Describes the individual data element reported.
-        dj_combo_detail:
-          type: string
-          description: Optional. Concise combination of the name of an economic indicator event and a data element name. This combination is useful for single-line calendar display rather than nested elements below their event name.
-        importance:
-          type: string
-          description: 'Optional. Applied to Economic events by the Dow Jones news team. It represents their assessment of the marketplace importance of the specified data element. Valid values: High (H), Medium (M), and Low (L).'
-        expected:
-          $ref: '#/components/schemas/detailDataValueModel'
-        previous:
-          $ref: '#/components/schemas/detailDataValueModel'
-        actual:
-          $ref: '#/components/schemas/detailDataValueModel'
-        prior_revised:
-          $ref: '#/components/schemas/detailDataValueModel'
-        delta:
-          $ref: '#/components/schemas/detailDataValueModel'
-    detailDataValueModel:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Servive name
+              example: CalendarEvents
+            type:
+              type: string
+              description: Call name
+              example: Search
+            attributes:
+              type: object
+              properties:
+                filter:
+                  $ref: '#/components/schemas/searchCriteria'
+                options:
+                  $ref: '#/components/schemas/options'
+                page:
+                  $ref: '#/components/schemas/pagingCriteria'
+    searchCriteria:
       type: object
       properties:
-        value:
-          type: string
-          description: Value reported
-        last_modified_date_time:
-          type: string
-          description: Date and time when the value was provided.
-        unit:
-          type: string
-          description: 'Optional. Multiplier for the units of the reported value. If the unit attribute is not present, the data value has a scale of one. Valid values: K–Thousands, M–Millions, B–Billions, T–Trillions.'
-        is_pct:
+        has_confirmed_events_only:
           type: boolean
-          description: Optional. Whether the reported value is a percentage. This information is useful to appropriately format the value displayed.
-        is_chg:
+          description: Include only events whose date and time have been confirmed.
+          example: false
+        has_key_events_only:
           type: boolean
-          description: 'Optional. Whether the reported value represents a net change. This information is useful to appropriately format the net change displayed. Unlike regular positive values, users may wish to prepend a “+” sign to positive net changes. Valid values indicate: true–The value represents a net change and is not simply a positive value. false–The value simply represents a positive value and is not a net change.'
-        currency:
+          description: Include only events marked as key events. A key event is a macroeconomic event that has been identified by the Dow Jones News team as having a market impact.
+          example: false
+        time_specified:
+          type: boolean
+          description: Filter events based on time specified
+          example: false
+        country:
+          type: array
+          description: ORed list of countries associated with the event (ISO Code). These are countries related to the entity that provides data or sponsorship for the event.
+          items:
+            type: string
+        region:
+          type: array
+          description: ORed list of regions associated with the event (e.g. Asia). These are regions related to the entity that provides data or sponsorship for the event.
+          items:
+            type: string
+        event_code:
+          type: array
+          description: 'Event type: ICC-Corporate, IEP-Economic and Political, IDC-Treasury Auctions.'
+          items:
+            type: string
+            enum:
+            - ICC
+            - IEP
+            - IDC
+        series_code:
+          type: array
+          description: ORed list of event series codes (e.g. TrdBal-Trade Balance, ImptPx-Import Prices).
+          items:
+            minLength: 2
+            type: string
+        event_class:
+          type: array
+          description: Event classification (e.g. IEP_STAT for Statistics and Economic Indicators, ICC_ANL Earnings/Analysts Calls and GMs).
+          items:
+            type: string
+            enum:
+            - ICC_ANAL
+            - ICC_ANL
+            - ICC_BRO
+            - ICC_DIV
+            - ICC_EARN
+            - ICC_EXC
+            - ICC_IND
+            - ICC_IPO
+            - ICC_OTH
+            - ICC_SPLT
+            - IEP_CAN
+            - IEP_CONF
+            - IEP_DEBT
+            - IEP_EVT
+            - IEP_HOL
+            - IEP_IND
+            - IEP_POL
+            - IEP_STAT
+            - IEP_US
+            - IDC_ACT
+            - IDC_ISS
+        start_date:
           type: string
-          description: Optional. Where applicable, monetary unit of the reported value. Valid currency codes can be found using the taxonomy currency endpoint.
-        source:
+          description: Earliest date and time of interest (yyyy-MM-dd'T'HH:mm:ss'Z').
+          format: date-time
+          example: '2017-01-01T00:00:00.000Z'
+        end_date:
           type: string
-          description: 'Optional. Source of information. Valid values: Factset, Kantar, and Null (stands for Dow Jones).'
-    pagingCriteria:
-      type: object
-      properties:
-        limit:
-          type: integer
-          description: Maximum number of results for a single request, max size 1000.
-          example: 40
-        offset:
-          type: integer
-          description: The event ID used serves as a reference point to request additional events (beyond what was returned according to the limit value).  The responses do not include the reference ID.  To page backward to get older events, make the event number negative.
-          example: 0
+          description: Latest date and time of interest (yyyy-MM-dd'T'HH:mm:ss'Z').
+          format: date-time
+          example: '2017-02-01T00:00:00.000Z'
+        ticker:
+          type: array
+          description: ORed list of Newswires codes.
+          items:
+            type: string
+        isin:
+          type: array
+          description: ORed list of ISINs.
+          items:
+            type: string
+        event_language:
+          type: string
+          description: Translate descriptions to this language if translation is available; otherwise, show English version.
+          enum:
+          - ''
+          - zh
+          - ar
+          - it
+          - de
+          - jp
     eventDataModel:
       type: object
       properties:
@@ -821,45 +881,51 @@ components:
           properties:
             self:
               type: string
-    postParams:
+    error:
       type: object
       properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Servive name
-              example: CalendarEvents
-            type:
-              type: string
-              description: Call name
-              example: Search
-            attributes:
-              type: object
-              properties:
-                filter:
-                  $ref: '#/components/schemas/searchCriteria'
-                options:
-                  $ref: '#/components/schemas/options'
-                page:
-                  $ref: '#/components/schemas/pagingCriteria'
-    ecoinfo:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
+    detailDataValueModel:
       type: object
       properties:
-        frequency:
+        value:
           type: string
-        meaning:
+          description: Value reported
+        last_modified_date_time:
           type: string
-        definition:
+          description: Date and time when the value was provided.
+        unit:
           type: string
-    options:
-      type: object
-      properties:
-        show_ecoinfo:
+          description: 'Optional. Multiplier for the units of the reported value. If the unit attribute is not present, the data value has a scale of one. Valid values: K–Thousands, M–Millions, B–Billions, T–Trillions.'
+        is_pct:
           type: boolean
-          description: Include ecoinfo data as part of event results.
-          example: false
+          description: Optional. Whether the reported value is a percentage. This information is useful to appropriately format the value displayed.
+        is_chg:
+          type: boolean
+          description: 'Optional. Whether the reported value represents a net change. This information is useful to appropriately format the net change displayed. Unlike regular positive values, users may wish to prepend a “+” sign to positive net changes. Valid values indicate: true–The value represents a net change and is not simply a positive value. false–The value simply represents a positive value and is not a net change.'
+        currency:
+          type: string
+          description: Optional. Where applicable, monetary unit of the reported value. Valid currency codes can be found using the taxonomy currency endpoint.
+        source:
+          type: string
+          description: 'Optional. Source of information. Valid values: Factset, Kantar, and Null (stands for Dow Jones).'
+    pagingCriteria:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: Maximum number of results for a single request, max size 1000.
+          example: 40
+        offset:
+          type: integer
+          description: The event ID used serves as a reference point to request additional events (beyond what was returned according to the limit value).  The responses do not include the reference ID.  To page backward to get older events, make the event number negative.
+          example: 0
     eventsModel:
       type: object
       properties:
@@ -881,113 +947,13 @@ components:
                   type: integer
             attribution:
               type: string
-    searchCriteria:
+    options:
       type: object
       properties:
-        has_confirmed_events_only:
+        show_ecoinfo:
           type: boolean
-          description: Include only events whose date and time have been confirmed.
+          description: Include ecoinfo data as part of event results.
           example: false
-        has_key_events_only:
-          type: boolean
-          description: Include only events marked as key events. A key event is a macroeconomic event that has been identified by the Dow Jones News team as having a market impact.
-          example: false
-        time_specified:
-          type: boolean
-          description: Filter events based on time specified
-          example: false
-        country:
-          type: array
-          description: ORed list of countries associated with the event (ISO Code). These are countries related to the entity that provides data or sponsorship for the event.
-          items:
-            type: string
-        region:
-          type: array
-          description: ORed list of regions associated with the event (e.g. Asia). These are regions related to the entity that provides data or sponsorship for the event.
-          items:
-            type: string
-        event_code:
-          type: array
-          description: 'Event type: ICC-Corporate, IEP-Economic and Political, IDC-Treasury Auctions.'
-          items:
-            type: string
-            enum:
-            - ICC
-            - IEP
-            - IDC
-        series_code:
-          type: array
-          description: ORed list of event series codes (e.g. TrdBal-Trade Balance, ImptPx-Import Prices).
-          items:
-            minLength: 2
-            type: string
-        event_class:
-          type: array
-          description: Event classification (e.g. IEP_STAT for Statistics and Economic Indicators, ICC_ANL Earnings/Analysts Calls and GMs).
-          items:
-            type: string
-            enum:
-            - ICC_ANAL
-            - ICC_ANL
-            - ICC_BRO
-            - ICC_DIV
-            - ICC_EARN
-            - ICC_EXC
-            - ICC_IND
-            - ICC_IPO
-            - ICC_OTH
-            - ICC_SPLT
-            - IEP_CAN
-            - IEP_CONF
-            - IEP_DEBT
-            - IEP_EVT
-            - IEP_HOL
-            - IEP_IND
-            - IEP_POL
-            - IEP_STAT
-            - IEP_US
-            - IDC_ACT
-            - IDC_ISS
-        start_date:
-          type: string
-          description: Earliest date and time of interest (yyyy-MM-dd'T'HH:mm:ss'Z').
-          format: date-time
-          example: '2017-01-01T00:00:00.000Z'
-        end_date:
-          type: string
-          description: Latest date and time of interest (yyyy-MM-dd'T'HH:mm:ss'Z').
-          format: date-time
-          example: '2017-02-01T00:00:00.000Z'
-        ticker:
-          type: array
-          description: ORed list of Newswires codes.
-          items:
-            type: string
-        isin:
-          type: array
-          description: ORed list of ISINs.
-          items:
-            type: string
-        event_language:
-          type: string
-          description: Translate descriptions to this language if translation is available; otherwise, show English version.
-          enum:
-          - ''
-          - zh
-          - ar
-          - it
-          - de
-          - jp
-    error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        fields:
-          type: string
     eventsPostParams:
       type: object
       properties:
@@ -1036,6 +1002,40 @@ components:
                   - jp
             options:
               $ref: '#/components/schemas/options'
+    eventDetailModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Index count of the report.
+        description:
+          type: string
+          description: Describes the individual data element reported.
+        dj_combo_detail:
+          type: string
+          description: Optional. Concise combination of the name of an economic indicator event and a data element name. This combination is useful for single-line calendar display rather than nested elements below their event name.
+        importance:
+          type: string
+          description: 'Optional. Applied to Economic events by the Dow Jones news team. It represents their assessment of the marketplace importance of the specified data element. Valid values: High (H), Medium (M), and Low (L).'
+        expected:
+          $ref: '#/components/schemas/detailDataValueModel'
+        previous:
+          $ref: '#/components/schemas/detailDataValueModel'
+        actual:
+          $ref: '#/components/schemas/detailDataValueModel'
+        prior_revised:
+          $ref: '#/components/schemas/detailDataValueModel'
+        delta:
+          $ref: '#/components/schemas/detailDataValueModel'
+    ecoinfo:
+      type: object
+      properties:
+        frequency:
+          type: string
+        meaning:
+          type: string
+        definition:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

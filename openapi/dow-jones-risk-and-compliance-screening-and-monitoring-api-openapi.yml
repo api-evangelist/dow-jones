@@ -6012,131 +6012,63 @@ paths:
       - bearerAuth: []
 components:
   schemas:
-    DataLinks:
+    ResponseShortcut:
       type: object
       properties:
-        related:
-          type: string
-        self:
-          type: string
-    TransactionData:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-        operation:
-          type: string
-        case_id:
-          type: string
-        invalid_associations:
-          type: integer
-          format: int32
-        pending_associations:
-          type: integer
-          format: int32
-        processing_associations:
-          type: integer
-          format: int32
-        valid_associations:
-          type: integer
-          format: int32
-        valid_association_ids:
-          type: array
-          items:
-            type: string
-        invalid_association_ids:
-          type: array
-          items:
-            type: string
-        invalid_association_details:
-          type: array
-          items:
-            type: string
-    ExtendedTransaction:
+        data:
+          $ref: '#/components/schemas/ResponseDataShortcut'
+    ResponseDataCase:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/ExtendedTransactionData'
+          $ref: '#/components/schemas/Case'
         id:
           type: string
         links:
           $ref: '#/components/schemas/ResponseLinksSelf'
         type:
           type: string
-    ResponseAssociation:
+    AssociationV20:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataAssociation'
-    ResponseCaseV12:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataCaseV12'
-    PatchBatchOptionsV11:
-      type: object
-      properties:
-        filter_content_category:
+        country:
+          type:
+          - string
+          - 'null'
+        external_id:
+          type:
+          - string
+          - 'null'
+        gender:
+          type:
+          - string
+          - 'null'
+          enum:
+          - MALE
+          - FEMALE
+        identification_details:
+          $ref: '#/components/schemas/IdentificationV11'
+        industry_sector:
+          type:
+          - string
+          - 'null'
+        names:
           type: array
           items:
-            oneOf:
-            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
-            - $ref: '#/components/schemas/FilterContentCategoryEnum'
-        filter_source:
-          type: array
-          items:
-            type: string
-            example: DJRC
-        has_to_match_low_quality_alias:
-          type: boolean
-          example: false
-        is_indexed:
-          type: boolean
-          example: false
-        score_threshold:
-          type: number
-          format: double
-        search_type:
+            $ref: '#/components/schemas/Name'
+        record_type:
           type: string
           enum:
-          - PRECISE
-          - NEAR
-          - BROAD
-    RequestShortcutAssociationsV11:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataShortcutAssociationsV11'
-    RequestCase:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataCase'
-    ResponseLinksSelf:
-      type: object
-      properties:
-        self:
-          type: string
-    ResourceDetails:
-      type: object
-      properties:
-        id:
-          type: string
-        external_id:
-          type: string
-        request_index:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetails'
-    BatchOptionsV13:
-      required:
-      - search_type
+          - PERSON
+          - ENTITY
+          - UNKNOWN
+        year_of_birth:
+          $ref: '#/components/schemas/YearOfBirth'
+        is_deceased:
+          type:
+          - boolean
+          - 'null'
+    PatchBatchOptionsV12:
       type: object
       properties:
         filter_content_category:
@@ -6146,7 +6078,7 @@ components:
             - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
             - $ref: '#/components/schemas/FilterContentCategoryEnum'
         filter_content_category_status:
-          $ref: '#/components/schemas/FilterContentCategoryStatusV13'
+          $ref: '#/components/schemas/FilterContentCategoryStatus'
         filter_source:
           type: array
           items:
@@ -6161,12 +6093,7 @@ components:
           type:
           - boolean
           - 'null'
-          example: true
-        has_screen_priority:
-          type:
-          - boolean
-          - 'null'
-          example: true
+          example: false
         score_threshold:
           type: number
           format: double
@@ -6176,119 +6103,53 @@ components:
           - PRECISE
           - NEAR
           - BROAD
-    RequestDataShortcutCaseV11:
+    ResponseDataPatchAssociation:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/ShortcutCaseV11'
+          $ref: '#/components/schemas/CaseAssociation'
+        id:
+          type: string
         type:
           type: string
-    ResponseDataTransaction:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Transaction'
-    CaseAssociations:
-      type: object
-      properties:
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Association'
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptions'
-        owner_id:
-          type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    BatchOptions:
-      required:
-      - filter_content_category
-      - search_type
-      type: object
-      properties:
-        filter_content_category:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
-            - $ref: '#/components/schemas/FilterContentCategoryEnum'
-        has_to_match_low_quality_alias:
-          type: boolean
-          example: false
-        is_indexed:
-          type: boolean
-          example: false
-        score_threshold:
-          type: number
-          format: double
-        search_type:
-          type: string
-          enum:
-          - PRECISE
-          - NEAR
-          - BROAD
-    ResponseMatchV20:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataMatchV20'
-    ResponseAssociationRelationship:
-      type: object
-      properties:
         links:
-          $ref: '#/components/schemas/ResponseAssociationRelationship_links'
-        data:
-          $ref: '#/components/schemas/RelationshipData'
-        meta:
-          $ref: '#/components/schemas/ResponseAssociationRelationship_meta'
-    RequestDataPatchCase:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+    RequestDataCaseV13:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/PatchCase'
+          $ref: '#/components/schemas/CaseV13'
         type:
           type: string
-    ResponseAssociationRelationship_links:
+    ResponseMeta:
       type: object
       properties:
-        related:
-          type: string
-    PatchMatch:
-      type: object
-      properties:
-        comment:
-          type: string
-        current_state:
-          type: string
-          enum:
-          - OPEN
-          - CLEARED
-          - PERMANENTLY_CLEARED
-          - CONFIRMED
-          - CONFIRMED_BLOCKED
-          - CONFIRMED_UNDER_REVIEW
-          - CONFIRMED_RISK_MITIGATED
-        match_id:
-          type: string
-        risk_rating:
-          type: number
-        timestamp:
-          type: string
-          format: date-time
-    RequestPatchCaseV12:
-      required:
-      - data
+        count:
+          type: integer
+          format: int32
+        offset:
+          $ref: '#/components/schemas/ResponseLinks'
+        total_count:
+          type: integer
+          format: int32
+    ResponseShortcutTransaction:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/RequestDataPatchCaseV12'
+          $ref: '#/components/schemas/ResponseDataShortcutTransaction'
+    ValidateCaseShortcutData:
+      type: object
+      properties:
+        type:
+          type: string
+        status:
+          $ref: '#/components/schemas/ValidationStatus'
+        invalid_case_details:
+          $ref: '#/components/schemas/ResourceDetailsNoId'
+        invalid_association_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceDetailsNoId'
     AssociationMatchesV12:
       type: object
       properties:
@@ -6302,6 +6163,756 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MatchV12'
+    FilterContentCategoryStatusV13:
+      type:
+      - object
+      - 'null'
+      properties:
+        is_san_active:
+          type:
+          - boolean
+          - 'null'
+        is_sor_active:
+          type:
+          - boolean
+          - 'null'
+        is_ool_active:
+          type:
+          - boolean
+          - 'null'
+        is_oel_active:
+          type:
+          - boolean
+          - 'null'
+        is_soc_active:
+          type:
+          - boolean
+          - 'null'
+        is_pep_active:
+          type:
+          - boolean
+          - 'null'
+        is_rca_active:
+          type:
+          - boolean
+          - 'null'
+        is_meu_active:
+          type:
+          - boolean
+          - 'null'
+        is_tae_active:
+          type:
+          - boolean
+          - 'null'
+    ShortcutCase:
+      type: object
+      properties:
+        case_info:
+          $ref: '#/components/schemas/CaseAssociations'
+    ResponseDataCaseV13:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CaseResponseV13'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+        type:
+          type: string
+    RequestDataAssociation:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/Association'
+        type:
+          type: string
+    CaseV13:
+      type: object
+      properties:
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        last_match_activity_on:
+          type: string
+          example: '2021-06-09T14:34:12.358'
+        is_case_valid:
+          type: boolean
+        options:
+          $ref: '#/components/schemas/BatchOptionsV13'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+        alert_reason:
+          uniqueItems: true
+          type: array
+          example:
+          - ENTITY
+          - WATCHLIST
+          items:
+            type: string
+    ResponseCaseV13:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataCaseV13'
+    ShortcutCaseV21:
+      type: object
+      properties:
+        case_info:
+          $ref: '#/components/schemas/CaseAssociationsV21'
+    RequestDataShortcutAssociationsV20:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ShortcutAssociationsV20'
+        type:
+          type: string
+    RequestShortcutAssociationsV20:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataShortcutAssociationsV20'
+    ExtendedTransaction:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ExtendedTransactionData'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+        type:
+          type: string
+    ResponsePatchCaseV12:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataPatchCaseV12'
+    ResponseDataShortcutTransaction:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ShortcutTransaction'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+        type:
+          type: string
+    ShortcutCaseV12:
+      type: object
+      properties:
+        case_info:
+          $ref: '#/components/schemas/CaseAssociationsV12'
+    ResponseAssociation:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataAssociation'
+    CaseAssociationsV21:
+      type: object
+      properties:
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Association'
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        options:
+          $ref: '#/components/schemas/BatchOptionsV13'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+        alert_reason:
+          type: array
+          example:
+          - ENTITY
+          - WATCHLIST
+          items:
+            type: string
+    RequestDataPatchCase:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PatchCase'
+        type:
+          type: string
+    MatchFeedback:
+      type: object
+      properties:
+        comment:
+          type: string
+        id:
+          type: string
+        risk_rating:
+          type: number
+        state:
+          type: string
+          enum:
+          - OPEN
+          - CLEARED
+          - PERMANENTLY_CLEARED
+          - CONFIRMED
+          - CONFIRMED_BLOCKED
+          - CONFIRMED_UNDER_REVIEW
+          - CONFIRMED_RISK_MITIGATED
+    ResponseAssociationV20:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataAssociationV20'
+    ErrorDetails:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+        code:
+          type: integer
+        detail:
+          type: string
+    RequestDataShortcutAssociations:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ShortcutAssociations'
+        type:
+          type: string
+    RequestDataCaseV12:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CaseV12'
+        type:
+          type: string
+    ResponseMatchRelationships:
+      type: object
+      properties:
+        screening_case:
+          $ref: '#/components/schemas/ResponseRelationship'
+        association:
+          $ref: '#/components/schemas/ResponseAssociationRelationship'
+        profile:
+          $ref: '#/components/schemas/ResponseRelationship'
+        custom_source_profile:
+          $ref: '#/components/schemas/ResponseRelationship'
+    ResponseAssociationRelationship_meta:
+      type: object
+      properties:
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+    FilterContentCategoryEnum:
+      type: string
+      enum:
+      - WL
+      - SL
+      - OEL
+      - OOL
+      - PEP
+      - SIP
+      - RCA
+      - SOC
+      - AME
+      - REG
+      - COMPFIN
+      - ENVPROD
+      - SOCLAB
+      - ECR
+    RequestDataAssociationV20:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AssociationV20'
+        type:
+          type: string
+    RelationshipData:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+    ResponseDataMatchV20:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MatchV20'
+        id:
+          type: string
+        type:
+          type: string
+    ResponseDataAssociation:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/Association'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+        type:
+          type: string
+    ResponseListAssociationV20:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataAssociationV20'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    Identification:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+    AssociationMatchesV20:
+      type: object
+      properties:
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        match_count:
+          type: integer
+        matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchV20'
+    CaseAssociation:
+      type: object
+      properties:
+        country:
+          type: string
+        external_id:
+          type: string
+        gender:
+          type: string
+          enum:
+          - MALE
+          - FEMALE
+        identification_details:
+          $ref: '#/components/schemas/Identification'
+        industry_sector:
+          type: string
+        names:
+          type: array
+          items:
+            $ref: '#/components/schemas/Name'
+        record_type:
+          type: string
+          enum:
+          - PERSON
+          - ENTITY
+          - UNKNOWN
+        year_of_birth:
+          type: integer
+          format: int32
+        has_alerts:
+          type: boolean
+        is_deceased:
+          type: boolean
+    ShortcutCaseV11:
+      type: object
+      properties:
+        case_info:
+          $ref: '#/components/schemas/CaseAssociationsV11'
+    RequestShortcutCase:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataShortcutCase'
+    RequestAssociationV11:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataAssociationV11'
+    AssociationMatches:
+      type: object
+      properties:
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        match_count:
+          type: integer
+        matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/Match'
+    ScorePreferences:
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/ScorePreference'
+        gender:
+          $ref: '#/components/schemas/ScorePreference'
+        identification_details:
+          $ref: '#/components/schemas/ScorePreference'
+        industry_sector:
+          $ref: '#/components/schemas/ScorePreference'
+        year_of_birth:
+          $ref: '#/components/schemas/ScorePreference'
+        deceased:
+          $ref: '#/components/schemas/ScorePreference'
+    ResponsePatchCase:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataPatchCase'
+    IdentificationV11:
+      type:
+      - object
+      - 'null'
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+    ScorePreference:
+      type: object
+      properties:
+        has_exclusions:
+          type: boolean
+        score:
+          type: integer
+          format: int32
+    ResponsePatchCaseV13:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataPatchCaseV13'
+    ValidateAssociationsShortcutData:
+      type: object
+      properties:
+        type:
+          type: string
+        status:
+          $ref: '#/components/schemas/ValidationStatus'
+        invalid_association_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceDetailsNoId'
+    ResponseListCaseAssociation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataCaseAssociation'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    ResponseListAssociationMatchesV12:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataAssociationMatchesV12'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    MatchFeedbackV30:
+      type: object
+      properties:
+        comment:
+          type: string
+        id:
+          type: string
+        risk_rating:
+          type: number
+        state:
+          type: string
+          enum:
+          - OPEN
+          - CLEARED
+          - PERMANENTLY_CLEARED
+          - CONFIRMED
+          - CONFIRMED_BLOCKED
+          - CONFIRMED_UNDER_REVIEW
+          - CONFIRMED_RISK_MITIGATED
+        timestamp:
+          type: string
+          format: date-time
+    YearOfBirth:
+      type:
+      - object
+      - 'null'
+      properties:
+        specific_year:
+          type:
+          - integer
+          - 'null'
+          description: Specific year of birth (mutually exclusive with from/to)
+          format: int32
+        from:
+          type:
+          - integer
+          - 'null'
+          description: Start of year range (requires 'to' field)
+          format: int32
+        to:
+          type:
+          - integer
+          - 'null'
+          description: End of year range (requires 'from' field)
+          format: int32
+      description: Year of birth can be specified as either a specific year OR a range. Use specific_year for exact year, or from/to for a range. These fields are mutually exclusive.
+    ResponseAssociationRelationship:
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/ResponseAssociationRelationship_links'
+        data:
+          $ref: '#/components/schemas/RelationshipData'
+        meta:
+          $ref: '#/components/schemas/ResponseAssociationRelationship_meta'
+    ResponseRelationship:
+      type: object
+      properties:
+        links:
+          $ref: '#/components/schemas/ResponseAssociationRelationship_links'
+        data:
+          $ref: '#/components/schemas/RelationshipData'
+    DataLinks:
+      type: object
+      properties:
+        related:
+          type: string
+        self:
+          type: string
+    ResponseDataPatchAssociationV20:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CaseAssociationV20'
+        id:
+          type: string
+        type:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+    ResponseListAssociationMatches:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataAssociationMatches'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    JsonError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        detail:
+          type: string
+        status:
+          type: integer
+          format: int32
+        title:
+          type: string
+    CaseResponseV13:
+      type: object
+      properties:
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+        updated_in:
+          type: string
+          format: date-time
+        revision:
+          type: integer
+          format: int32
+        is_case_valid:
+          type: boolean
+        alert_reason:
+          uniqueItems: true
+          type: array
+          example:
+          - ENTITY
+          - WATCHLIST
+          items:
+            type: string
+        options:
+          $ref: '#/components/schemas/BatchOptionsV13'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    ResponseDataAssociationMatchesV20:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AssociationMatchesV20'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/DataLinks'
+        type:
+          type: string
+    ShortcutAssociationsV20:
+      type: object
+      properties:
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationV20'
+    ResponseDataPatchCaseV13:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CaseResponseV13'
+        id:
+          type: string
+        type:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+    JsonErrorMeta:
+      type: object
+      properties:
+        request_index:
+          type: integer
+        type:
+          type: string
+        id:
+          type: string
+    RequestPatchCaseV12:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataPatchCaseV12'
+    ShortcutAssociationsV11:
+      type: object
+      properties:
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationV11'
+    ExtendedTransactionData:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        operation:
+          type: string
+        case_id:
+          type: string
+        case_external_id:
+          type: string
+        valid_associations_count:
+          type: integer
+          format: int32
+        invalid_associations_count:
+          type: integer
+          format: int32
+        pending_associations_count:
+          type: integer
+          format: int32
+        processing_associations_count:
+          type: integer
+          format: int32
+        valid_associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceDetailsNoErrors'
+        invalid_associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceDetails'
+    RequestCaseV12:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataCaseV12'
+    CaseAssociationsV12:
+      type: object
+      properties:
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Association'
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        options:
+          $ref: '#/components/schemas/BatchOptionsV13'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    ResponseDataPatchCaseV11:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CaseV11'
+        id:
+          type: string
+        type:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+    RequestDataCase:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/Case'
+        type:
+          type: string
     Match:
       type: object
       properties:
@@ -6366,25 +6977,79 @@ components:
           type: string
         variation:
           $ref: '#/components/schemas/Variation'
-    RequestShortcutAssociationsV20:
+    CaseV11:
+      type: object
+      properties:
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        last_match_activity_on:
+          type: string
+          example: '2021-06-09T14:34:12.358'
+        is_case_valid:
+          type: boolean
+        options:
+          $ref: '#/components/schemas/BatchOptionsV11'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    PatchCaseV13:
+      type: object
+      properties:
+        case_name:
+          type:
+          - string
+          - 'null'
+        external_id:
+          type:
+          - string
+          - 'null'
+        alert_reason:
+          uniqueItems: true
+          type: array
+          example:
+          - ENTITY
+          - WATCHLIST
+          items:
+            type: string
+        options:
+          $ref: '#/components/schemas/PatchBatchOptionsV13'
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    ResponsePatchAssociationV20:
       required:
       - data
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/RequestDataShortcutAssociationsV20'
-    ResponseShortcut:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataShortcut'
-    ResponsePatchCase:
+          $ref: '#/components/schemas/ResponseDataPatchAssociationV20'
+    ValidationStatus:
+      type: string
+      enum:
+      - INVALID
+      - OK
+    ResponsePatchCaseV11:
       required:
       - data
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/ResponseDataPatchCase'
+          $ref: '#/components/schemas/ResponseDataPatchCaseV11'
+    ResponseListCase:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataCase'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
     RequestDataShortcutAssociationsV11:
       type: object
       properties:
@@ -6392,7 +7057,84 @@ components:
           $ref: '#/components/schemas/ShortcutAssociationsV11'
         type:
           type: string
-    Association:
+    ResourceDetailsNoErrors:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        request_index:
+          type: string
+    ResponseListCaseAssociationV20:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataCaseAssociationV20'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    ResourceDetails:
+      type: object
+      properties:
+        id:
+          type: string
+        external_id:
+          type: string
+        request_index:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetails'
+    ShortcutAssociations:
+      type: object
+      properties:
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Association'
+    RequestShortcutAssociations:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataShortcutAssociations'
+    DateParts:
+      type: object
+      properties:
+        day:
+          type: integer
+          format: int32
+        month:
+          type: integer
+          format: int32
+        year:
+          type: integer
+          format: int32
+    ResponseDataPatchCaseV12:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CaseV12'
+        id:
+          type: string
+        type:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+    RequestDataShortcutCaseV21:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ShortcutCaseV21'
+        type:
+          type: string
+    CaseAssociationV20:
       type: object
       properties:
         country:
@@ -6419,177 +7161,12 @@ components:
           - ENTITY
           - UNKNOWN
         year_of_birth:
-          type: integer
-          format: int32
+          $ref: '#/components/schemas/YearOfBirth'
+        has_alerts:
+          type: boolean
         is_deceased:
           type: boolean
-    RequestAssociation:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataAssociation'
-    BulkMatchUpdateRequest:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkMatchUpdateData'
-    RequestCaseV12:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataCaseV12'
-    ResponseCaseV13:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataCaseV13'
-    ShortcutCaseV11:
-      type: object
-      properties:
-        case_info:
-          $ref: '#/components/schemas/CaseAssociationsV11'
-    ResponseRelationship:
-      type: object
-      properties:
-        links:
-          $ref: '#/components/schemas/ResponseAssociationRelationship_links'
-        data:
-          $ref: '#/components/schemas/RelationshipData'
-    RequestShortcutCaseV20:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataShortcutCaseV20'
-    RequestCaseV11:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataCaseV11'
-    ResponseMatchRelationships:
-      type: object
-      properties:
-        screening_case:
-          $ref: '#/components/schemas/ResponseRelationship'
-        association:
-          $ref: '#/components/schemas/ResponseAssociationRelationship'
-        profile:
-          $ref: '#/components/schemas/ResponseRelationship'
-        custom_source_profile:
-          $ref: '#/components/schemas/ResponseRelationship'
-    AssociationV20:
-      type: object
-      properties:
-        country:
-          type:
-          - string
-          - 'null'
-        external_id:
-          type:
-          - string
-          - 'null'
-        gender:
-          type:
-          - string
-          - 'null'
-          enum:
-          - MALE
-          - FEMALE
-        identification_details:
-          $ref: '#/components/schemas/IdentificationV11'
-        industry_sector:
-          type:
-          - string
-          - 'null'
-        names:
-          type: array
-          items:
-            $ref: '#/components/schemas/Name'
-        record_type:
-          type: string
-          enum:
-          - PERSON
-          - ENTITY
-          - UNKNOWN
-        year_of_birth:
-          $ref: '#/components/schemas/YearOfBirth'
-        is_deceased:
-          type:
-          - boolean
-          - 'null'
-    FilterContentCategoryStatus:
-      type:
-      - object
-      - 'null'
-      properties:
-        is_san_active:
-          type:
-          - boolean
-          - 'null'
-        is_sor_active:
-          type:
-          - boolean
-          - 'null'
-        is_ool_active:
-          type:
-          - boolean
-          - 'null'
-        is_oel_active:
-          type:
-          - boolean
-          - 'null'
-        is_soc_active:
-          type:
-          - boolean
-          - 'null'
-        is_pep_active:
-          type:
-          - boolean
-          - 'null'
-        is_rca_active:
-          type:
-          - boolean
-          - 'null'
-        is_meu_active:
-          type:
-          - boolean
-          - 'null'
-    ResponseListAssociationMatchesV20:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataAssociationMatchesV20'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    JsonErrorExt:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        detail:
-          type: string
-        status:
-          type: integer
-          format: int32
-        title:
-          type: string
-        meta:
-          $ref: '#/components/schemas/JsonErrorMeta'
-    CaseResponseV13:
+    PatchCase:
       type: object
       properties:
         case_name:
@@ -6598,93 +7175,268 @@ components:
           type: string
         has_alerts:
           type: boolean
-        timestamp:
+        options:
+          $ref: '#/components/schemas/PatchBatchOptions'
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    CaseV12:
+      type: object
+      properties:
+        case_name:
           type: string
-          format: date-time
-        updated_in:
+        external_id:
           type: string
-          format: date-time
-        revision:
-          type: integer
-          format: int32
+        has_alerts:
+          type: boolean
+        last_match_activity_on:
+          type: string
+          example: '2021-06-09T14:34:12.358'
         is_case_valid:
           type: boolean
-        alert_reason:
-          uniqueItems: true
+        options:
+          $ref: '#/components/schemas/BatchOptionsV12'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    BatchOptionsV11:
+      required:
+      - search_type
+      type: object
+      properties:
+        filter_content_category:
           type: array
-          example:
-          - ENTITY
-          - WATCHLIST
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
+            - $ref: '#/components/schemas/FilterContentCategoryEnum'
+        filter_source:
+          type: array
           items:
             type: string
+            example: DJRC
+        has_to_match_low_quality_alias:
+          type: boolean
+          example: false
+        is_indexed:
+          type: boolean
+          example: false
+        score_threshold:
+          type: number
+          format: double
+        search_type:
+          type: string
+          enum:
+          - PRECISE
+          - NEAR
+          - BROAD
+    PatchCaseV11:
+      type: object
+      properties:
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        options:
+          $ref: '#/components/schemas/PatchBatchOptionsV11'
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    MatchV12:
+      type: object
+      properties:
+        birthdates:
+          type: array
+          items:
+            $ref: '#/components/schemas/DateParts'
+        boosting_events:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoosterEvent'
+        current_state:
+          $ref: '#/components/schemas/MatchFeedback'
+        has_alerts:
+          type: boolean
+        icon_hints:
+          type: array
+          items:
+            type: string
+        is_match_valid:
+          type: boolean
+        is_score_boosted:
+          type: boolean
+        is_deceased:
+          type: boolean
+        match_date:
+          type: string
+        match_id:
+          type: string
+        match_invalid_date:
+          type: string
+        match_invalid_reason:
+          type: string
+        match_name:
+          type: string
+        match_type:
+          type: string
+          enum:
+          - PRECISE
+          - NEAR
+          - BROAD
+        peid:
+          type: string
+        percentage_match:
+          type: number
+          format: double
+        filter_source:
+          type: string
+          example: DJRC
+        previous_state:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchFeedback'
+        primary_country:
+          type: string
+        gender:
+          type: string
+        primary_name:
+          $ref: '#/components/schemas/Name'
+        subscription_name:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        variation:
+          $ref: '#/components/schemas/Variation'
+    RequestDataShortcutCase:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ShortcutCase'
+        type:
+          type: string
+    RequestDataPatchMatch:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PatchMatch'
+        type:
+          type: string
+    RelationshipRequest:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationshipData'
+    ResponseListMatchesV30:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataMatchV30'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    ResponseDataMatchV30:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MatchV30'
+        id:
+          type: string
+        type:
+          type: string
+        relationships:
+          $ref: '#/components/schemas/ResponseMatchRelationships'
+    PatchCaseV12:
+      type: object
+      properties:
+        case_name:
+          type:
+          - string
+          - 'null'
+        external_id:
+          type:
+          - string
+          - 'null'
+        options:
+          $ref: '#/components/schemas/PatchBatchOptionsV12'
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    CaseAssociationsV20:
+      type: object
+      properties:
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociationV20'
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
         options:
           $ref: '#/components/schemas/BatchOptionsV13'
         owner_id:
           type: string
         score_preferences:
           $ref: '#/components/schemas/ScorePreferences'
-    ValidateAssociationsShortcutData:
-      type: object
-      properties:
-        type:
-          type: string
-        status:
-          $ref: '#/components/schemas/ValidationStatus'
-        invalid_association_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceDetailsNoId'
-    ResponseDataShortcutTransaction:
+    RequestDataPatchCaseV11:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/ShortcutTransaction'
+          $ref: '#/components/schemas/PatchCaseV11'
+        type:
+          type: string
+    ResponseDataTransaction:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Transaction'
+    ResponseDataCaseAssociation:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CaseAssociation'
         id:
           type: string
         links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
+          $ref: '#/components/schemas/DataLinks'
         type:
           type: string
-    ResponseDataMatchV20:
+    BatchOptions:
+      required:
+      - filter_content_category
+      - search_type
       type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/MatchV20'
-        id:
-          type: string
-        type:
-          type: string
-    Case:
-      type: object
-      properties:
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
+        filter_content_category:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
+            - $ref: '#/components/schemas/FilterContentCategoryEnum'
+        has_to_match_low_quality_alias:
           type: boolean
-        is_case_valid:
+          example: false
+        is_indexed:
           type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptions'
-        owner_id:
+          example: false
+        score_threshold:
+          type: number
+          format: double
+        search_type:
           type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    RequestDataShortcutCaseV20:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ShortcutCaseV20'
-        type:
-          type: string
-    RequestDataShortcutAssociationsV20:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ShortcutAssociationsV20'
-        type:
-          type: string
+          enum:
+          - PRECISE
+          - NEAR
+          - BROAD
     Variation:
       type: object
       properties:
@@ -6694,99 +7446,97 @@ components:
           type: boolean
         structural:
           type: boolean
-    ResponseDataCaseV11:
+    RequestDataShortcutCaseV11:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ShortcutCaseV11'
+        type:
+          type: string
+    PatchBatchOptionsV13:
+      type: object
+      properties:
+        filter_content_category:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
+            - $ref: '#/components/schemas/FilterContentCategoryEnum'
+        filter_content_category_status:
+          $ref: '#/components/schemas/FilterContentCategoryStatusV13'
+        filter_source:
+          type: array
+          items:
+            type: string
+            example: DJRC
+        has_to_match_low_quality_alias:
+          type:
+          - boolean
+          - 'null'
+          example: false
+        is_indexed:
+          type:
+          - boolean
+          - 'null'
+          example: false
+        has_screen_priority:
+          type:
+          - boolean
+          - 'null'
+          example: true
+        score_threshold:
+          type: number
+          format: double
+        search_type:
+          type: string
+          enum:
+          - PRECISE
+          - NEAR
+          - BROAD
+    BoosterEvent:
+      type: object
+      properties:
+        boost_value:
+          type: number
+          format: double
+        field:
+          type: string
+    ValidateAssociationsShortcutResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ValidateAssociationsShortcutData'
+    ResponseDataAssociationMatchesV12:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AssociationMatchesV12'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/DataLinks'
+        type:
+          type: string
+    ResponseMatchV12:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataMatchV12'
+    RequestPatchCaseV13:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataPatchCaseV13'
+    RequestDataCaseV11:
       type: object
       properties:
         attributes:
           $ref: '#/components/schemas/CaseV11'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
         type:
           type: string
-    MatchFeedback:
-      type: object
-      properties:
-        comment:
-          type: string
-        id:
-          type: string
-        risk_rating:
-          type: number
-        state:
-          type: string
-          enum:
-          - OPEN
-          - CLEARED
-          - PERMANENTLY_CLEARED
-          - CONFIRMED
-          - CONFIRMED_BLOCKED
-          - CONFIRMED_UNDER_REVIEW
-          - CONFIRMED_RISK_MITIGATED
-    Transaction:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/TransactionData'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-        type:
-          type: string
-    ValidationStatus:
-      type: string
-      enum:
-      - INVALID
-      - OK
-    Identification:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
-    AlertUpdate:
-      type: object
-      properties:
-        date:
-          type: string
-          description: Date and time of the alert update in ISO 8601 format
-          format: date-time
-          example: '2025-07-10T12:15:44.73Z'
-        changed_sections:
-          type: array
-          description: List of sections that were changed in the alert update
-          example:
-          - RELATIONSHIP
-          - ENTITY
-          items:
-            type: string
-            enum:
-            - BASIC
-            - ENTITY
-            - PERSON
-            - RELATIONSHIP
-            - IMAGE_DETAILS
-            - STATE_OWNED_COMPANY
-            - ADVERSE_MEDIA
-            - LOCATION
-            - HIGH_RISK_FACTORS
-            - MILITARY_ASSOCIATED_ENTITY
-            - TRADE_RESTRICTED_ASSOCIATED_ENTITY
-            - WATCHLIST
-            - WATCHLIST_PEP
-            - WATCHLIST_SCO
-            - WATCHLIST_LIST_REF
-            - WATCHLIST_LIST_REF_SAN
-            - WATCHLIST_LIST_REF_OEL
-            - WATCHLIST_LIST_REF_OOL
-            - OTHER_CHANGES
-            - PROFILE_CREATED
-            - PROFILE_DELETED
-      description: Represents the result of the last alert update of the match
-    Shortcut:
+    TransactionData:
       type: object
       properties:
         status:
@@ -6807,88 +7557,21 @@ components:
         valid_associations:
           type: integer
           format: int32
-    RequestDataShortcutCaseV21:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ShortcutCaseV21'
-        type:
-          type: string
-    ShortcutCaseV21:
-      type: object
-      properties:
-        case_info:
-          $ref: '#/components/schemas/CaseAssociationsV21'
-    ResponseListCaseV12:
-      type: object
-      properties:
-        data:
+        valid_association_ids:
           type: array
           items:
-            $ref: '#/components/schemas/ResponseDataCaseV12'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    JsonErrorMeta:
-      type: object
-      properties:
-        request_index:
-          type: integer
-        type:
-          type: string
-        id:
-          type: string
-    CaseAssociationsV11:
-      type: object
-      properties:
-        associations:
+            type: string
+        invalid_association_ids:
           type: array
           items:
-            $ref: '#/components/schemas/Association'
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptionsV11'
-        owner_id:
-          type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    ValidateAssociationsShortcutResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ValidateAssociationsShortcutData'
-    RequestDataShortcutCaseV12:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ShortcutCaseV12'
-        type:
-          type: string
-    RequestShortcutCaseV11:
+            type: string
+        invalid_association_details:
+          type: array
+          items:
+            type: string
+    BatchOptionsV13:
       required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataShortcutCaseV11'
-    ResponseDataMatchV30:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/MatchV30'
-        id:
-          type: string
-        type:
-          type: string
-        relationships:
-          $ref: '#/components/schemas/ResponseMatchRelationships'
-    PatchBatchOptionsV12:
+      - search_type
       type: object
       properties:
         filter_content_category:
@@ -6898,7 +7581,7 @@ components:
             - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
             - $ref: '#/components/schemas/FilterContentCategoryEnum'
         filter_content_category_status:
-          $ref: '#/components/schemas/FilterContentCategoryStatus'
+          $ref: '#/components/schemas/FilterContentCategoryStatusV13'
         filter_source:
           type: array
           items:
@@ -6913,7 +7596,12 @@ components:
           type:
           - boolean
           - 'null'
-          example: false
+          example: true
+        has_screen_priority:
+          type:
+          - boolean
+          - 'null'
+          example: true
         score_threshold:
           type: number
           format: double
@@ -6923,41 +7611,29 @@ components:
           - PRECISE
           - NEAR
           - BROAD
-    RequestShortcutCaseV21:
+    ResponsePatchAssociation:
       required:
       - data
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/RequestDataShortcutCaseV21'
-    RequestAssociationV20:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataAssociationV20'
-    ResponseListCaseAssociationV20:
+          $ref: '#/components/schemas/ResponseDataPatchAssociation'
+    ResponseBulkMatch:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ResponseDataCaseAssociationV20'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    ResponseDataAssociationMatches:
+            $ref: '#/components/schemas/ResponseDataMatch'
+    ResponseCaseV11:
       type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/AssociationMatches'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/DataLinks'
-        type:
+        data:
+          $ref: '#/components/schemas/ResponseDataCaseV11'
+    ResponseLinksSelf:
+      type: object
+      properties:
+        self:
           type: string
     MatchV20:
       type: object
@@ -7026,38 +7702,80 @@ components:
           type: string
         variation:
           $ref: '#/components/schemas/Variation'
-    RequestDataShortcutAssociations:
+    ShortcutCaseV20:
+      type: object
+      properties:
+        case_info:
+          $ref: '#/components/schemas/CaseAssociationsV20'
+    ResponseDataPatchCase:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/ShortcutAssociations'
-        type:
-          type: string
-    ResponseDataPatchCaseV13:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseResponseV13'
+          $ref: '#/components/schemas/Case'
         id:
           type: string
         type:
           type: string
         links:
           $ref: '#/components/schemas/ResponseLinksSelf'
-    RequestDataPatchCaseV11:
+    RequestDataShortcutCaseV12:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/PatchCaseV11'
+          $ref: '#/components/schemas/ShortcutCaseV12'
         type:
           type: string
-    RequestDataShortcutCase:
+    RequestShortcutCaseV12:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataShortcutCaseV12'
+    ResponseLinks:
+      type: object
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+    ResponseListAssociation:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataAssociation'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    ResponseDataCaseV12:
       type: object
       properties:
         attributes:
-          $ref: '#/components/schemas/ShortcutCase'
+          $ref: '#/components/schemas/CaseV12'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
         type:
           type: string
+    TransactionStatus:
+      type: string
+      enum:
+      - PENDING
+      - PROCESSING
+      - COMPLETED
+    ResponseCase:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataCase'
     FilterContentCategoryHierarchy:
       type: object
       example:
@@ -7068,36 +7786,116 @@ components:
           - ABD
         AME:
         - '33'
-    ResponseListCase:
+    BulkMatchUpdateData:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/PatchMatch'
+    ResponseListCaseV11:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ResponseDataCase'
+            $ref: '#/components/schemas/ResponseDataCaseV11'
         links:
           $ref: '#/components/schemas/ResponseLinks'
         meta:
           $ref: '#/components/schemas/ResponseMeta'
-    CaseAssociationsV20:
+    ResponseBulkMatchV30:
       type: object
       properties:
-        associations:
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/AssociationV20'
-        case_name:
+            $ref: '#/components/schemas/ResponseDataMatchV30'
+    RequestDataShortcutCaseV20:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ShortcutCaseV20'
+        type:
           type: string
-        external_id:
+    ResponseDataAssociationMatches:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AssociationMatches'
+        id:
           type: string
-        has_alerts:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptionsV13'
-        owner_id:
+        links:
+          $ref: '#/components/schemas/DataLinks'
+        type:
           type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
+    ResponseListCaseV12:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataCaseV12'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    RequestDataAssociationV11:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AssociationV11'
+        type:
+          type: string
+    RequestShortcutCaseV21:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataShortcutCaseV21'
+    RequestDataPatchCaseV12:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PatchCaseV12'
+        type:
+          type: string
+    ResponseMatchV20:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataMatchV20'
+    ResponseBulkMatchV20:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataMatchV20'
+    BulkMatchUpdateRequest:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkMatchUpdateData'
+    RequestAssociationV20:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataAssociationV20'
+    RequestPatchCase:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataPatchCase'
     MatchV30:
       type: object
       properties:
@@ -7189,85 +7987,135 @@ components:
           $ref: '#/components/schemas/DateParts'
         rca_inactive_since:
           $ref: '#/components/schemas/DateParts'
-    HasAlertsAndMatchValidity:
-      type: string
-      enum:
-      - any
-      - 'true'
-      - 'false'
-    ResponseDataAssociationMatchesV12:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AssociationMatchesV12'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/DataLinks'
-        type:
-          type: string
-    TransactionStatus:
-      type: string
-      enum:
-      - PENDING
-      - PROCESSING
-      - COMPLETED
-    RequestDataAssociation:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/Association'
-        type:
-          type: string
-    ResponseListAssociationMatchesV12:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataAssociationMatchesV12'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    ResponseListAssociationV20:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataAssociationV20'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    ShortcutCase:
-      type: object
-      properties:
-        case_info:
-          $ref: '#/components/schemas/CaseAssociations'
-    RelationshipData:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-    RequestCaseV13:
+    RequestPatchCaseV11:
       required:
       - data
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/RequestDataCaseV13'
-    ResponseBulkMatchV20:
+          $ref: '#/components/schemas/RequestDataPatchCaseV11'
+    RequestCaseV11:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataCaseV11'
+    RequestPatchMatch:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataPatchMatch'
+    ResponseDataExtendedTransaction:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ExtendedTransaction'
+    RequestShortcutCaseV20:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataShortcutCaseV20'
+    PatchBatchOptionsV11:
+      type: object
+      properties:
+        filter_content_category:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
+            - $ref: '#/components/schemas/FilterContentCategoryEnum'
+        filter_source:
+          type: array
+          items:
+            type: string
+            example: DJRC
+        has_to_match_low_quality_alias:
+          type: boolean
+          example: false
+        is_indexed:
+          type: boolean
+          example: false
+        score_threshold:
+          type: number
+          format: double
+        search_type:
+          type: string
+          enum:
+          - PRECISE
+          - NEAR
+          - BROAD
+    ResponseDataMatch:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/Match'
+        id:
+          type: string
+        type:
+          type: string
+    ResponseMatch:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataMatch'
+    CaseAssociations:
+      type: object
+      properties:
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Association'
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        options:
+          $ref: '#/components/schemas/BatchOptions'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    RequestShortcutAssociationsV11:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataShortcutAssociationsV11'
+    ResponseAssociationRelationship_links:
+      type: object
+      properties:
+        related:
+          type: string
+    ResponseMatchV30:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataMatchV30'
+    ResponseCaseV12:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataCaseV12'
+    ResponseListAssociationMatchesV20:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ResponseDataMatchV20'
-    JsonError:
+            $ref: '#/components/schemas/ResponseDataAssociationMatchesV20'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    JsonErrorExt:
       type: object
       properties:
         code:
@@ -7280,15 +8128,251 @@ components:
           format: int32
         title:
           type: string
-    ScorePreference:
+        meta:
+          $ref: '#/components/schemas/JsonErrorMeta'
+    CaseAssociationsV11:
       type: object
       properties:
-        has_exclusions:
+        associations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Association'
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
           type: boolean
-        score:
-          type: integer
-          format: int32
-    CaseAssociation:
+        options:
+          $ref: '#/components/schemas/BatchOptionsV11'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    ResponseDataCaseV11:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CaseV11'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+        type:
+          type: string
+    HasAlertsAndMatchValidity:
+      type: string
+      enum:
+      - any
+      - 'true'
+      - 'false'
+    ResponseDataShortcut:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/Shortcut'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+        type:
+          type: string
+    PatchMatch:
+      type: object
+      properties:
+        comment:
+          type: string
+        current_state:
+          type: string
+          enum:
+          - OPEN
+          - CLEARED
+          - PERMANENTLY_CLEARED
+          - CONFIRMED
+          - CONFIRMED_BLOCKED
+          - CONFIRMED_UNDER_REVIEW
+          - CONFIRMED_RISK_MITIGATED
+        match_id:
+          type: string
+        risk_rating:
+          type: number
+        timestamp:
+          type: string
+          format: date-time
+    Name:
+      type: object
+      properties:
+        entity_name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        middle_name:
+          type: string
+        name_type:
+          type: string
+          enum:
+          - PRIMARY
+          - MAIDEN
+          - SV
+          - ELV
+          - AKA
+          - LQAKA
+          - FKA
+          - SSN
+          - OSN
+        prefix:
+          type: string
+        suffix:
+          type: string
+        single_string_name:
+          type: string
+    ResourceDetailsNoId:
+      type: object
+      properties:
+        external_id:
+          type: string
+        request_index:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetails'
+    AlertUpdate:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Date and time of the alert update in ISO 8601 format
+          format: date-time
+          example: '2025-07-10T12:15:44.73Z'
+        changed_sections:
+          type: array
+          description: List of sections that were changed in the alert update
+          example:
+          - RELATIONSHIP
+          - ENTITY
+          items:
+            type: string
+            enum:
+            - BASIC
+            - ENTITY
+            - PERSON
+            - RELATIONSHIP
+            - IMAGE_DETAILS
+            - STATE_OWNED_COMPANY
+            - ADVERSE_MEDIA
+            - LOCATION
+            - HIGH_RISK_FACTORS
+            - MILITARY_ASSOCIATED_ENTITY
+            - TRADE_RESTRICTED_ASSOCIATED_ENTITY
+            - WATCHLIST
+            - WATCHLIST_PEP
+            - WATCHLIST_SCO
+            - WATCHLIST_LIST_REF
+            - WATCHLIST_LIST_REF_SAN
+            - WATCHLIST_LIST_REF_OEL
+            - WATCHLIST_LIST_REF_OOL
+            - OTHER_CHANGES
+            - PROFILE_CREATED
+            - PROFILE_DELETED
+      description: Represents the result of the last alert update of the match
+    IconHint:
+      type: object
+      properties:
+        icon_hint:
+          type: string
+          example: OOL-PERSON
+        status:
+          type: string
+          example: Active
+    ResponseDataMatchV12:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/MatchV12'
+        id:
+          type: string
+        type:
+          type: string
+    ResponseDataAssociationV20:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AssociationV20'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+        type:
+          type: string
+    Transaction:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/TransactionData'
+        id:
+          type: string
+        links:
+          $ref: '#/components/schemas/ResponseLinksSelf'
+        type:
+          type: string
+    Case:
+      type: object
+      properties:
+        case_name:
+          type: string
+        external_id:
+          type: string
+        has_alerts:
+          type: boolean
+        is_case_valid:
+          type: boolean
+        options:
+          $ref: '#/components/schemas/BatchOptions'
+        owner_id:
+          type: string
+        score_preferences:
+          $ref: '#/components/schemas/ScorePreferences'
+    BatchOptionsV12:
+      required:
+      - search_type
+      type: object
+      properties:
+        filter_content_category:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
+            - $ref: '#/components/schemas/FilterContentCategoryEnum'
+        filter_content_category_status:
+          $ref: '#/components/schemas/FilterContentCategoryStatus'
+        filter_source:
+          type: array
+          items:
+            type: string
+            example: DJRC
+        has_to_match_low_quality_alias:
+          type:
+          - boolean
+          - 'null'
+          example: false
+        is_indexed:
+          type:
+          - boolean
+          - 'null'
+          example: true
+        score_threshold:
+          type: number
+          format: double
+        search_type:
+          type: string
+          enum:
+          - PRECISE
+          - NEAR
+          - BROAD
+    Association:
       type: object
       properties:
         country:
@@ -7317,28 +8401,15 @@ components:
         year_of_birth:
           type: integer
           format: int32
-        has_alerts:
-          type: boolean
         is_deceased:
           type: boolean
-    ResponseLinks:
+    RequestShortcutCaseV11:
+      required:
+      - data
       type: object
       properties:
-        first:
-          type: string
-        last:
-          type: string
-        next:
-          type: string
-        prev:
-          type: string
-    RequestDataAssociationV11:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AssociationV11'
-        type:
-          type: string
+        data:
+          $ref: '#/components/schemas/RequestDataShortcutCaseV11'
     RequestDataPatchCaseV13:
       type: object
       properties:
@@ -7346,117 +8417,6 @@ components:
           $ref: '#/components/schemas/PatchCaseV13'
         type:
           type: string
-    ShortcutTransaction:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-        operation:
-          type: string
-        case_id:
-          type: string
-        invalid_associations:
-          type: integer
-          format: int32
-        pending_associations:
-          type: integer
-          format: int32
-        processing_associations:
-          type: integer
-          format: int32
-        valid_associations:
-          type: integer
-          format: int32
-        valid_association_ids:
-          type: array
-          items:
-            type: string
-        invalid_association_details:
-          type: array
-          items:
-            type: string
-    CaseAssociationV20:
-      type: object
-      properties:
-        country:
-          type: string
-        external_id:
-          type: string
-        gender:
-          type: string
-          enum:
-          - MALE
-          - FEMALE
-        identification_details:
-          $ref: '#/components/schemas/Identification'
-        industry_sector:
-          type: string
-        names:
-          type: array
-          items:
-            $ref: '#/components/schemas/Name'
-        record_type:
-          type: string
-          enum:
-          - PERSON
-          - ENTITY
-          - UNKNOWN
-        year_of_birth:
-          $ref: '#/components/schemas/YearOfBirth'
-        has_alerts:
-          type: boolean
-        is_deceased:
-          type: boolean
-    ResponseDataAssociationMatchesV20:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AssociationMatchesV20'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/DataLinks'
-        type:
-          type: string
-    BoosterEvent:
-      type: object
-      properties:
-        boost_value:
-          type: number
-          format: double
-        field:
-          type: string
-    ExtendedTransactionData:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/TransactionStatus'
-        operation:
-          type: string
-        case_id:
-          type: string
-        case_external_id:
-          type: string
-        valid_associations_count:
-          type: integer
-          format: int32
-        invalid_associations_count:
-          type: integer
-          format: int32
-        pending_associations_count:
-          type: integer
-          format: int32
-        processing_associations_count:
-          type: integer
-          format: int32
-        valid_associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceDetailsNoErrors'
-        invalid_associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceDetails'
     AssociationV11:
       type: object
       properties:
@@ -7500,162 +8460,18 @@ components:
           type:
           - boolean
           - 'null'
-    CaseV13:
-      type: object
-      properties:
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        last_match_activity_on:
-          type: string
-          example: '2021-06-09T14:34:12.358'
-        is_case_valid:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptionsV13'
-        owner_id:
-          type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-        alert_reason:
-          uniqueItems: true
-          type: array
-          example:
-          - ENTITY
-          - WATCHLIST
-          items:
-            type: string
-    PatchCase:
-      type: object
-      properties:
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/PatchBatchOptions'
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    ValidateCaseShortcutData:
-      type: object
-      properties:
-        type:
-          type: string
-        status:
-          $ref: '#/components/schemas/ValidationStatus'
-        invalid_case_details:
-          $ref: '#/components/schemas/ResourceDetailsNoId'
-        invalid_association_details:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceDetailsNoId'
-    ResponseListAssociation:
+    ValidateCaseShortcutResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataAssociation'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    AssociationMatches:
-      type: object
-      properties:
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        match_count:
-          type: integer
-        matches:
-          type: array
-          items:
-            $ref: '#/components/schemas/Match'
-    ResponseBulkMatchV30:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataMatchV30'
-    ResponseListAssociationMatches:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataAssociationMatches'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    RequestPatchMatch:
+          $ref: '#/components/schemas/ValidateCaseShortcutData'
+    RequestCase:
       required:
       - data
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/RequestDataPatchMatch'
-    RequestDataCaseV12:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseV12'
-        type:
-          type: string
-    ResponseDataPatchAssociation:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseAssociation'
-        id:
-          type: string
-        type:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-    ResponseMatchV30:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataMatchV30'
-    ShortcutAssociationsV20:
-      type: object
-      properties:
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociationV20'
-    RequestDataCaseV13:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseV13'
-        type:
-          type: string
-    ResourceDetailsNoErrors:
-      type: object
-      properties:
-        id:
-          type: string
-        external_id:
-          type: string
-        request_index:
-          type: string
-    RequestDataAssociationV20:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AssociationV20'
-        type:
-          type: string
+          $ref: '#/components/schemas/RequestDataCase'
     ResponseDataCaseAssociationV20:
       type: object
       properties:
@@ -7667,726 +8483,88 @@ components:
           $ref: '#/components/schemas/DataLinks'
         type:
           type: string
-    YearOfBirth:
-      type:
-      - object
-      - 'null'
-      properties:
-        specific_year:
-          type:
-          - integer
-          - 'null'
-          description: Specific year of birth (mutually exclusive with from/to)
-          format: int32
-        from:
-          type:
-          - integer
-          - 'null'
-          description: Start of year range (requires 'to' field)
-          format: int32
-        to:
-          type:
-          - integer
-          - 'null'
-          description: End of year range (requires 'from' field)
-          format: int32
-      description: Year of birth can be specified as either a specific year OR a range. Use specific_year for exact year, or from/to for a range. These fields are mutually exclusive.
-    RequestShortcutCaseV12:
+    RequestAssociation:
       required:
       - data
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/RequestDataShortcutCaseV12'
-    RequestShortcutAssociations:
-      required:
-      - data
+          $ref: '#/components/schemas/RequestDataAssociation'
+    PatchBatchOptions:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/RequestDataShortcutAssociations'
-    RequestAssociationV11:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataAssociationV11'
-    ShortcutCaseV20:
-      type: object
-      properties:
-        case_info:
-          $ref: '#/components/schemas/CaseAssociationsV20'
-    ResponseDataPatchCaseV11:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseV11'
-        id:
-          type: string
-        type:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-    RequestPatchCaseV11:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataPatchCaseV11'
-    ResponseShortcutTransaction:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataShortcutTransaction'
-    ScorePreferences:
-      type: object
-      properties:
-        country:
-          $ref: '#/components/schemas/ScorePreference'
-        gender:
-          $ref: '#/components/schemas/ScorePreference'
-        identification_details:
-          $ref: '#/components/schemas/ScorePreference'
-        industry_sector:
-          $ref: '#/components/schemas/ScorePreference'
-        year_of_birth:
-          $ref: '#/components/schemas/ScorePreference'
-        deceased:
-          $ref: '#/components/schemas/ScorePreference'
-    MatchV12:
-      type: object
-      properties:
-        birthdates:
+        filter_content_category:
           type: array
           items:
-            $ref: '#/components/schemas/DateParts'
-        boosting_events:
-          type: array
-          items:
-            $ref: '#/components/schemas/BoosterEvent'
-        current_state:
-          $ref: '#/components/schemas/MatchFeedback'
-        has_alerts:
+            oneOf:
+            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
+            - $ref: '#/components/schemas/FilterContentCategoryEnum'
+        has_to_match_low_quality_alias:
           type: boolean
-        icon_hints:
-          type: array
-          items:
-            type: string
-        is_match_valid:
+          example: false
+        is_indexed:
           type: boolean
-        is_score_boosted:
-          type: boolean
-        is_deceased:
-          type: boolean
-        match_date:
-          type: string
-        match_id:
-          type: string
-        match_invalid_date:
-          type: string
-        match_invalid_reason:
-          type: string
-        match_name:
-          type: string
-        match_type:
+          example: false
+        score_threshold:
+          type: number
+          format: double
+        search_type:
           type: string
           enum:
           - PRECISE
           - NEAR
           - BROAD
-        peid:
-          type: string
-        percentage_match:
-          type: number
-          format: double
-        filter_source:
-          type: string
-          example: DJRC
-        previous_state:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchFeedback'
-        primary_country:
-          type: string
-        gender:
-          type: string
-        primary_name:
-          $ref: '#/components/schemas/Name'
-        subscription_name:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        variation:
-          $ref: '#/components/schemas/Variation'
-    ResponseDataCase:
+    Shortcut:
       type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/Case'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-        type:
-          type: string
-    ErrorDetails:
-      type: object
-      properties:
-        title:
-          type: string
         status:
-          type: integer
-        code:
-          type: integer
-        detail:
+          $ref: '#/components/schemas/TransactionStatus'
+        operation:
           type: string
-    ResponseAssociationRelationship_meta:
-      type: object
-      properties:
-        external_id:
+        case_id:
           type: string
-        has_alerts:
-          type: boolean
-    ResponseAssociationV20:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataAssociationV20'
-    ResponsePatchCaseV12:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataPatchCaseV12'
-    FilterContentCategoryEnum:
-      type: string
-      enum:
-      - WL
-      - SL
-      - OEL
-      - OOL
-      - PEP
-      - SIP
-      - RCA
-      - SOC
-      - AME
-      - REG
-      - COMPFIN
-      - ENVPROD
-      - SOCLAB
-      - ECR
-    RequestPatchCase:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataPatchCase'
-    ResponseDataCaseV12:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseV12'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-        type:
-          type: string
-    ShortcutCaseV12:
-      type: object
-      properties:
-        case_info:
-          $ref: '#/components/schemas/CaseAssociationsV12'
-    ResponseListCaseV13:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataCaseV13'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    Name:
-      type: object
-      properties:
-        entity_name:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        middle_name:
-          type: string
-        name_type:
-          type: string
-          enum:
-          - PRIMARY
-          - MAIDEN
-          - SV
-          - ELV
-          - AKA
-          - LQAKA
-          - FKA
-          - SSN
-          - OSN
-        prefix:
-          type: string
-        suffix:
-          type: string
-        single_string_name:
-          type: string
-    CaseV12:
-      type: object
-      properties:
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        last_match_activity_on:
-          type: string
-          example: '2021-06-09T14:34:12.358'
-        is_case_valid:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptionsV12'
-        owner_id:
-          type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    ResponsePatchCaseV11:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataPatchCaseV11'
-    ResponseCaseV11:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataCaseV11'
-    ResponseDataPatchAssociationV20:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseAssociationV20'
-        id:
-          type: string
-        type:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-    BatchOptionsV11:
-      required:
-      - search_type
-      type: object
-      properties:
-        filter_content_category:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
-            - $ref: '#/components/schemas/FilterContentCategoryEnum'
-        filter_source:
-          type: array
-          items:
-            type: string
-            example: DJRC
-        has_to_match_low_quality_alias:
-          type: boolean
-          example: false
-        is_indexed:
-          type: boolean
-          example: false
-        score_threshold:
-          type: number
-          format: double
-        search_type:
-          type: string
-          enum:
-          - PRECISE
-          - NEAR
-          - BROAD
-    ValidateCaseShortcutResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ValidateCaseShortcutData'
-    BulkMatchUpdateData:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/PatchMatch'
-    RequestDataPatchMatch:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/PatchMatch'
-        type:
-          type: string
-    RequestShortcutCase:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataShortcutCase'
-    ShortcutAssociations:
-      type: object
-      properties:
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Association'
-    ResponseDataMatchV12:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/MatchV12'
-        id:
-          type: string
-        type:
-          type: string
-    ResponseDataAssociationV20:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/AssociationV20'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-        type:
-          type: string
-    ResponseDataMatch:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/Match'
-        id:
-          type: string
-        type:
-          type: string
-    BatchOptionsV12:
-      required:
-      - search_type
-      type: object
-      properties:
-        filter_content_category:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
-            - $ref: '#/components/schemas/FilterContentCategoryEnum'
-        filter_content_category_status:
-          $ref: '#/components/schemas/FilterContentCategoryStatus'
-        filter_source:
-          type: array
-          items:
-            type: string
-            example: DJRC
-        has_to_match_low_quality_alias:
-          type:
-          - boolean
-          - 'null'
-          example: false
-        is_indexed:
-          type:
-          - boolean
-          - 'null'
-          example: true
-        score_threshold:
-          type: number
-          format: double
-        search_type:
-          type: string
-          enum:
-          - PRECISE
-          - NEAR
-          - BROAD
-    PatchBatchOptionsV13:
-      type: object
-      properties:
-        filter_content_category:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
-            - $ref: '#/components/schemas/FilterContentCategoryEnum'
-        filter_content_category_status:
-          $ref: '#/components/schemas/FilterContentCategoryStatusV13'
-        filter_source:
-          type: array
-          items:
-            type: string
-            example: DJRC
-        has_to_match_low_quality_alias:
-          type:
-          - boolean
-          - 'null'
-          example: false
-        is_indexed:
-          type:
-          - boolean
-          - 'null'
-          example: false
-        has_screen_priority:
-          type:
-          - boolean
-          - 'null'
-          example: true
-        score_threshold:
-          type: number
-          format: double
-        search_type:
-          type: string
-          enum:
-          - PRECISE
-          - NEAR
-          - BROAD
-    PatchCaseV12:
-      type: object
-      properties:
-        case_name:
-          type:
-          - string
-          - 'null'
-        external_id:
-          type:
-          - string
-          - 'null'
-        options:
-          $ref: '#/components/schemas/PatchBatchOptionsV12'
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    CaseAssociationsV21:
-      type: object
-      properties:
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Association'
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptionsV13'
-        owner_id:
-          type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-        alert_reason:
-          type: array
-          example:
-          - ENTITY
-          - WATCHLIST
-          items:
-            type: string
-    ResponseDataCaseV13:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseResponseV13'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-        type:
-          type: string
-    ResponsePatchAssociation:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataPatchAssociation'
-    ResponseListCaseAssociation:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataCaseAssociation'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    AssociationMatchesV20:
-      type: object
-      properties:
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        match_count:
-          type: integer
-        matches:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatchV20'
-    ResponseListCaseV11:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataCaseV11'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    ResponseDataAssociation:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/Association'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-        type:
-          type: string
-    ResponseDataPatchCase:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/Case'
-        id:
-          type: string
-        type:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-    ShortcutAssociationsV11:
-      type: object
-      properties:
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociationV11'
-    CaseAssociationsV12:
-      type: object
-      properties:
-        associations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Association'
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptionsV13'
-        owner_id:
-          type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    DateParts:
-      type: object
-      properties:
-        day:
+        invalid_associations:
           type: integer
           format: int32
-        month:
+        pending_associations:
           type: integer
           format: int32
-        year:
+        processing_associations:
           type: integer
           format: int32
-    ResponseListMatchesV30:
+        valid_associations:
+          type: integer
+          format: int32
+    ShortcutTransaction:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataMatchV30'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-    IconHint:
-      type: object
-      properties:
-        icon_hint:
-          type: string
-          example: OOL-PERSON
         status:
+          $ref: '#/components/schemas/TransactionStatus'
+        operation:
           type: string
-          example: Active
-    ResponsePatchAssociationV20:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataPatchAssociationV20'
-    CaseV11:
-      type: object
-      properties:
-        case_name:
+        case_id:
           type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        last_match_activity_on:
-          type: string
-          example: '2021-06-09T14:34:12.358'
-        is_case_valid:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/BatchOptionsV11'
-        owner_id:
-          type: string
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    PatchCaseV11:
-      type: object
-      properties:
-        case_name:
-          type: string
-        external_id:
-          type: string
-        has_alerts:
-          type: boolean
-        options:
-          $ref: '#/components/schemas/PatchBatchOptionsV11'
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    RequestDataCase:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/Case'
-        type:
-          type: string
-    ResponseBulkMatch:
-      type: object
-      properties:
-        data:
+        invalid_associations:
+          type: integer
+          format: int32
+        pending_associations:
+          type: integer
+          format: int32
+        processing_associations:
+          type: integer
+          format: int32
+        valid_associations:
+          type: integer
+          format: int32
+        valid_association_ids:
           type: array
           items:
-            $ref: '#/components/schemas/ResponseDataMatch'
-    FilterContentCategoryStatusV13:
+            type: string
+        invalid_association_details:
+          type: array
+          items:
+            type: string
+    FilterContentCategoryStatus:
       type:
       - object
       - 'null'
@@ -8423,202 +8601,24 @@ components:
           type:
           - boolean
           - 'null'
-        is_tae_active:
-          type:
-          - boolean
-          - 'null'
-    ResponseDataShortcut:
+    ResponseListCaseV13:
       type: object
       properties:
-        attributes:
-          $ref: '#/components/schemas/Shortcut'
-        id:
-          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataCaseV13'
         links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-        type:
-          type: string
-    RequestPatchCaseV13:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataPatchCaseV13'
-    RelationshipRequest:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/RelationshipData'
-    ResourceDetailsNoId:
-      type: object
-      properties:
-        external_id:
-          type: string
-        request_index:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorDetails'
-    PatchBatchOptions:
-      type: object
-      properties:
-        filter_content_category:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/FilterContentCategoryHierarchy'
-            - $ref: '#/components/schemas/FilterContentCategoryEnum'
-        has_to_match_low_quality_alias:
-          type: boolean
-          example: false
-        is_indexed:
-          type: boolean
-          example: false
-        score_threshold:
-          type: number
-          format: double
-        search_type:
-          type: string
-          enum:
-          - PRECISE
-          - NEAR
-          - BROAD
-    ResponseMeta:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        offset:
           $ref: '#/components/schemas/ResponseLinks'
-        total_count:
-          type: integer
-          format: int32
-    ResponseDataExtendedTransaction:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ExtendedTransaction'
-    ResponseDataCaseAssociation:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseAssociation'
-        id:
-          type: string
-        links:
-          $ref: '#/components/schemas/DataLinks'
-        type:
-          type: string
-    ResponseDataPatchCaseV12:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseV12'
-        id:
-          type: string
-        type:
-          type: string
-        links:
-          $ref: '#/components/schemas/ResponseLinksSelf'
-    IdentificationV11:
-      type:
-      - object
-      - 'null'
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-    RequestDataPatchCaseV12:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/PatchCaseV12'
-        type:
-          type: string
-    MatchFeedbackV30:
-      type: object
-      properties:
-        comment:
-          type: string
-        id:
-          type: string
-        risk_rating:
-          type: number
-        state:
-          type: string
-          enum:
-          - OPEN
-          - CLEARED
-          - PERMANENTLY_CLEARED
-          - CONFIRMED
-          - CONFIRMED_BLOCKED
-          - CONFIRMED_UNDER_REVIEW
-          - CONFIRMED_RISK_MITIGATED
-        timestamp:
-          type: string
-          format: date-time
-    ResponseMatchV12:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataMatchV12'
-    PatchCaseV13:
-      type: object
-      properties:
-        case_name:
-          type:
-          - string
-          - 'null'
-        external_id:
-          type:
-          - string
-          - 'null'
-        alert_reason:
-          uniqueItems: true
-          type: array
-          example:
-          - ENTITY
-          - WATCHLIST
-          items:
-            type: string
-        options:
-          $ref: '#/components/schemas/PatchBatchOptionsV13'
-        score_preferences:
-          $ref: '#/components/schemas/ScorePreferences'
-    ResponseCase:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataCase'
-    RequestDataCaseV11:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/CaseV11'
-        type:
-          type: string
-    ResponseMatch:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataMatch'
-    ResponsePatchCaseV13:
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+    RequestCaseV13:
       required:
       - data
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/ResponseDataPatchCaseV13'
+          $ref: '#/components/schemas/RequestDataCaseV13'
   securitySchemes:
     bearerAuth:
       type: http

@@ -80,20 +80,6 @@ components:
           type: string
         meta:
           type: string
-    ProfileVersionsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/VersionObject'
-    JsonError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
     VersionObject:
       type: object
       properties:
@@ -112,6 +98,20 @@ components:
         type:
           type: string
           example: versions
+    ProfileVersionsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/VersionObject'
+    JsonError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
   securitySchemes:
     bearerAuth:
       type: http

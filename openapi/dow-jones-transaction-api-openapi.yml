@@ -56,15 +56,48 @@ paths:
       security:
       - bearerAuth: []
 components:
-  parameters:
-    Accept-Encoding:
-      name: Accept-Encoding
-      description: Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to "gzip" and the payload exceeds the threshold of 8MB
-      in: header
-      required: false
-      schema:
-        type: string
   schemas:
+    JsonError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+    ResponseStatusTransaction:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PrivateListStatusTransaction'
+        type:
+          type: string
+          example: transactions
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000
+        id:
+          type: string
+    ResponseDataPrivateListStatusTransaction:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseStatusTransaction'
+    ErrorObject:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
     PrivateListStatusTransaction:
       type: object
       properties:
@@ -133,47 +166,14 @@ components:
                     detail:
                       type: string
                       example: names[0] {The profile name contains invalid characters}
-    ErrorObject:
-      type: object
-      properties:
-        code:
-          type: string
-        title:
-          type: string
-        status:
-          type: string
-        detail:
-          type: string
-        meta:
-          type: string
-    ResponseStatusTransaction:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/PrivateListStatusTransaction'
-        type:
-          type: string
-          example: transactions
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              example: https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000
-        id:
-          type: string
-    JsonError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
-    ResponseDataPrivateListStatusTransaction:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseStatusTransaction'
+  parameters:
+    Accept-Encoding:
+      name: Accept-Encoding
+      description: Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to "gzip" and the payload exceeds the threshold of 8MB
+      in: header
+      required: false
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
