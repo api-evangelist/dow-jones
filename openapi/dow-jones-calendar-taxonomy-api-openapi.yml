@@ -780,16 +780,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        fields:
-          type: string
     eventFilterRegionDataFilterItemModel:
       required:
       - description
@@ -805,19 +795,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
-    eventFilterCountryDataModel:
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
     eventFilterDataFilterItemModel:
       required:
       - description
@@ -840,19 +817,6 @@ components:
           description: ''
         ecoinfo:
           $ref: '#/components/schemas/ecoinfo'
-    eventFilterDataModel:
-      required:
-      - attributes
-      - id
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        id:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/eventFilterDataFilterItemModel'
     eventFilterRegionDataModel:
       required:
       - attributes
@@ -866,44 +830,6 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/eventFilterRegionDataFilterItemModel'
-    eventFilterCountryDataFilterItemModel:
-      required:
-      - description
-      type: object
-      properties:
-        dj_code:
-          type: string
-          description: only included in country item
-        iso_code:
-          type: string
-        titan_code:
-          type: string
-        description:
-          type: string
-          description: only included in country item
-    eventFilterRegionModel:
-      type: object
-      properties:
-        meta:
-          required:
-          - count
-          type: object
-          properties:
-            count:
-              type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/eventFilterRegionDataModel'
-        links:
-          required:
-          - self
-          type: object
-          properties:
-            self:
-              type: string
-        error:
-          $ref: '#/components/schemas/error'
     eventFilterModel:
       type: object
       properties:
@@ -927,15 +853,29 @@ components:
               type: string
         error:
           $ref: '#/components/schemas/error'
-    ecoinfo:
+    eventFilterRegionModel:
       type: object
       properties:
-        frequency:
-          type: string
-        meaning:
-          type: string
-        definition:
-          type: string
+        meta:
+          required:
+          - count
+          type: object
+          properties:
+            count:
+              type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/eventFilterRegionDataModel'
+        links:
+          required:
+          - self
+          type: object
+          properties:
+            self:
+              type: string
+        error:
+          $ref: '#/components/schemas/error'
     eventFilterCountryModel:
       type: object
       properties:
@@ -959,6 +899,66 @@ components:
               type: string
         error:
           $ref: '#/components/schemas/error'
+    eventFilterCountryDataModel:
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
+    error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
+    eventFilterCountryDataFilterItemModel:
+      required:
+      - description
+      type: object
+      properties:
+        dj_code:
+          type: string
+          description: only included in country item
+        iso_code:
+          type: string
+        titan_code:
+          type: string
+        description:
+          type: string
+          description: only included in country item
+    eventFilterDataModel:
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/eventFilterDataFilterItemModel'
+    ecoinfo:
+      type: object
+      properties:
+        frequency:
+          type: string
+        meaning:
+          type: string
+        definition:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

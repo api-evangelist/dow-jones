@@ -208,6 +208,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    eventFilterExchangeDataFilterItemModel:
+      type: object
+      properties:
+        mic:
+          type: string
+        name:
+          type: string
+        country_code:
+          type: string
+        country_description:
+          type: string
     eventFilterCountryModel:
       type: object
       properties:
@@ -231,27 +242,6 @@ components:
               type: string
         error:
           $ref: '#/components/schemas/error'
-    eventFilterExchangeDataFilterItemModel:
-      type: object
-      properties:
-        mic:
-          type: string
-        name:
-          type: string
-        country_code:
-          type: string
-        country_description:
-          type: string
-    error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        fields:
-          type: string
     eventFilterCountryDataModel:
       required:
       - attributes
@@ -265,6 +255,26 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/eventFilterCountryDataFilterItemModel'
+    error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
+    eventFilterExchangeDataModel:
+      required:
+      - attributes
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/eventFilterExchangeDataFilterItemModel'
     eventFilterCountryDataFilterItemModel:
       required:
       - description
@@ -280,16 +290,6 @@ components:
         description:
           type: string
           description: only included in country item
-    eventFilterExchangeDataModel:
-      required:
-      - attributes
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/eventFilterExchangeDataFilterItemModel'
     eventFilterExchangeModel:
       type: object
       properties:

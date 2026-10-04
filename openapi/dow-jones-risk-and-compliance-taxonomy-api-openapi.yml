@@ -48,6 +48,49 @@ paths:
           description: Bad request
 components:
   schemas:
+    ListItemsContainer:
+      type: object
+      properties:
+        list_items:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/LeafListItem'
+            - $ref: '#/components/schemas/LeafCountryListItem'
+    LeafCountryListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
+        iso_alpha2:
+          type: string
+        iso_alpha3:
+          type: string
+    TaxonomyResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListItem'
+    ListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/ListItemsContainer'
+    LeafListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
     ListIds:
       type: string
       enum:
@@ -71,58 +114,15 @@ components:
       - CountryTerritoryType
       - CountryTerritoryTypePerson
       - CountryTerritoryTypeEntity
-    TaxonomyResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListItem'
-    ListItemsContainer:
-      type: object
-      properties:
-        list_items:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/LeafListItem'
-            - $ref: '#/components/schemas/LeafCountryListItem'
-    LeafListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        descriptor:
-          type: string
-    ListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        attributes:
-          $ref: '#/components/schemas/ListItemsContainer'
-    LeafCountryListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        descriptor:
-          type: string
-        iso_alpha2:
-          type: string
-        iso_alpha3:
-          type: string
   parameters:
-    control_data:
-      name: control_data
+    accept-language:
+      name: accept-language
       in: header
       required: false
       schema:
         type: string
-    accept-language:
-      name: accept-language
+    control_data:
+      name: control_data
       in: header
       required: false
       schema:

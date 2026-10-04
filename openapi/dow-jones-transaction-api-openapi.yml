@@ -57,13 +57,19 @@ paths:
       - bearerAuth: []
 components:
   schemas:
-    JsonError:
+    ErrorObject:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
     ResponseStatusTransaction:
       type: object
       properties:
@@ -85,19 +91,13 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/ResponseStatusTransaction'
-    ErrorObject:
+    JsonError:
       type: object
       properties:
-        code:
-          type: string
-        title:
-          type: string
-        status:
-          type: string
-        detail:
-          type: string
-        meta:
-          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
     PrivateListStatusTransaction:
       type: object
       properties:

@@ -58,14 +58,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/JsonError'
 components:
-  parameters:
-    profile-id:
-      name: profile-id
-      required: true
-      in: path
-      description: Unique profile id that identifies a profile
-      schema:
-        type: string
   schemas:
     ErrorObject:
       type: object
@@ -112,6 +104,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ErrorObject'
+  parameters:
+    profile-id:
+      name: profile-id
+      required: true
+      in: path
+      description: Unique profile id that identifies a profile
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

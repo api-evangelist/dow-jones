@@ -125,6 +125,26 @@ paths:
       - oauth2: []
 components:
   schemas:
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdPartyScreeningEntity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
     ThirdPartyScreeningEntity:
       type: object
       properties:
@@ -167,17 +187,41 @@ components:
           format: int32
       additionalProperties: false
       description: ''
-    ScreeningIdentificationDetails:
+    ScreeningMatchResults:
       type: object
       properties:
-        type:
+        pending_review:
           type: integer
           description: ''
           format: int32
-        value:
-          type:
-          - string
-          - 'null'
+        confirmed_match:
+          type: integer
+          description: ''
+          format: int32
+        under_investigation:
+          type: integer
+          description: ''
+          format: int32
+        cleared_with_updates:
+          type: integer
+          description: ''
+          format: int32
+        cleared_without_updates:
+          type: integer
+          description: ''
+          format: int32
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdPartyScreeningEntities:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
+        type:
+          type: string
           description: ''
       additionalProperties: false
       description: ''
@@ -186,6 +230,41 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/RequestDataThirdPartyScreeningCreate'
+      additionalProperties: false
+      description: ''
+    RequestDataThirdPartyScreeningCreate:
+      required:
+      - attributes
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntityCreate'
+        type:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseThirdPartyScreeningEntities:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntities'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: false
+      description: ''
+    ResponseThirdPartyScreeningEntity:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntity'
       additionalProperties: false
       description: ''
     ResponseLinks:
@@ -199,18 +278,6 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
     ErrorModelV2:
       type: object
       properties:
@@ -234,56 +301,6 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error model
-    RequestDataThirdPartyScreeningCreate:
-      required:
-      - attributes
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntityCreate'
-        type:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseMeta:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
-      additionalProperties: false
-      description: ''
-    ResponseThirdPartyScreeningEntity:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntity'
-      additionalProperties: false
-      description: ''
-    PagingMeta:
-      type: object
-      properties:
-        context:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseThirdPartyScreeningEntities:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntities'
-          description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      additionalProperties: false
-      description: ''
     ThirdPartyScreeningEntityCreate:
       type: object
       properties:
@@ -311,53 +328,36 @@ components:
           format: int32
       additionalProperties: false
       description: ''
-    ResponseDataThirdPartyScreeningEntities:
+    ErrorResponseModelV2:
       type: object
       properties:
-        id:
-          type: string
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
           description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
+      additionalProperties: false
+      description: Updated Error Response Model
+    ScreeningIdentificationDetails:
+      type: object
+      properties:
         type:
-          type: string
+          type: integer
+          description: ''
+          format: int32
+        value:
+          type:
+          - string
+          - 'null'
           description: ''
       additionalProperties: false
       description: ''
-    ScreeningMatchResults:
+    PagingMeta:
       type: object
       properties:
-        pending_review:
-          type: integer
-          description: ''
-          format: int32
-        confirmed_match:
-          type: integer
-          description: ''
-          format: int32
-        under_investigation:
-          type: integer
-          description: ''
-          format: int32
-        cleared_with_updates:
-          type: integer
-          description: ''
-          format: int32
-        cleared_without_updates:
-          type: integer
-          description: ''
-          format: int32
-      additionalProperties: false
-      description: ''
-    ResponseDataThirdPartyScreeningEntity:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
-        type:
+        context:
           type: string
           description: ''
       additionalProperties: false

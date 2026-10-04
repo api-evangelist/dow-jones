@@ -50,21 +50,6 @@ paths:
           description: Not Acceptable - application/json is not supported for this endpoint
 components:
   schemas:
-    ResponseConnectionDetailsV12:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            attributes:
-              type: object
-              properties:
-                connection_details:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/ConnectionDetailV27'
-                meta:
-                  $ref: '#/components/schemas/ResponseMetaV27'
     ResponseMeta:
       type: object
       properties:
@@ -87,13 +72,43 @@ components:
           format: int32
         filter_values:
           $ref: '#/components/schemas/FilterValues'
-    FilterTypeItem:
+    SingleStringName:
       type: object
       properties:
-        type:
+        language:
           type: string
-        type_code:
-          type: integer
+        name:
+          type: string
+    SpellingVariation:
+      type: object
+      properties:
+        name:
+          type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        surname:
+          type: string
+        prefix:
+          type: string
+        suffix:
+          type: string
+    ResponseConnectionDetails:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                connection_details:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ConnectionDetailV20'
+                meta:
+                  $ref: '#/components/schemas/ResponseMeta'
     IconHintVo:
       type: object
       properties:
@@ -101,19 +116,62 @@ components:
           type: string
         status:
           type: string
-    Offset:
+    ResponseConnectionDetailsV12:
       type: object
       properties:
-        first:
+        data:
+          type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                connection_details:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ConnectionDetailV27'
+                meta:
+                  $ref: '#/components/schemas/ResponseMetaV27'
+    FilterTypeItem:
+      type: object
+      properties:
+        type:
+          type: string
+        type_code:
           type: integer
-        last:
+    ConnectionDetailV20:
+      type: object
+      properties:
+        profile_id:
           type: integer
-        next:
-          type: integer
-        prev:
-          type: integer
-        current:
-          type: integer
+        type:
+          type: string
+        is_current:
+          type: boolean
+        connection_type:
+          type: string
+        reverse_connection_type:
+          type: string
+        name_detail:
+          $ref: '#/components/schemas/NameDetailFullName'
+        icon_hints:
+          type: array
+          items:
+            $ref: '#/components/schemas/IconHintVo'
+    AssociatedNames:
+      type: object
+      properties:
+        original_script_names:
+          type: array
+          items:
+            $ref: '#/components/schemas/OriginalScriptName'
+        spelling_variations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpellingVariation'
+        single_string_names:
+          type: array
+          items:
+            $ref: '#/components/schemas/SingleStringName'
     FilterValues:
       type: object
       description: Returns filter values based on the current values returned by the profile, refreshing its values based on each request.
@@ -130,35 +188,6 @@ components:
           type: array
           items:
             type: string
-    SpellingVariation:
-      type: object
-      properties:
-        name:
-          type: string
-        first_name:
-          type: string
-        middle_name:
-          type: string
-        surname:
-          type: string
-        prefix:
-          type: string
-        suffix:
-          type: string
-    SingleStringName:
-      type: object
-      properties:
-        language:
-          type: string
-        name:
-          type: string
-    OriginalScriptName:
-      type: object
-      properties:
-        language:
-          type: string
-        name:
-          type: string
     ResponsePaging:
       type: object
       properties:
@@ -172,21 +201,6 @@ components:
           type: string
         offset:
           $ref: '#/components/schemas/Offset'
-    ResponseConnectionDetails:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            attributes:
-              type: object
-              properties:
-                connection_details:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/ConnectionDetailV20'
-                meta:
-                  $ref: '#/components/schemas/ResponseMeta'
     FilterValuesV27:
       type: object
       description: Returns filter values based on the current values returned by the profile, refreshing its values based on each request.
@@ -211,6 +225,54 @@ components:
           type: array
           items:
             type: string
+    Offset:
+      type: object
+      properties:
+        first:
+          type: integer
+        last:
+          type: integer
+        next:
+          type: integer
+        prev:
+          type: integer
+        current:
+          type: integer
+    NameDetailFullName:
+      type: object
+      properties:
+        full_name:
+          type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+        surname:
+          type: string
+        prefix:
+          type: string
+        suffix:
+          type: string
+        language:
+          type: string
+        name:
+          type: string
+        associated_names:
+          $ref: '#/components/schemas/AssociatedNames'
+    FilterConnectionTypeItem:
+      type: object
+      properties:
+        connection_type:
+          type: string
+        connection_type_code:
+          type: integer
+    OriginalScriptName:
+      type: object
+      properties:
+        language:
+          type: string
+        name:
+          type: string
     ResponseMetaV27:
       type: object
       properties:
@@ -233,13 +295,6 @@ components:
           format: int32
         filter_values:
           $ref: '#/components/schemas/FilterValuesV27'
-    FilterConnectionTypeItem:
-      type: object
-      properties:
-        connection_type:
-          type: string
-        connection_type_code:
-          type: integer
     ResponseConnectionDetailsV11:
       type: object
       properties:
@@ -255,42 +310,6 @@ components:
                     $ref: '#/components/schemas/ConnectionDetailV20'
                 meta:
                   $ref: '#/components/schemas/ResponseMeta'
-    AssociatedNames:
-      type: object
-      properties:
-        original_script_names:
-          type: array
-          items:
-            $ref: '#/components/schemas/OriginalScriptName'
-        spelling_variations:
-          type: array
-          items:
-            $ref: '#/components/schemas/SpellingVariation'
-        single_string_names:
-          type: array
-          items:
-            $ref: '#/components/schemas/SingleStringName'
-    NameDetailFullName:
-      type: object
-      properties:
-        full_name:
-          type: string
-        first_name:
-          type: string
-        middle_name:
-          type: string
-        surname:
-          type: string
-        prefix:
-          type: string
-        suffix:
-          type: string
-        language:
-          type: string
-        name:
-          type: string
-        associated_names:
-          $ref: '#/components/schemas/AssociatedNames'
     ConnectionDetailV27:
       type: object
       properties:
@@ -320,25 +339,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IconHintVo'
-    ConnectionDetailV20:
-      type: object
-      properties:
-        profile_id:
-          type: integer
-        type:
-          type: string
-        is_current:
-          type: boolean
-        connection_type:
-          type: string
-        reverse_connection_type:
-          type: string
-        name_detail:
-          $ref: '#/components/schemas/NameDetailFullName'
-        icon_hints:
-          type: array
-          items:
-            $ref: '#/components/schemas/IconHintVo'
   parameters:
     Sort:
       name: sort
@@ -348,22 +348,6 @@ components:
       schema:
         type: string
         example: -name
-    PageOffset:
-      name: page[offset]
-      in: query
-      description: page
-      required: false
-      schema:
-        type: number
-        example: 3
-    FilterProfileTypeCode:
-      name: filter[type_code]
-      in: query
-      description: Filter by profile type code (available from version 2.7)
-      required: false
-      schema:
-        type: string
-        example: Person
     FilterProfileType:
       name: filter[type]
       in: query
@@ -380,6 +364,13 @@ components:
       schema:
         type: integer
         example: 3
+    Id:
+      name: id
+      in: path
+      description: Unique id that identities the resource
+      required: true
+      schema:
+        type: string
     FilterFullName:
       name: filter[full_name]
       in: query
@@ -389,13 +380,6 @@ components:
         type: string
         example: Google
         minLength: 3
-    Id:
-      name: id
-      in: path
-      description: Unique id that identities the resource
-      required: true
-      schema:
-        type: string
     PageLimit:
       name: page[limit]
       in: query
@@ -404,13 +388,14 @@ components:
       schema:
         type: number
         example: 20
-    AcceptLanguage:
-      name: Accept-Language
-      in: header
-      description: Language key for Translations
+    PageOffset:
+      name: page[offset]
+      in: query
+      description: page
+      required: false
       schema:
-        type: string
-        default: en
+        type: number
+        example: 3
     FilterIconHint:
       name: filter[icon_hint]
       in: query
@@ -427,6 +412,21 @@ components:
       schema:
         type: string
         example: Colleague
+    FilterProfileTypeCode:
+      name: filter[type_code]
+      in: query
+      description: Filter by profile type code (available from version 2.7)
+      required: false
+      schema:
+        type: string
+        example: Person
+    AcceptLanguage:
+      name: Accept-Language
+      in: header
+      description: Language key for Translations
+      schema:
+        type: string
+        default: en
   securitySchemes:
     bearerAuth:
       type: http

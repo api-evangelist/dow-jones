@@ -42,6 +42,13 @@ paths:
       - oauth2: []
 components:
   schemas:
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
     ResponseDataGroup:
       type: object
       properties:
@@ -55,29 +62,20 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ResponseLinks:
+    ResponseGroup:
       type: object
       properties:
-        next:
-          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataGroup'
           description: ''
-        self:
-          type: string
-          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
       additionalProperties: false
       description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
     ErrorModelV2:
       type: object
       properties:
@@ -101,39 +99,41 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error model
-    ResponseMeta:
+    ErrorResponseModelV2:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
       additionalProperties: false
       description: ''
-    ResponseGroup:
+    ResponseLinks:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataGroup'
+        next:
+          type: string
           description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
+        self:
+          type: string
+          description: ''
       additionalProperties: false
       description: ''
     PagingMeta:
       type: object
       properties:
         context:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    Group:
-      type: object
-      properties:
-        name:
           type: string
           description: ''
       additionalProperties: false
