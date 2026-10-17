@@ -92,6 +92,25 @@ components:
           description: ''
       additionalProperties: false
       description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ResponseFile:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataFile'
+      additionalProperties: false
+      description: ''
     FileItem:
       type: object
       properties:
@@ -130,25 +149,6 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error model
-    ResponseFile:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataFile'
-      additionalProperties: false
-      description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
   securitySchemes:
     oauth2:
       type: apiKey

@@ -59,19 +59,13 @@ paths:
                 $ref: '#/components/schemas/JsonError'
 components:
   schemas:
-    ErrorObject:
+    JsonError:
       type: object
       properties:
-        code:
-          type: string
-        title:
-          type: string
-        status:
-          type: string
-        detail:
-          type: string
-        meta:
-          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
     VersionObject:
       type: object
       properties:
@@ -90,6 +84,19 @@ components:
         type:
           type: string
           example: versions
+    ErrorObject:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
     ProfileVersionsResponse:
       type: object
       properties:
@@ -97,13 +104,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VersionObject'
-    JsonError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
   parameters:
     profile-id:
       name: profile-id

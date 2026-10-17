@@ -49,31 +49,32 @@ paths:
       - Bearer: []
 components:
   schemas:
-    ArticlesRelationshipsData:
-      type: array
-      items:
-        $ref: '#/components/schemas/ArticlesRelationshipsDataElements'
-    AssociatedResource:
-      type: object
-    Links:
+    BaseContent:
       type: object
       properties:
-        self:
+        type:
           type: string
-          description: Link to the DRN resource
-        related:
-          $ref: '#/components/schemas/Related'
-    JsonApiHeader:
-      type: object
-      properties:
-        version:
+          description: Type of content
+        id:
           type: string
-          description: Specifies the API version
-    ArticlesMeta:
-      type: object
-      properties:
-        metrics:
-          $ref: '#/components/schemas/ArticlesMetric'
+          description: ID associated with the content
+        ref:
+          type: string
+          description: References to the content
+        content:
+          type: array
+          description: Array of Base Content objects, which constitute the parent content
+          items:
+            $ref: '#/components/schemas/BaseContent'
+        text:
+          type: string
+          description: The text corresponding to the content
+        variant:
+          type: string
+          description: Content variation
+        debug:
+          type: string
+          description: Debugging information
     ArticlesRelationshipsDataElements:
       type: object
       properties:
@@ -82,79 +83,6 @@ components:
           description: Represents the id of the included article
         type:
           type: string
-    Summary:
-      type: object
-      properties:
-        variant:
-          type: string
-          description: Summary variation
-        destination_type:
-          type: string
-          description: Destination type variation
-        pages:
-          type: array
-          description: List of pages that display this summary
-          items:
-            type: string
-        byline:
-          $ref: '#/components/schemas/BaseContent'
-        headline:
-          $ref: '#/components/schemas/Headline'
-        body:
-          type: array
-          description: Summary body
-          items:
-            $ref: '#/components/schemas/BaseContent'
-        related_links:
-          type: array
-          description: Related links
-          items:
-            $ref: '#/components/schemas/BaseContent'
-    Author:
-      type: object
-      properties:
-        full_name:
-          type: string
-          description: Author's full display name
-        topic_id:
-          type: string
-          description: Topic ID
-    Headline:
-      type: object
-      properties:
-        flashline:
-          $ref: '#/components/schemas/BaseContent'
-        main:
-          $ref: '#/components/schemas/BaseContent'
-        deck:
-          $ref: '#/components/schemas/BaseContent'
-    Related:
-      type: object
-      properties:
-        href:
-          type: string
-          description: Specifies the URL link
-        meta:
-          $ref: '#/components/schemas/Meta'
-    JsonApiResourceObject_DnaArticleData_:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Represents the DRN reference ID assigned to the resource
-        type:
-          type: string
-          description: Represents the type of resource
-        attributes:
-          $ref: '#/components/schemas/DnaArticleData'
-        links:
-          type: object
-          properties: {}
-          description: Links object with the links related to the resource
-        meta:
-          type: object
-          properties: {}
-          description: Meta object with additional information about the resource
     DnaArticleData:
       type: object
       properties:
@@ -266,6 +194,150 @@ components:
           $ref: '#/components/schemas/Links'
         meta:
           $ref: '#/components/schemas/Meta'
+    Related:
+      type: object
+      properties:
+        href:
+          type: string
+          description: Specifies the URL link
+        meta:
+          $ref: '#/components/schemas/Meta'
+    DnaContentCollectionExample:
+      type: object
+      properties:
+        jsonapi:
+          $ref: '#/components/schemas/JsonApiHeader'
+        data:
+          $ref: '#/components/schemas/JsonApiResourceObject_DnaContentCollection_'
+        links:
+          type: object
+          properties: {}
+          description: Resource links
+        included:
+          uniqueItems: true
+          type: array
+          description: Lists links that point to resources outside the collection
+          items:
+            $ref: '#/components/schemas/JsonApiResourceObject_DnaArticleData_'
+        meta:
+          $ref: '#/components/schemas/ArticlesMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonApiError'
+    Meta:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of records returned
+          format: int32
+    Publisher:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Publisher code
+        name:
+          type: string
+          description: Publisher name
+        group_code:
+          type: string
+          description: Publisher group code
+        group_name:
+          type: string
+          description: Publisher group name
+    JsonApiResourceObject_DnaContentCollection_:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Represents the DRN reference ID assigned to the resource
+        type:
+          type: string
+          description: Represents the type of resource
+        attributes:
+          type: object
+          properties:
+            description:
+              type: string
+              description: Represents the name of the collection
+        relationships:
+          $ref: '#/components/schemas/DnaContentCollectionRelationships'
+    Summary:
+      type: object
+      properties:
+        variant:
+          type: string
+          description: Summary variation
+        destination_type:
+          type: string
+          description: Destination type variation
+        pages:
+          type: array
+          description: List of pages that display this summary
+          items:
+            type: string
+        byline:
+          $ref: '#/components/schemas/BaseContent'
+        headline:
+          $ref: '#/components/schemas/Headline'
+        body:
+          type: array
+          description: Summary body
+          items:
+            $ref: '#/components/schemas/BaseContent'
+        related_links:
+          type: array
+          description: Related links
+          items:
+            $ref: '#/components/schemas/BaseContent'
+    Associations:
+      type: object
+      properties:
+        root_id:
+          type: string
+          description: ID of the associated article
+        parent_id:
+          type: string
+          description: Article parent ID
+        parent_id_ref:
+          type: string
+          description: Article parent reference
+        mantis_id:
+          type: string
+          description: Article Mantis ID
+        editor_id:
+          type: string
+          description: Article editor ID
+    Links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to the DRN resource
+        related:
+          $ref: '#/components/schemas/Related'
+    Author:
+      type: object
+      properties:
+        full_name:
+          type: string
+          description: Author's full display name
+        topic_id:
+          type: string
+          description: Topic ID
+    DnaContentCollectionRelationships:
+      type: object
+      properties:
+        articles:
+          $ref: '#/components/schemas/ArticlesRelationshipsData'
+        videos:
+          $ref: '#/components/schemas/ArticlesRelationshipsData'
+        audio:
+          $ref: '#/components/schemas/ArticlesRelationshipsData'
+        errors:
+          $ref: '#/components/schemas/ArticlesRelationshipsData'
     JsonApiError:
       type: object
       properties:
@@ -332,85 +404,7 @@ components:
         code:
           type: string
           description: Error code
-    Publisher:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Publisher code
-        name:
-          type: string
-          description: Publisher name
-        group_code:
-          type: string
-          description: Publisher group code
-        group_name:
-          type: string
-          description: Publisher group name
-    BaseContent:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of content
-        id:
-          type: string
-          description: ID associated with the content
-        ref:
-          type: string
-          description: References to the content
-        content:
-          type: array
-          description: Array of Base Content objects, which constitute the parent content
-          items:
-            $ref: '#/components/schemas/BaseContent'
-        text:
-          type: string
-          description: The text corresponding to the content
-        variant:
-          type: string
-          description: Content variation
-        debug:
-          type: string
-          description: Debugging information
-    DnaContentCollectionExample:
-      type: object
-      properties:
-        jsonapi:
-          $ref: '#/components/schemas/JsonApiHeader'
-        data:
-          $ref: '#/components/schemas/JsonApiResourceObject_DnaContentCollection_'
-        links:
-          type: object
-          properties: {}
-          description: Resource links
-        included:
-          uniqueItems: true
-          type: array
-          description: Lists links that point to resources outside the collection
-          items:
-            $ref: '#/components/schemas/JsonApiResourceObject_DnaArticleData_'
-        meta:
-          $ref: '#/components/schemas/ArticlesMeta'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/JsonApiError'
-    Meta:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of records returned
-          format: int32
-    ArticlesMetric:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of records returned
-          format: int32
-    JsonApiResourceObject_DnaContentCollection_:
+    JsonApiResourceObject_DnaArticleData_:
       type: object
       properties:
         id:
@@ -420,42 +414,48 @@ components:
           type: string
           description: Represents the type of resource
         attributes:
+          $ref: '#/components/schemas/DnaArticleData'
+        links:
           type: object
-          properties:
-            description:
-              type: string
-              description: Represents the name of the collection
-        relationships:
-          $ref: '#/components/schemas/DnaContentCollectionRelationships'
-    DnaContentCollectionRelationships:
+          properties: {}
+          description: Links object with the links related to the resource
+        meta:
+          type: object
+          properties: {}
+          description: Meta object with additional information about the resource
+    ArticlesMetric:
       type: object
       properties:
-        articles:
-          $ref: '#/components/schemas/ArticlesRelationshipsData'
-        videos:
-          $ref: '#/components/schemas/ArticlesRelationshipsData'
-        audio:
-          $ref: '#/components/schemas/ArticlesRelationshipsData'
-        errors:
-          $ref: '#/components/schemas/ArticlesRelationshipsData'
-    Associations:
+        count:
+          type: integer
+          description: Number of records returned
+          format: int32
+    Headline:
       type: object
       properties:
-        root_id:
+        flashline:
+          $ref: '#/components/schemas/BaseContent'
+        main:
+          $ref: '#/components/schemas/BaseContent'
+        deck:
+          $ref: '#/components/schemas/BaseContent'
+    JsonApiHeader:
+      type: object
+      properties:
+        version:
           type: string
-          description: ID of the associated article
-        parent_id:
-          type: string
-          description: Article parent ID
-        parent_id_ref:
-          type: string
-          description: Article parent reference
-        mantis_id:
-          type: string
-          description: Article Mantis ID
-        editor_id:
-          type: string
-          description: Article editor ID
+          description: Specifies the API version
+    AssociatedResource:
+      type: object
+    ArticlesMeta:
+      type: object
+      properties:
+        metrics:
+          $ref: '#/components/schemas/ArticlesMetric'
+    ArticlesRelationshipsData:
+      type: array
+      items:
+        $ref: '#/components/schemas/ArticlesRelationshipsDataElements'
   securitySchemes:
     Bearer:
       type: http

@@ -245,7 +245,125 @@ paths:
       security:
       - bearerAuth: []
 components:
+  parameters:
+    Content-Encoding:
+      name: Content-Encoding
+      description: Which encoding the request body is being sent. The API supports gzip encoding for request body.
+      in: header
+      required: false
+      schema:
+        type: string
+    Accept-Encoding:
+      name: Accept-Encoding
+      description: Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to "gzip" and the payload exceeds the threshold of 8MB
+      in: header
+      required: false
+      schema:
+        type: string
   schemas:
+    RequestDataProfileSourceName:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestProfileSourceName'
+    JsonError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+    RequestProfileSourceName:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProfileSourceName'
+        type:
+          type: string
+          example: risk-profiles-custom-sources
+    ResponseDataProfileSources:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseListProfileSourceName'
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    ProfileSourceName:
+      type: object
+      properties:
+        source_name:
+          type: string
+    ProfileSourceInformation:
+      type: object
+      properties:
+        source_name:
+          type: string
+        profile_count:
+          type: integer
+          example: 4
+        created_at:
+          type: string
+          example: '2021-01-01T12:00:00Z'
+    ResponseListProfileSourcesInformation:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProfileSourceInformation'
+        type:
+          type: string
+          example: risk-profiles-custom-sources
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000
+        id:
+          type: string
+    ResponseListProfileSourceName:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ProfileSourceInformation'
+        type:
+          type: string
+          example: risk-profiles-custom-sources
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000
+        id:
+          type: string
+    ResponseLinks:
+      type: object
+      properties:
+        first:
+          type: string
+          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20
+        next:
+          type: string
+          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=40&page[limit]=20
+        prev:
+          type: string
+          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20
+        last:
+          type: string
+          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=210
+    ResponseProfileSourceName:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseListProfileSourceName'
     ErrorObject:
       type: object
       properties:
@@ -259,29 +377,11 @@ components:
           type: string
         meta:
           type: string
-    ProfileSourceInformation:
-      type: object
-      properties:
-        source_name:
-          type: string
-        profile_count:
-          type: integer
-          example: 4
-        created_at:
-          type: string
-          example: '2021-01-01T12:00:00Z'
     ResponseDataListProfileSourcesInformation:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/ResponseListProfileSourcesInformation'
-    ResponseProfileSourceName:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseListProfileSourceName'
     Meta:
       type: object
       properties:
@@ -303,106 +403,6 @@ components:
         total_count:
           type: integer
           example: 0
-    ProfileSourceName:
-      type: object
-      properties:
-        source_name:
-          type: string
-    ResponseDataProfileSources:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseListProfileSourceName'
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    JsonError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
-    ResponseListProfileSourceName:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ProfileSourceInformation'
-        type:
-          type: string
-          example: risk-profiles-custom-sources
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              example: https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000
-        id:
-          type: string
-    ResponseListProfileSourcesInformation:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ProfileSourceInformation'
-        type:
-          type: string
-          example: risk-profiles-custom-sources
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              example: https://api.dowjones.com/risk-profiles-custom-sources/123e4567-e89b-12d3-a456-426614174000
-        id:
-          type: string
-    RequestProfileSourceName:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ProfileSourceName'
-        type:
-          type: string
-          example: risk-profiles-custom-sources
-    ResponseLinks:
-      type: object
-      properties:
-        first:
-          type: string
-          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20
-        next:
-          type: string
-          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=40&page[limit]=20
-        prev:
-          type: string
-          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=0&page[limit]=20
-        last:
-          type: string
-          example: https://api.dowjones.com/risk-profiles-custom-sources/?page[offset]=210
-    RequestDataProfileSourceName:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestProfileSourceName'
-  parameters:
-    Accept-Encoding:
-      name: Accept-Encoding
-      description: Which encoding the user accepts for the response body. The API supports compression for response body if this header is set to "gzip" and the payload exceeds the threshold of 8MB
-      in: header
-      required: false
-      schema:
-        type: string
-    Content-Encoding:
-      name: Content-Encoding
-      description: Which encoding the request body is being sent. The API supports gzip encoding for request body.
-      in: header
-      required: false
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

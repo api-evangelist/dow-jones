@@ -125,14 +125,28 @@ paths:
       - oauth2: []
 components:
   schemas:
-    ResponseMeta:
+    ScreeningIdentificationDetails:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
+        type:
+          type: integer
+          description: ''
+          format: int32
+        value:
+          type:
+          - string
+          - 'null'
+          description: ''
       additionalProperties: false
       description: ''
-    ResponseDataThirdPartyScreeningEntity:
+    ResponseThirdPartyScreeningEntity:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntity'
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdPartyScreeningEntities:
       type: object
       properties:
         id:
@@ -187,6 +201,38 @@ components:
           format: int32
       additionalProperties: false
       description: ''
+    RequestThirdPartyScreeningCreate:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/RequestDataThirdPartyScreeningCreate'
+      additionalProperties: false
+      description: ''
+    ResponseLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    RequestDataThirdPartyScreeningCreate:
+      required:
+      - attributes
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntityCreate'
+        type:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: ''
     ScreeningMatchResults:
       type: object
       properties:
@@ -212,95 +258,18 @@ components:
           format: int32
       additionalProperties: false
       description: ''
-    ResponseDataThirdPartyScreeningEntities:
+    ErrorResponseModelV2:
       type: object
       properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    RequestThirdPartyScreeningCreate:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/RequestDataThirdPartyScreeningCreate'
-      additionalProperties: false
-      description: ''
-    RequestDataThirdPartyScreeningCreate:
-      required:
-      - attributes
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ThirdPartyScreeningEntityCreate'
-        type:
+        errors:
           type:
-          - string
+          - array
           - 'null'
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseThirdPartyScreeningEntities:
-      type: object
-      properties:
-        data:
-          type: array
           items:
-            $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntities'
-          description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      additionalProperties: false
-      description: ''
-    ResponseThirdPartyScreeningEntity:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntity'
-      additionalProperties: false
-      description: ''
-    ResponseLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          description: ''
-        self:
-          type: string
+            $ref: '#/components/schemas/ErrorModelV2'
           description: ''
       additionalProperties: false
-      description: ''
-    ErrorModelV2:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: Updated Error model
+      description: Updated Error Response Model
     ThirdPartyScreeningEntityCreate:
       type: object
       properties:
@@ -328,30 +297,38 @@ components:
           format: int32
       additionalProperties: false
       description: ''
-    ErrorResponseModelV2:
+    ResponseMeta:
       type: object
       properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
+      additionalProperties: false
+      description: ''
+    ResponseDataThirdPartyScreeningEntity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/ThirdPartyScreeningEntity'
+        type:
+          type: string
           description: ''
       additionalProperties: false
-      description: Updated Error Response Model
-    ScreeningIdentificationDetails:
+      description: ''
+    ResponseThirdPartyScreeningEntities:
       type: object
       properties:
-        type:
-          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataThirdPartyScreeningEntities'
           description: ''
-          format: int32
-        value:
-          type:
-          - string
-          - 'null'
-          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
       additionalProperties: false
       description: ''
     PagingMeta:
@@ -362,6 +339,29 @@ components:
           description: ''
       additionalProperties: false
       description: ''
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
   securitySchemes:
     oauth2:
       type: apiKey

@@ -82,49 +82,6 @@ paths:
       - oauth2: []
 components:
   schemas:
-    ResponseMeta:
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
-      additionalProperties: false
-      description: ''
-    List:
-      type: object
-      properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListRow'
-          description: ''
-        columns:
-          type: array
-          items:
-            type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseList:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataList'
-      additionalProperties: false
-      description: ''
-    ResponseLists:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataLists'
-          description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
-      additionalProperties: false
-      description: ''
     ErrorModelV2:
       type: object
       properties:
@@ -156,6 +113,45 @@ components:
           description: ''
       additionalProperties: false
       description: ''
+    ResponseDataList:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/List'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    List:
+      type: object
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListRow'
+          description: ''
+        columns:
+          type: array
+          items:
+            type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
     ErrorResponseModelV2:
       type: object
       properties:
@@ -168,17 +164,40 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error Response Model
-    ResponseDataList:
+    ResponseList:
       type: object
       properties:
-        id:
+        data:
+          $ref: '#/components/schemas/ResponseDataList'
+      additionalProperties: false
+      description: ''
+    ResponseLists:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataLists'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+      additionalProperties: false
+      description: ''
+    PagingMeta:
+      type: object
+      properties:
+        context:
           type: string
           description: ''
-        attributes:
-          $ref: '#/components/schemas/List'
-        type:
-          type: string
-          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseMeta:
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
       additionalProperties: false
       description: ''
     ResponseDataLists:
@@ -203,25 +222,6 @@ components:
         data:
           type: array
           items: {}
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          description: ''
-        self:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    PagingMeta:
-      type: object
-      properties:
-        context:
-          type: string
           description: ''
       additionalProperties: false
       description: ''

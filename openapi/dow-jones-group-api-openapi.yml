@@ -42,11 +42,57 @@ paths:
       - oauth2: []
 components:
   schemas:
-    ResponseMeta:
+    ResponseLinks:
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingMeta'
+        next:
+          type: string
+          description: ''
+        self:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    PagingMeta:
+      type: object
+      properties:
+        context:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ResponseGroup:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseDataGroup'
+          description: ''
+        links:
+          $ref: '#/components/schemas/ResponseLinks'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
       additionalProperties: false
       description: ''
     ResponseDataGroup:
@@ -62,18 +108,11 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    ResponseGroup:
+    ResponseMeta:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseDataGroup'
-          description: ''
-        links:
-          $ref: '#/components/schemas/ResponseLinks'
-        meta:
-          $ref: '#/components/schemas/ResponseMeta'
+        paging:
+          $ref: '#/components/schemas/PagingMeta'
       additionalProperties: false
       description: ''
     ErrorModelV2:
@@ -99,45 +138,6 @@ components:
           description: ''
       additionalProperties: false
       description: Updated Error model
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
-    Group:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          description: ''
-        self:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    PagingMeta:
-      type: object
-      properties:
-        context:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
   securitySchemes:
     oauth2:
       type: apiKey

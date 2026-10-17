@@ -57,40 +57,6 @@ paths:
       - bearerAuth: []
 components:
   schemas:
-    ErrorObject:
-      type: object
-      properties:
-        code:
-          type: string
-        title:
-          type: string
-        status:
-          type: string
-        detail:
-          type: string
-        meta:
-          type: string
-    ResponseStatusTransaction:
-      type: object
-      properties:
-        attributes:
-          $ref: '#/components/schemas/PrivateListStatusTransaction'
-        type:
-          type: string
-          example: transactions
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              example: https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000
-        id:
-          type: string
-    ResponseDataPrivateListStatusTransaction:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseStatusTransaction'
     JsonError:
       type: object
       properties:
@@ -166,6 +132,40 @@ components:
                     detail:
                       type: string
                       example: names[0] {The profile name contains invalid characters}
+    ErrorObject:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
+    ResponseStatusTransaction:
+      type: object
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PrivateListStatusTransaction'
+        type:
+          type: string
+          example: transactions
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              example: https://api.dowjones.com/transactions/123e4567-e89b-12d3-a456-426614174000
+        id:
+          type: string
+    ResponseDataPrivateListStatusTransaction:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseStatusTransaction'
   parameters:
     Accept-Encoding:
       name: Accept-Encoding

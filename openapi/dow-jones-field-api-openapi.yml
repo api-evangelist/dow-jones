@@ -81,6 +81,64 @@ paths:
       - oauth2: []
 components:
   schemas:
+    TableDefinition:
+      type: object
+      properties:
+        columns:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Column'
+          description: ''
+      additionalProperties: false
+      description: ''
+    Column:
+      type: object
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        schema:
+          type:
+          - string
+          - 'null'
+          description: ''
+        list:
+          $ref: '#/components/schemas/FieldList'
+        regex:
+          type:
+          - string
+          - 'null'
+          description: ''
+        input_mask:
+          type:
+          - string
+          - 'null'
+          description: ''
+        multi_line:
+          type: boolean
+          description: ''
+        required:
+          type: boolean
+          description: ''
+      additionalProperties: false
+      description: ''
+    ResponseDataList:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        attributes:
+          $ref: '#/components/schemas/List'
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
     Field:
       type: object
       properties:
@@ -126,37 +184,11 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    List:
+    ResonseDataFieldRelationships:
       type: object
       properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListRow'
-          description: ''
-        columns:
-          type: array
-          items:
-            type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    RelationshipLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          description: ''
-        related:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseList:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/ResponseDataList'
+        list:
+          $ref: '#/components/schemas/ReponseRelationship'
       additionalProperties: false
       description: ''
     ResponseField:
@@ -171,16 +203,6 @@ components:
           $ref: '#/components/schemas/ResponseLinks'
       additionalProperties: false
       description: ''
-    FieldListItem:
-      type: object
-      properties:
-        value:
-          description: ''
-        text:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
     ReponseRelationship:
       type: object
       properties:
@@ -190,76 +212,6 @@ components:
           $ref: '#/components/schemas/RelationshipData'
       additionalProperties: false
       description: ''
-    ErrorModelV2:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: ''
-          format: int32
-        code:
-          type: integer
-          description: ''
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        detail:
-          type:
-          - string
-          - 'null'
-          description: ''
-      additionalProperties: false
-      description: Updated Error model
-    ResponseDataField:
-      type: object
-      properties:
-        relationships:
-          $ref: '#/components/schemas/ResonseDataFieldRelationships'
-        attributes:
-          $ref: '#/components/schemas/Field'
-        id:
-          type: string
-          description: ''
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResponseDataList:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ''
-        attributes:
-          $ref: '#/components/schemas/List'
-        type:
-          type: string
-          description: ''
-      additionalProperties: false
-      description: ''
-    ResonseDataFieldRelationships:
-      type: object
-      properties:
-        list:
-          $ref: '#/components/schemas/ReponseRelationship'
-      additionalProperties: false
-      description: ''
-    ErrorResponseModelV2:
-      type: object
-      properties:
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ErrorModelV2'
-          description: ''
-      additionalProperties: false
-      description: Updated Error Response Model
     FieldList:
       type: object
       properties:
@@ -283,48 +235,43 @@ components:
           description: Adhoc list items.
       additionalProperties: false
       description: ''
-    Column:
+    ResponseDataField:
       type: object
       properties:
-        title:
-          type:
-          - string
-          - 'null'
-          description: ''
-        schema:
-          type:
-          - string
-          - 'null'
-          description: ''
-        list:
-          $ref: '#/components/schemas/FieldList'
-        regex:
-          type:
-          - string
-          - 'null'
-          description: ''
-        input_mask:
-          type:
-          - string
-          - 'null'
-          description: ''
-        multi_line:
-          type: boolean
-          description: ''
-        required:
-          type: boolean
-          description: ''
-      additionalProperties: false
-      description: ''
-    ListRow:
-      type: object
-      properties:
+        relationships:
+          $ref: '#/components/schemas/ResonseDataFieldRelationships'
+        attributes:
+          $ref: '#/components/schemas/Field'
         id:
           type: string
           description: ''
-        data:
+        type:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    FieldListItem:
+      type: object
+      properties:
+        value:
+          description: ''
+        text:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    List:
+      type: object
+      properties:
+        rows:
           type: array
-          items: {}
+          items:
+            $ref: '#/components/schemas/ListRow'
+          description: ''
+        columns:
+          type: array
+          items:
+            type: string
           description: ''
       additionalProperties: false
       description: ''
@@ -350,15 +297,68 @@ components:
           description: ''
       additionalProperties: false
       description: ''
-    TableDefinition:
+    RelationshipLinks:
       type: object
       properties:
-        columns:
+        self:
+          type: string
+          description: ''
+        related:
+          type: string
+          description: ''
+      additionalProperties: false
+      description: ''
+    ErrorResponseModelV2:
+      type: object
+      properties:
+        errors:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/Column'
+            $ref: '#/components/schemas/ErrorModelV2'
+          description: ''
+      additionalProperties: false
+      description: Updated Error Response Model
+    ResponseList:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseDataList'
+      additionalProperties: false
+      description: ''
+    ErrorModelV2:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: ''
+          format: int32
+        code:
+          type: integer
+          description: ''
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: ''
+        detail:
+          type:
+          - string
+          - 'null'
+          description: ''
+      additionalProperties: false
+      description: Updated Error model
+    ListRow:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ''
+        data:
+          type: array
+          items: {}
           description: ''
       additionalProperties: false
       description: ''

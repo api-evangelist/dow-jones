@@ -47,6 +47,19 @@ paths:
         '400':
           description: Bad request
 components:
+  parameters:
+    control_data:
+      name: control_data
+      in: header
+      required: false
+      schema:
+        type: string
+    accept-language:
+      name: accept-language
+      in: header
+      required: false
+      schema:
+        type: string
   schemas:
     ListItemsContainer:
       type: object
@@ -57,6 +70,13 @@ components:
             oneOf:
             - $ref: '#/components/schemas/LeafListItem'
             - $ref: '#/components/schemas/LeafCountryListItem'
+    LeafListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        descriptor:
+          type: string
     LeafCountryListItem:
       type: object
       properties:
@@ -68,13 +88,6 @@ components:
           type: string
         iso_alpha3:
           type: string
-    TaxonomyResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListItem'
     ListItem:
       type: object
       properties:
@@ -84,13 +97,6 @@ components:
           type: string
         attributes:
           $ref: '#/components/schemas/ListItemsContainer'
-    LeafListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        descriptor:
-          type: string
     ListIds:
       type: string
       enum:
@@ -114,19 +120,13 @@ components:
       - CountryTerritoryType
       - CountryTerritoryTypePerson
       - CountryTerritoryTypeEntity
-  parameters:
-    accept-language:
-      name: accept-language
-      in: header
-      required: false
-      schema:
-        type: string
-    control_data:
-      name: control_data
-      in: header
-      required: false
-      schema:
-        type: string
+    TaxonomyResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListItem'
   securitySchemes:
     bearerAuth:
       type: http

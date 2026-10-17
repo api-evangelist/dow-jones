@@ -62,19 +62,17 @@ paths:
                 $ref: '#/components/schemas/JsonError'
 components:
   schemas:
-    ErrorObject:
+    PaginationOffset:
       type: object
       properties:
-        code:
-          type: string
-        title:
-          type: string
-        status:
-          type: string
-        detail:
-          type: string
-        meta:
-          type: string
+        first:
+          type: integer
+        last:
+          type: integer
+        next:
+          type: integer
+        prev:
+          type: integer
     NewValueItem:
       type: object
       properties:
@@ -84,17 +82,13 @@ components:
         display_name:
           type: string
           example: Language
-    PaginationLinks:
+    JsonError:
       type: object
       properties:
-        first:
-          type: string
-        last:
-          type: string
-        next:
-          type: string
-        prev:
-          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
     ProfileRevisionsResponse:
       type: object
       properties:
@@ -118,24 +112,30 @@ components:
             total_count:
               type: integer
               example: 1
-    JsonError:
+    ErrorObject:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
-    PaginationOffset:
+        code:
+          type: string
+        title:
+          type: string
+        status:
+          type: string
+        detail:
+          type: string
+        meta:
+          type: string
+    PaginationLinks:
       type: object
       properties:
         first:
-          type: integer
+          type: string
         last:
-          type: integer
+          type: string
         next:
-          type: integer
+          type: string
         prev:
-          type: integer
+          type: string
     ProfileRevision:
       type: object
       properties:
@@ -179,6 +179,12 @@ components:
           type: string
           example: revisions
   parameters:
+    PageOffset:
+      name: page[offset]
+      in: query
+      description: Page offset
+      schema:
+        type: integer
     RevisionFilter:
       name: filter[revision_date]
       in: query
@@ -192,12 +198,6 @@ components:
       description: Unique profile id that identifies a profile
       schema:
         type: string
-    PageOffset:
-      name: page[offset]
-      in: query
-      description: Page offset
-      schema:
-        type: integer
     PageLimit:
       name: page[limit]
       in: query

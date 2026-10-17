@@ -54,6 +54,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    errorMeta:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
     error:
       required:
       - code
@@ -75,13 +82,6 @@ components:
           description: error detail about this instance of error
         meta:
           $ref: '#/components/schemas/errorMeta'
-    errorMeta:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
